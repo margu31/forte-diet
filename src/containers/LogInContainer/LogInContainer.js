@@ -3,9 +3,8 @@ import Input from "../../components/Input/Input";
 import { useDispatch } from "react-redux";
 import { signInAction } from "../../redux/modules/auth/auth";
 import { isEmail, isPassword } from "../../utils/validation/LogInValidation";
-import { handleSignInWithEmailAndPassword } from "../../api/auth";
+import { handleSignInWithEmailAndPassword } from "../../api/auth/auth";
 import Button from "../../components/Button/Button";
-import Login from "../../components/LogIn/Login";
 
 const formValue = {
   id: null,
