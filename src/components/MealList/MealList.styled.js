@@ -1,0 +1,41 @@
+import styled from 'styled-components';
+
+const StyledMealList = styled.li`
+  list-style: none;
+  display: inline-block;
+  color: #14182c;
+
+  div {
+    border-radius: 50%;
+    box-sizing: border-box;
+    box-shadow: 0 0 6px 0;
+    width: 138px;
+    height: 138px;
+    overflow: hidden;
+    margin-bottom: 19px;
+    border: 10px solid ${props => props.borderColor};
+
+    img {
+      width: auto;
+      height: 138px;
+    }
+  }
+
+  span {
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+
+  span + span {
+    margin-top: 8px;
+    font-size: 14px;
+    opacity: 0.6;
+  }
+
+  & + & {
+    margin-left: 58px;
+  }
+`;
+
+export { StyledMealList };
