@@ -1,12 +1,16 @@
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import rootReducer from "./modules";
 import { composeWithDevTools } from "redux-devtools-extension";
+import rootreducer from "./modules";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
 
-const store = createStore(rootReducer, composeWithDevTools());
+const middlewares = [logger, thunk];
+const store = createStore(
+  rootreducer,
+  composeWithDevTools(applyMiddleware(...middlewares))
+);
 
-const StoreProvider = (props) => {
+export function StoreProvider(props) {
   return <Provider store={store} {...props} />;
-};
-
-export default StoreProvider;
+}
