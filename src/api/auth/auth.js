@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import firebase from 'firebase';
 
 const {
@@ -9,7 +10,7 @@ const {
   REACT_APP_FB_APP_ID
 } = process.env;
 
-const config = {
+export const config = {
   apiKey: REACT_APP_FB_API_KEY,
   authDomain: REACT_APP_FB_AUTH_DOMAIN,
   projectId: REACT_APP_FB_PROJECT_ID,
@@ -22,7 +23,7 @@ const config = {
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
-const firestore = firebase.firestore();
+export const firestore = firebase.firestore();
 
 /* 언어 설정 */
 auth.languageCode = 'ko';
