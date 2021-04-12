@@ -10,6 +10,8 @@ export default function MyPage() {
   return (
     <>
       <MenuList />
+      <MenuList />
+      <MenuList />
       <StyledCalendarButton>
         <StyledCalendarIcon />
       </StyledCalendarButton>
