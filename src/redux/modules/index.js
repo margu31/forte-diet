@@ -1,6 +1,10 @@
 import { combineReducers } from "redux";
 import auth from "./auth/auth";
+import uploadReducer from "./postingMenuList";
 
-const rootreducer = combineReducers({ auth });
+const rootReducer = combineReducers({
+  auth,
+  posting: uploadReducer,
+});
 
-export default rootreducer;
+export default rootReducer;
