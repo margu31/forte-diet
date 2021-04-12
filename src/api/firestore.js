@@ -2,11 +2,9 @@ import { firestore } from './auth';
 
 export const handleGetDietLists = ({ uid }, updateDietAction) => async dispatch => {
   try {
-    const snapshot = await firestore.collection('users').get();
+    const snapshot = await firestore.collection('users').where('id', '==', uid).get();
 
-    snapshot.forEach(user => {
-      if (user.id === uid) dispatch(updateDietAction(user.data().dietList));
-    });
+    snapshot.forEach(user => dispatch(updateDietAction(user.data().dietList)));
 
     return true;
   } catch (e) {
