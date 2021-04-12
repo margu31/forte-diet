@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 const {
   REACT_APP_FB_API_KEY,
@@ -6,7 +6,7 @@ const {
   REACT_APP_FB_PROJECT_ID,
   REACT_APP_FB_STORAGE_BUCKET,
   REACT_APP_FB_MESSAGE_ID,
-  REACT_APP_FB_APP_ID
+  REACT_APP_FB_APP_ID,
 } = process.env;
 
 const config = {
@@ -15,7 +15,7 @@ const config = {
   projectId: REACT_APP_FB_PROJECT_ID,
   storageBucket: REACT_APP_FB_STORAGE_BUCKET,
   messagingSenderId: REACT_APP_FB_MESSAGE_ID,
-  appId: REACT_APP_FB_APP_ID
+  appId: REACT_APP_FB_APP_ID,
 };
 
 /* firebase 초기화 */
@@ -25,31 +25,34 @@ export const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 /* 언어 설정 */
-auth.languageCode = 'ko';
+auth.languageCode = "ko";
 
 /* Google Auth Provider 설정 */
 const googleProvider = new firebase.auth.GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' });
+googleProvider.setCustomParameters({ prompt: "select_account" });
 
 /* -------------------------------------------------------------------------- */
 /*                                     로그인                                    */
 /* -------------------------------------------------------------------------- */
 
 /* 구글 로그인 (thunk) */
-const signInWithGoogle = signInAction => auth.signInWithPopup(googleProvider);
+const signInWithGoogle = (signInAction) => auth.signInWithPopup(googleProvider);
 
-export const handleSignInGoogleAuthProvider = (closeDialog, signInAction) => async dispatch => {
+export const handleSignInGoogleAuthProvider = (
+  closeDialog,
+  signInAction
+) => async (dispatch) => {
   try {
     const {
       additionalUserInfo: { profile },
-      user
+      user,
     } = await signInWithGoogle();
 
     const currentUser = {
       uid: user.uid,
       email: profile.email,
       displayName: profile.name,
-      photoURL: profile.picture
+      photoURL: profile.picture,
     };
 
     dispatch(signInAction(currentUser));
@@ -64,7 +67,7 @@ export const handleSignInWithEmailAndPassword = (
   email,
   password,
   signInAction
-) => async dispatch => {
+) => async (dispatch) => {
   try {
     const { user } = await auth.signInWithEmailAndPassword(email, password);
 
@@ -78,7 +81,7 @@ export const handleSignInWithEmailAndPassword = (
       height: user.height,
       weight: user.weight,
       gender: user.gender,
-      nickname: user.nickname
+      nickname: user.nickname,
     };
 
     dispatch(signInAction(currentUser));
@@ -92,7 +95,7 @@ export const handleSignInWithEmailAndPassword = (
 /* 로그아웃 함수 */
 const authSignOut = () => auth.signOut();
 
-export const handleSignOut = signOutAction => async dispatch => {
+export const handleSignOut = (signOutAction) => async (dispatch) => {
   try {
     await authSignOut();
     dispatch(signOutAction());
@@ -107,7 +110,9 @@ export const handleSignOut = signOutAction => async dispatch => {
 export const createOrGetAuthUser = async (user, additionalData = {}) => {
   // 사용자 정보가 전달되지 않으면 오류
   if (!user) {
-    throw new Error('createOrGetAuthUser 유틸리티는 user 값 입력이 필요합니다.');
+    throw new Error(
+      "createOrGetAuthUser 유틸리티는 user 값 입력이 필요합니다."
+    );
   }
 
   // 인증 사용자 문서 참조 생성
@@ -131,7 +136,7 @@ export const createOrGetAuthUser = async (user, additionalData = {}) => {
         photoURL,
         createdAt,
         // 추가 데이터가 전달된 경우 병합(믹스인)
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       throw new Error(error.mesage);
@@ -142,7 +147,11 @@ export const createOrGetAuthUser = async (user, additionalData = {}) => {
   return userRef;
 };
 
-export const signUpWithEmailAndPassword = async (email, password, additionalData = {}) => {
+export const signUpWithEmailAndPassword = async (
+  email,
+  password,
+  additionalData = {}
+) => {
   try {
     // 사용자가 입력한 이메일, 패스워드를 전달해 인증 (비동기 요청/응답)
     const { user } = await auth.createUserWithEmailAndPassword(email, password);
@@ -159,18 +168,18 @@ export const signUpWithEmailAndPassword = async (email, password, additionalData
 /* 로그인 상태 유지 설정 */
 auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
-export const setAuthPersist = value => {
-  let mode = '';
+export const setAuthPersist = (value) => {
+  let mode = "";
   switch (value) {
     default:
-    case 'local':
-      mode = 'LOCAL';
+    case "local":
+      mode = "LOCAL";
       break;
-    case 'session':
-      mode = 'SESSION';
+    case "session":
+      mode = "SESSION";
       break;
-    case 'none':
-      mode = 'NONE';
+    case "none":
+      mode = "NONE";
   }
 
   auth.setPersistence(firebase.auth.Auth.Persistence[mode]);
