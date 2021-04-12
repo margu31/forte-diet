@@ -3,6 +3,9 @@ import Input from "../../components/Input/Input";
 import { useDispatch } from "react-redux";
 import { signInAction } from "../../redux/modules/auth/auth";
 import { isEmail, isPassword } from "../../utils/validation/LogInValidation";
+import { handleSignInWithEmailAndPassword } from "../../api/auth";
+import Button from "../../components/Button/Button";
+import Login from "../../components/LogIn/Login";
 
 const formValue = {
   id: null,
@@ -23,12 +26,17 @@ export default function LogInContainer() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(state.id);
+
     const Formdata = new FormData();
     Object.entries(state).forEach(([key, value]) => {
       Formdata.append(key, value);
       console.log(`${key}, ${value}`);
     });
-    dispatch(signInAction(Formdata));
+    // dispatch(signInAction(Formdata));
+    dispatch(
+      handleSignInWithEmailAndPassword(state.id, state.password, signInAction)
+    );
   };
 
   const onBlur = (e) => {
@@ -101,9 +109,12 @@ export default function LogInContainer() {
         onBlur={onBlur}
         errorMessage={state.hasError}
       />
-      <button type="submit" onClick={onSubmit}>
-        버튼
-      </button>
+      <Button width="100" height="100" type="submit" onClick={onSubmit}>
+        확인
+      </Button>
+      <Button type="submit" onClick={onSubmit}>
+        취소
+      </Button>
     </>
   );
 }
