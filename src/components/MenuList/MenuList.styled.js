@@ -32,6 +32,8 @@ const StyledMenuList = styled.div`
     word-wrap: break-word;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    color: #14182c;
+    opacity: 0.8;
   }
 `;
 
@@ -68,7 +70,7 @@ const StyledLike = styled(TiHeart)`
 `;
 
 const StyledWaterDose = styled(WaterDose)`
-  margin-top: 8px;
+  margin: 8px auto 0;
   width: 40px;
   height: 40px;
   box-sizing: border-box;
