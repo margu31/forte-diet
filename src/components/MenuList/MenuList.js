@@ -5,16 +5,18 @@ import {
   StyledMenuListBar,
   StyledLike,
   StyledWaterDose,
-  StyledDonut
+  StyledDonut,
+  StyledDailyReview
 } from './MenuList.styled';
 
 export default function MenuList({ menuListData }) {
-  const { date } = menuListData[0];
+  const { dailyReview } = menuListData;
+  const { date } = menuListData.meals[0];
   const dayNum = date.slice(4, 6);
   const dayStr = date.slice(7, 10);
 
   const getTotalCalories = () => {
-    const totalCalories = menuListData.reduce(
+    const totalCalories = menuListData.meals.reduce(
       (acc, cur) => acc + cur.calories,
       0
     );
@@ -27,19 +29,13 @@ export default function MenuList({ menuListData }) {
   return (
     <>
       <StyledMenuList>
-        {menuListData.map(mealListData => (
-          <MealList mealListData={mealListData} />
+        {menuListData.meals.map(mealList => (
+          <MealList mealListData={mealList} />
         ))}
-        <p>
-          오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합..
-          <br></br> 오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합......
-          <br></br>정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합......
-        </p>
+        <StyledDailyReview
+          placeholder='오늘도 즐거운 식사 되셨나요? 오늘의 느낀 점을 기록해보세요. :-) (90자 이내)'
+          value={dailyReview}
+        ></StyledDailyReview>
         <StyledMenuListBar>
           <span>{dayStr}</span>
           <span>{dayNum}</span>

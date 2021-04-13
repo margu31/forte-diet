@@ -20,14 +20,13 @@ export default function MenuListContainer() {
   }, [authUser, dispatch]);
 
   if (!authUser) return null;
-  const menuListData = Object.entries(menuList)
-    .map(data => data[1])
-    .map(data => data.meals);
+  const forMenuListData = Object.entries(menuList).map(data => data[1]);
+  const forMealListData = forMenuListData.map(data => data.meals);
 
   return (
     <>
-      {menuListData.map(dailyMenuListData => (
-        <MenuList menuListData={dailyMenuListData} />
+      {forMenuListData.map(menuList => (
+        <MenuList menuListData={menuList} />
       ))}
     </>
   );
