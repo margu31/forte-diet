@@ -5,6 +5,7 @@ import MyPage from 'pages/MyPage/MyPage';
 import SideBar from '../components/SideBar/SideBar';
 import { StyledApp } from './App.styled';
 import Home from '../pages/Home/Home';
+import './App.css';
 
 function App() {
   return (
