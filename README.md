@@ -77,16 +77,12 @@
     ✔️ git Wiki
     ✔️ git Kanban
 
-### 🍽
-
-      ✔️6개월간 여정의 종점을 찍는 마지막 프로젝트
-      ✔️ 프론트엔드 개발자가 되기 위한 역량개발
-      ✔️ html, css, javascript, react를 활용
-      ✔️ firebase를 활용하는 서비스 개발 체험
-      ✔️ react를 활용하여 상태관리 체험
-      ✔️ api 사용하여 비동기, 동기 처리 체험
-
-### 🍽
+    ✔️ 6개월간 여정의 종점을 찍는 마지막 프로젝트
+    ✔️ 웹 접근성 학습
+    ✔️ firebase 활용한 인증 및 CRUD
+    ✔️ react, redux를 활용한 상태관리
+    ✔️ redux-thunk, async-await를 활용한 비동기 처리
+    ✔️ router를 활용한 SPA 제작
 
 <br>
 <br>
