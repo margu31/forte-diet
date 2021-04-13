@@ -15,7 +15,7 @@ export const handleGetDietLists = ({ uid }, updateDietAction) => async dispatch 
   }
 };
 
-export const handlePostMeal = async ({ uid }, mealdata) => {
+export const PostMeal = async ({ uid }, mealdata) => {
   try {
     const user = await users.doc(uid);
     user.set(
@@ -30,6 +30,8 @@ export const handlePostMeal = async ({ uid }, mealdata) => {
       },
       { merge: true }
     );
+
+    return true;
   } catch (e) {
     throw new Error(e.message);
   }
