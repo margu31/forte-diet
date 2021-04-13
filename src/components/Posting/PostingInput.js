@@ -1,3 +1,5 @@
+import StylePostingInput from "./PostingInput.styled";
+
 const PostingInput = ({
   type,
   id,
@@ -8,7 +10,7 @@ const PostingInput = ({
   required,
 }) => {
   return (
-    <>
+    <StylePostingInput>
       <label htmlFor={id}>{label}</label>
       <input
         type={type}
@@ -18,7 +20,7 @@ const PostingInput = ({
         onChange={onChange}
         required={required}
       />
-    </>
+    </StylePostingInput>
   );
 };
 
