@@ -27,6 +27,7 @@ const StyledMealList = styled.li`
     display: block;
     margin: 0;
     text-align: center;
+    font-size: 16px;
   }
 
   span + span {

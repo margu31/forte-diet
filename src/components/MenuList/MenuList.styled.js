@@ -97,6 +97,7 @@ const StyledMenuListBar = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
+  font-size: 16px;
 
   span + span {
     font-size: 30px;
