@@ -4,7 +4,7 @@ import { StyledPlusButton, StyledCalendarButton, StyledCalendarIcon } from './My
 
 export default function MyPage() {
   return (
-    <>
+    <div>
       <MenuList />
       <MenuList />
       <MenuList />
@@ -12,6 +12,6 @@ export default function MyPage() {
         <StyledCalendarIcon />
       </StyledCalendarButton>
       <StyledPlusButton />
-    </>
+    </div>
   );
 }
