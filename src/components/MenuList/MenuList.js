@@ -8,21 +8,21 @@ import {
   StyledDonut
 } from './MenuList.styled';
 
-export default function MenuList() {
+export default function MenuList({ menuListData }) {
   return (
     <>
       <StyledMenuList>
-        {/* TODO: MealList 배열 map 돌려야 함 + 빈 배열일때 로직 짜야 함 */}
-        <MealList borderColor='#395B9D' />
-        <MealList borderColor='#F3B34C' />
-        <MealList borderColor='#14182C' />
-        <MealList borderColor='#F26830' />
+        {menuListData.map(mealListData => (
+          <MealList mealListData={mealListData} />
+        ))}
         <p>
           오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합..
-          <br></br> 오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합......
-          <br></br>정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합...... 정말 맛있는
-          샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다!
-          커피랑 마시니까 꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
+          <br></br> 오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
+          꿀조합......
+          <br></br>정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
+          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
+          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
+          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
           꿀조합......
         </p>
         <StyledMenuListBar>

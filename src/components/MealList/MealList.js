@@ -1,19 +1,32 @@
 import React from 'react';
 import { StyledMealList } from './MealList.styled';
 
-export default function MealList({ borderColor }) {
+export default function MealList({ mealListData }) {
+  console.log(mealListData);
+  const { photo, title, type } = mealListData;
+  const changeBorderColor = type => {
+    switch (type) {
+      case '아침':
+        return '#395B9D';
+      case '점심':
+        return '#F3B34C';
+      case '저녁':
+        return '#14182C';
+      case '간식':
+        return '#F26830';
+      default:
+        return '#395B9D';
+    }
+  };
+
   return (
     <>
-      {/* TODO: type에 따른 border 색상 지정 로직 짜야 함 */}
-      <StyledMealList borderColor={borderColor}>
+      <StyledMealList borderColor={changeBorderColor(type)}>
         <div>
-          <img
-            src='https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1635&q=80'
-            alt='샌드위치'
-          />
+          <img src={photo} alt={title} />
         </div>
-        <span>7:24AM</span>
-        <span>샌드위치</span>
+        <span>{type}</span>
+        <span>{title}</span>
       </StyledMealList>
     </>
   );

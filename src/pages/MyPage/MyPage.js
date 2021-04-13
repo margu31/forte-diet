@@ -1,13 +1,15 @@
 import React from 'react';
-import MenuList from 'components/MenuList/MenuList';
-import { StyledPlusButton, StyledCalendarButton, StyledCalendarIcon } from './MyPage.styled';
+import {
+  StyledPlusButton,
+  StyledCalendarButton,
+  StyledCalendarIcon
+} from './MyPage.styled';
+import MenuListContainer from 'containers/MenuListContainer/MenuListContainer';
 
 export default function MyPage() {
   return (
     <>
-      <MenuList />
-      <MenuList />
-      <MenuList />
+      <MenuListContainer />
       <StyledCalendarButton>
         <StyledCalendarIcon />
       </StyledCalendarButton>
