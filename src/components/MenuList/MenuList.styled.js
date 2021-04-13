@@ -9,8 +9,8 @@ const StyledMenuList = styled.div`
   max-width: 1000px;
   border: none;
   border-left: 4px solid #b6b6b6;
-  margin-left: 23%; /* 왼쪽 nav 179px */
-  margin-top: 142px; /* 위쪽 nav 94px */
+  margin-left: 15%; /* 왼쪽 nav 179px */
+  margin-top: 120px; /* 위쪽 nav 94px */
   margin-bottom: 128px;
   padding: 24px 52px 27px 52px;
   box-sizing: border-box;
@@ -50,6 +50,7 @@ const StyledMenuListBar = styled.div`
 
   span + span {
     font-size: 30px;
+    margin-top: 4px;
   }
 `;
 
@@ -70,7 +71,7 @@ const StyledLike = styled(TiHeart)`
 `;
 
 const StyledWaterDose = styled(WaterDose)`
-  margin: 8px auto 0;
+  margin: 10px auto 0;
   width: 40px;
   height: 40px;
   box-sizing: border-box;
@@ -81,7 +82,7 @@ const StyledWaterDose = styled(WaterDose)`
     font-size: 14px;
     color: #34b0c0;
     text-align: center;
-    margin-top: 2px;
+    margin-top: 3px;
   }
 `;
 
@@ -97,7 +98,7 @@ const StyledDonut = styled(Donut)`
     font-size: 14px;
     color: #6c3909;
     text-align: center;
-    margin-top: -5px;
+    margin-top: -4px;
   }
 `;
 

@@ -29,7 +29,6 @@ export default function MenuListContainer() {
       {menuListData.map(dailyMenuListData => (
         <MenuList menuListData={dailyMenuListData} />
       ))}
-      ;
     </>
   );
 }
