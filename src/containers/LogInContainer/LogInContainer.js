@@ -3,9 +3,7 @@ import { useDispatch } from "react-redux";
 import { signInAction } from "redux/modules/auth/auth";
 import { isEmail, isPassword } from "utils/validation/LogInValidation";
 import { handleSignInWithEmailAndPassword } from "api/auth";
-import Input from "components/Input/Input";
-import Button from "components/Button/Button";
-import { PostingForm as Form } from "components/Posting/PostingForm";
+import { LoginForm } from "components/LoginForm/LoginForm";
 
 const formValue = {
   id: null,
@@ -21,7 +19,7 @@ export default function LogInContainer() {
 
   const [state, setState] = useState(formValue);
   const onChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value });
+    setState({ ...state, [e.target.name]: e.target.value.trim() });
   };
 
   const emailValid = (value) => {
@@ -84,46 +82,45 @@ export default function LogInContainer() {
     if (e.target.name === "id") {
       emailValid(e.target.value);
     } else {
+      state.password = e.target.value;
       passwordlValid(e.target.value);
     }
   };
 
-  const isDisabled = state.hasError.id || state.hasError.password;
+  const isDisabled =
+    state.hasError.id ||
+    state.hasError.password ||
+    !state.id ||
+    !state.password;
 
   return (
-    <Form>
-      <Input
-        label="아이디"
-        id="아이디"
-        name="id"
-        type="id"
-        placeholder="아이디 입력"
-        onChange={onChange}
-        onBlur={onBlur}
-        errorMessage={state.hasError}
-      />
-      <Input
-        label="비밀번호"
-        id="password"
-        name="password"
-        type="password"
-        placeholder="비밀번호 입력"
-        onChange={onChange}
-        onBlur={onBlur}
-        errorMessage={state.hasError}
-      />
-      <Button
-        width="100"
-        height="100"
-        type="submit"
-        onSubmit={onSubmit}
-        disabled={isDisabled}
-      >
-        확인
-      </Button>
-      <Button type="submit" disabled>
-        X
-      </Button>
-    </Form>
+    <LoginForm
+      onChange={onChange}
+      onBlur={onBlur}
+      onSubmit={onSubmit}
+      disabled={isDisabled}
+      errorMessage={state.hasError}
+    />
+
+    /* <Input
+      label="아이디"
+      id="아이디"
+      name="id"
+      type="id"
+      placeholder="아이디 입력"
+      onChange={onChange}
+      onBlur={onBlur}
+      errorMessage={state.hasError}
+    />
+    <Input
+      label="비밀번호"
+      id="password"
+      name="password"
+      type="password"
+      placeholder="비밀번호 입력"
+      onChange={onChange}
+      onBlur={onBlur}
+      errorMessage={state.hasError}
+    /> */
   );
 }
