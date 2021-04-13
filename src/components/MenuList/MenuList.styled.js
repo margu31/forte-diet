@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { TiHeart } from 'react-icons/ti';
 import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
+import { ReactComponent as Pencil } from '../../assets/icons/MenuList/pencil.svg';
 
 const StyledMenuList = styled.div`
   display: inline-block;
@@ -15,6 +16,7 @@ const StyledMenuList = styled.div`
   padding: 24px 52px 27px 52px;
   box-sizing: border-box;
   position: relative;
+  cursor: default;
 
   & + & {
     margin-top: 14px;
@@ -22,28 +24,66 @@ const StyledMenuList = styled.div`
   }
 `;
 
-const StyledDailyReview = styled.textarea`
+const StyledDailyReview = styled.div`
   width: 730px;
+  border-radius: 10px;
+  box-sizing: border-box;
   min-height: 50px;
-  line-height: 30px;
   margin: 0;
   margin-top: 50px;
-  padding: 20px;
-  box-sizing: border-box;
-  background: inherit;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  word-wrap: break-word;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  color: #14182c;
-  opacity: 0.8;
-  resize: none;
-  border: 1px solid purple;
+  position: relative;
 
-  &::placeholder {
-    font-size: 12px;
+  textarea {
+    border-radius: 10px;
+
+    padding: 20px;
+    width: 100%;
+    line-height: 30px;
+    background: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #14182c;
+    opacity: 0.8;
+    resize: none;
+    font-size: 15px;
+    outline: none;
+
+    &:focus {
+      box-shadow: 3px 3px 5px #e0dfde;
+      background: #fff;
+    }
+
+    &::placeholder {
+      opacity: 0.7;
+    }
+  }
+
+  button {
+    background: inherit;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 11px;
+    color: #14182c;
+    padding: 7px;
+    box-sizing: border-box;
+    border: none;
+    position: absolute;
+    bottom: 5px;
+    right: 45px;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      background: #e0dfde;
+    }
+  }
+
+  button + button {
+    right: 8px;
   }
 `;
 
@@ -112,11 +152,29 @@ const StyledDonut = styled(Donut)`
   }
 `;
 
+const StyledPencil = styled(Pencil)`
+  width: 47px;
+  height: 47px;
+  box-sizing: border-box;
+  display: block;
+  margin: 10px auto 0;
+  cursor: pointer;
+
+  & + span {
+    display: block;
+    font-size: 14px;
+    color: #ffc219;
+    text-align: center;
+    margin-top: 4px;
+  }
+`;
+
 export {
   StyledMenuList,
   StyledMenuListBar,
   StyledLike,
   StyledWaterDose,
   StyledDonut,
-  StyledDailyReview
+  StyledDailyReview,
+  StyledPencil
 };
