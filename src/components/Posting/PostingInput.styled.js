@@ -4,6 +4,8 @@ const StylePostingInput = styled.div`
   label {
     display: block;
     font-size: 14px;
+    text-indent: 10px;
+    margin: 5px 0;
   }
 
   input {
@@ -14,6 +16,7 @@ const StylePostingInput = styled.div`
     border-radius: 5px;
     padding: 0 10px;
     background-color: #fefdf8;
+    margin-bottom: 10px;
   }
 
   label[for="postingFile"] {
@@ -23,7 +26,7 @@ const StylePostingInput = styled.div`
     border: 8px solid #395b9d;
     text-align: center;
     cursor: pointer;
-    line-height: 230px;
+    line-height: 214px;
     background-color: #fefdf8;
   }
 
