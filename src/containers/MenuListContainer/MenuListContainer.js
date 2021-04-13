@@ -54,8 +54,10 @@ export default function MenuListContainer() {
 
   return (
     <>
-      {forMenuListData.map(menuList => (
+      {/* TODO: key 바꿔야함!!!! */}
+      {forMenuListData.map((menuList, i) => (
         <MenuList
+          key={i}
           menuListData={menuList}
           getTotalCalories={getTotalCalories}
           onClick={onClick}

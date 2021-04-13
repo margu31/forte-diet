@@ -30,8 +30,9 @@ export default function MenuList({
   return (
     <>
       <StyledMenuList>
-        {menuListData.meals.map(mealList => (
-          <MealList mealListData={mealList} />
+        {/* TODO: key 바꿔야함!!!! */}
+        {menuListData.meals.map((mealList, i) => (
+          <MealList mealListData={mealList} key={i} />
         ))}
         <StyledDailyReview>
           <textarea
