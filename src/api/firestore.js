@@ -20,15 +20,13 @@ export const handlePostMeal = async ({ uid }, mealdata) => {
     const user = await users.doc(uid);
     user.set(
       {
-        dietList: [
-          firebase.firestore.FieldValue.arrayUnion(
-            ...{
-              [mealdata.date]: {
-                ...mealdata
-              }
-            }
-          )
-        ]
+        dietList: {
+          [mealdata.date]: {
+            meals: firebase.firestore.FieldValue.arrayUnion({
+              ...mealdata
+            })
+          }
+        }
       },
       { merge: true }
     );
