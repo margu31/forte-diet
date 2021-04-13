@@ -4,6 +4,7 @@ const StyledMealList = styled.li`
   list-style: none;
   display: inline-block;
   color: #14182c;
+  cursor: default;
 
   div {
     border-radius: 50%;
@@ -14,6 +15,7 @@ const StyledMealList = styled.li`
     overflow: hidden;
     margin-bottom: 19px;
     border: 10px solid ${props => props.borderColor};
+    cursor: pointer;
 
     img {
       width: auto;
@@ -25,6 +27,7 @@ const StyledMealList = styled.li`
     display: block;
     margin: 0;
     text-align: center;
+    font-size: 16px;
   }
 
   span + span {
