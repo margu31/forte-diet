@@ -1,3 +1,5 @@
+import StyleReviewBox from "./PostingReviewBox.styled";
+
 const PostingReviewBox = ({
   id,
   name,
@@ -8,7 +10,7 @@ const PostingReviewBox = ({
   hasError,
 }) => {
   return (
-    <>
+    <StyleReviewBox>
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
@@ -16,11 +18,11 @@ const PostingReviewBox = ({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
-        rows="20"
-        cols="100"
+        // rows="20"
+        // cols="100"
       ></textarea>
       {hasError && <p>{hasError}</p>}
-    </>
+    </StyleReviewBox>
   );
 };
 
