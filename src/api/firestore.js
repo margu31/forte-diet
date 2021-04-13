@@ -1,4 +1,5 @@
-import { firestore } from '../auth/auth';
+import { firestore } from './auth';
+import firebase from 'firebase';
 
 const users = firestore.collection('users');
 
@@ -20,11 +21,13 @@ export const handlePostMeal = async ({ uid }, mealdata) => {
     user.set(
       {
         dietList: [
-          firestore.FieldValue.arrayUnion({
-            [mealdata.date]: {
-              ...mealdata
+          firebase.firestore.FieldValue.arrayUnion(
+            ...{
+              [mealdata.date]: {
+                ...mealdata
+              }
             }
-          })
+          )
         ]
       },
       { merge: true }
