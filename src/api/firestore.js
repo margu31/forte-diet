@@ -3,6 +3,8 @@ import firebase from 'firebase';
 
 const users = firestore.collection('users');
 
+/* 마이 페이지 */
+
 export const handleGetDietLists = ({ uid }, updateDietAction) => async dispatch => {
   try {
     const snapshot = await users.where('id', '==', uid).get();
@@ -15,23 +17,65 @@ export const handleGetDietLists = ({ uid }, updateDietAction) => async dispatch 
   }
 };
 
-export const handlePostMeal = async ({ uid }, mealdata) => {
+export const addOrEditDailyReview = async ({ uid }, date, review) => {
   try {
     const user = await users.doc(uid);
     user.set(
       {
-        dietList: [
-          firebase.firestore.FieldValue.arrayUnion(
-            ...{
-              [mealdata.date]: {
-                ...mealdata
-              }
-            }
-          )
-        ]
+        dietList: {
+          [date]: {
+            dailyReview: review
+          }
+        }
       },
       { merge: true }
     );
+
+    return true;
+  } catch (e) {
+    return new Error(e.message);
+  }
+};
+
+export const removeDailyReview = async ({ uid }, date) => {
+  try {
+    const user = await users.doc(uid);
+    user.set(
+      {
+        dietList: {
+          [date]: {
+            dailyReview: ''
+          }
+        }
+      },
+      { merge: true }
+    );
+
+    return true;
+  } catch (e) {
+    return new Error(e.message);
+  }
+};
+
+/* 포스팅 페이지 */
+
+export const PostMeal = async ({ uid }, mealdata) => {
+  try {
+    const user = await users.doc(uid);
+    user.set(
+      {
+        dietList: {
+          [mealdata.date]: {
+            meals: firebase.firestore.FieldValue.arrayUnion({
+              ...mealdata
+            })
+          }
+        }
+      },
+      { merge: true }
+    );
+
+    return true;
   } catch (e) {
     throw new Error(e.message);
   }

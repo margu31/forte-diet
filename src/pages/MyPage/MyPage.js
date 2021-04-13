@@ -8,12 +8,12 @@ import MenuListContainer from 'containers/MenuListContainer/MenuListContainer';
 
 export default function MyPage() {
   return (
-    <>
+    <div>
       <MenuListContainer />
       <StyledCalendarButton>
         <StyledCalendarIcon />
       </StyledCalendarButton>
       <StyledPlusButton />
-    </>
+    </div>
   );
 }
