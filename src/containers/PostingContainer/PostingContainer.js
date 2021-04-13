@@ -3,23 +3,26 @@ import { useDispatch } from "react-redux";
 import PostingButton from "components/Posting/PostingButton";
 import PostingForm from "components/Posting/PostingForm";
 import PostingInput from "components/Posting/PostingInput";
-import PostingInputRadio from "components/Posting/PostingInputRadio";
 import PostingReviewBox from "components/Posting/PostingReviewBox";
 import { addMealAction } from "redux/modules/postingMenuList";
 import { reviewValidation } from "utils/validation/reviewValidation";
 import PageTitle from "components/Posting/PageTitle";
 import PostingToggle from "components/Posting/PostingToggle";
+import PostingRadioGroup from "components/Posting/PostingRadioGroup";
+import PostingDataGroup from "components/Posting/PostingDataGroup";
 
 const initialPostingFormValues = {
   photo: null,
   calories: 0,
   review: "",
+  title: "",
   isPublic: null,
   type: null,
   hasError: {
     photo: null,
     calories: null,
     review: null,
+    title: null,
     isPublic: null,
     type: null,
   },
@@ -66,16 +69,18 @@ function PostingContainer() {
         hasError: {
           ...mealData.hasError,
           review: null,
+          title: null,
         },
       });
     }
   };
 
   return (
-    <>
+    <div>
       <PageTitle>우식이의 오늘의 식단!</PageTitle>
       <PostingForm>
-        <PostingInput
+        <PostingDataGroup onChange={onChange} />
+        {/* <PostingInput
           type="file"
           id="postingFile"
           name="postingFile"
@@ -90,33 +95,7 @@ function PostingContainer() {
           onChange={onChange}
           required
         />
-        <div>
-          <p>Type</p>
-          <PostingInputRadio
-            id="breakfast"
-            name="mealType"
-            value="breakfast"
-            label="아침"
-          />
-          <PostingInputRadio
-            id="lunch"
-            name="mealType"
-            value="lunch"
-            label="점심"
-          />
-          <PostingInputRadio
-            id="dinner"
-            name="mealType"
-            value="dinner"
-            label="저녁"
-          />
-          <PostingInputRadio
-            id="snack"
-            name="mealType"
-            value="snack"
-            label="간식"
-          />
-        </div>
+        <PostingRadioGroup groupTitle="Type" />
         <PostingInput
           type="number"
           id="mealCalories"
@@ -124,10 +103,10 @@ function PostingContainer() {
           label="Calories"
           placeholder="칼로리를 입력하세요!"
           onChange={onChange}
-        />
+        /> */}
         <PostingReviewBox
           id="mealReview"
-          name="mealReview"
+          name="review"
           label="Review: "
           placeholder="Leave your comments here!"
           onChange={onChange}
@@ -153,7 +132,7 @@ function PostingContainer() {
         <PostingButton>취소</PostingButton>
         <PostingButton onSubmit={onSubmit}>등록!</PostingButton>
       </PostingForm>
-    </>
+    </div>
   );
 }
 
