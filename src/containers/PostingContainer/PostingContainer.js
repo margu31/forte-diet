@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import PageTitle from "../../components/Posting/PageTitle";
 import PostingButton from "../../components/Posting/PostingButton";
 import PostingForm from "../../components/Posting/PostingForm";
 import PostingInput from "../../components/Posting/PostingInput";
@@ -70,86 +71,89 @@ function PostingContainer() {
   };
 
   return (
-    <PostingForm>
-      <PostingInput
-        type="date"
-        id="postingDate"
-        name="postingDate"
-        label="DATE"
-        onChange={onChange}
-        required
-      />
-      <PostingInput
-        type="file"
-        id="postingFile"
-        name="postingFile"
-        label="PHOTO"
-        placeholder="사진을 선택하세요!"
-        onChange={onChange}
-      />
-      <PostingInput
-        type="number"
-        id="mealCalories"
-        name="mealCalories"
-        label="CALORIES"
-        placeholder="칼로리를 입력하세요!"
-        onChange={onChange}
-      />
-      <PostingReviewBox
-        id="mealReview"
-        name="mealReview"
-        label="Review: "
-        placeholder="Leave your comments here!"
-        onChange={onChange}
-        onBlur={onBlur}
-        hasError={mealData.hasError.review}
-      />
-      <div>
-        <p>공개여부</p>
-        <PostingInputRadio
-          id="privatePost"
-          name="state"
-          value="private"
-          label="Private"
-          defaultChecked="defaultChecked"
+    <>
+      <PageTitle>우식이의 오늘의 식단!</PageTitle>
+      <PostingForm>
+        <PostingInput
+          type="date"
+          id="postingDate"
+          name="postingDate"
+          label="DATE"
+          onChange={onChange}
+          required
         />
-        <PostingInputRadio
-          id="publicPost"
-          name="state"
-          value="public"
-          label="Public"
+        <PostingInput
+          type="file"
+          id="postingFile"
+          name="postingFile"
+          label="PHOTO"
+          placeholder="사진을 선택하세요!"
+          onChange={onChange}
         />
-      </div>
-      <div>
-        <p>Type</p>
-        <PostingInputRadio
-          id="breakfast"
-          name="mealType"
-          value="breakfast"
-          label="Breakfast"
+        <PostingInput
+          type="number"
+          id="mealCalories"
+          name="mealCalories"
+          label="CALORIES"
+          placeholder="칼로리를 입력하세요!"
+          onChange={onChange}
         />
-        <PostingInputRadio
-          id="lunch"
-          name="mealType"
-          value="lunch"
-          label="Lunch"
+        <PostingReviewBox
+          id="mealReview"
+          name="mealReview"
+          label="Review: "
+          placeholder="Leave your comments here!"
+          onChange={onChange}
+          onBlur={onBlur}
+          hasError={mealData.hasError.review}
         />
-        <PostingInputRadio
-          id="dinner"
-          name="mealType"
-          value="dinner"
-          label="Dinner"
-        />
-        <PostingInputRadio
-          id="snack"
-          name="mealType"
-          value="snack"
-          label="Snack"
-        />
-      </div>
-      <PostingButton onSubmit={onSubmit}>등록!</PostingButton>
-      <PostingButton>취소</PostingButton>
-    </PostingForm>
+        <div>
+          <p>공개여부</p>
+          <PostingInputRadio
+            id="privatePost"
+            name="state"
+            value="private"
+            label="Private"
+            defaultChecked="defaultChecked"
+          />
+          <PostingInputRadio
+            id="publicPost"
+            name="state"
+            value="public"
+            label="Public"
+          />
+        </div>
+        <div>
+          <p>Type</p>
+          <PostingInputRadio
+            id="breakfast"
+            name="mealType"
+            value="breakfast"
+            label="Breakfast"
+          />
+          <PostingInputRadio
+            id="lunch"
+            name="mealType"
+            value="lunch"
+            label="Lunch"
+          />
+          <PostingInputRadio
+            id="dinner"
+            name="mealType"
+            value="dinner"
+            label="Dinner"
+          />
+          <PostingInputRadio
+            id="snack"
+            name="mealType"
+            value="snack"
+            label="Snack"
+          />
+        </div>
+        <PostingButton onSubmit={onSubmit}>등록!</PostingButton>
+        <PostingButton>취소</PostingButton>
+      </PostingForm>
+    </>
   );
 }
 
