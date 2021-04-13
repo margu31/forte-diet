@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import PageTitle from "../../components/Posting/PageTitle";
-import PostingButton from "../../components/Posting/PostingButton";
-import PostingForm from "../../components/Posting/PostingForm";
-import PostingInput from "../../components/Posting/PostingInput";
-import PostingInputRadio from "../../components/Posting/PostingInputRadio";
-import PostingReviewBox from "../../components/Posting/PostingReviewBox";
-import PostingToggle from "../../components/Posting/PostingToggle";
-import { addMealAction } from "../../redux/modules/postingMenuList";
-import { reviewValidation } from "../../utils/validation/reviewValidation";
+import PostingButton from "components/Posting/PostingButton";
+import PostingForm from "components/Posting/PostingForm";
+import PostingInput from "components/Posting/PostingInput";
+import PostingInputRadio from "components/Posting/PostingInputRadio";
+import PostingReviewBox from "components/Posting/PostingReviewBox";
+import { addMealAction } from "redux/modules/postingMenuList";
+import { reviewValidation } from "utils/validation/reviewValidation";
+import PageTitle from "components/Posting/PageTitle";
+import PostingToggle from "components/Posting/PostingToggle";
 
 const initialPostingFormValues = {
   photo: null,
