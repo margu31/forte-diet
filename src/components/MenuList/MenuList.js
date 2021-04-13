@@ -5,29 +5,40 @@ import {
   StyledMenuListBar,
   StyledLike,
   StyledWaterDose,
-  StyledDonut
+  StyledDonut,
+  StyledDailyReview
 } from './MenuList.styled';
 
-export default function MenuList() {
+export default function MenuList({ menuListData }) {
+  const { dailyReview } = menuListData;
+  const { date } = menuListData.meals[0];
+  const dayNum = date.slice(4, 6);
+  const dayStr = date.slice(7, 10);
+
+  const getTotalCalories = () => {
+    const totalCalories = menuListData.meals.reduce(
+      (acc, cur) => acc + cur.calories,
+      0
+    );
+
+    return totalCalories > 999
+      ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      : totalCalories;
+  };
+
   return (
     <>
       <StyledMenuList>
-        {/* TODO: MealList 배열 map 돌려야 함 + 빈 배열일때 로직 짜야 함 */}
-        <MealList borderColor='#395B9D' />
-        <MealList borderColor='#F3B34C' />
-        <MealList borderColor='#14182C' />
-        <MealList borderColor='#F26830' />
-        <p>
-          오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합..
-          <br></br> 오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합......
-          <br></br>정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합...... 정말 맛있는
-          샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다!
-          커피랑 마시니까 꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합......
-        </p>
+        {menuListData.meals.map(mealList => (
+          <MealList mealListData={mealList} />
+        ))}
+        <StyledDailyReview
+          placeholder='오늘도 즐거운 식사 되셨나요? 오늘의 느낀 점을 기록해보세요. :-) (90자 이내)'
+          value={dailyReview}
+        ></StyledDailyReview>
         <StyledMenuListBar>
-          <span>MON</span>
-          <span>14</span>
+          <span>{dayStr}</span>
+          <span>{dayNum}</span>
           <div>
             <StyledLike />
             <span>like 3</span>
@@ -38,7 +49,7 @@ export default function MenuList() {
           </div>
           <div>
             <StyledDonut />
-            <span>3,260kcal</span>
+            <span>{getTotalCalories()}kcal</span>
           </div>
         </StyledMenuListBar>
       </StyledMenuList>
