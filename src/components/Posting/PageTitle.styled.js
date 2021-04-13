@@ -3,7 +3,10 @@ import styled from "styled-components";
 const StylePageTitle = styled.h2`
   font-size: 30px;
   position: relative;
-  text-indent: 15px;
+  text-indent: 20px;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 20px;
 
   &::before {
     position: absolute;
@@ -12,7 +15,6 @@ const StylePageTitle = styled.h2`
     width: 5px;
     height: 50px;
     background-color: #f26830;
-    top: -2px;
   }
 `;
 
