@@ -2,7 +2,6 @@ import React from 'react';
 import { StyledMealList } from './MealList.styled';
 
 export default function MealList({ mealListData }) {
-  console.log(mealListData);
   const { photo, title, type } = mealListData;
   const changeBorderColor = type => {
     switch (type) {
