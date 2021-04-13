@@ -1,8 +1,12 @@
+import { StyledPostingButton } from "./PostingButton.styled";
+
 const PostingButton = ({ onSubmit, children }) => {
   return (
-    <button type="submit" onClick={onSubmit}>
+    <StyledPostingButton type="submit" onClick={onSubmit}>
+      {/* <button type="submit" onClick={onSubmit}> */}
       {children}
-    </button>
+      {/* </button> */}
+    </StyledPostingButton>
   );
 };
 
