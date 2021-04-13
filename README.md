@@ -48,8 +48,8 @@
 
 ## 🦊API
 ###   
-    ✔️ 
-    ✔️ 
+    ✔️ 인증 - firebase-authentication
+    ✔️ DB - firebase-firestore, firebase-storage
 <br>
 <br>
 
