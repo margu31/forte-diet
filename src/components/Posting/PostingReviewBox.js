@@ -11,6 +11,15 @@ const PostingReviewBox = ({
 }) => {
   return (
     <StyleReviewBox>
+      <label htmlFor="reviewTitle"></label>
+      <input
+        type="text"
+        id="reviewTitle"
+        placeholder="Write the menu you ate!"
+        name="title"
+        onChange={onChange}
+      />
+
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
@@ -18,8 +27,6 @@ const PostingReviewBox = ({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
-        // rows="20"
-        // cols="100"
       ></textarea>
       {hasError && <p>{hasError}</p>}
     </StyleReviewBox>
