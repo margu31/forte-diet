@@ -9,6 +9,21 @@ import {
 } from './MenuList.styled';
 
 export default function MenuList({ menuListData }) {
+  const { date } = menuListData[0];
+  const dayNum = date.slice(4, 6);
+  const dayStr = date.slice(7, 10);
+
+  const getTotalCalories = () => {
+    const totalCalories = menuListData.reduce(
+      (acc, cur) => acc + cur.calories,
+      0
+    );
+
+    return totalCalories > 999
+      ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      : totalCalories;
+  };
+
   return (
     <>
       <StyledMenuList>
@@ -26,8 +41,8 @@ export default function MenuList({ menuListData }) {
           꿀조합......
         </p>
         <StyledMenuListBar>
-          <span>MON</span>
-          <span>14</span>
+          <span>{dayStr}</span>
+          <span>{dayNum}</span>
           <div>
             <StyledLike />
             <span>like 3</span>
@@ -38,7 +53,7 @@ export default function MenuList({ menuListData }) {
           </div>
           <div>
             <StyledDonut />
-            <span>3,260kcal</span>
+            <span>{getTotalCalories()}kcal</span>
           </div>
         </StyledMenuListBar>
       </StyledMenuList>
