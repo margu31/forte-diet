@@ -1,5 +1,7 @@
+import StylePageTitle from "./PageTitle.styled";
+
 const PageTitle = ({ children }) => {
-  return <h2>{children}</h2>;
+  return <StylePageTitle>{children}</StylePageTitle>;
 };
 
 export default PageTitle;
