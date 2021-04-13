@@ -1,5 +1,5 @@
 import React from 'react';
-import MealList from '../MealList/MealList';
+import MealList from 'components/MealList/MealList';
 import {
   StyledMenuList,
   StyledMenuListBar,
@@ -19,12 +19,10 @@ export default function MenuList() {
         <MealList borderColor='#F26830' />
         <p>
           오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합..
-          <br></br> 오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합......
-          <br></br>정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
-          꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
+          <br></br> 오늘 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합......
+          <br></br>정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합...... 정말 맛있는
+          샌드위치 맛집을 찾았다! 커피랑 마시니까 꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다!
+          커피랑 마시니까 꿀조합...... 정말 맛있는 샌드위치 맛집을 찾았다! 커피랑 마시니까
           꿀조합......
         </p>
         <StyledMenuListBar>
