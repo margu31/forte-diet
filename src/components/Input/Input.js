@@ -15,6 +15,7 @@ export default function Input({
   onChange,
   onBlur,
   errorMessage,
+  ...restProps
 }) {
   return (
     <StyledInputWrapper>
@@ -26,6 +27,7 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
+        {...restProps}
       ></StyledInput>
       {errorMessage && errorMessage[name] ? (
         <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>

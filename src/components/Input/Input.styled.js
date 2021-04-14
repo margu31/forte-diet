@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledInputWrapper = styled.div`
   /* display: inline-flex;
@@ -6,10 +6,13 @@ export const StyledInputWrapper = styled.div`
 `;
 
 export const StyledLabel = styled.label`
-  /* font-size: 13px; */
+  ${({ $fontSize }) =>
+    css`
+      font-size: ${$fontSize}rem;
+    `}
+
   display: block;
-  font-size: 1.2rem;
-  text-indent: 10px;
+  text-indent: 1rem;
   margin: 5px 0;
 
   &[for="postingFile"] {
@@ -22,8 +25,10 @@ export const StyledLabel = styled.label`
     line-height: 214px;
     background-color: #fefdf8;
     margin: 40px 0;
+    font-size: 1.3rem;
   }
 `;
+
 export const StyledInput = styled.input`
   /* flex: 1;
   border: 1px solid #585757;
@@ -53,14 +58,25 @@ export const StyledInput = styled.input`
       box-shadow: none;
     }
   } */
-  width: 320px;
-  height: 30px;
-  outline: none;
-  border: 1px solid #f3b34c;
+
+  ${({
+    $width,
+    $height,
+    $marginBottom,
+    $backgroundColor,
+    $borderColor,
+    $paddingSide,
+  }) => css`
+    width: ${$width}px;
+    height: ${$height}px;
+    margin-bottom: ${$marginBottom}px;
+    background-color: ${$backgroundColor};
+    border: 1px solid ${$borderColor};
+    padding: 0 ${$paddingSide}px;
+  `}
+
   border-radius: 5px;
-  padding: 0 10px;
-  background-color: #fefdf8;
-  margin-bottom: 10px;
+  outline: none;
 
   &[type="file"] {
     display: none;
