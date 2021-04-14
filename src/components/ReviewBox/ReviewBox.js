@@ -1,6 +1,6 @@
-import StyleReviewBox from "./PostingReviewBox.styled";
+import StyledReviewBox from "./ReviewBox.styled";
 
-const PostingReviewBox = ({
+const ReviewBox = ({
   id,
   name,
   label,
@@ -10,7 +10,7 @@ const PostingReviewBox = ({
   hasError,
 }) => {
   return (
-    <StyleReviewBox>
+    <StyledReviewBox>
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
@@ -20,8 +20,8 @@ const PostingReviewBox = ({
         onBlur={onBlur}
       ></textarea>
       {hasError && <p>{hasError}</p>}
-    </StyleReviewBox>
+    </StyledReviewBox>
   );
 };
 
-export default PostingReviewBox;
+export default ReviewBox;

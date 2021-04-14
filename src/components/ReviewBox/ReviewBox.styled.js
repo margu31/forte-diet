@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyleReviewBox = styled.div`
+const StyledReviewBox = styled.div`
   position: relative;
 
   label {
@@ -46,4 +46,4 @@ const StyleReviewBox = styled.div`
   }
 `;
 
-export default StyleReviewBox;
+export default StyledReviewBox;
