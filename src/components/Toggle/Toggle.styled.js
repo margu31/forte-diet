@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyleToggle = styled.div`
+const StyledToggle = styled.div`
   font-size: 1.1rem;
   width: 690px;
   text-align: right;
@@ -18,7 +18,7 @@ const StyleToggle = styled.div`
     cursor: pointer;
     user-select: none;
     width: 88px;
-    height: 30px;
+    height: 32px;
     border-radius: 50px;
     border: 4px solid #f26830;
     background-color: #fefdf8;
@@ -26,12 +26,12 @@ const StyleToggle = styled.div`
     span {
       position: absolute;
       display: inline-block;
-      height: 22px;
-      line-height: 22px;
+      height: 25px;
+      line-height: 25px;
     }
 
     & span:first-child {
-      right: 12px;
+      right: 15px;
     }
 
     & span:nth-child(2) {
@@ -56,13 +56,15 @@ const StyleToggle = styled.div`
     & span:last-child {
       background-color: #fefdf8;
       right: 5px;
-      transform: translate3d(58px, -50%, 0);
+      width: 20px;
+      height: 20px;
+      transform: translate3d(55px, -50%, 0);
     }
 
     & span:nth-child(2) {
       display: inline-block;
       color: #fefdf8;
-      left: 10px;
+      left: 11px;
     }
 
     & span:first-child {
@@ -71,4 +73,4 @@ const StyleToggle = styled.div`
   }
 `;
 
-export default StyleToggle;
+export default StyledToggle;
