@@ -1,6 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+import { normalize } from 'polished';
 
 const GlobalStyle = createGlobalStyle`
+${normalize()}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -22,6 +24,7 @@ time, mark, audio, video, textarea {
 	vertical-align: baseline;
   text-decoration: none;
   box-sizing: border-box;
+  list-style: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -40,36 +43,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
 html {
   font-size: 10px;
 }
 `;
 
 export const palette = {
-  themePrimary: "#F3B34C",
-  themeSecondary: "#395B9D",
-  themeBright: "#F4F3EF", // 배경 베이지색
-  themeBrightGray: "#B6B6B6",
-  themeDark: "#626262",
-  themeDefault: "#14182C",
-  themeDisable: "#878787",
-  themeHover: "#F5DEB7",
-  themeDefaultWhite: "#FFF",
+  themePrimary: '#F3B34C',
+  themeSecondary: '#395B9D',
+  themeBright: '#F4F3EF', // 배경 베이지색
+  themeBrightGray: '#B6B6B6',
+  themeDark: '#626262',
+  themeDefault: '#14182C',
+  themeDisable: '#878787',
+  themeHover: '#F5DEB7',
+  themeDefaultWhite: '#FFF'
 };
 
 export default GlobalStyle;
