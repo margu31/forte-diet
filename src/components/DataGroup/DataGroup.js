@@ -1,52 +1,24 @@
 import Input from "components/Input/Input";
 import RadioGroup from "components/RadioGroup/PostingRadioGroup";
-import StyledDataGroup from "./PostingDataGroup.styled";
-// import PostingInput from "./PostingInput";
+import { palette } from "styles/index";
+import StyledDataGroup from "./DataGroup.styled";
 
 const DataGroup = ({ onChange }) => {
   return (
     <StyledDataGroup>
-      {/* <PostingInput
-        type="file"
-        id="postingFile"
-        name="postingFile"
-        label="사진 등록"
-        onChange={onChange}
-      />
-      <div className="collection">
-        <PostingInput
-          type="date"
-          id="postingDate"
-          name="postingDate"
-          label="Date"
-          onChange={onChange}
-          required
-        />
-        <PostingRadioGroup groupTitle="Type" />
-        <PostingInput
-          type="number"
-          id="mealCalories"
-          name="mealCalories"
-          label="Calories"
-          placeholder="칼로리를 입력하세요!"
-          onChange={onChange}
-        />
-        <PostingInput
-          type="text"
-          id="mealTitle"
-          placeholder="Write the menu you ate!"
-          name="title"
-          label="Menu"
-          onChange={onChange}
-          autocomplete="off"
-        />
-      </div> */}
       <Input
         type="file"
         id="postingFile"
         name="postingFile"
         label="사진 등록"
         onChange={onChange}
+        // $fontSize="1.2"
+        // $width="320"
+        // $height="30"
+        // $marginBottom="10"
+        // $backgroundColot={palette.themeBrightYellow}
+        // $borderColor={palette.themePrimary}
+        // $paddingSide="10"
       />
       <div className="collection">
         <Input
@@ -56,6 +28,13 @@ const DataGroup = ({ onChange }) => {
           label="Date"
           onChange={onChange}
           required
+          $fontSize="1.2"
+          $width="320"
+          $height="30"
+          $marginBottom="10"
+          $backgroundColor={palette.themeBrightYellow}
+          $borderColor={palette.themePrimary}
+          $paddingSide="10"
         />
         <RadioGroup groupTitle="Type" />
         <Input
@@ -65,6 +44,13 @@ const DataGroup = ({ onChange }) => {
           label="Calories"
           placeholder="칼로리를 입력하세요!"
           onChange={onChange}
+          $fontSize="1.2"
+          $width="320"
+          $height="30"
+          $marginBottom="10"
+          $backgroundColor={palette.themeBrightYellow}
+          $borderColor={palette.themePrimary}
+          $paddingSide="10"
         />
         <Input
           type="text"
@@ -74,6 +60,13 @@ const DataGroup = ({ onChange }) => {
           label="Menu"
           onChange={onChange}
           autocomplete="off"
+          $fontSize="1.2"
+          $width="320"
+          $height="30"
+          $marginBottom="10"
+          $backgroundColor={palette.themeBrightYellow}
+          $borderColor={palette.themePrimary}
+          $paddingSide="10"
         />
       </div>
     </StyledDataGroup>
