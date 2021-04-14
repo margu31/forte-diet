@@ -30,6 +30,15 @@ const PostingDataGroup = ({ onChange }) => {
           placeholder="칼로리를 입력하세요!"
           onChange={onChange}
         />
+        <PostingInput
+          type="text"
+          id="mealTitle"
+          placeholder="Write the menu you ate!"
+          name="title"
+          label="Menu"
+          onChange={onChange}
+          autocomplete="off"
+        />
       </div>
     </StyleDataGroup>
   );
