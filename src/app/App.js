@@ -2,18 +2,18 @@ import GlobalStyle, { palette } from "styles";
 import { Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import MyPage from "pages/MyPage/MyPage";
-import SideBar from "../components/SideBar/SideBar";
+import "./App.css";
 import { StyledApp } from "./App.styled";
 import Home from "../pages/Home/Home";
+import SideBarContainer from "../containers/SideBarContainer/SideBarContainer";
 import PostingPage from "pages/PostingPage/PostingPage";
-import "./App.css";
 
 function App() {
   return (
     <StyledApp>
       <GlobalStyle />
       <ThemeProvider theme={palette}>
-        <SideBar />
+        <SideBarContainer />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/myPage" component={MyPage} />

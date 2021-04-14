@@ -3,6 +3,8 @@ import { TiHeart } from 'react-icons/ti';
 import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
 import { ReactComponent as Pencil } from '../../assets/icons/MenuList/pencil.svg';
+import { VscTriangleRight } from 'react-icons/vsc';
+import { motion } from 'framer-motion';
 
 const StyledMenuList = styled.div`
   display: inline-block;
@@ -10,7 +12,7 @@ const StyledMenuList = styled.div`
   max-width: 900px;
   border: none;
   border-left: 4px solid #b6b6b6;
-  margin-left: 15%; /* 왼쪽 nav 179px */
+  margin-left: 17%; /* 왼쪽 nav 179px */
   margin-top: 120px; /* 위쪽 nav 94px */
   margin-bottom: 128px;
   padding: 24px 52px 27px 52px;
@@ -22,6 +24,16 @@ const StyledMenuList = styled.div`
     margin-top: 14px;
     margin-bottom: 128px;
   }
+`;
+
+const StyledDailyReviewModal = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: pink;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
 `;
 
 const StyledDailyReview = styled.div`
@@ -49,12 +61,12 @@ const StyledDailyReview = styled.div`
     color: #14182c;
     opacity: 0.8;
     resize: none;
-    font-size: 15px;
+    font-size: 1.5rem;
     outline: none;
 
     &:focus {
       box-shadow: 3px 3px 5px #e0dfde;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.6);
     }
 
     &::placeholder {
@@ -66,7 +78,7 @@ const StyledDailyReview = styled.div`
     background: inherit;
     border-radius: 10px;
     font: inherit;
-    font-size: 11px;
+    font-size: 1.1rem;
     color: #14182c;
     padding: 7px;
     box-sizing: border-box;
@@ -84,6 +96,10 @@ const StyledDailyReview = styled.div`
 
   button + button {
     right: 8px;
+
+    &:hover {
+      background: #f3b34c;
+    }
   }
 `;
 
@@ -97,10 +113,10 @@ const StyledMenuListBar = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  font-size: 16px;
+  font-size: 1.4rem;
 
   span + span {
-    font-size: 30px;
+    font-size: 2.8rem;
     margin-top: 4px;
   }
 `;
@@ -111,15 +127,18 @@ const StyledLike = styled(TiHeart)`
   height: 45px;
   box-sizing: border-box;
   display: block;
+  margin-top: 20px;
 
   & + span {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     color: #faafaf;
     text-align: center;
     margin-top: -5px;
   }
 `;
+
+const StyledContainer = styled(motion.div)``;
 
 const StyledWaterDose = styled(WaterDose)`
   margin: 10px auto 0;
@@ -127,14 +146,63 @@ const StyledWaterDose = styled(WaterDose)`
   height: 40px;
   box-sizing: border-box;
   display: block;
+  cursor: pointer;
 
   & + span {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     color: #34b0c0;
     text-align: center;
     margin-top: 3px;
   }
+`;
+
+const StyledWaterDoseDialog = styled(motion.div)`
+  width: 80px;
+  height: auto;
+  position: absolute;
+  border-radius: 8px;
+  top: 70px;
+  left: -78px;
+  background: rgba(182, 182, 182, 0.4);
+  box-shadow: -1px 1px 3px #b6b6b6;
+  display: flex;
+  flex-flow: column;
+  font-size: 1.2rem;
+
+  span {
+    text-align: center;
+    padding: 11px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  span + span {
+    font-size: 1.2rem;
+    border-radius: 0;
+    margin-top: 0;
+    border-top: 1px solid #b6b6b6;
+  }
+
+  span + span + span + span {
+    border-radius: 0 0 8px 8px;
+  }
+
+  span:hover {
+    background: #34b0c0;
+    opacity: 0.8;
+  }
+`;
+
+const StyledTriangle = styled(VscTriangleRight)`
+  position: absolute;
+  right: -17px;
+  top: 48%;
+  width: 25px;
+  height: 25px;
+  color: #b6b6b6;
+  opacity: 0.4;
 `;
 
 const StyledDonut = styled(Donut)`
@@ -146,10 +214,11 @@ const StyledDonut = styled(Donut)`
 
   & + span {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     color: #6c3909;
     text-align: center;
     margin-top: -4px;
+    letter-spacing: 0;
   }
 `;
 
@@ -163,7 +232,7 @@ const StyledPencil = styled(Pencil)`
 
   & + span {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     color: #ffc219;
     text-align: center;
     margin-top: 4px;
@@ -177,5 +246,9 @@ export {
   StyledWaterDose,
   StyledDonut,
   StyledDailyReview,
-  StyledPencil
+  StyledPencil,
+  StyledWaterDoseDialog,
+  StyledTriangle,
+  StyledContainer,
+  StyledDailyReviewModal
 };

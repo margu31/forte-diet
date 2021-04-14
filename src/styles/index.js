@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
+import { normalize } from "polished";
 
 const GlobalStyle = createGlobalStyle`
+${normalize()}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -13,7 +15,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video, textarea {
+time, mark, audio, video, textarea, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -22,6 +24,9 @@ time, mark, audio, video, textarea {
 	vertical-align: baseline;
   text-decoration: none;
   box-sizing: border-box;
+  list-style: none;
+  letter-spacing: inherit;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -39,21 +44,7 @@ body {
     'Droid Sans', 'Helvetica Neue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  letter-spacing: 0.1rem;
 }
 html {
   font-size: 10px;
