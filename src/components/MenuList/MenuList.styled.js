@@ -26,6 +26,16 @@ const StyledMenuList = styled.div`
   }
 `;
 
+const StyledDailyReviewModal = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: pink;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+`;
+
 const StyledDailyReview = styled.div`
   width: 730px;
   border-radius: 10px;
@@ -56,7 +66,7 @@ const StyledDailyReview = styled.div`
 
     &:focus {
       box-shadow: 3px 3px 5px #e0dfde;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.6);
     }
 
     &::placeholder {
@@ -86,6 +96,10 @@ const StyledDailyReview = styled.div`
 
   button + button {
     right: 8px;
+
+    &:hover {
+      background: #f3b34c;
+    }
   }
 `;
 
@@ -124,6 +138,8 @@ const StyledLike = styled(TiHeart)`
   }
 `;
 
+const StyledContainer = styled(motion.div)``;
+
 const StyledWaterDose = styled(WaterDose)`
   margin: 10px auto 0;
   width: 40px;
@@ -146,8 +162,8 @@ const StyledWaterDoseDialog = styled(motion.div)`
   height: auto;
   position: absolute;
   border-radius: 8px;
-  top: 74px;
-  left: -75px;
+  top: 70px;
+  left: -78px;
   background: rgba(182, 182, 182, 0.4);
   box-shadow: -1px 1px 3px #b6b6b6;
   display: flex;
@@ -232,5 +248,7 @@ export {
   StyledDailyReview,
   StyledPencil,
   StyledWaterDoseDialog,
-  StyledTriangle
+  StyledTriangle,
+  StyledContainer,
+  StyledDailyReviewModal
 };

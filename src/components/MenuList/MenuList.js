@@ -9,7 +9,9 @@ import {
   StyledDailyReview,
   StyledPencil,
   StyledWaterDoseDialog,
-  StyledTriangle
+  StyledTriangle,
+  StyledContainer,
+  StyledDailyReviewModal
 } from './MenuList.styled';
 
 export default function MenuList({
@@ -53,6 +55,13 @@ export default function MenuList({
         {menuListData.meals.map((mealList, i) => (
           <MealList mealListData={mealList} key={i} />
         ))}
+        {reviewIsActive && (
+          <StyledDailyReviewModal
+            onClick={() => {
+              setReviewIsActive(false);
+            }}
+          />
+        )}
         <StyledDailyReview>
           <textarea
             name='dailyReview'
@@ -64,19 +73,26 @@ export default function MenuList({
               setDailyReviewText(e.target.value);
             }}
             ref={dailyTextarea}
+            disabled={reviewIsActive ? '' : 'disabled'}
           ></textarea>
           {reviewIsActive && (
             <>
-              <button onClick={() => onSubmit(tempDay, dailyReviewText)}>
-                등록
-              </button>
               <button
                 onClick={() => {
                   onRemove(tempDay);
                   setDailyReviewText('');
+                  setReviewIsActive(false);
                 }}
               >
                 삭제
+              </button>
+              <button
+                onClick={() => {
+                  onSubmit(tempDay, dailyReviewText);
+                  setReviewIsActive(false);
+                }}
+              >
+                등록
               </button>
             </>
           )}
@@ -89,12 +105,28 @@ export default function MenuList({
             <span>like 3</span>
           </div>
           <div>
-            <StyledWaterDose
-              onClick={() => {
-                setWaterIsActive(!waterIsActive);
+            <StyledContainer
+              initial={{ x: 0 }}
+              whileHover={{
+                x: [0, 3, -3, 3, -3, 3, -3],
+                transition: {
+                  duration: 0.6,
+                  type: 'spring',
+                  mass: 0.6,
+                  stiffness: 300,
+                  repeat: Infinity,
+                  repeatType: 'mirror'
+                }
               }}
-            />
-            <span>{waterDoseTotal}ml</span>
+            >
+              <StyledWaterDose
+                onClick={() => {
+                  setWaterIsActive(!waterIsActive);
+                }}
+              />
+              <span>{waterDoseTotal}ml</span>
+            </StyledContainer>
+
             {waterIsActive && (
               <>
                 <StyledWaterDoseDialog
@@ -119,13 +151,28 @@ export default function MenuList({
             <span>{getTotalCalories(menuListData.meals)}kcal</span>
           </div>
           <div>
-            <StyledPencil
-              onClick={() => {
-                onClick(dailyTextarea);
-                setReviewIsActive(true);
+            <StyledContainer
+              initial={{ x: 0 }}
+              whileHover={{
+                x: [0, 3, -3, 3, -3, 3, -3],
+                transition: {
+                  duration: 0.6,
+                  type: 'spring',
+                  mass: 0.6,
+                  stiffness: 300,
+                  repeat: Infinity,
+                  repeatType: 'mirror'
+                }
               }}
-            />
-            <span>Diary</span>
+            >
+              <StyledPencil
+                onClick={async () => {
+                  await setReviewIsActive(true);
+                  await onClick(dailyTextarea);
+                }}
+              />
+              <span>Diary</span>
+            </StyledContainer>
           </div>
         </StyledMenuListBar>
       </StyledMenuList>
