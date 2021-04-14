@@ -1,5 +1,5 @@
 import Input from "components/Input/Input";
-import RadioGroup from "components/RadioGroup/PostingRadioGroup";
+import RadioGroup from "components/RadioGroup/RadioGroup";
 import { palette } from "styles/index";
 import StyledDataGroup from "./DataGroup.styled";
 
@@ -12,13 +12,6 @@ const DataGroup = ({ onChange }) => {
         name="postingFile"
         label="사진 등록"
         onChange={onChange}
-        // $fontSize="1.2"
-        // $width="320"
-        // $height="30"
-        // $marginBottom="10"
-        // $backgroundColot={palette.themeBrightYellow}
-        // $borderColor={palette.themePrimary}
-        // $paddingSide="10"
       />
       <div className="collection">
         <Input
@@ -28,7 +21,7 @@ const DataGroup = ({ onChange }) => {
           label="Date"
           onChange={onChange}
           required
-          $fontSize="1.2"
+          $labelFontSize="1.2"
           $width="320"
           $height="30"
           $marginBottom="10"
@@ -36,7 +29,17 @@ const DataGroup = ({ onChange }) => {
           $borderColor={palette.themePrimary}
           $paddingSide="10"
         />
-        <RadioGroup groupTitle="Type" />
+        <RadioGroup
+          groupTitle="Type"
+          $titleFontSize="1.1"
+          $titleMarginBottom="5"
+          $backgroundColor={palette.themeBrightYellow}
+          $borderColor={palette.themePrimary}
+          // $width=342
+          $radioMarginBottom="10"
+          $checkedBackground={palette.themePrimary}
+          $checkedColor={palette.themeDefaultWhite}
+        />
         <Input
           type="number"
           id="mealCalories"
@@ -44,7 +47,7 @@ const DataGroup = ({ onChange }) => {
           label="Calories"
           placeholder="칼로리를 입력하세요!"
           onChange={onChange}
-          $fontSize="1.2"
+          $labelFontSize="1.2"
           $width="320"
           $height="30"
           $marginBottom="10"
@@ -60,7 +63,7 @@ const DataGroup = ({ onChange }) => {
           label="Menu"
           onChange={onChange}
           autocomplete="off"
-          $fontSize="1.2"
+          $labelFontSize="1.2"
           $width="320"
           $height="30"
           $marginBottom="10"

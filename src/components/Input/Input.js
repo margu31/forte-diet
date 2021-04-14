@@ -18,7 +18,6 @@ export default function Input({
   autocomplete,
   ...restProps
 }) {
-  console.log(autocomplete);
   return (
     <StyledInputWrapper>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
