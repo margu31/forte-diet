@@ -1,4 +1,4 @@
-const PostingInputRadio = ({ id, name, value, label }) => {
+const InputRadio = ({ id, name, value, label }) => {
   return (
     <>
       <input type="radio" id={id} name={name} value={value} />
@@ -7,4 +7,4 @@ const PostingInputRadio = ({ id, name, value, label }) => {
   );
 };
 
-export default PostingInputRadio;
+export default InputRadio;

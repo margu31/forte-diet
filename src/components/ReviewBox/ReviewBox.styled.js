@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyleReviewBox = styled.div`
+const StyledReviewBox = styled.div`
   position: relative;
 
   label {
@@ -27,7 +27,7 @@ const StyleReviewBox = styled.div`
   }
 
   textarea {
-    width: 660px;
+    width: 690px;
     min-height: 160px;
     outline: none;
     border: 1px solid #395b9d;
@@ -41,9 +41,9 @@ const StyleReviewBox = styled.div`
     left: 15px;
     bottom: -25px;
     color: #ff0000;
-    font-size: 12px;
+    font-size: 1rem;
     margin: 5px 0;
   }
 `;
 
-export default StyleReviewBox;
+export default StyledReviewBox;

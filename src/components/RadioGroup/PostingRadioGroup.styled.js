@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledRadioGroup = styled.div`
   p {
-    font-size: 14px;
+    font-size: 1.2rem;
     text-indent: 10px;
     margin-bottom: 5px;
   }
@@ -21,7 +21,7 @@ const StyledRadioGroup = styled.div`
   }
 
   label {
-    font-size: 15px;
+    font-size: 1.3rem;
     display: inline-block;
     width: 85px;
     height: 30px;

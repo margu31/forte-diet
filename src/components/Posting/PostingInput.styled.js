@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StylePostingInput = styled.div`
   label {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     text-indent: 10px;
     margin: 5px 0;
   }
@@ -28,6 +28,7 @@ const StylePostingInput = styled.div`
     cursor: pointer;
     line-height: 214px;
     background-color: #fefdf8;
+    margin: 40px 0;
   }
 
   input[type="file"] {

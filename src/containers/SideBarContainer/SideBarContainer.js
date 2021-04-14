@@ -5,7 +5,7 @@ export default function SideBarContainer() {
   const [sideBarHeight, setSideBarHeight] = useState(0);
 
   useEffect(() => {
-    window.addEventListener('scroll', e => {
+    window.addEventListener('scroll', () => {
       setSideBarHeight(window.scrollY);
     });
   }, []);

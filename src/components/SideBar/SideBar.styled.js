@@ -10,7 +10,7 @@ export const StyledSideBar = styled.nav`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 25vh;
+  padding-top: 15vh;
   padding-bottom: 3rem;
   transition: transform 0.2s;
 
