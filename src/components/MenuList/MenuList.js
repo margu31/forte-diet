@@ -35,16 +35,16 @@ export default function MenuList({
   const [waterDoseTotal, setWaterDoseTotal] = useState(waterDose || 0);
 
   const onAddWaterDose = e => {
-    let additionalDose = 0;
+    const additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
+    setWaterDoseTotal(waterDoseTotal + additionalDose);
+    onAdd(tempDay, additionalDose, waterDoseTotal);
+    setWaterIsActive(false);
+  };
 
-    if (e.target.innerText !== '초기화') {
-      additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
-      setWaterDoseTotal(waterDoseTotal + additionalDose);
-    } else {
-      setWaterDoseTotal(0);
-    }
-
-    onAdd(tempDay, waterDoseTotal, additionalDose);
+  const onResetWaterDose = () => {
+    const additionalDose = 0;
+    setWaterDoseTotal(0);
+    onAdd(tempDay, additionalDose);
     setWaterIsActive(false);
   };
 
@@ -140,7 +140,7 @@ export default function MenuList({
                   <span onClick={e => onAddWaterDose(e)}>+100ml</span>
                   <span onClick={e => onAddWaterDose(e)}>+300ml</span>
                   <span onClick={e => onAddWaterDose(e)}>+500ml</span>
-                  <span onClick={e => onAddWaterDose(e)}>초기화</span>
+                  <span onClick={() => onResetWaterDose()}>초기화</span>
                   <StyledTriangle />
                 </StyledWaterDoseDialog>
               </>
