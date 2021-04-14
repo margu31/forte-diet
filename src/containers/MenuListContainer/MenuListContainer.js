@@ -4,7 +4,8 @@ import { signInAction } from '../../redux/modules/auth/auth';
 import {
   handleGetDietLists,
   addOrEditDailyReview,
-  removeDailyReview
+  removeDailyReview,
+  addWaterDose
 } from '../../api/firestore';
 import { getMenuListAction } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
@@ -30,6 +31,17 @@ export default function MenuListContainer() {
 
   const onRemove = date => {
     dispatch(removeDailyReview({ uid: 'MWcXe49pXQdQk5xHduQu' }, date));
+  };
+
+  const onAdd = (date, currentDose, additionalDose) => {
+    dispatch(
+      addWaterDose(
+        { uid: 'MWcXe49pXQdQk5xHduQu' },
+        date,
+        currentDose,
+        additionalDose
+      )
+    );
   };
 
   const getTotalCalories = meals => {
@@ -65,6 +77,7 @@ export default function MenuListContainer() {
           onClick={onClick}
           onSubmit={onSubmit}
           onRemove={onRemove}
+          onAdd={onAdd}
         />
       ))}
     </>

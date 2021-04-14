@@ -5,7 +5,10 @@ const users = firestore.collection('users');
 
 /* 마이 페이지 */
 
-export const handleGetDietLists = ({ uid }, updateDietAction) => async dispatch => {
+export const handleGetDietLists = (
+  { uid },
+  updateDietAction
+) => async dispatch => {
   try {
     const snapshot = await users.where('id', '==', uid).get();
 
@@ -57,7 +60,12 @@ export const removeDailyReview = ({ uid }, date) => async () => {
   }
 };
 
-export const addWaterDose = async ({ uid }, date, currentDose, additionalDose) => {
+export const addWaterDose = (
+  { uid },
+  date,
+  currentDose,
+  additionalDose
+) => async () => {
   try {
     const user = await users.doc(uid);
     user.set(

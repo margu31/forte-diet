@@ -17,7 +17,8 @@ export default function MenuList({
   getTotalCalories,
   onClick,
   onSubmit,
-  onRemove
+  onRemove,
+  onAdd
 }) {
   const { dailyReview, waterDose } = menuListData;
   const { date } = menuListData.meals[0];
@@ -30,6 +31,20 @@ export default function MenuList({
   const [dailyReviewText, setDailyReviewText] = useState(dailyReview || '');
   const [waterIsActive, setWaterIsActive] = useState(false);
   const [waterDoseTotal, setWaterDoseTotal] = useState(waterDose || 0);
+
+  const onAddWaterDose = e => {
+    let additionalDose = 0;
+
+    if (e.target.innerText !== '초기화') {
+      additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
+      setWaterDoseTotal(waterDoseTotal + additionalDose);
+    } else {
+      setWaterDoseTotal(0);
+    }
+
+    onAdd(tempDay, waterDoseTotal, additionalDose);
+    setWaterIsActive(false);
+  };
 
   return (
     <>
@@ -76,20 +91,26 @@ export default function MenuList({
           <div>
             <StyledWaterDose
               onClick={() => {
-                console.log(waterIsActive);
-                setWaterIsActive(true);
+                setWaterIsActive(!waterIsActive);
               }}
             />
             <span>{waterDoseTotal}ml</span>
             {waterIsActive && (
               <>
-                <StyledWaterDoseDialog>
-                  <span>+100ml</span>
-                  <span>+300ml</span>
-                  <span>+500ml</span>
-                  <span>초기화</span>
+                <StyledWaterDoseDialog
+                  initial={{ x: 2, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.1
+                  }}
+                  exit={{ x: 2, opacity: 0 }}
+                >
+                  <span onClick={e => onAddWaterDose(e)}>+100ml</span>
+                  <span onClick={e => onAddWaterDose(e)}>+300ml</span>
+                  <span onClick={e => onAddWaterDose(e)}>+500ml</span>
+                  <span onClick={e => onAddWaterDose(e)}>초기화</span>
+                  <StyledTriangle />
                 </StyledWaterDoseDialog>
-                <StyledTriangle />
               </>
             )}
           </div>

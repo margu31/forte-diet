@@ -4,6 +4,7 @@ import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDr
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
 import { ReactComponent as Pencil } from '../../assets/icons/MenuList/pencil.svg';
 import { VscTriangleRight } from 'react-icons/vsc';
+import { motion } from 'framer-motion';
 
 const StyledMenuList = styled.div`
   display: inline-block;
@@ -140,7 +141,7 @@ const StyledWaterDose = styled(WaterDose)`
   }
 `;
 
-const StyledWaterDoseDialog = styled.div`
+const StyledWaterDoseDialog = styled(motion.div)`
   width: 80px;
   height: auto;
   position: absolute;
@@ -154,7 +155,6 @@ const StyledWaterDoseDialog = styled.div`
   font-size: 1.2rem;
 
   span {
-    letter-spacing: 0.1rem;
     text-align: center;
     padding: 11px;
     border-radius: 8px 8px 0 0;
@@ -181,8 +181,8 @@ const StyledWaterDoseDialog = styled.div`
 
 const StyledTriangle = styled(VscTriangleRight)`
   position: absolute;
-  left: -3px;
-  top: 140px;
+  right: -17px;
+  top: 48%;
   width: 25px;
   height: 25px;
   color: #b6b6b6;
@@ -202,6 +202,7 @@ const StyledDonut = styled(Donut)`
     color: #6c3909;
     text-align: center;
     margin-top: -4px;
+    letter-spacing: 0;
   }
 `;
 
