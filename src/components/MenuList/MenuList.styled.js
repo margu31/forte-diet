@@ -49,7 +49,7 @@ const StyledDailyReview = styled.div`
     color: #14182c;
     opacity: 0.8;
     resize: none;
-    font-size: 15px;
+    font-size: 1.5rem;
     outline: none;
 
     &:focus {
@@ -66,7 +66,7 @@ const StyledDailyReview = styled.div`
     background: inherit;
     border-radius: 10px;
     font: inherit;
-    font-size: 11px;
+    font-size: 1.1rem;
     color: #14182c;
     padding: 7px;
     box-sizing: border-box;
@@ -97,10 +97,10 @@ const StyledMenuListBar = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  font-size: 16px;
+  font-size: 1.4rem;
 
   span + span {
-    font-size: 30px;
+    font-size: 2.8rem;
     margin-top: 4px;
   }
 `;
@@ -111,10 +111,11 @@ const StyledLike = styled(TiHeart)`
   height: 45px;
   box-sizing: border-box;
   display: block;
+  margin-top: 20px;
 
   & + span {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     color: #faafaf;
     text-align: center;
     margin-top: -5px;
@@ -130,7 +131,7 @@ const StyledWaterDose = styled(WaterDose)`
 
   & + span {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     color: #34b0c0;
     text-align: center;
     margin-top: 3px;
@@ -146,7 +147,7 @@ const StyledDonut = styled(Donut)`
 
   & + span {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     color: #6c3909;
     text-align: center;
     margin-top: -4px;
@@ -163,7 +164,7 @@ const StyledPencil = styled(Pencil)`
 
   & + span {
     display: block;
-    font-size: 14px;
+    font-size: 1.2rem;
     color: #ffc219;
     text-align: center;
     margin-top: 4px;
