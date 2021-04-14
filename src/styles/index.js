@@ -63,7 +63,9 @@ html {
 export const palette = {
   themePrimary: "#F3B34C",
   themeSecondary: "#395B9D",
+  themePrimaryThick: "#F26830",
   themeBright: "#F4F3EF", // 배경 베이지색
+  themeBrightYellow: "#FEFDF8", // input, textarea 배경색
   themeBrightGray: "#B6B6B6",
   themeDark: "#626262",
   themeDefault: "#14182C",
