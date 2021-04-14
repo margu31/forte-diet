@@ -2,6 +2,7 @@ import GlobalStyle, { palette } from 'styles';
 import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import MyPage from 'pages/MyPage/MyPage';
+import './App.css';
 import { StyledApp } from './App.styled';
 import Home from '../pages/Home/Home';
 import PostingContainer from 'containers/PostingContainer/PostingContainer';

@@ -7,7 +7,11 @@ import {
   StyledWaterDose,
   StyledDonut,
   StyledDailyReview,
-  StyledPencil
+  StyledPencil,
+  StyledWaterDoseDialog,
+  StyledTriangle,
+  StyledContainer,
+  StyledDailyReviewModal
 } from './MenuList.styled';
 
 export default function MenuList({
@@ -15,17 +19,34 @@ export default function MenuList({
   getTotalCalories,
   onClick,
   onSubmit,
-  onRemove
+  onRemove,
+  onAdd
 }) {
-  const { dailyReview } = menuListData;
+  const { dailyReview, waterDose } = menuListData;
   const { date } = menuListData.meals[0];
   const dayNum = date.slice(4, 6);
   const dayStr = date.slice(7, 10);
-  const tempDay = date.slice(2, 6); // 임시로 뽑은거!!!1
+  const tempDay = date.slice(2, 6); // TODO: 임시로 뽑은거!!!1
 
   const dailyTextarea = useRef();
-  const [isActive, setIsActive] = useState(false);
+  const [reviewIsActive, setReviewIsActive] = useState(false);
   const [dailyReviewText, setDailyReviewText] = useState(dailyReview || '');
+  const [waterIsActive, setWaterIsActive] = useState(false);
+  const [waterDoseTotal, setWaterDoseTotal] = useState(waterDose || 0);
+
+  const onAddWaterDose = e => {
+    let additionalDose = 0;
+
+    if (e.target.innerText !== '초기화') {
+      additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
+      setWaterDoseTotal(waterDoseTotal + additionalDose);
+    } else {
+      setWaterDoseTotal(0);
+    }
+
+    onAdd(tempDay, waterDoseTotal, additionalDose);
+    setWaterIsActive(false);
+  };
 
   return (
     <>
@@ -34,6 +55,13 @@ export default function MenuList({
         {menuListData.meals.map((mealList, i) => (
           <MealList mealListData={mealList} key={i} />
         ))}
+        {reviewIsActive && (
+          <StyledDailyReviewModal
+            onClick={() => {
+              setReviewIsActive(false);
+            }}
+          />
+        )}
         <StyledDailyReview>
           <textarea
             name='dailyReview'
@@ -45,19 +73,26 @@ export default function MenuList({
               setDailyReviewText(e.target.value);
             }}
             ref={dailyTextarea}
+            disabled={reviewIsActive ? '' : 'disabled'}
           ></textarea>
-          {isActive && (
+          {reviewIsActive && (
             <>
-              <button onClick={() => onSubmit(tempDay, dailyReviewText)}>
-                등록
-              </button>
               <button
                 onClick={() => {
                   onRemove(tempDay);
                   setDailyReviewText('');
+                  setReviewIsActive(false);
                 }}
               >
                 삭제
+              </button>
+              <button
+                onClick={() => {
+                  onSubmit(tempDay, dailyReviewText);
+                  setReviewIsActive(false);
+                }}
+              >
+                등록
               </button>
             </>
           )}
@@ -70,21 +105,74 @@ export default function MenuList({
             <span>like 3</span>
           </div>
           <div>
-            <StyledWaterDose />
-            <span>300ml</span>
+            <StyledContainer
+              initial={{ x: 0 }}
+              whileHover={{
+                x: [0, 3, -3, 3, -3, 3, -3],
+                transition: {
+                  duration: 0.6,
+                  type: 'spring',
+                  mass: 0.6,
+                  stiffness: 300,
+                  repeat: Infinity,
+                  repeatType: 'mirror'
+                }
+              }}
+            >
+              <StyledWaterDose
+                onClick={() => {
+                  setWaterIsActive(!waterIsActive);
+                }}
+              />
+              <span>{waterDoseTotal}ml</span>
+            </StyledContainer>
+
+            {waterIsActive && (
+              <>
+                <StyledWaterDoseDialog
+                  initial={{ x: 2, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.1
+                  }}
+                  exit={{ x: 2, opacity: 0 }}
+                >
+                  <span onClick={e => onAddWaterDose(e)}>+100ml</span>
+                  <span onClick={e => onAddWaterDose(e)}>+300ml</span>
+                  <span onClick={e => onAddWaterDose(e)}>+500ml</span>
+                  <span onClick={e => onAddWaterDose(e)}>초기화</span>
+                  <StyledTriangle />
+                </StyledWaterDoseDialog>
+              </>
+            )}
           </div>
           <div>
             <StyledDonut />
             <span>{getTotalCalories(menuListData.meals)}kcal</span>
           </div>
           <div>
-            <StyledPencil
-              onClick={() => {
-                onClick(dailyTextarea);
-                setIsActive(true);
+            <StyledContainer
+              initial={{ x: 0 }}
+              whileHover={{
+                x: [0, 3, -3, 3, -3, 3, -3],
+                transition: {
+                  duration: 0.6,
+                  type: 'spring',
+                  mass: 0.6,
+                  stiffness: 300,
+                  repeat: Infinity,
+                  repeatType: 'mirror'
+                }
               }}
-            />
-            <span>Diary</span>
+            >
+              <StyledPencil
+                onClick={async () => {
+                  await setReviewIsActive(true);
+                  await onClick(dailyTextarea);
+                }}
+              />
+              <span>Diary</span>
+            </StyledContainer>
           </div>
         </StyledMenuListBar>
       </StyledMenuList>
