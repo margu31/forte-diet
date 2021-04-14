@@ -3,6 +3,7 @@ import { TiHeart } from 'react-icons/ti';
 import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
 import { ReactComponent as Pencil } from '../../assets/icons/MenuList/pencil.svg';
+import { VscTriangleRight } from 'react-icons/vsc';
 
 const StyledMenuList = styled.div`
   display: inline-block;
@@ -10,7 +11,7 @@ const StyledMenuList = styled.div`
   max-width: 900px;
   border: none;
   border-left: 4px solid #b6b6b6;
-  margin-left: 15%; /* 왼쪽 nav 179px */
+  margin-left: 17%; /* 왼쪽 nav 179px */
   margin-top: 120px; /* 위쪽 nav 94px */
   margin-bottom: 128px;
   padding: 24px 52px 27px 52px;
@@ -128,6 +129,7 @@ const StyledWaterDose = styled(WaterDose)`
   height: 40px;
   box-sizing: border-box;
   display: block;
+  cursor: pointer;
 
   & + span {
     display: block;
@@ -136,6 +138,55 @@ const StyledWaterDose = styled(WaterDose)`
     text-align: center;
     margin-top: 3px;
   }
+`;
+
+const StyledWaterDoseDialog = styled.div`
+  width: 80px;
+  height: auto;
+  position: absolute;
+  border-radius: 8px;
+  top: 74px;
+  left: -75px;
+  background: rgba(182, 182, 182, 0.4);
+  box-shadow: -1px 1px 3px #b6b6b6;
+  display: flex;
+  flex-flow: column;
+  font-size: 1.2rem;
+
+  span {
+    letter-spacing: 0.1rem;
+    text-align: center;
+    padding: 11px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  span + span {
+    font-size: 1.2rem;
+    border-radius: 0;
+    margin-top: 0;
+    border-top: 1px solid #b6b6b6;
+  }
+
+  span + span + span + span {
+    border-radius: 0 0 8px 8px;
+  }
+
+  span:hover {
+    background: #34b0c0;
+    opacity: 0.8;
+  }
+`;
+
+const StyledTriangle = styled(VscTriangleRight)`
+  position: absolute;
+  left: -3px;
+  top: 140px;
+  width: 25px;
+  height: 25px;
+  color: #b6b6b6;
+  opacity: 0.4;
 `;
 
 const StyledDonut = styled(Donut)`
@@ -178,5 +229,7 @@ export {
   StyledWaterDose,
   StyledDonut,
   StyledDailyReview,
-  StyledPencil
+  StyledPencil,
+  StyledWaterDoseDialog,
+  StyledTriangle
 };

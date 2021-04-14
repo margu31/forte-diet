@@ -7,7 +7,9 @@ import {
   StyledWaterDose,
   StyledDonut,
   StyledDailyReview,
-  StyledPencil
+  StyledPencil,
+  StyledWaterDoseDialog,
+  StyledTriangle
 } from './MenuList.styled';
 
 export default function MenuList({
@@ -17,15 +19,17 @@ export default function MenuList({
   onSubmit,
   onRemove
 }) {
-  const { dailyReview } = menuListData;
+  const { dailyReview, waterDose } = menuListData;
   const { date } = menuListData.meals[0];
   const dayNum = date.slice(4, 6);
   const dayStr = date.slice(7, 10);
-  const tempDay = date.slice(2, 6); // 임시로 뽑은거!!!1
+  const tempDay = date.slice(2, 6); // TODO: 임시로 뽑은거!!!1
 
   const dailyTextarea = useRef();
-  const [isActive, setIsActive] = useState(false);
+  const [reviewIsActive, setReviewIsActive] = useState(false);
   const [dailyReviewText, setDailyReviewText] = useState(dailyReview || '');
+  const [waterIsActive, setWaterIsActive] = useState(false);
+  const [waterDoseTotal, setWaterDoseTotal] = useState(waterDose || 0);
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function MenuList({
             }}
             ref={dailyTextarea}
           ></textarea>
-          {isActive && (
+          {reviewIsActive && (
             <>
               <button onClick={() => onSubmit(tempDay, dailyReviewText)}>
                 등록
@@ -70,8 +74,24 @@ export default function MenuList({
             <span>like 3</span>
           </div>
           <div>
-            <StyledWaterDose />
-            <span>300ml</span>
+            <StyledWaterDose
+              onClick={() => {
+                console.log(waterIsActive);
+                setWaterIsActive(true);
+              }}
+            />
+            <span>{waterDoseTotal}ml</span>
+            {waterIsActive && (
+              <>
+                <StyledWaterDoseDialog>
+                  <span>+100ml</span>
+                  <span>+300ml</span>
+                  <span>+500ml</span>
+                  <span>초기화</span>
+                </StyledWaterDoseDialog>
+                <StyledTriangle />
+              </>
+            )}
           </div>
           <div>
             <StyledDonut />
@@ -81,7 +101,7 @@ export default function MenuList({
             <StyledPencil
               onClick={() => {
                 onClick(dailyTextarea);
-                setIsActive(true);
+                setReviewIsActive(true);
               }}
             />
             <span>Diary</span>
