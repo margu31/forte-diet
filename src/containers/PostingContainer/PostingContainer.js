@@ -91,6 +91,7 @@ function PostingContainer() {
         <Toggle id="isPublic" label1="Public" label2="Private" />
         <div>
           <Button
+            type="button"
             $width="100"
             $height="30"
             $fontSize="1.2"
