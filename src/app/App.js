@@ -5,7 +5,7 @@ import MyPage from "pages/MyPage/MyPage";
 import SideBar from "../components/SideBar/SideBar";
 import { StyledApp } from "./App.styled";
 import Home from "../pages/Home/Home";
-import PostingContainer from "containers/PostingContainer/PostingContainer";
+import PostingPage from "pages/PostingPage/PostingPage";
 import "./App.css";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/myPage" component={MyPage} />
-          <Route path="/posting" component={PostingContainer} />
+          <Route path="/posting" component={PostingPage} />
           {/* Redirect 폴백 페이지 추가하여야 함 */}
         </Switch>
       </ThemeProvider>
