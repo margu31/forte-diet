@@ -31,7 +31,7 @@ const StyledToggle = styled.div`
     }
 
     & span:first-child {
-      right: 15px;
+      right: 12px;
     }
 
     & span:nth-child(2) {
@@ -56,15 +56,15 @@ const StyledToggle = styled.div`
     & span:last-child {
       background-color: #fefdf8;
       right: 5px;
-      width: 20px;
-      height: 20px;
-      transform: translate3d(55px, -50%, 0);
+      width: 18px;
+      height: 18px;
+      transform: translate3d(57px, -50%, 0);
     }
 
     & span:nth-child(2) {
       display: inline-block;
       color: #fefdf8;
-      left: 11px;
+      left: 9px;
     }
 
     & span:first-child {
