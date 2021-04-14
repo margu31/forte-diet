@@ -15,7 +15,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video, textarea {
+time, mark, audio, video, textarea, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -25,6 +25,8 @@ time, mark, audio, video, textarea {
   text-decoration: none;
   box-sizing: border-box;
   list-style: none;
+  letter-spacing: inherit;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -42,6 +44,7 @@ body {
     'Droid Sans', 'Helvetica Neue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.1rem;
 }
 html {
   font-size: 10px;

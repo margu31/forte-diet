@@ -4,7 +4,8 @@ import { signInAction } from '../../redux/modules/auth/auth';
 import {
   handleGetDietLists,
   addOrEditDailyReview,
-  removeDailyReview
+  removeDailyReview,
+  addWaterDose
 } from '../../api/firestore';
 import { getMenuListAction } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
@@ -32,6 +33,17 @@ export default function MenuListContainer() {
     dispatch(removeDailyReview({ uid: 'MWcXe49pXQdQk5xHduQu' }, date));
   };
 
+  const onAdd = (date, currentDose, additionalDose) => {
+    dispatch(
+      addWaterDose(
+        { uid: 'MWcXe49pXQdQk5xHduQu' },
+        date,
+        currentDose,
+        additionalDose
+      )
+    );
+  };
+
   const getTotalCalories = meals => {
     const totalCalories = meals.reduce((acc, cur) => acc + cur.calories, 0);
 
@@ -50,12 +62,14 @@ export default function MenuListContainer() {
   }, [authUser, dispatch]);
 
   if (!authUser) return null;
-  const forMenuListData = Object.entries(menuList).map(data => data[1]);
+  const menuListData = Object.entries(menuList)
+    .sort((a, b) => b[0] - a[0])
+    .map(data => data[1]);
 
   return (
     <>
       {/* TODO: key 바꿔야함!!!! */}
-      {forMenuListData.map((menuList, i) => (
+      {menuListData.map((menuList, i) => (
         <MenuList
           key={i}
           menuListData={menuList}
@@ -63,6 +77,7 @@ export default function MenuListContainer() {
           onClick={onClick}
           onSubmit={onSubmit}
           onRemove={onRemove}
+          onAdd={onAdd}
         />
       ))}
     </>

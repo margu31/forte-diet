@@ -27,12 +27,12 @@ const StyledMealList = styled.li`
     display: block;
     margin: 0;
     text-align: center;
-    font-size: 16px;
+    font-size: 1.6rem;
   }
 
   span + span {
     margin-top: 8px;
-    font-size: 14px;
+    font-size: 1.4rem;
     opacity: 0.6;
   }
 
