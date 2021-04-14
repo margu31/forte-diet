@@ -7,6 +7,7 @@ import { StyledApp } from "./App.styled";
 import Home from "../pages/Home/Home";
 import SideBarContainer from "../containers/SideBarContainer/SideBarContainer";
 import PostingPage from "pages/PostingPage/PostingPage";
+import Setting from "components/Setting/Setting";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <GlobalStyle />
       <ThemeProvider theme={palette}>
         <SideBarContainer />
+        <Setting />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/myPage" component={MyPage} />
