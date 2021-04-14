@@ -10,5 +10,5 @@ export default function SideBarContainer() {
     });
   }, []);
 
-  return <StyledSideBar sideBarHeight={sideBarHeight} />;
+  return <SideBar sideBarHeight={sideBarHeight} />;
 }
