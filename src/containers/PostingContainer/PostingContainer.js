@@ -95,8 +95,10 @@ function PostingContainer() {
             $width="100"
             $height="30"
             $fontSize="1.2"
-            $backgroundColor={palette.themeBrightGray}
+            // $backgroundColor={palette.themeBrightGray}
+            $backgroundColor="#9f9f9f33"
             $color={palette.themeDefault}
+            $hoverBackground={palette.themeBrightGray}
           >
             취소
           </Button>
@@ -104,8 +106,11 @@ function PostingContainer() {
             $width="100"
             $height="30"
             $fontSize="1.2"
-            $backgroundColor={palette.themeBrightYellow}
+            // $backgroundColor={palette.themeBrightYellow}
+            $backgroundColor="#f2683033"
             $color={palette.themePrimaryThick}
+            $hoverBackground={palette.themePrimaryThick}
+            $hoverColor={palette.themeDefaultWhite}
             onSubmit={onSubmit}
           >
             등록!
