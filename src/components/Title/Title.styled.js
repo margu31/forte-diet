@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StylePageTitle = styled.h2`
+const StyledTitle = styled.h2`
   font-size: 2.5rem;
   position: relative;
   text-indent: 20px;
@@ -18,4 +18,4 @@ const StylePageTitle = styled.h2`
   }
 `;
 
-export default StylePageTitle;
+export default StyledTitle;
