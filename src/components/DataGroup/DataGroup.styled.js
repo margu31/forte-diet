@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyleDataGroup = styled.div`
+const StyledDataGroup = styled.div`
   display: flex;
   justify-content: space-between;
   width: 692px;
@@ -11,4 +11,4 @@ const StyleDataGroup = styled.div`
   }
 `;
 
-export default StyleDataGroup;
+export default StyledDataGroup;

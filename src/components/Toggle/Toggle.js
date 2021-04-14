@@ -1,22 +1,22 @@
-import StyleToggle from "./PostingToggle.styled";
+import StyledToggle from "./Toggle.styled";
 
-const PostingToggle = ({ label1, label2 }) => {
+const Toggle = ({ label1, label2, id }) => {
   return (
-    <StyleToggle>
+    <StyledToggle>
       {/* <label>
         <input type="checkbox" />
         <span>{label1}</span>
         <span>{label2}</span>
         <span></span>
       </label> */}
-      <input type="checkbox" id="isPublic" />
-      <label htmlFor="isPublic">
+      <input type="checkbox" id={id} />
+      <label htmlFor={id}>
         <span>{label1}</span>
         <span>{label2}</span>
         <span></span>
       </label>
-    </StyleToggle>
+    </StyledToggle>
   );
 };
 
-export default PostingToggle;
+export default Toggle;
