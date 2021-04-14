@@ -7,7 +7,8 @@ import Button from "components/Button/Button";
 import Title from "components/Title/Title";
 import ReviewBox from "components/ReviewBox/ReviewBox";
 import Toggle from "components/Toggle/Toggle";
-import DataGroup from "components/DataGroup/PostingDataGroup";
+import { palette } from "styles/index";
+import DataGroup from "components/DataGroup/DataGroup";
 
 const initialPostingFormValues = {
   photo: null,
@@ -89,10 +90,23 @@ function PostingContainer() {
         />
         <Toggle id="isPublic" label1="Public" label2="Private" />
         <div>
-          <Button width="100" height="30">
+          <Button
+            $width="100"
+            $height="30"
+            $fontSize="1.2"
+            $backgroundColor={palette.themeBrightGray}
+            $color={palette.themeDefault}
+          >
             취소
           </Button>
-          <Button width="100" height="30" onSubmit={onSubmit}>
+          <Button
+            $width="100"
+            $height="30"
+            $fontSize="1.2"
+            $backgroundColor={palette.themeBrightYellow}
+            $color={palette.themePrimaryThick}
+            onSubmit={onSubmit}
+          >
             등록!
           </Button>
         </div>
