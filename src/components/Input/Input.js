@@ -15,8 +15,10 @@ export default function Input({
   onChange,
   onBlur,
   errorMessage,
+  autocomplete,
   ...restProps
 }) {
+  console.log(autocomplete);
   return (
     <StyledInputWrapper>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
@@ -27,6 +29,7 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
+        autocomplete={autocomplete}
         {...restProps}
       ></StyledInput>
       {errorMessage && errorMessage[name] ? (
