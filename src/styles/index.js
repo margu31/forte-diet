@@ -45,6 +45,7 @@ body {
 }
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
 }
 `;
 
