@@ -50,12 +50,14 @@ export default function MenuListContainer() {
   }, [authUser, dispatch]);
 
   if (!authUser) return null;
-  const forMenuListData = Object.entries(menuList).map(data => data[1]);
+  const menuListData = Object.entries(menuList)
+    .sort((a, b) => b[0] - a[0])
+    .map(data => data[1]);
 
   return (
     <>
       {/* TODO: key 바꿔야함!!!! */}
-      {forMenuListData.map((menuList, i) => (
+      {menuListData.map((menuList, i) => (
         <MenuList
           key={i}
           menuListData={menuList}
