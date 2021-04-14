@@ -33,7 +33,7 @@ export default function MenuListContainer() {
     dispatch(removeDailyReview({ uid: 'MWcXe49pXQdQk5xHduQu' }, date));
   };
 
-  const onAdd = (date, currentDose, additionalDose) => {
+  const onAdd = (date, additionalDose, currentDose = 0) => {
     dispatch(
       addWaterDose(
         { uid: 'MWcXe49pXQdQk5xHduQu' },
