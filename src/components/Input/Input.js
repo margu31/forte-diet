@@ -27,7 +27,7 @@ export default function Input({
         onChange={onChange}
         onBlur={onBlur}
       ></StyledInput>
-      {errorMessage[name] ? (
+      {errorMessage && errorMessage[name] ? (
         <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>
       ) : null}
       <StyledErrorMessage></StyledErrorMessage>

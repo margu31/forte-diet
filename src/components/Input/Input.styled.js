@@ -7,6 +7,22 @@ export const StyledInputWrapper = styled.div`
 
 export const StyledLabel = styled.label`
   /* font-size: 13px; */
+  display: block;
+  font-size: 1.2rem;
+  text-indent: 10px;
+  margin: 5px 0;
+
+  &[for="postingFile"] {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    border: 8px solid #395b9d;
+    text-align: center;
+    cursor: pointer;
+    line-height: 214px;
+    background-color: #fefdf8;
+    margin: 40px 0;
+  }
 `;
 export const StyledInput = styled.input`
   /* flex: 1;
@@ -37,6 +53,22 @@ export const StyledInput = styled.input`
       box-shadow: none;
     }
   } */
+  width: 320px;
+  height: 30px;
+  outline: none;
+  border: 1px solid #f3b34c;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: #fefdf8;
+  margin-bottom: 10px;
+
+  &[type="file"] {
+    display: none;
+  }
+
+  &[type="date"] {
+    cursor: pointer;
+  }
 `;
 
 export const StyledErrorMessage = styled.p`
