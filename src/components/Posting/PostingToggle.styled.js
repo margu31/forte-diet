@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyleToggle = styled.div`
+  font-size: 1.1rem;
   width: 690px;
   text-align: right;
   padding-right: 15px;
