@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components';
 
-export const StyledSideBar = styled.div`
+export const StyledSideBar = styled.nav`
   display: inline-flex;
   flex-direction: column;
-  max-width: 210px;
-  height: 100vh;
+  align-items: center;
 
   ${({ theme }) => css`
     background-color: ${theme.themePrimary};
