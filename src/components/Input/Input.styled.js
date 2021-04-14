@@ -6,9 +6,9 @@ export const StyledInputWrapper = styled.div`
 `;
 
 export const StyledLabel = styled.label`
-  ${({ $fontSize }) =>
+  ${({ $labelFontSize }) =>
     css`
-      font-size: ${$fontSize}rem;
+      font-size: ${$labelFontSize}rem;
     `}
 
   display: block;
@@ -66,6 +66,7 @@ export const StyledInput = styled.input`
     $backgroundColor,
     $borderColor,
     $paddingSide,
+    $inputFontSize,
   }) => css`
     width: ${$width}px;
     height: ${$height}px;
@@ -73,6 +74,7 @@ export const StyledInput = styled.input`
     background-color: ${$backgroundColor};
     border: 1px solid ${$borderColor};
     padding: 0 ${$paddingSide}px;
+    font-size: ${$inputFontSize}rem;
   `}
 
   border-radius: 5px;

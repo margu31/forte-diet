@@ -1,7 +1,15 @@
 import styled, { css } from "styled-components";
 
 export const StyledButton = styled.button`
-  ${({ $width, $height, $fontSize, $backgroundColor, $color }) =>
+  ${({
+    $width,
+    $height,
+    $fontSize,
+    $backgroundColor,
+    $color,
+    $hoverBackground,
+    $hoverColor,
+  }) =>
     css`
       width: ${$width}px;
       height: ${$height}px;
@@ -9,6 +17,11 @@ export const StyledButton = styled.button`
       background-color: ${$backgroundColor};
       color: ${$color};
       line-height: ${$height}px;
+
+      &:hover {
+        background-color: ${$hoverBackground};
+        color: ${$hoverColor};
+      }
     `}
 
   font-family: Chungchunsidae;
