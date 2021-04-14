@@ -5,10 +5,7 @@ const users = firestore.collection('users');
 
 /* 마이 페이지 */
 
-export const handleGetDietLists = (
-  { uid },
-  updateDietAction
-) => async dispatch => {
+export const handleGetDietLists = ({ uid }, updateDietAction) => async dispatch => {
   try {
     const snapshot = await users.where('id', '==', uid).get();
 
@@ -36,7 +33,7 @@ export const addOrEditDailyReview = ({ uid }, date, review) => async () => {
 
     return true;
   } catch (e) {
-    return new Error(e.message);
+    return new Error('$addOrEditDailyReview :' + e.message);
   }
 };
 
@@ -56,7 +53,25 @@ export const removeDailyReview = ({ uid }, date) => async () => {
 
     return true;
   } catch (e) {
-    return new Error(e.message);
+    return new Error('$removeDailyReview :' + e.message);
+  }
+};
+
+export const addWaterDose = async ({ uid }, date, currentDose, additionalDose) => {
+  try {
+    const user = await users.doc(uid);
+    user.set(
+      {
+        dietList: {
+          [date]: {
+            waterDose: currentDose + additionalDose
+          }
+        }
+      },
+      { merge: true }
+    );
+  } catch (e) {
+    return new Error('$waterDose API :' + e.message);
   }
 };
 
