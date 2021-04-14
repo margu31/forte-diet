@@ -11,15 +11,6 @@ const PostingReviewBox = ({
 }) => {
   return (
     <StyleReviewBox>
-      <label htmlFor="reviewTitle"></label>
-      <input
-        type="text"
-        id="reviewTitle"
-        placeholder="Write the menu you ate!"
-        name="title"
-        onChange={onChange}
-      />
-
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
