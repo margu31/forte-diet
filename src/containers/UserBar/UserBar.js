@@ -9,7 +9,7 @@ export default function UserBar() {
   const dispatch = useDispatch();
 
   const onSignOut = () => {
-    dispatch(handleSignOut(signOutAction()));
+    dispatch(handleSignOut(signOutAction));
   };
 
   return <UserNavigation isAuthed={isAuthed} onSignOut={onSignOut} />;
