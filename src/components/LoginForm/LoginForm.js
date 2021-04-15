@@ -1,38 +1,51 @@
-import Button from 'components/Button/Button';
-import Input from 'components/Input/Input';
-import { StyledForm } from './LoginForm.styled';
-import { ReactComponent as Fox } from 'assets/logos/logo-fox.svg';
+import Button from "components/Button/Button";
+import Input from "components/Input/Input";
+import { StyledForm } from "./LoginForm.styled";
+import { ReactComponent as Fox } from "assets/logos/logo-fox.svg";
 
-export const LoginForm = ({ onChange, onBlur, errorMessage, onSubmit, disabled, onClick }) => {
+export const LoginForm = ({
+  onChange,
+  onBlur,
+  errorMessage,
+  onSubmit,
+  disabled,
+  closeModal,
+}) => {
   return (
     <StyledForm>
-      <Fox />
+      <span>우연히, 식단</span>
       <Input
-        label='아이디'
-        id='id'
-        name='id'
-        type='id'
-        placeholder='아이디를 입력해주세요.'
+        label="아이디"
+        id="id"
+        name="id"
+        type="id"
+        placeholder="아이디를 입력해주세요."
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
-        $a11yHidden='a11yHidden'
+        $a11yHidden="a11yHidden"
       />
       <Input
-        label='비밀번호'
-        id='password'
-        name='password'
-        type='password'
-        placeholder='비밀번호 입력해주세요.'
+        label="비밀번호"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="비밀번호 입력해주세요."
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
-        $a11yHidden='a11yHidden'
+        $a11yHidden="a11yHidden"
       />
-      <Button $width='300' $height='30' type='submit' onSubmit={onSubmit} disabled={disabled}>
+      <Button
+        $width="300"
+        $height="30"
+        type="submit"
+        onSubmit={onSubmit}
+        disabled={disabled}
+      >
         확인
       </Button>
-      <Button type='button' onClick={onClick}>
+      <Button type="button" onClick={closeModal}>
         X
       </Button>
     </StyledForm>
