@@ -34,6 +34,7 @@ function PostingContainer({ history }) {
   // const dispatch = useDispatch();
   const [mealData, setMealData] = useState(initialPostingFormValues);
   const { authUser } = useSelector((state) => state.auth);
+  const menuList = useSelector((state) => state.menuList);
 
   const onChange = (e) => {
     if (e.target.name === "type") {
@@ -76,6 +77,12 @@ function PostingContainer({ history }) {
       console.log(`${key}: ${value}`);
       formData.append(key, value);
     });
+
+    const mealId = menuList[mealData.date]
+      ? menuList[mealData.date].meals.length + 1
+      : 0;
+
+    formData.append("id", mealId);
 
     const newFormData = Object.fromEntries(formData.entries());
 
