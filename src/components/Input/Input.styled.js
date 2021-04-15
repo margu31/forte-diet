@@ -92,3 +92,14 @@ export const StyledInput = styled.input`
 export const StyledErrorMessage = styled.p`
   color: red;
 `;
+
+export const StyledlabelHidden = styled.label`
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  clip-path: polygon(0 0, 0 0, 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  white-space: nowrap;
+`;
