@@ -22,6 +22,7 @@ export const LoginForm = ({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        $a11yHidden="a11yHidden"
       />
       <Input
         label="비밀번호"
@@ -32,10 +33,11 @@ export const LoginForm = ({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        $a11yHidden="a11yHidden"
       />
       <Button
-        width="300"
-        height="30"
+        $width="300"
+        $height="30"
         type="submit"
         onSubmit={onSubmit}
         disabled={disabled}

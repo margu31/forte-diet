@@ -1,6 +1,17 @@
 import styled, { css } from "styled-components";
 
-export const StyledForm = styled.form`
+// .a11yHidden {
+//   overflow: hidden;
+//   position: absolute;
+//   clip: rect(0 0 0 0);
+//   clip-path: polygon(0 0, 0 0, 0 0);
+//   width: 1px;
+//   height: 1px;
+//   margin: -1px;
+//   white-space: nowrap;
+// }
+
+export const StyledSignUpForm = styled.form`
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -8,7 +19,7 @@ export const StyledForm = styled.form`
   padding-top: 40px;
   padding-bottom: 25px;
   width: 350px;
-  min-height: 500px;
+  min-height: 800px;
   position: relative;
   ${({ theme }) => css`
     background-color: ${theme.themePrimary};
@@ -22,6 +33,15 @@ export const StyledForm = styled.form`
   }
 
   label {
+    /* .a11yHidden  */
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0 0 0 0);
+    clip-path: polygon(0 0, 0 0, 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    white-space: nowrap;
   }
 
   input {

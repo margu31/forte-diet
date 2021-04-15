@@ -15,6 +15,13 @@ export const signOutAction = () => ({
   type: SIGN_OUT,
 });
 
+export const signUpAction = (authUser) => ({
+  type: SIGN_OUT,
+  payload: {
+    authUser,
+  },
+});
+
 // export const getAuthUserActionAsync = () => async (dispatch) => {
 //   // 요청이 시작됨
 //   dispatch(getTodosAction());
@@ -54,10 +61,17 @@ export default function reducer(state = initialState, action) {
         isAuthed: true,
         authUser: action.payload.authUser,
       };
+
     case SIGN_OUT:
       return {
         isAuthed: false,
         authUser: null,
+      };
+
+    case SIGN_UP:
+      return {
+        isAuthed: false,
+        authUser: action.payload.authUser,
       };
     default:
       return state;
