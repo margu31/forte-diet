@@ -30,7 +30,7 @@ const initialPostingFormValues = {
   },
 };
 
-function PostingContainer() {
+function PostingContainer({ history }) {
   // const dispatch = useDispatch();
   const [mealData, setMealData] = useState(initialPostingFormValues);
   const { authUser } = useSelector((state) => state.auth);
@@ -88,6 +88,7 @@ function PostingContainer() {
     // console.log(a);
 
     PostMeal(authUser, newFormData);
+    history.push("/myPage");
   };
 
   const onBlur = (e) => {
