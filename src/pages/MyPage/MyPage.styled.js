@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { HiOutlinePlus } from 'react-icons/hi';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 
@@ -7,8 +7,12 @@ const StyledPlusButton = styled(HiOutlinePlus)`
   box-sizing: border-box;
   width: 70px;
   height: 70px;
-  color: #626262;
-  background-color: #f3b34c;
+  ${({ theme }) => css`
+    color: ${theme.themeDark};
+  `}
+  ${({ theme }) => css`
+    background-color: ${theme.themePrimary};
+  `}
   border-radius: 50%;
   box-shadow: 0 1px 6px 0;
   position: fixed;
@@ -22,8 +26,12 @@ const StyledCalendarButton = styled.span`
   height: 70px;
   padding: 20px;
   box-sizing: border-box;
-  color: #626262;
-  background-color: #f3b34c;
+  ${({ theme }) => css`
+    color: ${theme.themeDark};
+  `}
+  ${({ theme }) => css`
+    background-color: ${theme.themePrimary};
+  `}
   border-radius: 50%;
   box-shadow: 0 1px 6px 0;
   position: fixed;

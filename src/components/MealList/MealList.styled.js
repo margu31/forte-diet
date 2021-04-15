@@ -1,9 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledMealList = styled.li`
   list-style: none;
   display: inline-block;
-  color: #14182c;
+  ${({ theme }) => css`
+    color: ${theme.themeDefault};
+  `}
   cursor: default;
 
   div {
