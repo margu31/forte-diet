@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import MealList from 'components/MealList/MealList';
+import { useDispatch } from 'react-redux';
+import { updateWaterDoseAction } from '../../redux/modules/healthBar';
 import {
   StyledMenuList,
   StyledMenuListBar,
@@ -33,11 +35,14 @@ export default function MenuList({
   const [waterIsActive, setWaterIsActive] = useState(false);
   const [waterDoseTotal, setWaterDoseTotal] = useState(waterDose || 0);
 
+  //TODO: waterDose dispatch 만들때 리팩토링 할것...
+  const dispatch = useDispatch();
   const onAddWaterDose = e => {
     const additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
     setWaterDoseTotal(waterDoseTotal + additionalDose);
     onAdd(date, additionalDose, waterDoseTotal);
     setWaterIsActive(false);
+    dispatch(updateWaterDoseAction(date, waterDoseTotal + additionalDose));
   };
 
   const onResetWaterDose = () => {
@@ -45,6 +50,7 @@ export default function MenuList({
     setWaterDoseTotal(0);
     onAdd(date, additionalDose);
     setWaterIsActive(false);
+    dispatch(updateWaterDoseAction(date, 0));
   };
 
   return (

@@ -1,9 +1,18 @@
 const GET_HEALTH_BAR_LIST = 'healthbar/GET_HEALTH_BAR_LIST';
+const UPDATE_WATER_DOSE = 'healthbar/UPDATE_WATER_DOSE';
 
 export const getHealthBarListAction = data => ({
   type: GET_HEALTH_BAR_LIST,
   payload: {
     data
+  }
+});
+
+export const updateWaterDoseAction = (date, waterDose) => ({
+  type: UPDATE_WATER_DOSE,
+  payload: {
+    date,
+    waterDose
   }
 });
 
@@ -21,6 +30,13 @@ export default function healthBar(state = initialState, action) {
       } else {
         return healthBarData;
       }
+    case UPDATE_WATER_DOSE:
+      return state.map(data =>
+        data.meals[0].date === action.payload.date
+          ? { ...data, waterDose: action.payload.waterDose }
+          : data
+      );
+
     default:
       return state;
   }
