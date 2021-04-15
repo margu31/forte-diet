@@ -4,6 +4,7 @@ import {
   StyledLabel,
   StyledInput,
   StyledErrorMessage,
+  StyledlabelHidden,
 } from "./Input.styled";
 
 export default function Input({
@@ -16,11 +17,16 @@ export default function Input({
   onBlur,
   errorMessage,
   autocomplete,
+  $a11yHidden,
   ...restProps
 }) {
   return (
     <StyledInputWrapper>
-      <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      {$a11yHidden ? (
+        <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
+      ) : (
+        <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      )}
       <StyledInput
         id={id}
         name={name}
@@ -28,7 +34,8 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
-        autocomplete={autocomplete}
+        autoComplete={autocomplete}
+        // autoComplete="off"
         {...restProps}
       ></StyledInput>
       {errorMessage && errorMessage[name] ? (

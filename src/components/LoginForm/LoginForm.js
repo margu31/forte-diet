@@ -9,10 +9,11 @@ export const LoginForm = ({
   errorMessage,
   onSubmit,
   disabled,
+  closeModal,
 }) => {
   return (
     <StyledForm>
-      <Fox />
+      <span>우연히, 식단</span>
       <Input
         label="아이디"
         id="id"
@@ -22,6 +23,7 @@ export const LoginForm = ({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        $a11yHidden="a11yHidden"
       />
       <Input
         label="비밀번호"
@@ -32,17 +34,20 @@ export const LoginForm = ({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        $a11yHidden="a11yHidden"
       />
       <Button
-        width="300"
-        height="30"
+        $width="300"
+        $height="30"
         type="submit"
         onSubmit={onSubmit}
         disabled={disabled}
       >
         확인
       </Button>
-      <Button type="button">X</Button>
+      <Button type="button" onClick={closeModal}>
+        X
+      </Button>
     </StyledForm>
   );
 };

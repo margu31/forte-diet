@@ -14,7 +14,7 @@ const formValue = {
   },
 };
 
-export default function LogInContainer() {
+export default function LogInContainer({ closeModal, ...restProps }) {
   const dispatch = useDispatch();
 
   const [state, setState] = useState(formValue);
@@ -76,6 +76,8 @@ export default function LogInContainer() {
     dispatch(
       handleSignInWithEmailAndPassword(state.id, state.password, signInAction)
     );
+
+    closeModal();
   };
 
   const onBlur = (e) => {
@@ -100,6 +102,8 @@ export default function LogInContainer() {
       onSubmit={onSubmit}
       disabled={isDisabled}
       errorMessage={state.hasError}
+      closeModal={closeModal}
+      {...restProps}
     />
 
     /* <Input

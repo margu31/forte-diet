@@ -4,6 +4,7 @@ import { StyledRadioGroup, StyledRadioTitle } from "./RadioGroup.styled";
 
 const RadioGroup = ({
   groupTitle,
+  onChange,
   $titleFontSize,
   $titleMarginBottom,
   ...restProps
@@ -19,8 +20,8 @@ const RadioGroup = ({
       <StyledRadioGroup {...restProps}>
         <InputRadio
           id="breakfast"
-          name="mealType"
-          value="breakfast"
+          name="type"
+          value="아침"
           label="아침"
           $fontSize="1.1"
           $width="85"
@@ -28,11 +29,12 @@ const RadioGroup = ({
           $hoverBackground={palette.themePrimary}
           $hoverColor={palette.themeDefaultWhite}
           $borderColor={palette.themePrimary}
+          onChange={onChange}
         />
         <InputRadio
           id="lunch"
-          name="mealType"
-          value="lunch"
+          name="type"
+          value="점심"
           label="점심"
           $fontSize="1.1"
           $width="85"
@@ -40,11 +42,12 @@ const RadioGroup = ({
           $hoverBackground={palette.themePrimary}
           $hoverColor={palette.themeDefaultWhite}
           $borderColor={palette.themePrimary}
+          onChange={onChange}
         />
         <InputRadio
           id="dinner"
-          name="mealType"
-          value="dinner"
+          name="type"
+          value="저녁"
           label="저녁"
           $fontSize="1.1"
           $width="85"
@@ -52,17 +55,19 @@ const RadioGroup = ({
           $hoverBackground={palette.themePrimary}
           $hoverColor={palette.themeDefaultWhite}
           $borderColor={palette.themePrimary}
+          onChange={onChange}
         />
         <InputRadio
           id="snack"
-          name="mealType"
-          value="snack"
+          name="type"
+          value="간식"
           label="간식"
           $fontSize="1.1"
           $width="85"
           $height="30"
           $hoverBackground={palette.themePrimary}
           $hoverColor={palette.themeDefaultWhite}
+          onChange={onChange}
         />
       </StyledRadioGroup>
     </>
