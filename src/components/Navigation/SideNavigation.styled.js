@@ -26,19 +26,3 @@ export const StyledNavLink = styled(NavLink)`
     }
   `}
 `;
-
-/* export const StyledNavLink = styled(NavLink)`
-  ${({ theme }) => {
-    return css`
-      padding: 22px 60px 22px 22px;
-      border-radius: 20px 0 0 20px;
-      margin-bottom: 10px;
-      color: ${theme.themeDefaultWhite};
-      &.active {
-        color: ${theme.themePrimary};
-        background-color: ${theme.themeBright};
-        box-shadow: -5px 5px rgba(0, 0, 0, 0.25);
-      }
-    `;
-  }}
-`; */
