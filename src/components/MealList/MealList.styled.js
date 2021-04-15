@@ -16,7 +16,7 @@ const StyledMealList = styled.li`
     height: 138px;
     overflow: hidden;
     margin-bottom: 19px;
-    border: 10px solid ${props => props.borderColor};
+    border: 10px solid ${props => props.$borderColor};
     cursor: pointer;
 
     img {

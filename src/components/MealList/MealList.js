@@ -21,7 +21,7 @@ export default function MealList({ mealListData }) {
 
   return (
     <>
-      <StyledMealList borderColor={changeBorderColor(type)}>
+      <StyledMealList $borderColor={changeBorderColor(type)}>
         <div>
           <img src={photo} alt={title} />
         </div>
