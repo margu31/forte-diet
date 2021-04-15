@@ -27,7 +27,7 @@ const DataGroup = ({ onChange }) => {
         <Input
           type="date"
           id="postingDate"
-          name="postingDate"
+          name="date"
           label="Date"
           onChange={onChange}
           required
@@ -42,6 +42,7 @@ const DataGroup = ({ onChange }) => {
         />
         <RadioGroup
           groupTitle="Type"
+          onChange={onChange}
           $titleFontSize="1.1"
           $titleMarginBottom="5"
           $backgroundColor={palette.themeBrightYellow}
@@ -54,7 +55,7 @@ const DataGroup = ({ onChange }) => {
         <Input
           type="number"
           id="mealCalories"
-          name="mealCalories"
+          name="calories"
           label="Calories"
           placeholder="칼로리를 입력하세요!"
           onChange={onChange}

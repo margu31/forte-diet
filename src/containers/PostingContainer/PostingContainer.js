@@ -32,10 +32,23 @@ function PostingContainer() {
   const [mealData, setMealData] = useState(initialPostingFormValues);
 
   const onChange = (e) => {
-    setMealData({
-      ...mealData,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "type") {
+      setMealData({
+        ...mealData,
+        [e.target.name]: e.target.value,
+      });
+    } else if (e.target.type === "checkbox") {
+      setMealData({
+        ...mealData,
+        [e.target.name]: `${e.target.checked ? "private" : "public"}`,
+      });
+    } else
+      setMealData({
+        ...mealData,
+        [e.target.name]: e.target.value,
+      });
+    // console.log(e.target.checked);
+    // console.log(e.target.type);
   };
 
   const onSubmit = (e) => {
@@ -45,15 +58,19 @@ function PostingContainer() {
 
     Object.entries(mealData).forEach(([key, value]) => {
       console.log(`${key}: ${value}`);
+      if (key === "type") console.log("asdasdad");
       formData.append(key, value);
     });
 
     const newFormData = Object.fromEntries(formData.entries());
+
+    console.log(newFormData);
     dispatch(addMealAction(newFormData));
   };
 
   const onBlur = (e) => {
     const validation = reviewValidation(e.target.value);
+    // console.log(e.target.name);
     if (!validation) {
       setMealData({
         ...mealData,
@@ -88,14 +105,18 @@ function PostingContainer() {
           onBlur={onBlur}
           hasError={mealData.hasError.review}
         />
-        <Toggle id="isPublic" label1="Public" label2="Private" />
+        <Toggle
+          id="isPublic"
+          label1="Public"
+          label2="Private"
+          onChange={onChange}
+        />
         <div>
           <Button
             type="button"
             $width="100"
             $height="30"
             $fontSize="1.2"
-            // $backgroundColor={palette.themeBrightGray}
             $backgroundColor="#9f9f9f33"
             $color={palette.themeDefault}
             $hoverBackground={palette.themeBrightGray}
@@ -106,7 +127,6 @@ function PostingContainer() {
             $width="100"
             $height="30"
             $fontSize="1.2"
-            // $backgroundColor={palette.themeBrightYellow}
             $backgroundColor="#f2683033"
             $color={palette.themePrimaryThick}
             $hoverBackground={palette.themePrimaryThick}
