@@ -8,7 +8,7 @@ export const StyledForm = styled.form`
   padding-top: 40px;
   padding-bottom: 25px;
   width: 350px;
-  height: 500px;
+  min-height: 500px;
   position: relative;
   ${({ theme }) => css`
     background-color: ${theme.themePrimary};
@@ -49,6 +49,7 @@ export const StyledForm = styled.form`
 
   p {
     margin-top: 10px;
+    font-size: 1.5rem;
   }
 
   button {
