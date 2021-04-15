@@ -7,12 +7,19 @@ export const StyledForm = styled.form`
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 25px;
-  width: 350px;
-  min-height: 500px;
+  width: 500px;
+  min-height: 600px;
   position: relative;
-  ${({ theme }) => css`
-    background-color: ${theme.themePrimary};
-  `}
+  /* ${({ theme }) => css`
+    background-color: ${theme.themeDark}, 0;
+  `} */
+  border: 5px solid #f26830;
+
+  span {
+    color: white;
+    font-size: 4rem;
+    margin: 50px 0;
+  }
 
   div {
     display: flex;
@@ -31,9 +38,10 @@ export const StyledForm = styled.form`
     border-radius: 50px;
     border: none;
     padding-left: 3rem;
+    font-size: 1.5rem;
 
     &::placeholder {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
 
     &:focus {
@@ -59,6 +67,7 @@ export const StyledForm = styled.form`
     height: 50px;
     margin-top: 30px;
     cursor: pointer;
+    font-size: 1.5rem;
 
     &:disabled {
       cursor: not-allowed;
@@ -74,5 +83,7 @@ export const StyledForm = styled.form`
     width: 50px;
     background-color: transparent;
     margin-top: 0;
+    color: white;
+    font-size: 1.5rem;
   }
 `;
