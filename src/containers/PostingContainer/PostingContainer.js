@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Form from "components/Form/Form";
 import { addMealAction } from "redux/modules/postingMenuList";
 import { reviewValidation } from "utils/validation/reviewValidation";
@@ -11,10 +11,8 @@ import { palette } from "styles/index";
 import DataGroup from "components/DataGroup/DataGroup";
 import { PostMeal } from "api/firestore";
 
-// const generateId = () =>
-
 const initialPostingFormValues = {
-  // id: generateId(),
+  id: 0,
   date: "",
   photo: null,
   calories: 0,
@@ -35,6 +33,7 @@ const initialPostingFormValues = {
 function PostingContainer() {
   // const dispatch = useDispatch();
   const [mealData, setMealData] = useState(initialPostingFormValues);
+  const { authUser } = useSelector((state) => state.auth);
 
   const onChange = (e) => {
     if (e.target.name === "type") {
@@ -73,6 +72,7 @@ function PostingContainer() {
     const formData = new FormData();
 
     Object.entries(mealData).forEach(([key, value]) => {
+      if (key === "hasError") return;
       console.log(`${key}: ${value}`);
       formData.append(key, value);
     });
@@ -87,7 +87,7 @@ function PostingContainer() {
     // const a = date.split("/").join("");
     // console.log(a);
 
-    // PostMeal(uid, newFormData)..
+    PostMeal(authUser, newFormData);
   };
 
   const onBlur = (e) => {
