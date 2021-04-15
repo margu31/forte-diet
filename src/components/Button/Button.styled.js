@@ -1,15 +1,7 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const StyledButton = styled.button`
-  ${({
-    $width,
-    $height,
-    $fontSize,
-    $backgroundColor,
-    $color,
-    $hoverBackground,
-    $hoverColor,
-  }) =>
+  ${({ $width, $height, $fontSize, $backgroundColor, $color, $hoverBackground, $hoverColor }) =>
     css`
       width: ${$width}px;
       height: ${$height}px;
@@ -24,10 +16,18 @@ export const StyledButton = styled.button`
       }
     `}
 
+  ${({ $borderColor }) => {
+    return (
+      $borderColor &&
+      css`
+        border: 1px solid ${$borderColor};
+      `
+    );
+  }}
+
   font-family: Chungchunsidae;
   display: inline-block;
   outline: none;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
 
