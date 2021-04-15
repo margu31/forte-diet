@@ -8,13 +8,12 @@ import {
   StyledLike,
   StyledWaterDose,
   StyledDonut,
-  StyledDailyReview,
   StyledPencil,
   StyledWaterDoseDialog,
   StyledTriangle,
-  StyledContainer,
-  StyledDailyReviewModal
+  StyledContainer
 } from './MenuList.styled';
+import DailyReview from 'components/DailyReview/DailyReview';
 
 export default function MenuList({
   menuListData,
@@ -31,7 +30,6 @@ export default function MenuList({
 
   const dailyTextarea = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
-  const [dailyReviewText, setDailyReviewText] = useState(dailyReview || '');
   const [waterIsActive, setWaterIsActive] = useState(false);
   const [waterDoseTotal, setWaterDoseTotal] = useState(waterDose || 0);
 
@@ -60,48 +58,15 @@ export default function MenuList({
         {menuListData.meals.map((mealList, i) => (
           <MealList mealListData={mealList} key={i} />
         ))}
-        {reviewIsActive && (
-          <StyledDailyReviewModal
-            onClick={() => {
-              setReviewIsActive(false);
-            }}
-          />
-        )}
-        <StyledDailyReview>
-          <textarea
-            name='dailyReview'
-            id='dailyReview'
-            rows='2'
-            placeholder='오늘도 즐거운 식사 되셨나요? 오늘의 느낀 점을 기록해보세요. (100자 이내)'
-            value={dailyReviewText}
-            onChange={e => {
-              setDailyReviewText(e.target.value);
-            }}
-            ref={dailyTextarea}
-            disabled={reviewIsActive ? '' : 'disabled'}
-          ></textarea>
-          {reviewIsActive && (
-            <>
-              <button
-                onClick={() => {
-                  onRemove(date);
-                  setDailyReviewText('');
-                  setReviewIsActive(false);
-                }}
-              >
-                삭제
-              </button>
-              <button
-                onClick={() => {
-                  onSubmit(date, dailyReviewText);
-                  setReviewIsActive(false);
-                }}
-              >
-                등록
-              </button>
-            </>
-          )}
-        </StyledDailyReview>
+        <DailyReview
+          dailyReview={dailyReview}
+          dailyTextarea={dailyTextarea}
+          reviewIsActive={reviewIsActive}
+          setReviewIsActive={setReviewIsActive}
+          date={date}
+          onSubmit={onSubmit}
+          onRemove={onRemove}
+        />
         <StyledMenuListBar>
           <span>{dayStr}</span>
           <span>{dayNum}</span>
