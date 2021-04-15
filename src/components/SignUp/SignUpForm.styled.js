@@ -1,16 +1,5 @@
 import styled, { css } from "styled-components";
 
-// .a11yHidden {
-//   overflow: hidden;
-//   position: absolute;
-//   clip: rect(0 0 0 0);
-//   clip-path: polygon(0 0, 0 0, 0 0);
-//   width: 1px;
-//   height: 1px;
-//   margin: -1px;
-//   white-space: nowrap;
-// }
-
 export const StyledSignUpForm = styled.form`
   display: flex;
   flex-flow: column;
@@ -18,12 +7,22 @@ export const StyledSignUpForm = styled.form`
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 25px;
-  width: 350px;
+  width: 500px;
   min-height: 800px;
   position: relative;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
   ${({ theme }) => css`
-    background-color: ${theme.themePrimary};
+    background-color: rgba(0, 0, 0, 0.3);
   `}
+
+  span {
+    ${({ theme }) => css`
+      color: ${theme.themePrimary};
+    `}
+    font-size: 4rem;
+    margin: 50px 0;
+  }
 
   div {
     display: flex;
@@ -46,14 +45,16 @@ export const StyledSignUpForm = styled.form`
 
   input {
     width: 300px;
-    height: 50px;
+    height: 40px;
     box-sizing: border-box;
     border-radius: 50px;
     border: none;
     padding-left: 3rem;
+    background-color: rgba(0, 0, 0, 0.3);
 
     &::placeholder {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
+      color: #fff;
     }
 
     &:focus {
@@ -79,6 +80,7 @@ export const StyledSignUpForm = styled.form`
     height: 50px;
     margin-top: 30px;
     cursor: pointer;
+    font-size: 1.5rem;
 
     &:disabled {
       cursor: not-allowed;
@@ -90,9 +92,11 @@ export const StyledSignUpForm = styled.form`
     top: 0;
     right: 0;
     border-radius: 0px;
-    height: 50px;
+    height: 40px;
     width: 50px;
     background-color: transparent;
     margin-top: 0;
+    color: #fff;
+    font-size: 1.5rem;
   }
 `;
