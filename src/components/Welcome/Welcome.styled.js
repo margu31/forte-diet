@@ -82,7 +82,6 @@ const SerachBar = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  padding: 1rem;
 `;
 
 const SearchLabel = styled.label`
@@ -98,7 +97,7 @@ const SearchInput = styled.input`
   width: 200px;
   height: 50px;
   border-radius: 50px 0 0 50px;
-  padding-left: 8rem;
+  padding-left: 9rem;
   font-size: 1.5rem;
   border: none;
 
