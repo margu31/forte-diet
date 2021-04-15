@@ -1,12 +1,31 @@
 import styled, { css } from 'styled-components';
 import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
-
+import { motion } from 'framer-motion';
 const StyledWaterDose = styled(WaterDose)``;
 
 const StyledDonut = styled(Donut)``;
 
-const StyledHealthBar = styled.div`
+const StyledButton = styled(motion.button)`
+  width: 120px;
+  padding: 15px 0 10px 0;
+  border-radius: 5px 0 0 5px;
+  text-align: center;
+  font-size: 1.3rem;
+  ${({ theme }) => css`
+    background: ${theme.themeSecondary};
+    color: ${theme.themeDefaultWhite};
+    box-shadow: 0 2px 5px ${theme.themeSecondary};
+  `}
+  cursor: pointer;
+  outline: none;
+  position: fixed;
+  top: 123px;
+  right: 20px;
+  z-index: 2;
+`;
+
+const StyledHealthBar = styled(motion.div)`
   width: 130px;
   height: 480px;
   ${({ theme }) => css`
@@ -16,7 +35,7 @@ const StyledHealthBar = styled.div`
   `}
   border-radius: 10px;
   position: fixed;
-  top: 110px;
+  top: 100px;
   right: 20px;
   display: flex;
   flex-flow: column;
@@ -25,24 +44,26 @@ const StyledHealthBar = styled.div`
   padding: 15px 10px;
   z-index: 1;
 
-  h2 {
+  /* $(StyledButton) {
     width: 120px;
     padding: 15px 0 10px 10px;
     border-radius: 5px 0 0 5px;
     text-align: left;
     font-size: 1.3rem;
     ${({ theme }) => css`
-      background: ${theme.themeSecondary};
-      color: ${theme.themeDefaultWhite};
-      box-shadow: 0 2px 5px ${theme.themeSecondary};
-    `}
-  }
+    background: ${theme.themeSecondary};
+    color: ${theme.themeDefaultWhite};
+    box-shadow: 0 2px 5px ${theme.themeSecondary};
+  `}
+    cursor: pointer;
+    outline: none;
+  } */
 `;
 
 const StyledContainer = styled.ul`
   display: flex;
   flex-flow: column nowrap;
-  margin-top: 25px;
+  margin-top: 65px;
 
   li {
     font-size: 1.1rem;
@@ -87,4 +108,10 @@ const StyledContainer = styled.ul`
   }
 `;
 
-export { StyledHealthBar, StyledContainer, StyledWaterDose, StyledDonut };
+export {
+  StyledHealthBar,
+  StyledContainer,
+  StyledWaterDose,
+  StyledDonut,
+  StyledButton
+};
