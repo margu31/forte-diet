@@ -26,7 +26,6 @@ export default function MenuList({
   const { date } = menuListData.meals[0];
   const dayNum = date.slice(4, 6);
   const dayStr = date.slice(7, 10);
-  const tempDay = date.slice(2, 6); // TODO: 임시로 뽑은거!!!1
 
   const dailyTextarea = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
@@ -37,14 +36,14 @@ export default function MenuList({
   const onAddWaterDose = e => {
     const additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
     setWaterDoseTotal(waterDoseTotal + additionalDose);
-    onAdd(tempDay, additionalDose, waterDoseTotal);
+    onAdd(date, additionalDose, waterDoseTotal);
     setWaterIsActive(false);
   };
 
   const onResetWaterDose = () => {
     const additionalDose = 0;
     setWaterDoseTotal(0);
-    onAdd(tempDay, additionalDose);
+    onAdd(date, additionalDose);
     setWaterIsActive(false);
   };
 
@@ -79,7 +78,7 @@ export default function MenuList({
             <>
               <button
                 onClick={() => {
-                  onRemove(tempDay);
+                  onRemove(date);
                   setDailyReviewText('');
                   setReviewIsActive(false);
                 }}
@@ -88,7 +87,7 @@ export default function MenuList({
               </button>
               <button
                 onClick={() => {
-                  onSubmit(tempDay, dailyReviewText);
+                  onSubmit(date, dailyReviewText);
                   setReviewIsActive(false);
                 }}
               >
