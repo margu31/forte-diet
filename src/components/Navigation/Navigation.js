@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyledLi, StyledNavLink, StyledUl } from './SideNavigation.styled';
+import { StyledLi, StyledNavLink, StyledUl } from './Navigation.styled';
 
-export default function SideNavigation() {
+export default function Navigation() {
   return (
     <StyledUl>
       <StyledLi>

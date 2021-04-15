@@ -1,6 +1,13 @@
 import React from 'react';
-import { StyledHomePage } from './Home.styled';
+import Welcome from 'components/Welcome/Welcome';
+import UserBar from 'containers/UserBar/UserBar';
+import { StyledHomePageWrapper } from './Home.styled';
 
 export default function Home() {
-  return <StyledHomePage />;
+  return (
+    <StyledHomePageWrapper>
+      <UserBar />
+      <Welcome />
+    </StyledHomePageWrapper>
+  );
 }
