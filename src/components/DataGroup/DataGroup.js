@@ -4,6 +4,16 @@ import { palette } from "styles/index";
 import StyledDataGroup from "./DataGroup.styled";
 
 const DataGroup = ({ onChange }) => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const getMonth = today.getMonth() + 1;
+  const month = getMonth >= 10 ? getMonth : "0" + getMonth;
+  const date = today.getDate();
+
+  const maxDate = `${year}-${month}-${date}`;
+
+  // console.log(maxDate);
+
   return (
     <StyledDataGroup>
       <Input
@@ -28,6 +38,7 @@ const DataGroup = ({ onChange }) => {
           $backgroundColor={palette.themeBrightYellow}
           $borderColor={palette.themePrimary}
           $paddingSide="10"
+          max={maxDate}
         />
         <RadioGroup
           groupTitle="Type"
