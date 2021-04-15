@@ -83,7 +83,7 @@ function PostingContainer() {
           id="mealReview"
           name="review"
           label="Review: "
-          placeholder="Leave your comments here!"
+          placeholder="자유롭게 리뷰를 남겨주세요!"
           onChange={onChange}
           onBlur={onBlur}
           hasError={mealData.hasError.review}
