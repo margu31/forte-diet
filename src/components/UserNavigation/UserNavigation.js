@@ -35,7 +35,7 @@ export default function UserNavigation({ isAuthed }) {
                   $height='40'
                   $fontSize='1.2'
                   $backgroundColor='transparent'
-                  $color={palette.themeDefault}
+                  $color={palette.themeDefaultWhite}
                   $hoverBackground={palette.themeHover}
                 >
                   로그인
@@ -49,7 +49,7 @@ export default function UserNavigation({ isAuthed }) {
                   $height='40'
                   $fontSize='1.2'
                   $backgroundColor='transparent'
-                  $color={palette.themeDefault}
+                  $color={palette.themeDefaultWhite}
                   $hoverBackground={palette.themeHover}
                 >
                   회원가입
@@ -65,7 +65,7 @@ export default function UserNavigation({ isAuthed }) {
                   $height='40'
                   $fontSize='1.2'
                   $backgroundColor='transparent'
-                  $color={palette.themeDefault}
+                  $color={palette.themeDefaultWhite}
                 >
                   로그아웃
                 </Button>
