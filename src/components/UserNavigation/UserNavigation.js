@@ -6,7 +6,7 @@ import { Modal } from 'components/Modal/Modal';
 import LoginDialog from 'containers/LogInContainer/LogInContainer';
 import SignUpDialog from 'containers/SignUpContainer/SignUpContainer';
 
-export default function UserNavigation({ isAuthed }) {
+export default function UserNavigation({ isAuthed, onSignOut }) {
   const [dialogType, setDialogType] = useState(null);
 
   const onOpen = e => {
@@ -67,6 +67,7 @@ export default function UserNavigation({ isAuthed }) {
               <li>
                 <Button
                   id='signUpDialog'
+                  onClick={onSignOut}
                   $width='60'
                   $height='40'
                   $fontSize='1.2'
