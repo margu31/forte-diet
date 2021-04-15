@@ -1,13 +1,9 @@
-import SignUpForm from "components/SignUp/SignUpForm";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { isEmail, isPassword } from "utils/validation/LogInValidation";
-import {
-  isHeight,
-  isWeight,
-  isNickname,
-} from "utils/validation/SignUpValidation";
-import { signUpWithEmailAndPassword } from "api/auth";
+import SignUpForm from 'components/SignUp/SignUpForm';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { isEmail, isPassword } from 'utils/validation/LogInValidation';
+import { isHeight, isWeight, isNickname } from 'utils/validation/SignUpValidation';
+import { signUpWithEmailAndPassword } from 'api/auth';
 
 const formValue = {
   id: null,
@@ -24,141 +20,141 @@ const formValue = {
     gender: null,
     height: null,
     nickname: null,
-    weight: null,
-  },
+    weight: null
+  }
 };
 
-export default function SignUpContainer() {
+export default function SignUpContainer({ ...restProps }) {
   const dispatch = useDispatch();
 
   const [state, setState] = useState(formValue);
-  const onChange = (e) => {
+  const onChange = e => {
     setState({ ...state, [e.target.name]: e.target.value.trim() });
   };
 
-  const emailValid = (value) => {
+  const emailValid = value => {
     if (!isEmail(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          id: "입력 형식에 맞지 않습니다.",
-        },
+          id: '입력 형식에 맞지 않습니다.'
+        }
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          id: null,
-        },
+          id: null
+        }
       });
     }
   };
 
-  const passwordlValid = (value) => {
+  const passwordlValid = value => {
     if (!isPassword(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          password: "입력 형식에 맞지 않습니다.",
-        },
+          password: '입력 형식에 맞지 않습니다.'
+        }
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          password: null,
-        },
+          password: null
+        }
       });
     }
   };
 
-  const idlValid = (value) => {
+  const idlValid = value => {
     if (!isEmail(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          email: "입력 형식에 맞지 않습니다.",
-        },
+          email: '입력 형식에 맞지 않습니다.'
+        }
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          email: null,
-        },
+          email: null
+        }
       });
     }
   };
 
-  const heightlValid = (height) => {
+  const heightlValid = height => {
     if (!isHeight(height)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          height: "입력 형식에 맞지 않습니다.",
-        },
+          height: '입력 형식에 맞지 않습니다.'
+        }
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          height: null,
-        },
+          height: null
+        }
       });
     }
   };
 
-  const weightValid = (weight) => {
+  const weightValid = weight => {
     if (!isWeight(weight)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          weight: "입력 형식에 맞지 않습니다.",
-        },
+          weight: '입력 형식에 맞지 않습니다.'
+        }
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          weight: null,
-        },
+          weight: null
+        }
       });
     }
   };
 
-  const nicknameValid = (nickname) => {
+  const nicknameValid = nickname => {
     if (!isNickname(nickname)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          nickname: "입력 형식에 맞지 않습니다.",
-        },
+          nickname: '입력 형식에 맞지 않습니다.'
+        }
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          nickname: null,
-        },
+          nickname: null
+        }
       });
     }
   };
 
   const genderValid = () => {};
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     const Formdata = new FormData();
     Object.entries(state).forEach(([key, value]) => {
@@ -173,31 +169,27 @@ export default function SignUpContainer() {
       weight,
       height,
       gender,
-      nickname,
+      nickname
     });
   };
 
-  const onBlur = (e) => {
-    if (e.target.name === "id") {
+  const onBlur = e => {
+    if (e.target.name === 'id') {
       emailValid(e.target.value);
-    } else if (e.target.name === "password") {
+    } else if (e.target.name === 'password') {
       passwordlValid(e.target.value);
-    } else if (e.target.name === "email") {
+    } else if (e.target.name === 'email') {
       idlValid(e.target.value);
-    } else if (e.target.name === "height") {
+    } else if (e.target.name === 'height') {
       heightlValid(e.target.value);
-    } else if (e.target.name === "weight") {
+    } else if (e.target.name === 'weight') {
       weightValid(e.target.value);
-    } else if (e.target.name === "nickname") {
+    } else if (e.target.name === 'nickname') {
       nicknameValid(e.target.value);
     }
   };
 
-  const isDisabled =
-    state.hasError.id ||
-    state.hasError.password ||
-    !state.id ||
-    !state.password;
+  const isDisabled = state.hasError.id || state.hasError.password || !state.id || !state.password;
 
   return (
     <SignUpForm
@@ -206,6 +198,7 @@ export default function SignUpContainer() {
       onSubmit={onSubmit}
       disabled={isDisabled}
       errorMessage={state.hasError}
+      {...restProps}
     />
   );
 }

@@ -23,9 +23,9 @@ export default function UserNavigation({ isAuthed, onSignOut }) {
       {dialogType && (
         <Modal>
           {dialogType === 'LoginDialog' ? (
-            <LoginDialog onClick={onClose} />
+            <LoginDialog closeModal={onClose} />
           ) : (
-            <SignUpDialog onClick={onClose} />
+            <SignUpDialog closeModal={onClose} />
           )}
         </Modal>
       )}
