@@ -15,6 +15,9 @@ export default function SideNavigation() {
       <StyledLi>
         <StyledNavLink to='/posting'>Posting</StyledNavLink>
       </StyledLi>
+      <StyledLi>
+        <StyledNavLink to='/setting'>Setting</StyledNavLink>
+      </StyledLi>
     </StyledUl>
   );
 }
