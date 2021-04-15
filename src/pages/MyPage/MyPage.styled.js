@@ -9,8 +9,6 @@ const StyledPlusButton = styled(HiOutlinePlus)`
   height: 70px;
   ${({ theme }) => css`
     color: ${theme.themeDark};
-  `}
-  ${({ theme }) => css`
     background-color: ${theme.themePrimary};
   `}
   border-radius: 50%;
@@ -28,8 +26,6 @@ const StyledCalendarButton = styled.span`
   box-sizing: border-box;
   ${({ theme }) => css`
     color: ${theme.themeDark};
-  `}
-  ${({ theme }) => css`
     background-color: ${theme.themePrimary};
   `}
   border-radius: 50%;
@@ -52,4 +48,9 @@ const StyledMyPageWrapper = styled.section`
   min-height: 100vh;
 `;
 
-export { StyledPlusButton, StyledCalendarButton, StyledCalendarIcon, StyledMyPageWrapper };
+export {
+  StyledPlusButton,
+  StyledCalendarButton,
+  StyledCalendarIcon,
+  StyledMyPageWrapper
+};
