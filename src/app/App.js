@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import './App.css';
 import { StyledApp } from './App.styled';
 import { Home, MyPage, PostingPage, SettingPage } from 'pages';
-import SideBar from '../components/SideBar/SideBar';
+import SideBar from 'components/SideBar/SideBar';
 
 function App() {
   return (

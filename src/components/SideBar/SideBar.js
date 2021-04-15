@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import HomeLink from '../HomeLink/HomeLink';
-import SideNavigation from '../Navigation/SideNavigation';
+import Navigation from '../Navigation/Navigation';
 import { StyledSideBar, StyledSideBarWrapper } from './SideBar.styled';
 
 export default function SideBar() {
@@ -16,7 +16,7 @@ export default function SideBar() {
     <StyledSideBarWrapper>
       <StyledSideBar sideBarHeight={sideBarHeight}>
         <HomeLink />
-        <SideNavigation />
+        <Navigation />
       </StyledSideBar>
     </StyledSideBarWrapper>
   );
