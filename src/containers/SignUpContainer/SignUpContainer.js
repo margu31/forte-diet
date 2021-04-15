@@ -167,15 +167,14 @@ export default function SignUpContainer() {
     });
 
     const { id, email, password, weight, height, gender, nickname } = state;
-    dispatch(
-      signUpWithEmailAndPassword(id, password, {
-        email,
-        weight,
-        height,
-        gender,
-        nickname,
-      })
-    );
+
+    signUpWithEmailAndPassword(id, password, {
+      email,
+      weight,
+      height,
+      gender,
+      nickname,
+    });
   };
 
   const onBlur = (e) => {
