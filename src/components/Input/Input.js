@@ -28,7 +28,8 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
-        autocomplete={autocomplete}
+        autoComplete={autocomplete}
+        // autoComplete="off"
         {...restProps}
       ></StyledInput>
       {errorMessage && errorMessage[name] ? (
