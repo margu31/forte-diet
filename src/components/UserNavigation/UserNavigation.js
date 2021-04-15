@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { StyledUl, StyledUserBarWrapper } from './UserNavigation.styled';
 import Button from 'components/Button/Button';
 import { palette } from 'styles';
+import { Modal } from 'components/Modal/Modal';
+import LoginDialog from 'containers/LogInContainer/LogInContainer';
+import SignUpDialog from 'containers/SignUpContainer/SignUpContainer';
 
 export default function UserNavigation({ isAuthed }) {
   const [dialogType, setDialogType] = useState(null);
-  const Dialog = `${dialogType}`;
 
   const onOpen = e => {
     setDialogType(e.target.id);
@@ -18,18 +20,22 @@ export default function UserNavigation({ isAuthed }) {
 
   return (
     <StyledUserBarWrapper>
-      {/* {dialogType && (
+      {dialogType && (
         <Modal>
-          <Dialog onClose={onClose} />
+          {dialogType === 'LoginDialog' ? (
+            <LoginDialog onClick={onClose} />
+          ) : (
+            <SignUpDialog onClick={onClose} />
+          )}
         </Modal>
-      )} */}
+      )}
       <nav>
         <StyledUl>
           {!isAuthed ? (
             <>
               <li>
                 <Button
-                  id='loginDialog'
+                  id='LoginDialog'
                   onClick={onOpen}
                   $width='60'
                   $height='40'
@@ -43,7 +49,7 @@ export default function UserNavigation({ isAuthed }) {
               </li>
               <li>
                 <Button
-                  id='signUpDialog'
+                  id='SignUpDialog'
                   onClick={onOpen}
                   $width='60'
                   $height='40'

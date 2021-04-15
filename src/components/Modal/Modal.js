@@ -1,11 +1,10 @@
-import LogInContainer from "containers/LogInContainer/LogInContainer";
-import React from "react";
-import { StyledModal } from "./Modal.styled";
+import React from 'react';
+import { StyledModal } from './Modal.styled';
 
-export const Modal = (child) => {
+export const Modal = ({ children }) => {
   return (
     <StyledModal>
-      {child}
+      {children}
       {/* <LogInContainer /> */}
     </StyledModal>
   );
