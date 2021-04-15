@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyledHomePage } from './Home.styled';
+import { StyledHomePageWrapper } from './Home.styled';
 
 export default function Home() {
-  return <StyledHomePage />;
+  return <StyledHomePageWrapper></StyledHomePageWrapper>;
 }
