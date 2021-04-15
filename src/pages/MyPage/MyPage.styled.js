@@ -40,4 +40,8 @@ const StyledCalendarIcon = styled(FaRegCalendarAlt)`
   height: 34px;
 `;
 
-export { StyledPlusButton, StyledCalendarButton, StyledCalendarIcon };
+const StyledMyPageWrapper = styled.section`
+  min-height: 100vh;
+`;
+
+export { StyledPlusButton, StyledCalendarButton, StyledCalendarIcon, StyledMyPageWrapper };
