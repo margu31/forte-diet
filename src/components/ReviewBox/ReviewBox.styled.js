@@ -37,6 +37,7 @@ const StyledReviewBox = styled.div`
     resize: none;
     letter-spacing: 0.15rem;
     line-height: 1.5;
+  }
 
   p {
     position: absolute;
