@@ -1,11 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const StyledRadioTitle = styled.p`
-  ${({ $titleFontSize, $titleMarginBottom }) => css`
-    font-size: ${$titleFontSize}rem;
-    margin: ${$titleMarginBottom}px 0;
-  `}
-
+  font-size: 1.1.rem;
+  margin: 0.5rem 0;
   text-indent: 1rem;
 `;
 

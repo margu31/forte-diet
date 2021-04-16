@@ -11,3 +11,9 @@ export const StyledUl = styled.ul`
   display: flex;
   align-items: center;
 `;
+
+export const StyledLi = styled.li`
+  & + & {
+    margin-left: 1rem;
+  }
+`;

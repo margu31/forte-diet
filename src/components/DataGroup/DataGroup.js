@@ -30,28 +30,15 @@ const DataGroup = ({ onChange, onBlur, errorMessage }) => {
           name="date"
           label="Date"
           onChange={onChange}
-          $labelFontSize="1.2"
-          $width="320"
-          $height="30"
-          $marginBottom="10"
-          $backgroundColor={palette.themeBrightYellow}
-          $borderColor={palette.themePrimary}
-          $paddingSide="10"
           max={maxDate}
           value={maxDate.toString()}
+          // $labelFontSize="1.2"
+          // $width="320"
+          // $height="30"
+          // $marginBottom="10"
+          // $paddingSide="10"
         />
-        <RadioGroup
-          groupTitle="Type"
-          onChange={onChange}
-          $titleFontSize="1.1"
-          $titleMarginBottom="5"
-          $backgroundColor={palette.themeBrightYellow}
-          $borderColor={palette.themePrimary}
-          // $width=342
-          $radioMarginBottom="10"
-          $checkedBackground={palette.themePrimary}
-          $checkedColor={palette.themeDefaultWhite}
-        />
+        <RadioGroup groupTitle="Type" onChange={onChange} />
         <Input
           type="number"
           id="mealCalories"
@@ -59,13 +46,6 @@ const DataGroup = ({ onChange, onBlur, errorMessage }) => {
           label="Calories"
           placeholder="칼로리를 입력하세요!"
           onChange={onChange}
-          $labelFontSize="1.2"
-          $width="320"
-          $height="30"
-          $marginBottom="10"
-          $backgroundColor={palette.themeBrightYellow}
-          $borderColor={palette.themePrimary}
-          $paddingSide="10"
           min="0"
         />
         <Input
@@ -79,13 +59,11 @@ const DataGroup = ({ onChange, onBlur, errorMessage }) => {
           errorMessage={errorMessage}
           autocomplete="off"
           maxLength="8"
-          $labelFontSize="1.2"
-          $width="320"
-          $height="30"
-          $marginBottom="10"
-          $backgroundColor={palette.themeBrightYellow}
-          $borderColor={palette.themePrimary}
-          $paddingSide="10"
+          // $labelFontSize="1.2"
+          // $width="320"
+          // $height="30"
+          // $marginBottom="10"
+          // $paddingSide="10"
         />
       </div>
     </StyledDataGroup>
