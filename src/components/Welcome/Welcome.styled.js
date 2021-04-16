@@ -57,6 +57,10 @@ const TutorialBtn = styled(Button)`
   border-radius: 50px;
   color: ${palette.themeDefaultWhite};
   border: 2px solid ${palette.themeDefaultWhite};
+
+  &:hover {
+    background-color: ${palette.themeHover};
+  }
 `;
 
 export const WelcomeContent = () => (
