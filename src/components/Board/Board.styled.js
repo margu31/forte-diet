@@ -1,50 +1,19 @@
-import styled, { css } from 'styled-components';
-import { palette } from 'styles';
-import Button from 'components/Button/Button';
+import styled from 'styled-components';
+import Title from 'components/Title/Title';
 
-/* 래퍼 */
-
-export const StyledBoardWrapper = styled.section``;
-
-export const BoardNav = styled.nav`
-  padding: 0 20rem 0;
+export const StyledBoardWrapper = styled.section`
+  padding: 8rem 10rem 0;
 `;
 
-export const BoardUl = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const BoardLi = styled.li`
-  position: relative;
-  border-top: 0.4rem solid ${palette.themeBrightYellow};
-  min-height: 100%;
-  & + & {
-    margin-left: 3rem;
+export const StyledBoardTitle = styled(Title)`
+  margin-top: 0;
+  &::before {
+    content: none;
   }
 `;
 
-export const BoardBtn = styled(Button)`
-  &:hover {
-    background-color: transparent;
-  }
-  ${({ $isActive }) =>
-    $isActive &&
-    css`
-      &:before {
-        position: absolute;
-        top: -0.4rem;
-        content: '';
-        display: block;
-        width: 3.6rem;
-        border-bottom: 0.4rem solid ${palette.themePrimary};
-      }
-      &:after {
-        content: '';
-        display: block;
-        width: 3.6rem;
-        border-bottom: 2px solid black;
-      }
-    `}
+export const StyledBoardWindow = styled.article`
+  min-height: 100vh;
+  max-width: 70%;
+  margin: 0 auto;
 `;
