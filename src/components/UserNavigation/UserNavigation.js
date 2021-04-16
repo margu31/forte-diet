@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyledUl, StyledUserBarWrapper } from './UserNavigation.styled';
+import { StyledLi, StyledUl, StyledUserBarWrapper } from './UserNavigation.styled';
 import Button from 'components/Button/Button';
 import { palette } from 'styles';
 import { Modal } from 'components/Modal/Modal';
@@ -33,50 +33,54 @@ export default function UserNavigation({ isAuthed, onSignOut }) {
         <StyledUl>
           {!isAuthed ? (
             <>
-              <li>
+              <StyledLi>
                 <Button
                   id='LoginDialog'
                   onClick={onOpen}
                   $width='60'
-                  $height='40'
+                  $height='30'
                   $fontSize='1.2'
                   $backgroundColor='transparent'
                   $color={palette.themeDefaultWhite}
                   $hoverBackground={palette.themeHover}
+                  $borderColor={palette.themeDefaultWhite}
                 >
                   로그인
                 </Button>
-              </li>
-              <li>
+              </StyledLi>
+              <StyledLi>
                 <Button
                   id='SignUpDialog'
                   onClick={onOpen}
                   $width='60'
-                  $height='40'
+                  $height='30'
                   $fontSize='1.2'
                   $backgroundColor='transparent'
                   $color={palette.themeDefaultWhite}
                   $hoverBackground={palette.themeHover}
+                  $borderColor={palette.themeDefaultWhite}
                 >
                   회원가입
                 </Button>
-              </li>
+              </StyledLi>
             </>
           ) : (
             <>
-              <li>
+              <StyledLi>
                 <Button
                   id='signUpDialog'
                   onClick={onSignOut}
                   $width='60'
-                  $height='40'
+                  $height='30'
                   $fontSize='1.2'
                   $backgroundColor='transparent'
                   $color={palette.themeDefaultWhite}
+                  $hoverBackground={palette.themeHover}
+                  $borderColor={palette.themeDefaultWhite}
                 >
                   로그아웃
                 </Button>
-              </li>
+              </StyledLi>
             </>
           )}
         </StyledUl>
