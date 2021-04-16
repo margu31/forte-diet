@@ -10,13 +10,15 @@ export default function MenuList({
   onClick,
   onSubmit,
   onRemove,
-  onAdd
+  onAdd,
+  onReset
 }) {
   const { dailyReview, waterDose } = menuListData;
-  const { date } = menuListData.meals[0];
-
   const dailyTextarea = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
+
+  if (!menuListData.meals) return null;
+  const { date } = menuListData.meals[0];
 
   return (
     <>
@@ -44,6 +46,7 @@ export default function MenuList({
           menuListData={menuListData}
           onClick={onClick}
           dailyTextarea={dailyTextarea}
+          onReset={onReset}
         />
       </StyledMenuList>
     </>

@@ -7,9 +7,14 @@ import {
   removeDailyReview,
   addWaterDose
 } from '../../api/firestore';
-import { getMenuListAction } from '../../redux/modules/menuList';
+import {
+  getMenuListAction,
+  addWaterDoseAction,
+  resetWaterDoseAction
+} from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
 import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
+import { updateWaterDoseAction } from 'redux/modules/healthBar';
 
 export default function MenuListContainer({ history }) {
   const { authUser } = useSelector(state => state.auth);
@@ -34,7 +39,9 @@ export default function MenuListContainer({ history }) {
     dispatch(removeDailyReview({ uid: 'MWcXe49pXQdQk5xHduQu' }, date));
   };
 
-  const onAdd = (date, additionalDose, currentDose = 0) => {
+  const onAdd = (date, currentDose, e) => {
+    const additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
+
     dispatch(
       addWaterDose(
         { uid: 'MWcXe49pXQdQk5xHduQu' },
@@ -43,6 +50,24 @@ export default function MenuListContainer({ history }) {
         additionalDose
       )
     );
+
+    dispatch(addWaterDoseAction(date, currentDose + additionalDose));
+    dispatch(updateWaterDoseAction(date, currentDose + additionalDose));
+  };
+
+  const onReset = date => {
+    const RESET_WATER_DOSE = 0;
+
+    dispatch(
+      addWaterDose(
+        { uid: 'MWcXe49pXQdQk5xHduQu' },
+        date,
+        RESET_WATER_DOSE,
+        RESET_WATER_DOSE
+      )
+    );
+    dispatch(resetWaterDoseAction(date, RESET_WATER_DOSE));
+    dispatch(updateWaterDoseAction(date, RESET_WATER_DOSE));
   };
 
   const onMoveToPosting = () => {
@@ -83,6 +108,7 @@ export default function MenuListContainer({ history }) {
           onSubmit={onSubmit}
           onRemove={onRemove}
           onAdd={onAdd}
+          onReset={onReset}
         />
       ))}
       <MenuListToPosting onMoveToPosting={onMoveToPosting} />

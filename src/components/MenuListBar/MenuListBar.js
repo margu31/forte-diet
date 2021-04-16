@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   StyledMenuListBar,
   StyledLike,
@@ -10,40 +10,31 @@ import {
   StyledTriangle,
   StyledContainer
 } from './MenuListBar.styled';
-import { updateWaterDoseAction } from 'redux/modules/healthBar';
 
 export default function MenuListBar({
   date,
-  waterDose,
   onAdd,
   getTotalCalories,
   setReviewIsActive,
   menuListData,
   onClick,
-  dailyTextarea
+  dailyTextarea,
+  onReset
 }) {
   const [waterIsActive, setWaterIsActive] = useState(false);
-  const [waterDoseTotal, setWaterDoseTotal] = useState(waterDose || 0);
+  let { waterDose } = useSelector(state => state.menuList[date]);
+  waterDose = waterDose || 0;
 
   const dayNum = date.slice(4, 6);
   const dayStr = date.slice(7, 10);
 
-  //TODO: waterDose dispatch 만들때 리팩토링 할것...
-  const dispatch = useDispatch();
-  const onAddWaterDose = e => {
-    const additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
-    setWaterDoseTotal(waterDoseTotal + additionalDose);
-    onAdd(date, additionalDose, waterDoseTotal);
+  const onClickWaterDose = e => {
+    if (e.target.innerText === '초기화') {
+      onReset(date);
+    } else {
+      onAdd(date, waterDose, e);
+    }
     setWaterIsActive(false);
-    dispatch(updateWaterDoseAction(date, waterDoseTotal + additionalDose));
-  };
-
-  const onResetWaterDose = () => {
-    const additionalDose = 0;
-    setWaterDoseTotal(0);
-    onAdd(date, additionalDose);
-    setWaterIsActive(false);
-    dispatch(updateWaterDoseAction(date, 0));
   };
 
   return (
@@ -74,7 +65,7 @@ export default function MenuListBar({
               setWaterIsActive(!waterIsActive);
             }}
           />
-          <span>{waterDoseTotal}ml</span>
+          <span>{waterDose}ml</span>
         </StyledContainer>
 
         {waterIsActive && (
@@ -87,10 +78,10 @@ export default function MenuListBar({
               }}
               exit={{ x: 2, opacity: 0 }}
             >
-              <span onClick={e => onAddWaterDose(e)}>+100ml</span>
-              <span onClick={e => onAddWaterDose(e)}>+300ml</span>
-              <span onClick={e => onAddWaterDose(e)}>+500ml</span>
-              <span onClick={() => onResetWaterDose()}>초기화</span>
+              <span onClick={e => onClickWaterDose(e)}>+100ml</span>
+              <span onClick={e => onClickWaterDose(e)}>+300ml</span>
+              <span onClick={e => onClickWaterDose(e)}>+500ml</span>
+              <span onClick={e => onClickWaterDose(e)}>초기화</span>
               <StyledTriangle />
             </StyledWaterDoseDialog>
           </>
