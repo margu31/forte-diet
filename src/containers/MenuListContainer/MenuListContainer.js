@@ -45,7 +45,7 @@ export default function MenuListContainer() {
   };
 
   const getTotalCalories = meals => {
-    const totalCalories = meals.reduce((acc, cur) => acc + cur.calories, 0);
+    const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
 
     return totalCalories > 999
       ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -63,7 +63,7 @@ export default function MenuListContainer() {
 
   if (!authUser) return null;
   const menuListData = Object.entries(menuList)
-    .sort((a, b) => b[0] - a[0])
+    .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
     .map(data => data[1]);
 
   return (

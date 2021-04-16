@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { TiHeart } from 'react-icons/ti';
 import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
@@ -11,7 +11,9 @@ const StyledMenuList = styled.div`
   min-height: 340px;
   max-width: 900px;
   border: none;
-  border-left: 4px solid #b6b6b6;
+  ${({ theme }) => css`
+    border-left: 4px solid ${theme.themeBrightGray};
+  `}
   margin-left: 17%; /* 왼쪽 nav 179px */
   margin-top: 120px; /* 위쪽 nav 94px */
   margin-bottom: 128px;
@@ -98,7 +100,9 @@ const StyledDailyReview = styled.div`
     right: 8px;
 
     &:hover {
-      background: #f3b34c;
+      ${({ theme }) => css`
+        background: ${theme.themePrimary};
+      `}
     }
   }
 `;
@@ -165,7 +169,9 @@ const StyledWaterDoseDialog = styled(motion.div)`
   top: 70px;
   left: -78px;
   background: rgba(182, 182, 182, 0.4);
-  box-shadow: -1px 1px 3px #b6b6b6;
+  ${({ theme }) => css`
+    box-shadow: -1px 1px 3px ${theme.themeBrightGray};
+  `}
   display: flex;
   flex-flow: column;
   font-size: 1.2rem;
@@ -182,7 +188,9 @@ const StyledWaterDoseDialog = styled(motion.div)`
     font-size: 1.2rem;
     border-radius: 0;
     margin-top: 0;
-    border-top: 1px solid #b6b6b6;
+    ${({ theme }) => css`
+      border-top: 1px solid ${theme.themeBrightGray};
+    `}
   }
 
   span + span + span + span {
@@ -201,7 +209,9 @@ const StyledTriangle = styled(VscTriangleRight)`
   top: 48%;
   width: 25px;
   height: 25px;
-  color: #b6b6b6;
+  ${({ theme }) => css`
+    color: ${theme.themeBrightGray};
+  `}
   opacity: 0.4;
 `;
 
