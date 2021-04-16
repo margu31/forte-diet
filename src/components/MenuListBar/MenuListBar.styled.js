@@ -11,7 +11,7 @@ const StyledMenuListBar = styled.div`
   width: 70px;
   height: 261px;
   position: absolute;
-  top: 24px;
+  top: 30px;
   left: -108px;
   display: flex;
   flex-flow: column;
@@ -19,22 +19,22 @@ const StyledMenuListBar = styled.div`
   font-size: 1.4rem;
 
   span + span {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     margin-top: 4px;
   }
 `;
 
 const StyledLike = styled(TiHeart)`
   color: #faafaf;
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   box-sizing: border-box;
   display: block;
   margin-top: 20px;
 
   & + span {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #faafaf;
     text-align: center;
     margin-top: -5px;
@@ -45,15 +45,15 @@ const StyledContainer = styled(motion.div)``;
 
 const StyledWaterDose = styled(WaterDose)`
   margin: 10px auto 0;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   box-sizing: border-box;
   display: block;
   cursor: pointer;
 
   & + span {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #34b0c0;
     text-align: center;
     margin-top: 3px;
@@ -65,7 +65,7 @@ const StyledWaterDoseDialog = styled(motion.div)`
   height: auto;
   position: absolute;
   border-radius: 8px;
-  top: 70px;
+  top: 45px;
   left: -78px;
   background: rgba(182, 182, 182, 0.4);
   ${({ theme }) => css`
@@ -115,15 +115,15 @@ const StyledTriangle = styled(VscTriangleRight)`
 `;
 
 const StyledDonut = styled(Donut)`
-  width: 47px;
-  height: 47px;
+  width: 37px;
+  height: 37px;
   box-sizing: border-box;
   display: block;
   margin: 5px auto 0;
 
   & + span {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #6c3909;
     text-align: center;
     margin-top: -4px;
@@ -132,8 +132,8 @@ const StyledDonut = styled(Donut)`
 `;
 
 const StyledPencil = styled(Pencil)`
-  width: 47px;
-  height: 47px;
+  width: 37px;
+  height: 37px;
   box-sizing: border-box;
   display: block;
   margin: 10px auto 0;
@@ -141,7 +141,7 @@ const StyledPencil = styled(Pencil)`
 
   & + span {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #ffc219;
     text-align: center;
     margin-top: 4px;

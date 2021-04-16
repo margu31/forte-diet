@@ -2,28 +2,36 @@ import styled, { css } from 'styled-components';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 
 const StyledCalendarButton = styled.span`
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   padding: 20px;
   box-sizing: border-box;
   ${({ theme }) => css`
-    color: ${theme.themeDark};
-    background-color: ${theme.themePrimary};
+    color: ${theme.themeDefault};
+    background-color: ${theme.themeDefaultWhite};
+    box-shadow: 1px 1px 8px ${theme.themeBrightGray};
   `}
   border-radius: 50%;
-  box-shadow: 0 1px 6px 0;
   position: fixed;
   bottom: 59px;
-  right: 143px;
+  right: 125px;
   cursor: pointer;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+    ${({ theme }) => css`
+      background: ${theme.themeHover};
+    `}
+  }
 `;
 
 const StyledCalendarIcon = styled(FaRegCalendarAlt)`
   position: absolute;
-  bottom: 18px;
-  right: 18px;
-  width: 34px;
-  height: 34px;
+  bottom: 15px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
 `;
 
 export { StyledCalendarButton, StyledCalendarIcon };
