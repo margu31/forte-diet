@@ -10,34 +10,20 @@ const StyledRadioTitle = styled.p`
 `;
 
 const StyledRadioGroup = styled.div`
-  ${({
-    $backgroundColor,
-    $borderColor,
-    $width,
-    $radioMarginBottom,
-    $checkedBackground,
-    $checkedColor,
-  }) => css`
-    background-color: ${$backgroundColor};
-    border: 1px solid ${$borderColor};
-    width: ${$width};
-    margin-bottom: ${$radioMarginBottom}px;
-
-    input:checked + label {
-      background-color: ${$checkedBackground};
-      color: ${$checkedColor};
-    }
-  `}
-
   display: inline-block;
   border-radius: 5px;
+  margin-bottom: 10px;
 
-  /* & label:last-child {
-    border-right: none;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  } */
-  /* margin-bottom: 10px; */
+  span:first-of-type {
+    label {
+      border-radius: 5px 0 0 5px;
+    }
+  }
+  span:last-of-type {
+    label {
+      border-radius: 0 5px 5px 0;
+    }
+  }
 `;
 
 export { StyledRadioGroup, StyledRadioTitle };

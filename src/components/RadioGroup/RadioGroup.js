@@ -7,6 +7,7 @@ const RadioGroup = ({
   onChange,
   $titleFontSize,
   $titleMarginBottom,
+  $backgroundColor,
   ...restProps
 }) => {
   return (
@@ -24,11 +25,12 @@ const RadioGroup = ({
           value="아침"
           label="아침"
           $fontSize="1.1"
-          $width="85"
+          $width="86"
           $height="30"
           $hoverBackground={palette.themePrimary}
           $hoverColor={palette.themeDefaultWhite}
           $borderColor={palette.themePrimary}
+          $backgroundColor={$backgroundColor}
           onChange={onChange}
         />
         <InputRadio
@@ -37,11 +39,12 @@ const RadioGroup = ({
           value="점심"
           label="점심"
           $fontSize="1.1"
-          $width="85"
+          $width="86"
           $height="30"
           $hoverBackground={palette.themePrimary}
           $hoverColor={palette.themeDefaultWhite}
           $borderColor={palette.themePrimary}
+          $backgroundColor={$backgroundColor}
           onChange={onChange}
         />
         <InputRadio
@@ -50,11 +53,12 @@ const RadioGroup = ({
           value="저녁"
           label="저녁"
           $fontSize="1.1"
-          $width="85"
+          $width="86"
           $height="30"
           $hoverBackground={palette.themePrimary}
           $hoverColor={palette.themeDefaultWhite}
           $borderColor={palette.themePrimary}
+          $backgroundColor={$backgroundColor}
           onChange={onChange}
         />
         <InputRadio
@@ -63,10 +67,12 @@ const RadioGroup = ({
           value="간식"
           label="간식"
           $fontSize="1.1"
-          $width="85"
+          $width="86"
           $height="30"
           $hoverBackground={palette.themePrimary}
           $hoverColor={palette.themeDefaultWhite}
+          $borderColor={palette.themePrimary}
+          $backgroundColor={$backgroundColor}
           onChange={onChange}
         />
       </StyledRadioGroup>
