@@ -142,7 +142,7 @@ function PostingContainer({ history }) {
 
   return (
     <section>
-      <Title>우식이의 오늘의 식단!</Title>
+      <Title logoIcon="true">우식이의 오늘의 식단!</Title>
       <Form legend="식단 포스팅">
         <DataGroup
           onChange={onChange}
