@@ -1,3 +1,4 @@
+import Input from "components/Input/Input";
 import styled, { css } from "styled-components";
 
 export const StyledForm = styled.form`
@@ -11,7 +12,7 @@ export const StyledForm = styled.form`
   min-height: 600px;
   position: relative;
   border-radius: 10px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(10px);
   ${({ theme }) => css`
     background-color: rgba(0, 0, 0, 0.3);
   `}
@@ -26,7 +27,7 @@ export const StyledForm = styled.form`
 
   div {
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     align-items: center;
     margin-top: 30px;
   }
@@ -41,9 +42,6 @@ export const StyledForm = styled.form`
     border-radius: 0;
     padding-left: 3rem;
     font-size: 1.5rem;
-    /* color: #fff; */
-    /* background-color: rgba(0, 0, 0, 0.3); */
-    /* border: 0; */
     border-top: 0;
     border-left: 0;
     border-right: 0;
@@ -51,6 +49,7 @@ export const StyledForm = styled.form`
     background-color: transparent;
     outline: none;
     box-shadow: none;
+    color: #fff;
 
     &::placeholder {
       font-size: 1.3rem;
@@ -78,7 +77,7 @@ export const StyledForm = styled.form`
     border-radius: 50px;
     border: none;
     height: 50px;
-    margin-top: 30px;
+    margin-top: 50px;
     cursor: pointer;
     font-size: 1.5rem;
 
@@ -98,5 +97,19 @@ export const StyledForm = styled.form`
     margin-top: 0;
     color: #fff;
     font-size: 1.5rem;
+  }
+`;
+
+export const LoginFormInput = styled(Input)`
+  position: relative;
+
+  p {
+    position: absolute;
+    top: 100%;
+    left: 10%;
+  }
+
+  button {
+    color: red;
   }
 `;

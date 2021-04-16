@@ -1,6 +1,5 @@
 import Button from "components/Button/Button";
-import Input from "components/Input/Input";
-import { StyledForm } from "./LoginForm.styled";
+import { LoginFormInput, StyledForm } from "./LoginForm.styled";
 import { ReactComponent as Fox } from "assets/logos/logo-fox.svg";
 
 export const LoginForm = ({
@@ -10,22 +9,23 @@ export const LoginForm = ({
   onSubmit,
   disabled,
   closeModal,
+  onKeyUp,
 }) => {
   return (
     <StyledForm>
       <span>우연히, 식단</span>
-      <Input
-        label="아이디"
+      <LoginFormInput
+        label="이메일"
         id="id"
         name="id"
         type="id"
-        placeholder="아이디를 입력해주세요."
+        placeholder="이메일을 입력해주세요."
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
-        $a11yHidden="a11yHidden"
+        onKeyUp={onKeyUp}
       />
-      <Input
+      <LoginFormInput
         label="비밀번호"
         id="password"
         name="password"
@@ -34,6 +34,7 @@ export const LoginForm = ({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        onKeyUp={onKeyUp}
         $a11yHidden="a11yHidden"
       />
       <Button

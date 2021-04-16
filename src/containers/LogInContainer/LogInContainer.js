@@ -14,7 +14,13 @@ const formValue = {
   },
 };
 
-export default function LogInContainer({ closeModal, ...restProps }) {
+// const ShowPaasord = false;
+
+export default function LogInContainer({
+  a11yHidden,
+  closeModal,
+  ...restProps
+}) {
   const dispatch = useDispatch();
 
   const [state, setState] = useState(formValue);
@@ -64,15 +70,11 @@ export default function LogInContainer({ closeModal, ...restProps }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // if (state.hasError.id === null) {
-    //   return;
-    // }
     const Formdata = new FormData();
     Object.entries(state).forEach(([key, value]) => {
       Formdata.append(key, value);
       console.log(`${key}, ${value}`);
     });
-    // dispatch(signInAction(Formdata));
     dispatch(
       handleSignInWithEmailAndPassword(state.id, state.password, signInAction)
     );
@@ -89,6 +91,18 @@ export default function LogInContainer({ closeModal, ...restProps }) {
     }
   };
 
+  const onKeyUp = (e) => {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  };
+
+  // const ChangePasswordMode = () => {
+  //   setState(({ isPasswordVisible }) => ({
+  //     isPasswordVisible: !isPasswordVisible,
+  //   }));
+  // };
+
   const isDisabled =
     state.hasError.id ||
     state.hasError.password ||
@@ -103,28 +117,9 @@ export default function LogInContainer({ closeModal, ...restProps }) {
       disabled={isDisabled}
       errorMessage={state.hasError}
       closeModal={closeModal}
+      onKeyUp={onKeyUp}
       {...restProps}
+      a11yHidden={a11yHidden}
     />
-
-    /* <Input
-      label="아이디"
-      id="아이디"
-      name="id"
-      type="id"
-      placeholder="아이디 입력"
-      onChange={onChange}
-      onBlur={onBlur}
-      errorMessage={state.hasError}
-    />
-    <Input
-      label="비밀번호"
-      id="password"
-      name="password"
-      type="password"
-      placeholder="비밀번호 입력"
-      onChange={onChange}
-      onBlur={onBlur}
-      errorMessage={state.hasError}
-    /> */
   );
 }
