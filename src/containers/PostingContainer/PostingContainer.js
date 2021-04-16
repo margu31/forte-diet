@@ -146,6 +146,10 @@ function PostingContainer({ history }) {
     }
   };
 
+  const goBack = () => {
+    history.goBack();
+  };
+
   return (
     <section>
       <Title logoIcon="true">우식이의 오늘의 식단!</Title>
@@ -172,7 +176,9 @@ function PostingContainer({ history }) {
           onChange={onChange}
         />
         <div>
-          <Button type="button">취소</Button>
+          <Button type="button" onSubmit={goBack}>
+            취소
+          </Button>
           <Button onSubmit={onSubmit}>등록!</Button>
         </div>
       </Form>
