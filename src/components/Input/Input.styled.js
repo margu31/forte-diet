@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { palette } from '../../styles';
+import styled from "styled-components";
+import { palette } from "../../styles";
 
 export const StyledInputWrapper = styled.div`
   /* display: inline-flex;
@@ -10,9 +10,8 @@ export const StyledLabel = styled.label`
   display: block;
   text-indent: 1rem;
   margin: 5px 0;
-  font-size: 1.2rem;
 
-  &[for='postingFile'] {
+  &[for="postingFile"] {
     width: 230px;
     height: 230px;
     border-radius: 50%;
@@ -33,15 +32,14 @@ export const StyledInput = styled.input`
   background-color: ${palette.themeBrightYellow};
   border: 1px solid ${palette.themePrimary};
   padding: 0 1rem;
-
   border-radius: 5px;
   outline: none;
 
-  &[type='file'] {
+  &[type="file"] {
     display: none;
   }
 
-  &[type='date'] {
+  &[type="date"] {
     cursor: pointer;
 
     &::-webkit-calendar-picker-indicator {
@@ -52,6 +50,7 @@ export const StyledInput = styled.input`
 
 export const StyledErrorMessage = styled.p`
   color: red;
+  text-indent: 1rem;
 `;
 
 export const StyledlabelHidden = styled.label`
