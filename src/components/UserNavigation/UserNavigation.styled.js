@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { palette } from 'styles';
+import Button from 'components/Button/Button';
 
 export const StyledUserBarWrapper = styled.section`
   position: absolute;
@@ -16,4 +18,9 @@ export const StyledLi = styled.li`
   & + & {
     margin-left: 1rem;
   }
+`;
+
+export const StyledButton = styled(Button)`
+  color: ${palette.themeDefaultWhite};
+  padding: 1rem 2rem;
 `;

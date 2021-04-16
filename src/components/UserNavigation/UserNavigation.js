@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { StyledLi, StyledUl, StyledUserBarWrapper } from './UserNavigation.styled';
-import Button from 'components/Button/Button';
-import { palette } from 'styles';
 import { Modal } from 'components/Modal/Modal';
 import LoginDialog from 'containers/LogInContainer/LogInContainer';
 import SignUpDialog from 'containers/SignUpContainer/SignUpContainer';
+import { StyledButton } from './UserNavigation.styled';
 
 export default function UserNavigation({ isAuthed, onSignOut }) {
   const [dialogType, setDialogType] = useState(null);
@@ -34,52 +33,22 @@ export default function UserNavigation({ isAuthed, onSignOut }) {
           {!isAuthed ? (
             <>
               <StyledLi>
-                <Button
-                  id='LoginDialog'
-                  onClick={onOpen}
-                  $width='60'
-                  $height='30'
-                  $fontSize='1.2'
-                  $backgroundColor='transparent'
-                  $color={palette.themeDefaultWhite}
-                  $hoverBackground={palette.themeHover}
-                  $borderColor={palette.themeDefaultWhite}
-                >
+                <StyledButton id='LoginDialog' onClick={onOpen}>
                   로그인
-                </Button>
+                </StyledButton>
               </StyledLi>
               <StyledLi>
-                <Button
-                  id='SignUpDialog'
-                  onClick={onOpen}
-                  $width='60'
-                  $height='30'
-                  $fontSize='1.2'
-                  $backgroundColor='transparent'
-                  $color={palette.themeDefaultWhite}
-                  $hoverBackground={palette.themeHover}
-                  $borderColor={palette.themeDefaultWhite}
-                >
+                <StyledButton id='SignUpDialog' onClick={onOpen}>
                   회원가입
-                </Button>
+                </StyledButton>
               </StyledLi>
             </>
           ) : (
             <>
               <StyledLi>
-                <Button
-                  id='signUpDialog'
-                  onClick={onSignOut}
-                  $width='60'
-                  $height='30'
-                  $fontSize='1.2'
-                  $backgroundColor='transparent'
-                  $color={palette.themeDefaultWhite}
-                  $hoverBackground={palette.themeHover}
-                  $borderColor={palette.themeDefaultWhite}
-                >
+                <StyledButton id='signUpDialog' onClick={onSignOut}>
                   로그아웃
-                </Button>
+                </StyledButton>
               </StyledLi>
             </>
           )}

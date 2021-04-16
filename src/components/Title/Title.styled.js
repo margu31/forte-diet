@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
-const StyledTitle = styled.h2`
+const StyledTitle = styled(motion.h2)`
   font-size: 2.5rem;
   position: relative;
   text-indent: 20px;
@@ -10,7 +11,7 @@ const StyledTitle = styled.h2`
 
   &::before {
     position: absolute;
-    content: "";
+    content: '';
     display: block;
     width: 5px;
     height: 50px;
