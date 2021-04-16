@@ -52,15 +52,10 @@ const StyledTitle = styled.h2`
 
 const TutorialBtn = styled(Button)`
   padding: 1rem 2rem;
-  font-size: 1.2rem;
   background-color: transparent;
   border-radius: 50px;
-  color: ${palette.themeDefaultWhite};
-  border: 2px solid ${palette.themeDefaultWhite};
-
-  &:hover {
-    background-color: ${palette.themeHover};
-  }
+  color: ${palette.themePrimary};
+  border: 2px solid ${palette.themePrimary};
 `;
 
 export const WelcomeContent = () => (
