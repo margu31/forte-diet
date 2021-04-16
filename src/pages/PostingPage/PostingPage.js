@@ -1,10 +1,10 @@
-import PostingContainer from 'containers/PostingContainer/PostingContainer';
-import StylePostingPage from './PostingPage.styled';
+import PostingContainer from "containers/PostingContainer/PostingContainer";
+import StylePostingPage from "./PostingPage.styled";
 
-const PostingPage = () => {
+const PostingPage = ({ history }) => {
   return (
     <StylePostingPage>
-      <PostingContainer />
+      <PostingContainer history={history} />
     </StylePostingPage>
   );
 };

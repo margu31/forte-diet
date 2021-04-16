@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const StyledModal = styled.div`
   position: fixed;
@@ -10,5 +10,9 @@ export const StyledModal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
+  background-image: url("/login-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  /* background-color: rgba(0, 0, 0, 0.5); */
 `;

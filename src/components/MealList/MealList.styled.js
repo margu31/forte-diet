@@ -1,9 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledMealList = styled.li`
   list-style: none;
   display: inline-block;
-  color: #14182c;
+  ${({ theme }) => css`
+    color: ${theme.themeDefault};
+  `}
   cursor: default;
 
   div {
@@ -14,7 +16,7 @@ const StyledMealList = styled.li`
     height: 138px;
     overflow: hidden;
     margin-bottom: 19px;
-    border: 10px solid ${props => props.borderColor};
+    border: 10px solid ${props => props.$borderColor};
     cursor: pointer;
 
     img {

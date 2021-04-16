@@ -57,6 +57,10 @@ export const StyledInput = styled.input`
 
   &[type='date'] {
     cursor: pointer;
+
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+    }
   }
 `;
 

@@ -1,26 +1,27 @@
 import React from 'react';
 import { StyledMealList } from './MealList.styled';
+import { palette } from 'styles/index';
 
 export default function MealList({ mealListData }) {
   const { photo, title, type } = mealListData;
   const changeBorderColor = type => {
     switch (type) {
       case '아침':
-        return '#395B9D';
+        return palette.themeSecondary;
       case '점심':
-        return '#F3B34C';
+        return palette.themePrimary;
       case '저녁':
-        return '#14182C';
+        return palette.themeDefault;
       case '간식':
-        return '#F26830';
+        return palette.themePrimaryThick;
       default:
-        return '#395B9D';
+        return palette.themeSecondary;
     }
   };
 
   return (
     <>
-      <StyledMealList borderColor={changeBorderColor(type)}>
+      <StyledMealList $borderColor={changeBorderColor(type)}>
         <div>
           <img src={photo} alt={title} />
         </div>
