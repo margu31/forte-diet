@@ -25,7 +25,7 @@ const StyledDailyReview = styled.div`
     color: #14182c;
     opacity: 0.8;
     resize: none;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     outline: none;
 
     &:focus {
@@ -36,6 +36,16 @@ const StyledDailyReview = styled.div`
     &::placeholder {
       opacity: 0.7;
     }
+  }
+
+  span {
+    font-size: 1rem;
+    ${({ theme }) => css`
+      color: ${theme.themeBrightGray};
+    `}
+    position: absolute;
+    bottom: 13px;
+    right: 90px;
   }
 
   button {
