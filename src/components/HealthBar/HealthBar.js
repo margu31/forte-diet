@@ -4,13 +4,16 @@ import {
   StyledContainer,
   StyledWaterDose,
   StyledDonut,
-  StyledButton
+  StyledNav,
+  StyledFoodIcon
 } from './HealthBar.styled';
 
 export default function HealthBar({ healthBar, getTotalCalories, getDate }) {
   return (
     <>
-      <StyledButton>우연히 식단 기록</StyledButton>
+      <StyledNav>
+        <StyledFoodIcon />
+      </StyledNav>
       <StyledHealthBar>
         <StyledContainer>
           {/* TODO: key 값 바꿔야 함!! */}
