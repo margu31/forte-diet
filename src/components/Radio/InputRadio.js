@@ -1,8 +1,8 @@
 import StyledInputRadio from "./InputRadio.styled";
 
-const InputRadio = ({ id, name, value, label, onChange, ...restProps }) => {
+const InputRadio = ({ id, name, value, label, onChange }) => {
   return (
-    <StyledInputRadio {...restProps}>
+    <StyledInputRadio>
       <input
         type="radio"
         id={id}

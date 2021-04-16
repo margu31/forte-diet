@@ -1,6 +1,5 @@
 import Input from "components/Input/Input";
 import RadioGroup from "components/RadioGroup/RadioGroup";
-import { palette } from "styles/index";
 import StyledDataGroup from "./DataGroup.styled";
 
 const DataGroup = ({ onChange, onBlur, errorMessage }) => {
@@ -11,8 +10,6 @@ const DataGroup = ({ onChange, onBlur, errorMessage }) => {
   const date = today.getDate();
 
   const maxDate = `${year}-${month}-${date}`;
-
-  // console.log(maxDate);
 
   return (
     <StyledDataGroup>
@@ -32,11 +29,6 @@ const DataGroup = ({ onChange, onBlur, errorMessage }) => {
           onChange={onChange}
           max={maxDate}
           value={maxDate.toString()}
-          // $labelFontSize="1.2"
-          // $width="320"
-          // $height="30"
-          // $marginBottom="10"
-          // $paddingSide="10"
         />
         <RadioGroup groupTitle="Type" onChange={onChange} />
         <Input
@@ -59,11 +51,6 @@ const DataGroup = ({ onChange, onBlur, errorMessage }) => {
           errorMessage={errorMessage}
           autocomplete="off"
           maxLength="8"
-          // $labelFontSize="1.2"
-          // $width="320"
-          // $height="30"
-          // $marginBottom="10"
-          // $paddingSide="10"
         />
       </div>
     </StyledDataGroup>

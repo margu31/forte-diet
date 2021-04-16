@@ -1,43 +1,31 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { palette } from "styles";
 
 const StyledInputRadio = styled.span`
-  ${({
-    $fontSize,
-    $width,
-    $height,
-    $borderColor,
-    $hoverBackground,
-    $hoverColor,
-    $backgroundColor,
-  }) => css`
-    label {
-      font-size: ${$fontSize}rem;
-      width: ${$width}px;
-      height: ${$height}px;
-      line-height: ${$height}px;
-      background-color: ${$backgroundColor};
-      border: 1px solid ${$borderColor};
-
-      &:hover {
-        background-color: ${$hoverBackground};
-        color: ${$hoverColor};
-      }
-    }
-    input:checked + label {
-      background-color: ${$hoverBackground};
-      color: ${$hoverColor};
-    }
-  `}
-
-  input {
-    display: none;
-  }
-
   label {
+    font-size: 1.1rem;
+    width: 86px;
+    height: 30px;
+    line-height: 30px;
+    background-color: ${palette.themeBrightYellow};
+    border: 1px solid ${palette.themePrimary};
     display: inline-block;
     cursor: pointer;
     text-align: center;
     margin-right: -1px;
+
+    &:hover {
+      background-color: ${palette.themePrimary};
+      color: ${palette.themeDefaultWhite};
+    }
+  }
+  input:checked + label {
+    background-color: ${palette.themePrimary};
+    color: ${palette.themeDefaultWhite};
+  }
+
+  input {
+    display: none;
   }
 `;
 
