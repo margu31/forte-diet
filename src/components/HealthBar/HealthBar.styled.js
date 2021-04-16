@@ -2,62 +2,58 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
 import { motion } from 'framer-motion';
+import { ReactComponent as Fork } from '../../assets/icons/healthBar/fork.svg';
+
 const StyledWaterDose = styled(WaterDose)``;
 
 const StyledDonut = styled(Donut)``;
 
-const StyledButton = styled(motion.button)`
-  width: 120px;
+const StyledFoodIcon = styled(Fork)`
+  color: #fff;
+`;
+
+const StyledNav = styled(motion.nav)`
+  width: 200px;
   padding: 15px 0 10px 0;
-  border-radius: 5px 0 0 5px;
   text-align: center;
   font-size: 1.3rem;
   ${({ theme }) => css`
-    background: ${theme.themeSecondary};
+    background: linear-gradient(
+      to left,
+      ${theme.themePrimaryThick},
+      ${theme.themePrimary}
+    );
     color: ${theme.themeDefaultWhite};
-    box-shadow: 0 2px 5px ${theme.themeSecondary};
   `}
   cursor: pointer;
   outline: none;
   position: fixed;
-  top: 123px;
-  right: 20px;
+  top: 100px;
+  right: 0;
   z-index: 2;
+
+  ${StyledFoodIcon} {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const StyledHealthBar = styled(motion.div)`
-  width: 130px;
-  height: 480px;
+  width: 200px;
+  height: 670px;
   ${({ theme }) => css`
-    border: 4px solid ${theme.themeSecondary};
-    background: ${theme.themeBrightYellow};
+    background: ${theme.themeDefaultWhite};
     box-shadow: 0 2px 5px ${theme.themeBrightGray};
   `}
-  border-radius: 10px;
   position: fixed;
   top: 100px;
-  right: 20px;
+  right: 0;
   display: flex;
   flex-flow: column;
   overflow: hidden;
   font-size: 1.3rem;
   padding: 15px 10px;
   z-index: 1;
-
-  /* $(StyledButton) {
-    width: 120px;
-    padding: 15px 0 10px 10px;
-    border-radius: 5px 0 0 5px;
-    text-align: left;
-    font-size: 1.3rem;
-    ${({ theme }) => css`
-    background: ${theme.themeSecondary};
-    color: ${theme.themeDefaultWhite};
-    box-shadow: 0 2px 5px ${theme.themeSecondary};
-  `}
-    cursor: pointer;
-    outline: none;
-  } */
 `;
 
 const StyledContainer = styled.ul`
@@ -113,5 +109,6 @@ export {
   StyledContainer,
   StyledWaterDose,
   StyledDonut,
-  StyledButton
+  StyledNav,
+  StyledFoodIcon
 };
