@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { palette } from '../../styles';
+import styled from "styled-components";
 
 const StyledRadioTitle = styled.p`
   font-size: 1.1.rem;
@@ -8,18 +7,20 @@ const StyledRadioTitle = styled.p`
 `;
 
 const StyledRadioGroup = styled.div`
-  background-color: ${palette.themeBirghtYellow};
-  border: 1px solid ${palette.themePrimary};
-  width: 342px;
-  margin-bottom: 1rem;
-
-  input:checked + label {
-    background-color: ${palette.themePrimary};
-    color: ${palette.themeDefaultWhite};
-  }
-
   display: inline-block;
   border-radius: 5px;
+  margin-bottom: 10px;
+
+  span:first-of-type {
+    label {
+      border-radius: 5px 0 0 5px;
+    }
+  }
+  span:last-of-type {
+    label {
+      border-radius: 0 5px 5px 0;
+    }
+  }
 `;
 
 export { StyledRadioGroup, StyledRadioTitle };

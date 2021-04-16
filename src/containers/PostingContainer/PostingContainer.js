@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Form from "components/Form/Form";
-import { addMealAction } from "redux/modules/postingMenuList";
-import { reviewValidation } from "utils/validation/reviewValidation";
+import {
+  menuValidation,
+  reviewValidation,
+} from "utils/validation/PostingValidation";
 import Button from "components/Button/Button";
 import Title from "components/Title/Title";
 import ReviewBox from "components/ReviewBox/ReviewBox";
@@ -31,77 +33,32 @@ const initialPostingFormValues = {
 };
 
 function PostingContainer({ history }) {
-  // const dispatch = useDispatch();
   const [mealData, setMealData] = useState(initialPostingFormValues);
   const { authUser } = useSelector((state) => state.auth);
   const menuList = useSelector((state) => state.menuList);
 
-  const onChange = (e) => {
-    if (e.target.name === "type") {
+  const menuValid = (menu) => {
+    if (!menuValidation(menu)) {
       setMealData({
         ...mealData,
-        [e.target.name]: e.target.value,
+        hasError: {
+          ...mealData.hasError,
+          title: "한 글자 이상 입력해주세요!",
+        },
       });
-    } else if (e.target.type === "checkbox") {
+    } else {
       setMealData({
         ...mealData,
-        [e.target.name]: `${e.target.checked ? "private" : "public"}`,
+        hasError: {
+          ...mealData.hasError,
+          title: null,
+        },
       });
-    } else if (e.target.name === "date") {
-      // const oldDate = e.target.value;
-      const oldDate = Date(e.target.value);
-      const newDay = oldDate.slice(0, 3).toUpperCase();
-      const newDate = e.target.value.slice(2, 10).replace(/-/g, "");
-
-      setMealData({
-        ...mealData,
-        [e.target.name]: `${newDate} ${newDay}`,
-      });
-    } else
-      setMealData({
-        ...mealData,
-        [e.target.name]: e.target.value,
-      });
-    // console.log(e.target.checked);
-    // console.log(e.target.type);
-    // console.log(e.target.name);
+    }
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-
-    Object.entries(mealData).forEach(([key, value]) => {
-      if (key === "hasError") return;
-      console.log(`${key}: ${value}`);
-      formData.append(key, value);
-    });
-
-    const mealId = menuList[mealData.date]
-      ? menuList[mealData.date].meals.length + 1
-      : 0;
-
-    formData.append("id", mealId);
-
-    const newFormData = Object.fromEntries(formData.entries());
-
-    console.log(newFormData);
-    // dispatch(addMealAction(newFormData));
-
-    // const { date } = newFormData;
-    // // console.log(date);
-    // const a = date.split("/").join("");
-    // console.log(a);
-
-    PostMeal(authUser, newFormData);
-    history.push("/myPage");
-  };
-
-  const onBlur = (e) => {
-    const validation = reviewValidation(e.target.value);
-    // console.log(e.target.name);
-    if (!validation) {
+  const reviewValid = (review) => {
+    if (!reviewValidation(review)) {
       setMealData({
         ...mealData,
         hasError: {
@@ -115,22 +72,88 @@ function PostingContainer({ history }) {
         hasError: {
           ...mealData.hasError,
           review: null,
-          title: null,
         },
       });
     }
   };
 
+  const onChange = (e) => {
+    if (e.target.name === "type") {
+      setMealData({
+        ...mealData,
+        [e.target.name]: e.target.value,
+      });
+    } else if (e.target.type === "checkbox") {
+      setMealData({
+        ...mealData,
+        [e.target.name]: `${e.target.checked ? "private" : "public"}`,
+      });
+    } else if (e.target.name === "date") {
+      const oldDate = new Date(
+        e.target.value.slice(0, 10).replace(/-/g, "/")
+      ).toString();
+      const newDay = oldDate.slice(0, 3).toUpperCase();
+      const newDate = e.target.value.slice(2, 10).replace(/-/g, "");
+
+      setMealData({
+        ...mealData,
+        [e.target.name]: `${newDate} ${newDay}`,
+      });
+    } else
+      setMealData({
+        ...mealData,
+        [e.target.name]: e.target.value,
+      });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    Object.entries(mealData).forEach(([key, value]) => {
+      if (key === "hasError") return;
+      // console.log(`${key}: ${value}`);
+      formData.append(key, value);
+    });
+
+    const mealId = menuList[mealData.date]
+      ? menuList[mealData.date].meals.length + 1
+      : 0;
+
+    formData.append("id", mealId);
+
+    const newFormData = Object.fromEntries(formData.entries());
+
+    // console.log(newFormData);
+
+    PostMeal(authUser, newFormData);
+    history.push("/myPage");
+  };
+
+  const onBlur = (e) => {
+    if (e.target.name === "title") {
+      menuValid(e.target.value);
+      console.log(mealData.hasError.title);
+    } else if (e.target.name === "review") {
+      reviewValid(e.target.value);
+    }
+  };
+
   return (
     <section>
-      <Title>우식이의 오늘의 식단!</Title>
+      <Title logoIcon="true">우식이의 오늘의 식단!</Title>
       <Form legend="식단 포스팅">
-        <DataGroup onChange={onChange} />
+        <DataGroup
+          onChange={onChange}
+          onBlur={onBlur}
+          errorMessage={mealData.hasError}
+        />
         <ReviewBox
           id="mealReview"
           name="review"
           label="Review: "
-          placeholder="자유롭게 리뷰를 남겨주세요!"
+          placeholder="자유롭게 리뷰를 남겨주세요! (500자 이내)"
           onChange={onChange}
           onBlur={onBlur}
           hasError={mealData.hasError.review}
@@ -142,29 +165,8 @@ function PostingContainer({ history }) {
           onChange={onChange}
         />
         <div>
-          <Button
-            type="button"
-            $width="100"
-            $height="30"
-            $fontSize="1.2"
-            $backgroundColor="#9f9f9f33"
-            $color={palette.themeDefault}
-            $hoverBackground={palette.themeBrightGray}
-          >
-            취소
-          </Button>
-          <Button
-            $width="100"
-            $height="30"
-            $fontSize="1.2"
-            $backgroundColor="#f2683033"
-            $color={palette.themePrimaryThick}
-            $hoverBackground={palette.themePrimaryThick}
-            $hoverColor={palette.themeDefaultWhite}
-            onSubmit={onSubmit}
-          >
-            등록!
-          </Button>
+          <Button type="button">취소</Button>
+          <Button onSubmit={onSubmit}>등록!</Button>
         </div>
       </Form>
     </section>

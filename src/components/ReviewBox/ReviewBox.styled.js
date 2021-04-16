@@ -28,12 +28,16 @@ const StyledReviewBox = styled.div`
 
   textarea {
     width: 690px;
-    min-height: 160px;
+    min-height: 170px;
     outline: none;
     border: 1px solid #395b9d;
     border-radius: 5px;
     padding: 20px 15px;
     background-color: #fefdf8;
+    resize: none;
+    letter-spacing: 0.15rem;
+    line-height: 1.5;
+    font-size: 1.5rem;
   }
 
   p {

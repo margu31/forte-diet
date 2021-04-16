@@ -1,82 +1,32 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { palette } from "styles";
 
 const StyledInputRadio = styled.span`
-  ${({
-    $fontSize,
-    $width,
-    $height,
-    $borderColor,
-    $hoverBackground,
-    $hoverColor,
-  }) => css`
-    label {
-      font-size: ${$fontSize}rem;
-      width: ${$width}px;
-      height: ${$height}px;
-      line-height: ${$height}px;
-      border-right: 1px solid ${$borderColor};
+  label {
+    font-size: 1.1rem;
+    width: 86px;
+    height: 30px;
+    line-height: 30px;
+    background-color: ${palette.themeBrightYellow};
+    border: 1px solid ${palette.themePrimary};
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    margin-right: -1px;
 
-      &:hover {
-        background-color: ${$hoverBackground};
-        color: ${$hoverColor};
-      }
+    &:hover {
+      background-color: ${palette.themePrimary};
+      color: ${palette.themeDefaultWhite};
     }
-  `}
+  }
+  input:checked + label {
+    background-color: ${palette.themePrimary};
+    color: ${palette.themeDefaultWhite};
+  }
 
   input {
     display: none;
   }
-
-  label {
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
-  }
 `;
-
-// const StyledInputRadio = styled.span`
-//   ${({
-//     $fontSize,
-//     $width,
-//     $height,
-//     $borderColor,
-//     $hoverBackground,
-//     $hoverColor,
-//   }) => css`
-//     label {
-//       font-size: ${$fontSize}rem;
-//       width: ${$width}px;
-//       height: ${$height}px;
-//       line-height: ${$height}px;
-
-//       &:hover {
-//         background-color: ${$hoverBackground};
-//         color: ${$hoverColor};
-//       }
-//     }
-//   `}
-
-//   input {
-//     display: none;
-//   }
-
-//   label {
-//     display: inline-block;
-//     cursor: pointer;
-//     text-align: center;
-//     border: 1px solid red;
-//     border-radius: 5px;
-//     border-top-right-radius: 0;
-//     border-bottom-right-radius: 0;
-//   }
-
-//   & + & {
-//     label {
-//       border-left: none;
-//       border-top-left-radius: 0;
-//       border-bottom-left-radius: 0;
-//     }
-//   }
-// `;
 
 export default StyledInputRadio;
