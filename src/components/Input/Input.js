@@ -18,6 +18,7 @@ export default function Input({
   errorMessage,
   autocomplete,
   $a11yHidden,
+  maxLength,
   ...restProps
 }) {
   return (
@@ -36,6 +37,7 @@ export default function Input({
         onBlur={onBlur}
         autoComplete={autocomplete}
         // autoComplete="off"
+        maxLength={maxLength}
         {...restProps}
       ></StyledInput>
       {errorMessage && errorMessage[name] ? (
