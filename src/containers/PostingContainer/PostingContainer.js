@@ -33,7 +33,6 @@ const initialPostingFormValues = {
 };
 
 function PostingContainer({ history }) {
-  // const dispatch = useDispatch();
   const [mealData, setMealData] = useState(initialPostingFormValues);
   const { authUser } = useSelector((state) => state.auth);
   const menuList = useSelector((state) => state.menuList);
@@ -90,17 +89,11 @@ function PostingContainer({ history }) {
         [e.target.name]: `${e.target.checked ? "private" : "public"}`,
       });
     } else if (e.target.name === "date") {
-      // const oldDate = Date(`${e.target.value}`);
       const oldDate = new Date(
         e.target.value.slice(0, 10).replace(/-/g, "/")
       ).toString();
-      // console.log(oldDate);
       const newDay = oldDate.slice(0, 3).toUpperCase();
-      // console.log(e.target.name);
-      // console.log(e.target.value);
-      // console.log(newDay);
-      let newDate = e.target.value.slice(2, 10).replace(/-/g, "");
-      // console.log(newDate);
+      const newDate = e.target.value.slice(2, 10).replace(/-/g, "");
 
       setMealData({
         ...mealData,
@@ -111,9 +104,6 @@ function PostingContainer({ history }) {
         ...mealData,
         [e.target.name]: e.target.value,
       });
-    // console.log(e.target.checked);
-    // console.log(e.target.type);
-    // console.log(e.target.name);
   };
 
   const onSubmit = (e) => {
@@ -123,7 +113,7 @@ function PostingContainer({ history }) {
 
     Object.entries(mealData).forEach(([key, value]) => {
       if (key === "hasError") return;
-      console.log(`${key}: ${value}`);
+      // console.log(`${key}: ${value}`);
       formData.append(key, value);
     });
 
@@ -135,8 +125,7 @@ function PostingContainer({ history }) {
 
     const newFormData = Object.fromEntries(formData.entries());
 
-    console.log(newFormData);
-    // dispatch(addMealAction(newFormData));
+    // console.log(newFormData);
 
     PostMeal(authUser, newFormData);
     history.push("/myPage");
@@ -176,29 +165,8 @@ function PostingContainer({ history }) {
           onChange={onChange}
         />
         <div>
-          <Button
-            type="button"
-            $width="100"
-            $height="30"
-            $fontSize="1.2"
-            $backgroundColor="#9f9f9f33"
-            $color={palette.themeDefault}
-            $hoverBackground={palette.themeBrightGray}
-          >
-            취소
-          </Button>
-          <Button
-            $width="100"
-            $height="30"
-            $fontSize="1.2"
-            $backgroundColor="#f2683033"
-            $color={palette.themePrimaryThick}
-            $hoverBackground={palette.themePrimaryThick}
-            $hoverColor={palette.themeDefaultWhite}
-            onSubmit={onSubmit}
-          >
-            등록!
-          </Button>
+          <Button type="button">취소</Button>
+          <Button onSubmit={onSubmit}>등록!</Button>
         </div>
       </Form>
     </section>
