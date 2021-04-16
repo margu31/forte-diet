@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const StyledSideBarWrapper = styled.div`
+  max-width: 15vw;
   ${({ theme }) => css`
     background-color: ${theme.themePrimary};
   `}
