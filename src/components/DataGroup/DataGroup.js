@@ -2,7 +2,7 @@ import Input from "components/Input/Input";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import StyledDataGroup from "./DataGroup.styled";
 
-const DataGroup = ({ onChange, onBlur, errorMessage }) => {
+const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage }) => {
   const today = new Date();
   const year = today.getFullYear();
   const getMonth = today.getMonth() + 1;
@@ -38,6 +38,7 @@ const DataGroup = ({ onChange, onBlur, errorMessage }) => {
           label="Calories"
           placeholder="칼로리를 입력하세요!"
           onChange={onChange}
+          onKeyPress={onKeyPress}
           min="0"
         />
         <Input
