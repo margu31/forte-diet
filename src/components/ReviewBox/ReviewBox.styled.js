@@ -34,6 +34,7 @@ const StyledReviewBox = styled.div`
     border-radius: 5px;
     padding: 20px 15px;
     background-color: #fefdf8;
+    resize: none;
   }
 
   p {
