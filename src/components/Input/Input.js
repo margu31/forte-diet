@@ -1,3 +1,5 @@
+import Button from "components/Button/Button";
+import Icons from "components/Icon/Icons";
 import React from "react";
 import {
   StyledInputWrapper,
@@ -18,15 +20,20 @@ export default function Input({
   errorMessage,
   autocomplete,
   $a11yHidden,
+  onKeyUp,
+  icon,
+  password,
   ...restProps
 }) {
   return (
-    <StyledInputWrapper>
-      {$a11yHidden ? (
+    <StyledInputWrapper {...restProps}>
+      {type && <Icons type={type} />}
+      <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
+      {/* {$a11yHidden ? (
         <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
       ) : (
         <StyledLabel htmlFor={id}>{label}</StyledLabel>
-      )}
+      )} */}
       <StyledInput
         id={id}
         name={name}
@@ -37,11 +44,14 @@ export default function Input({
         autoComplete={autocomplete}
         // autoComplete="off"
         {...restProps}
+        onKeyUp={onKeyUp}
       ></StyledInput>
       {errorMessage && errorMessage[name] ? (
         <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>
       ) : null}
-      <StyledErrorMessage></StyledErrorMessage>
+      {type === "password" ? (
+        <Button>{<Icons type="showPassword" />}</Button>
+      ) : null}
     </StyledInputWrapper>
   );
 }
