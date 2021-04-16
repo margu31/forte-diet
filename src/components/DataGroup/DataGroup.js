@@ -38,6 +38,7 @@ const DataGroup = ({ onChange, onBlur, errorMessage }) => {
           $borderColor={palette.themePrimary}
           $paddingSide="10"
           max={maxDate}
+          value={maxDate.toString()}
         />
         <RadioGroup
           groupTitle="Type"
