@@ -90,9 +90,17 @@ function PostingContainer({ history }) {
         [e.target.name]: `${e.target.checked ? "private" : "public"}`,
       });
     } else if (e.target.name === "date") {
-      const oldDate = Date(e.target.value);
+      // const oldDate = Date(`${e.target.value}`);
+      const oldDate = new Date(
+        e.target.value.slice(0, 10).replace(/-/g, "/")
+      ).toString();
+      // console.log(oldDate);
       const newDay = oldDate.slice(0, 3).toUpperCase();
-      const newDate = e.target.value.slice(2, 10).replace(/-/g, "");
+      // console.log(e.target.name);
+      // console.log(e.target.value);
+      // console.log(newDay);
+      let newDate = e.target.value.slice(2, 10).replace(/-/g, "");
+      // console.log(newDate);
 
       setMealData({
         ...mealData,
