@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { palette } from '../../styles';
 import Button from 'components/Button/Button';
+import Dropdown from '../Dropdown/Dropdown';
 
 /* 래퍼 */
 
@@ -141,6 +142,7 @@ export const Search = () => (
         <SerachBar>
           <SearchLabel>식단 검색: </SearchLabel>
           <SearchInput placeholder='브로콜리, 카레 ...' />
+          <Dropdown selects={['제라드', '효리즈만']} />
           <SearchBtn>Find</SearchBtn>
         </SerachBar>
       </fieldset>

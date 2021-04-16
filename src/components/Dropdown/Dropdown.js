@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
+import {
+  StyledDownArrow,
+  StyledDropdownWrapper,
+  StyledOptions,
+  StyledSelect,
+  StyledWindow
+} from './Dropdown.styled';
 
 export default function Dropdown({ selects }) {
   const [selected, setSelected] = useState('anything');
   const [isShowOptions, setIsShow] = useState(false);
 
   const handleClick = e => {
-    setIsShow(true);
+    if (isShowOptions) {
+      setSelected(e.target.textContent);
+      setIsShow(false);
+    } else setIsShow(true);
   };
 
   const handleSelect = e => {
@@ -14,15 +24,20 @@ export default function Dropdown({ selects }) {
   };
 
   return (
-    <div>
-      <div onClick={handleClick}>{selected}</div>
-      {isShowOptions && (
-        <ul>
+    <StyledDropdownWrapper>
+      <StyledWindow onClick={handleClick}>
+        {selected}
+        <StyledDownArrow />
+      </StyledWindow>
+      {
+        <StyledSelect $isShowOptions={isShowOptions}>
           {selects.map(select => (
-            <li onClick={handleSelect}>{select}</li>
+            <StyledOptions $isShowOptions={isShowOptions} onClick={handleSelect}>
+              {select}
+            </StyledOptions>
           ))}
-        </ul>
-      )}
-    </div>
+        </StyledSelect>
+      }
+    </StyledDropdownWrapper>
   );
 }
