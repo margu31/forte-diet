@@ -84,7 +84,8 @@ const SearchSection = styled.section`
 const SearchInputForm = styled.form`
   position: absolute;
   top: 50%;
-  transform: translate3d(0, -50%, 0);
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 `;
 
 const SerachBar = styled.div`
