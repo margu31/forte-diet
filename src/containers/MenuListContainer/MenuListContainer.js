@@ -10,7 +10,9 @@ import {
 import {
   getMenuListAction,
   addWaterDoseAction,
-  resetWaterDoseAction
+  resetWaterDoseAction,
+  addDailyReviewAction,
+  DeleteDailyReviewAction
 } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
 import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
@@ -33,10 +35,12 @@ export default function MenuListContainer({ history }) {
     dispatch(
       addOrEditDailyReview({ uid: 'MWcXe49pXQdQk5xHduQu' }, date, review)
     );
+    dispatch(addDailyReviewAction(date, review));
   };
 
   const onRemove = date => {
     dispatch(removeDailyReview({ uid: 'MWcXe49pXQdQk5xHduQu' }, date));
+    dispatch(DeleteDailyReviewAction(date));
   };
 
   const onAdd = (date, currentDose, e) => {
@@ -50,7 +54,6 @@ export default function MenuListContainer({ history }) {
         additionalDose
       )
     );
-
     dispatch(addWaterDoseAction(date, currentDose + additionalDose));
     dispatch(updateWaterDoseAction(date, currentDose + additionalDose));
   };
@@ -66,7 +69,7 @@ export default function MenuListContainer({ history }) {
         RESET_WATER_DOSE
       )
     );
-    dispatch(resetWaterDoseAction(date, RESET_WATER_DOSE));
+    dispatch(resetWaterDoseAction(date));
     dispatch(updateWaterDoseAction(date, RESET_WATER_DOSE));
   };
 

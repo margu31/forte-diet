@@ -13,7 +13,6 @@ export default function MenuList({
   onAdd,
   onReset
 }) {
-  const { dailyReview, waterDose } = menuListData;
   const dailyTextarea = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
 
@@ -28,17 +27,15 @@ export default function MenuList({
           <MealList mealListData={mealList} key={i} />
         ))}
         <DailyReview
-          dailyReview={dailyReview}
+          date={date}
           dailyTextarea={dailyTextarea}
           reviewIsActive={reviewIsActive}
           setReviewIsActive={setReviewIsActive}
-          date={date}
           onSubmit={onSubmit}
           onRemove={onRemove}
         />
         <MenuListBar
           date={date}
-          waterDose={waterDose}
           onAdd={onAdd}
           getTotalCalories={getTotalCalories}
           reviewIsActive={reviewIsActive}

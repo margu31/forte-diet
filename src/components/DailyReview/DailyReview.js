@@ -1,21 +1,36 @@
 import React, { useState } from 'react';
 import { checkByte } from '../../utils/validation/DailyReviewValidation';
+import { useSelector } from 'react-redux';
 import {
   StyledDailyReview,
   StyledDailyReviewModal
 } from './DailyReview.styled';
 
 export default function DailyReview({
-  dailyReview,
+  date,
   dailyTextarea,
   reviewIsActive,
   setReviewIsActive,
-  date,
   onSubmit,
   onRemove
 }) {
-  const [dailyReviewText, setDailyReviewText] = useState(dailyReview || '');
+  let { dailyReview } = useSelector(state => state.menuList[date]);
+  dailyReview = dailyReview || '';
+
+  const [wroteReview, setWroteReview] = useState(dailyReview);
   const [totalBytes, setTotalBytes] = useState(0);
+
+  const onSubmitReview = () => {
+    onSubmit(date, wroteReview);
+    setReviewIsActive(false);
+  };
+
+  const onDeleteReview = () => {
+    onRemove(date);
+    setWroteReview('');
+    setReviewIsActive(false);
+    setTotalBytes(0);
+  };
 
   return (
     <>
@@ -32,9 +47,9 @@ export default function DailyReview({
           id='dailyReview'
           rows='2'
           placeholder='오늘도 즐거운 식사 되셨나요? 오늘의 느낀 점을 기록해보세요. (180btyes 이내)'
-          value={dailyReviewText}
+          value={wroteReview}
           onChange={e => {
-            setDailyReviewText(e.target.value);
+            setWroteReview(e.target.value);
             setTotalBytes(checkByte(e));
           }}
           ref={dailyTextarea}
@@ -43,24 +58,8 @@ export default function DailyReview({
         {reviewIsActive && (
           <>
             <span>{totalBytes}/180bytes</span>
-            <button
-              onClick={() => {
-                onRemove(date);
-                setDailyReviewText('');
-                setReviewIsActive(false);
-                setTotalBytes(0);
-              }}
-            >
-              삭제
-            </button>
-            <button
-              onClick={() => {
-                onSubmit(date, dailyReviewText);
-                setReviewIsActive(false);
-              }}
-            >
-              등록
-            </button>
+            <button onClick={() => onDeleteReview()}>삭제</button>
+            <button onClick={() => onSubmitReview()}>등록</button>
           </>
         )}
       </StyledDailyReview>
