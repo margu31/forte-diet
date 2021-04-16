@@ -19,6 +19,7 @@ export default function DailyReview({
 
   const [wroteReview, setWroteReview] = useState(dailyReview);
   const [totalBytes, setTotalBytes] = useState(0);
+  const maxByte = 150;
 
   const onSubmitReview = () => {
     onSubmit(date, wroteReview);
@@ -36,7 +37,7 @@ export default function DailyReview({
     <>
       {reviewIsActive && (
         <StyledDailyReviewModal
-          onClick={() => {
+          onMouseDown={() => {
             setReviewIsActive(false);
           }}
         />
@@ -49,15 +50,16 @@ export default function DailyReview({
           placeholder='오늘도 즐거운 식사 되셨나요? 오늘의 느낀 점을 기록해보세요. (180btyes 이내)'
           value={wroteReview}
           onChange={e => {
-            setWroteReview(e.target.value);
+            totalBytes < maxByte && setWroteReview(e.target.value);
             setTotalBytes(checkByte(e));
           }}
+          onFocus={e => setTotalBytes(checkByte(e))}
           ref={dailyTextarea}
           disabled={reviewIsActive ? '' : 'disabled'}
         ></textarea>
         {reviewIsActive && (
           <>
-            <span>{totalBytes}/180bytes</span>
+            <span>{totalBytes}/150bytes</span>
             <button onClick={() => onDeleteReview()}>삭제</button>
             <button onClick={() => onSubmitReview()}>등록</button>
           </>

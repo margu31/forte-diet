@@ -4,24 +4,21 @@ const StyledDailyReview = styled.div`
   width: 730px;
   border-radius: 10px;
   box-sizing: border-box;
-  min-height: 50px;
+  min-height: 110px;
   margin: 0;
   margin-top: 50px;
   position: relative;
+  z-index: 2;
 
   textarea {
     border-radius: 10px;
-
-    padding: 20px;
+    overflow-y: scroll;
+    padding: 20px 20px 27px 20px;
     width: 100%;
+    height: 100%;
     line-height: 30px;
     background: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    word-wrap: break-word;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    /* overflow: hidden; */
     color: #14182c;
     opacity: 0.8;
     resize: none;
@@ -72,9 +69,7 @@ const StyledDailyReview = styled.div`
     right: 8px;
 
     &:hover {
-      ${({ theme }) => css`
-        background: ${theme.themePrimary};
-      `}
+      background: rgba(243, 179, 76, 0.7);
     }
   }
 `;
@@ -83,6 +78,7 @@ const StyledDailyReviewModal = styled.div`
   width: 100vw;
   height: 100vh;
   background: pink;
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
