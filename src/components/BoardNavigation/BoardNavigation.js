@@ -7,17 +7,17 @@ export default function BoardNavigation({ boardType, onClick }) {
       <BoardUl>
         <BoardLi>
           <BoardBtn id='board1' $isActive={boardType === 1} onClick={onClick}>
-            인기순 식단
+            Popular
           </BoardBtn>
         </BoardLi>
         <BoardLi>
           <BoardBtn id='board2' $isActive={boardType === 2} onClick={onClick}>
-            최신순 식단
+            Recent
           </BoardBtn>
         </BoardLi>
         <BoardLi>
           <BoardBtn id='board3' $isActive={boardType === 3} onClick={onClick}>
-            검색순 식단
+            Search
           </BoardBtn>
         </BoardLi>
       </BoardUl>

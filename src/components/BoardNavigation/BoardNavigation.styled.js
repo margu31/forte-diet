@@ -33,15 +33,17 @@ export const BoardBtn = styled(Button)`
         top: -0.4rem;
         content: '';
         display: block;
-        width: 6.5rem;
+        width: 5rem;
         border-bottom: 0.4rem solid
           ${$isActive ? palette.themePrimaryThick : palette.themeDefaultWhite};
         transition: all 0.5s;
       }
       &:after {
+        position: absolute;
+        top: 3.5rem;
+        left: 3.8rem;
         content: '';
-        display: block;
-        width: 6.5rem;
+        width: 5.5rem;
         ${$isActive && `border-bottom: 2px solid black`};
       }
     `}
