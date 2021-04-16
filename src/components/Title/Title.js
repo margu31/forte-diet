@@ -1,11 +1,10 @@
 import { StyledLogo, StyledTitle } from "./Title.styled";
-// import { ReactComponent as Logo } from "assets/logos/logo1.svg";
 
-const Title = ({ children }) => {
+const Title = ({ children, logoIcon, ...restProps }) => {
   return (
-    <StyledTitle>
+    <StyledTitle {...restProps}>
       {children}
-      <StyledLogo />
+      {logoIcon && <StyledLogo></StyledLogo>}
     </StyledTitle>
   );
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { ReactComponent as Logo } from "assets/logos/logo1.svg";
 
 export const StyledLogo = styled(Logo)`
@@ -19,7 +20,7 @@ export const StyledLogo = styled(Logo)`
   transform: scaleX(-1); */
 `;
 
-export const StyledTitle = styled.h2`
+export const StyledTitle = styled(motion.h2)`
   display: inline-block;
   font-size: 2.5rem;
   position: relative;
@@ -37,5 +38,3 @@ export const StyledTitle = styled.h2`
     background-color: #f26830;
   }
 `;
-
-// export default StyledTitle;
