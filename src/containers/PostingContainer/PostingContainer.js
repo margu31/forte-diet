@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Form from "components/Form/Form";
-import { addMealAction } from "redux/modules/postingMenuList";
-import { reviewValidation } from "utils/validation/reviewValidation";
+import {
+  menuValidation,
+  reviewValidation,
+} from "utils/validation/PostingValidation";
 import Button from "components/Button/Button";
 import Title from "components/Title/Title";
 import ReviewBox from "components/ReviewBox/ReviewBox";
@@ -36,6 +38,46 @@ function PostingContainer({ history }) {
   const { authUser } = useSelector((state) => state.auth);
   const menuList = useSelector((state) => state.menuList);
 
+  const menuValid = (menu) => {
+    if (!menuValidation(menu)) {
+      setMealData({
+        ...mealData,
+        hasError: {
+          ...mealData.hasError,
+          title: "한 글자 이상 입력해주세요!",
+        },
+      });
+    } else {
+      setMealData({
+        ...mealData,
+        hasError: {
+          ...mealData.hasError,
+          title: null,
+        },
+      });
+    }
+  };
+
+  const reviewValid = (review) => {
+    if (!reviewValidation(review)) {
+      setMealData({
+        ...mealData,
+        hasError: {
+          ...mealData.hasError,
+          review: "한 글자 이상 입력해주세요!",
+        },
+      });
+    } else {
+      setMealData({
+        ...mealData,
+        hasError: {
+          ...mealData.hasError,
+          review: null,
+        },
+      });
+    }
+  };
+
   const onChange = (e) => {
     if (e.target.name === "type") {
       setMealData({
@@ -48,7 +90,6 @@ function PostingContainer({ history }) {
         [e.target.name]: `${e.target.checked ? "private" : "public"}`,
       });
     } else if (e.target.name === "date") {
-      // const oldDate = e.target.value;
       const oldDate = Date(e.target.value);
       const newDay = oldDate.slice(0, 3).toUpperCase();
       const newDate = e.target.value.slice(2, 10).replace(/-/g, "");
@@ -89,35 +130,16 @@ function PostingContainer({ history }) {
     console.log(newFormData);
     // dispatch(addMealAction(newFormData));
 
-    // const { date } = newFormData;
-    // // console.log(date);
-    // const a = date.split("/").join("");
-    // console.log(a);
-
     PostMeal(authUser, newFormData);
     history.push("/myPage");
   };
 
   const onBlur = (e) => {
-    const validation = reviewValidation(e.target.value);
-    // console.log(e.target.name);
-    if (!validation) {
-      setMealData({
-        ...mealData,
-        hasError: {
-          ...mealData.hasError,
-          review: "한 글자 이상 입력해주세요!",
-        },
-      });
-    } else {
-      setMealData({
-        ...mealData,
-        hasError: {
-          ...mealData.hasError,
-          review: null,
-          title: null,
-        },
-      });
+    if (e.target.name === "title") {
+      menuValid(e.target.value);
+      console.log(mealData.hasError.title);
+    } else if (e.target.name === "review") {
+      reviewValid(e.target.value);
     }
   };
 
@@ -125,12 +147,16 @@ function PostingContainer({ history }) {
     <section>
       <Title>우식이의 오늘의 식단!</Title>
       <Form legend="식단 포스팅">
-        <DataGroup onChange={onChange} />
+        <DataGroup
+          onChange={onChange}
+          onBlur={onBlur}
+          errorMessage={mealData.hasError}
+        />
         <ReviewBox
           id="mealReview"
           name="review"
           label="Review: "
-          placeholder="자유롭게 리뷰를 남겨주세요!"
+          placeholder="자유롭게 리뷰를 남겨주세요! (500자 이내)"
           onChange={onChange}
           onBlur={onBlur}
           hasError={mealData.hasError.review}

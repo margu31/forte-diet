@@ -7,5 +7,5 @@ export const reviewValidation = (review) => {
 export const menuValidation = (menu) => {
   // 모든 글자 1글자 이상 8글자 이하
   const menuRegExp = /^.{1,8}$/;
-  menuRegExp.test(menu);
+  return menuRegExp.test(menu);
 };

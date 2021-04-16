@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const StyledInputWrapper = styled.div`
   /* display: inline-flex;
@@ -15,7 +15,7 @@ export const StyledLabel = styled.label`
   text-indent: 1rem;
   margin: 5px 0;
 
-  &[for='postingFile'] {
+  &[for="postingFile"] {
     width: 230px;
     height: 230px;
     border-radius: 50%;
@@ -37,7 +37,7 @@ export const StyledInput = styled.input`
     $backgroundColor,
     $borderColor,
     $paddingSide,
-    $inputFontSize
+    $inputFontSize,
   }) => css`
     width: ${$width}px;
     height: ${$height}px;
@@ -51,11 +51,11 @@ export const StyledInput = styled.input`
   border-radius: 5px;
   outline: none;
 
-  &[type='file'] {
+  &[type="file"] {
     display: none;
   }
 
-  &[type='date'] {
+  &[type="date"] {
     cursor: pointer;
 
     &::-webkit-calendar-picker-indicator {
@@ -66,6 +66,7 @@ export const StyledInput = styled.input`
 
 export const StyledErrorMessage = styled.p`
   color: red;
+  text-indent: 1rem;
 `;
 
 export const StyledlabelHidden = styled.label`

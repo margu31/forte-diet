@@ -3,7 +3,7 @@ import RadioGroup from "components/RadioGroup/RadioGroup";
 import { palette } from "styles/index";
 import StyledDataGroup from "./DataGroup.styled";
 
-const DataGroup = ({ onChange }) => {
+const DataGroup = ({ onChange, onBlur, errorMessage }) => {
   const today = new Date();
   const year = today.getFullYear();
   const getMonth = today.getMonth() + 1;
@@ -30,7 +30,6 @@ const DataGroup = ({ onChange }) => {
           name="date"
           label="Date"
           onChange={onChange}
-          required
           $labelFontSize="1.2"
           $width="320"
           $height="30"
@@ -71,11 +70,14 @@ const DataGroup = ({ onChange }) => {
         <Input
           type="text"
           id="mealTitle"
-          placeholder="오늘의 메뉴를 입력하세요!"
+          placeholder="오늘의 메뉴를 입력하세요! (8자 이내)"
           name="title"
           label="Menu"
           onChange={onChange}
+          onBlur={onBlur}
+          errorMessage={errorMessage}
           autocomplete="off"
+          maxLength="8"
           $labelFontSize="1.2"
           $width="320"
           $height="30"
