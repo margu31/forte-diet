@@ -12,7 +12,7 @@ export const StyledButton = styled(motion.button)`
   cursor: pointer;
 
   &:hover {
-    color: ${palette.themeDefaultWhite};
+    color: ${palette.themePrimaryThick};
     background-color: ${palette.themeHover};
   }
 
