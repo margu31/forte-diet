@@ -9,8 +9,9 @@ import {
 } from '../../api/firestore';
 import { getMenuListAction } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
+import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
 
-export default function MenuListContainer() {
+export default function MenuListContainer({ history }) {
   const { authUser } = useSelector(state => state.auth);
   const menuList = useSelector(state => state.menuList);
   const dispatch = useDispatch();
@@ -42,6 +43,10 @@ export default function MenuListContainer() {
         additionalDose
       )
     );
+  };
+
+  const onMoveToPosting = () => {
+    history.push('/posting');
   };
 
   const getTotalCalories = meals => {
@@ -80,6 +85,7 @@ export default function MenuListContainer() {
           onAdd={onAdd}
         />
       ))}
+      <MenuListToPosting onMoveToPosting={onMoveToPosting} />
     </>
   );
 }
