@@ -40,7 +40,7 @@ const StyledDailyReview = styled.div`
       color: ${theme.themeBrightGray};
     `}
     position: absolute;
-    bottom: 30px;
+    bottom: 29px;
     right: 90px;
   }
 

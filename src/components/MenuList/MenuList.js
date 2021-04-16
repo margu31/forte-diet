@@ -19,12 +19,31 @@ export default function MenuList({
   if (!menuListData.meals) return null;
   const { date } = menuListData.meals[0];
 
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
+
   return (
     <>
-      <StyledMenuList>
+      <StyledMenuList variants={container} initial='hidden' animate='visible'>
         {/* TODO: key 바꿔야함!!!! */}
         {menuListData.meals.map((mealList, i) => (
-          <MealList mealListData={mealList} key={i} />
+          <MealList mealListData={mealList} key={i} variants={item} />
         ))}
         <DailyReview
           date={date}

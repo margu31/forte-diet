@@ -60,8 +60,8 @@ export default function DailyReview({
         {reviewIsActive && (
           <>
             <span>{totalBytes}/150bytes</span>
-            <button onClick={() => onDeleteReview()}>삭제</button>
-            <button onClick={() => onSubmitReview()}>등록</button>
+            <button onMouseDown={() => onDeleteReview()}>삭제</button>
+            <button onMouseDown={() => onSubmitReview()}>등록</button>
           </>
         )}
       </StyledDailyReview>

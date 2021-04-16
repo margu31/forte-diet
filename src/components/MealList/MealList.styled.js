@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
-const StyledMealList = styled.li`
+const StyledMealList = styled(motion.li)`
   list-style: none;
   display: inline-block;
   ${({ theme }) => css`
