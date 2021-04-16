@@ -5,6 +5,7 @@ import Button from 'components/Button/Button';
 export const BoardNav = styled.nav`
   padding: 0 20rem 0;
   border-top: 0.4rem solid ${palette.themePrimary};
+  background-color: ${palette.themeBright};
 `;
 
 export const BoardUl = styled.ul`
@@ -32,7 +33,7 @@ export const BoardBtn = styled(Button)`
         top: -0.4rem;
         content: '';
         display: block;
-        width: 3.6rem;
+        width: 6.5rem;
         border-bottom: 0.4rem solid
           ${$isActive ? palette.themePrimaryThick : palette.themeDefaultWhite};
         transition: all 0.5s;
@@ -40,8 +41,8 @@ export const BoardBtn = styled(Button)`
       &:after {
         content: '';
         display: block;
-        width: 3.6rem;
-        border-bottom: 2px solid black;
+        width: 6.5rem;
+        ${$isActive && `border-bottom: 2px solid black`};
       }
     `}
 `;
