@@ -9,7 +9,6 @@ import Button from "components/Button/Button";
 import Title from "components/Title/Title";
 import ReviewBox from "components/ReviewBox/ReviewBox";
 import Toggle from "components/Toggle/Toggle";
-import { palette } from "styles/index";
 import DataGroup from "components/DataGroup/DataGroup";
 import { PostMeal } from "api/firestore";
 
@@ -140,6 +139,13 @@ function PostingContainer({ history }) {
     }
   };
 
+  const onKeyPress = (e) => {
+    if (e.charCode === 45) {
+      console.log("바보");
+      e.preventDefault();
+    }
+  };
+
   return (
     <section>
       <Title logoIcon="true">우식이의 오늘의 식단!</Title>
@@ -147,6 +153,7 @@ function PostingContainer({ history }) {
         <DataGroup
           onChange={onChange}
           onBlur={onBlur}
+          onKeyPress={onKeyPress}
           errorMessage={mealData.hasError}
         />
         <ReviewBox

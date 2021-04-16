@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { palette } from "../../styles";
 
 const StyledReviewBox = styled.div`
   position: relative;
@@ -19,9 +20,9 @@ const StyledReviewBox = styled.div`
     width: 660px;
     height: 30px;
     outline: none;
-    border: 1px solid #395b9d;
+    border: 1px solid ${palette.themeSecondary};
     border-radius: 5px;
-    background-color: #fefdf8;
+    background-color: ${palette.themeBrightYellow};
     padding: 0 15px;
     margin: 15px 0;
   }
@@ -30,10 +31,10 @@ const StyledReviewBox = styled.div`
     width: 690px;
     min-height: 170px;
     outline: none;
-    border: 1px solid #395b9d;
+    border: 1px solid ${palette.themeSecondary};
     border-radius: 5px;
     padding: 20px 15px;
-    background-color: #fefdf8;
+    background-color: ${palette.themeBrightYellow};
     resize: none;
     letter-spacing: 0.15rem;
     line-height: 1.5;
