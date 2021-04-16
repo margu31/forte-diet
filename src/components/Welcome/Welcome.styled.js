@@ -6,21 +6,28 @@ import Button from 'components/Button/Button';
 
 export const StyledWelcomeWrapper = styled.section`
   min-height: 500px;
-  background-image: url('/example-bg.jpg');
+  background: url('/home-welcome.jpg');
   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
 `;
 
 /* 웰컴 컨텐츠 */
 
-const StyledDiv = styled.div`
+const MessageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 7% 2rem 7% 25rem;
-  width: 40vw;
+  padding: 7% 2rem 7% 20rem;
+  width: 100vw;
   min-height: 300px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+`;
+
+const StyledDiv = styled.div`
+  width: 40vw;
 `;
 
 const StyledP = styled.p`
@@ -52,24 +59,26 @@ const TutorialBtn = styled(Button)`
 `;
 
 export const WelcomeContent = () => (
-  <StyledDiv>
-    <StyledTitle>우연히, 식단</StyledTitle>
-    <StyledP>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.
-    </StyledP>
-    <TutorialBtn>튜토리얼로 이동!</TutorialBtn>
-  </StyledDiv>
+  <MessageWrapper>
+    <StyledDiv>
+      <StyledTitle>우연히, 식단</StyledTitle>
+      <StyledP>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.
+      </StyledP>
+      <TutorialBtn>튜토리얼로 이동!</TutorialBtn>
+    </StyledDiv>
+  </MessageWrapper>
 );
 
 /* 검색창 */
 
 const SearchSection = styled.section`
   position: relative;
-  padding-left: 25rem;
+  padding-left: 20rem;
   flex-grow: 1;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
 `;
 
 const SearchInputForm = styled.form`
