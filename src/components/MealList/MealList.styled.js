@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
-const StyledMealList = styled.li`
+const StyledMealList = styled(motion.li)`
   list-style: none;
   display: inline-block;
   ${({ theme }) => css`
@@ -11,12 +12,12 @@ const StyledMealList = styled.li`
   div {
     border-radius: 50%;
     box-sizing: border-box;
-    box-shadow: 0 0 6px 0;
-    width: 138px;
-    height: 138px;
+    box-shadow: 0 0 2px 0;
+    width: 130px;
+    height: 130px;
     overflow: hidden;
     margin-bottom: 19px;
-    border: 10px solid ${props => props.$borderColor};
+    border: 7px solid ${props => props.$borderColor};
     cursor: pointer;
 
     img {
