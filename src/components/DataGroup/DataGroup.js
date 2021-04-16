@@ -1,9 +1,8 @@
 import Input from "components/Input/Input";
 import RadioGroup from "components/RadioGroup/RadioGroup";
-import { palette } from "styles/index";
 import StyledDataGroup from "./DataGroup.styled";
 
-const DataGroup = ({ onChange }) => {
+const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage }) => {
   const today = new Date();
   const year = today.getFullYear();
   const getMonth = today.getMonth() + 1;
@@ -11,8 +10,6 @@ const DataGroup = ({ onChange }) => {
   const date = today.getDate();
 
   const maxDate = `${year}-${month}-${date}`;
-
-  // console.log(maxDate);
 
   return (
     <StyledDataGroup>
@@ -30,28 +27,10 @@ const DataGroup = ({ onChange }) => {
           name="date"
           label="Date"
           onChange={onChange}
-          required
-          $labelFontSize="1.2"
-          $width="320"
-          $height="30"
-          $marginBottom="10"
-          $backgroundColor={palette.themeBrightYellow}
-          $borderColor={palette.themePrimary}
-          $paddingSide="10"
           max={maxDate}
+          value={maxDate.toString()}
         />
-        <RadioGroup
-          groupTitle="Type"
-          onChange={onChange}
-          $titleFontSize="1.1"
-          $titleMarginBottom="5"
-          $backgroundColor={palette.themeBrightYellow}
-          $borderColor={palette.themePrimary}
-          // $width=342
-          $radioMarginBottom="10"
-          $checkedBackground={palette.themePrimary}
-          $checkedColor={palette.themeDefaultWhite}
-        />
+        <RadioGroup groupTitle="Type" onChange={onChange} />
         <Input
           type="number"
           id="mealCalories"
@@ -59,30 +38,20 @@ const DataGroup = ({ onChange }) => {
           label="Calories"
           placeholder="칼로리를 입력하세요!"
           onChange={onChange}
-          $labelFontSize="1.2"
-          $width="320"
-          $height="30"
-          $marginBottom="10"
-          $backgroundColor={palette.themeBrightYellow}
-          $borderColor={palette.themePrimary}
-          $paddingSide="10"
+          onKeyPress={onKeyPress}
           min="0"
         />
         <Input
           type="text"
           id="mealTitle"
-          placeholder="오늘의 메뉴를 입력하세요!"
+          placeholder="오늘의 메뉴를 입력하세요! (8자 이내)"
           name="title"
           label="Menu"
           onChange={onChange}
+          onBlur={onBlur}
+          errorMessage={errorMessage}
           autocomplete="off"
-          $labelFontSize="1.2"
-          $width="320"
-          $height="30"
-          $marginBottom="10"
-          $backgroundColor={palette.themeBrightYellow}
-          $borderColor={palette.themePrimary}
-          $paddingSide="10"
+          maxLength="8"
         />
       </div>
     </StyledDataGroup>

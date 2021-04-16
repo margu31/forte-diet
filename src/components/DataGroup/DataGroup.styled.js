@@ -9,6 +9,10 @@ const StyledDataGroup = styled.div`
   .collection {
     padding: 30px 0;
   }
+
+  label {
+    font-size: 1.1rem;
+  }
 `;
 
 export default StyledDataGroup;
