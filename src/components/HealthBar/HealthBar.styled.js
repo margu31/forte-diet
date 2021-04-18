@@ -95,7 +95,6 @@ const StyledContainer = styled(motion.div)`
   ${({ theme }) => css`
     background: ${theme.themeDefaultWhite};
   `}
-  box-shadow: 1px 1px 2px 0;
 
   ${StyledHeader}
 `;

@@ -23,6 +23,7 @@ const sidebar = {
   closed: {
     clipPath: 'circle(20px at 130px 20px)',
     transition: {
+      delay: 0.2,
       type: 'spring',
       stiffness: 400,
       damping: 40
@@ -36,7 +37,7 @@ const variantsUl = {
   },
   closed: {
     transition: {
-      staggerChildren: 0.04,
+      staggerChildren: 0.05,
       staggerDirection: -1
     }
   }
@@ -51,7 +52,11 @@ const variantsLi = {
     }
   },
   closed: {
-    opacity: 0
+    y: 50,
+    opacity: 0,
+    transition: {
+      y: { stiffness: 1000 }
+    }
   }
 };
 

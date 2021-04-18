@@ -36,6 +36,7 @@ export default function HealthBarContainer() {
   }, [authUser, dispatch]);
 
   if (!authUser) return null;
+  if (!healthBar[0]) return null;
 
   return (
     <HealthBar
