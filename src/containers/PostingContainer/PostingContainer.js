@@ -12,9 +12,18 @@ import Toggle from "components/Toggle/Toggle";
 import DataGroup from "components/DataGroup/DataGroup";
 import { PostMeal } from "api/firestore";
 
+const today = new Date();
+const year = today.getFullYear();
+const getMonth = today.getMonth() + 1;
+const month = getMonth >= 10 ? getMonth : "0" + getMonth;
+const date = today.getDate();
+
+const maxDate = `${year}-${month}-${date}`;
+const day = today.toString().slice(0, 3).toUpperCase();
+
 const initialPostingFormValues = {
   id: 0,
-  date: "",
+  date: `${maxDate} ${day}`,
   photo: null,
   calories: 0,
   review: "",
@@ -112,7 +121,7 @@ function PostingContainer({ history }) {
 
     Object.entries(mealData).forEach(([key, value]) => {
       if (key === "hasError") return;
-      // console.log(`${key}: ${value}`);
+      console.log(`${key}: ${value}`);
       formData.append(key, value);
     });
 
@@ -124,7 +133,7 @@ function PostingContainer({ history }) {
 
     const newFormData = Object.fromEntries(formData.entries());
 
-    // console.log(newFormData);
+    console.log(newFormData);
 
     PostMeal(authUser, newFormData);
     history.push("/myPage");
@@ -159,6 +168,7 @@ function PostingContainer({ history }) {
           onBlur={onBlur}
           onKeyPress={onKeyPress}
           errorMessage={mealData.hasError}
+          maxDate={maxDate}
         />
         <ReviewBox
           id="mealReview"
