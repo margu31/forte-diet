@@ -5,14 +5,16 @@ import {
   handleGetDietLists,
   addOrEditDailyReview,
   removeDailyReview,
-  addWaterDose
+  addWaterDose,
+  removeMeal
 } from '../../api/firestore';
 import {
   getMenuListAction,
   addWaterDoseAction,
   resetWaterDoseAction,
   addDailyReviewAction,
-  DeleteDailyReviewAction
+  DeleteDailyReviewAction,
+  deleteMenuListAction
 } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
 import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
@@ -77,6 +79,13 @@ export default function MenuListContainer({ history }) {
     history.push('/posting');
   };
 
+  const onDelete = (date, mealId) => {
+    dispatch(
+      removeMeal({ uid: 'MWcXe49pXQdQk5xHduQu' }, menuList, date, mealId)
+    );
+    dispatch(deleteMenuListAction(date, mealId));
+  };
+
   const getTotalCalories = meals => {
     const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
 
@@ -112,6 +121,7 @@ export default function MenuListContainer({ history }) {
           onRemove={onRemove}
           onAdd={onAdd}
           onReset={onReset}
+          onDelete={onDelete}
         />
       ))}
       <MenuListToPosting onMoveToPosting={onMoveToPosting} />

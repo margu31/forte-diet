@@ -11,12 +11,13 @@ export default function MenuList({
   onSubmit,
   onRemove,
   onAdd,
-  onReset
+  onReset,
+  onDelete
 }) {
   const dailyTextarea = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
 
-  if (!menuListData.meals) return null;
+  if (!menuListData.meals[0]) return null;
   const { date } = menuListData.meals[0];
 
   const container = {
@@ -38,12 +39,20 @@ export default function MenuList({
     }
   };
 
+  if (typeof menuListData.meals.map !== 'function') return null;
+
   return (
     <>
       <StyledMenuList variants={container} initial='hidden' animate='visible'>
         {/* TODO: key 바꿔야함!!!! */}
         {menuListData.meals.map((mealList, i) => (
-          <MealList mealListData={mealList} key={i} variants={item} />
+          <MealList
+            mealListData={mealList}
+            key={i}
+            variants={item}
+            onDelete={onDelete}
+            date={date}
+          />
         ))}
         <DailyReview
           date={date}
