@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components';
+import { TiDelete } from 'react-icons/ti';
 import { motion } from 'framer-motion';
+import { VscTriangleDown } from 'react-icons/vsc';
+
+const StyledDeleteButton = styled(motion.button)``;
+const StyledDeleteIcon = styled(TiDelete)``;
 
 const StyledMealList = styled(motion.li)`
   list-style: none;
@@ -8,6 +13,8 @@ const StyledMealList = styled(motion.li)`
     color: ${theme.themeDefault};
   `}
   cursor: default;
+  position: relative;
+  margin-right: 58px;
 
   div {
     border-radius: 50%;
@@ -39,9 +46,94 @@ const StyledMealList = styled(motion.li)`
     opacity: 0.6;
   }
 
-  & + & {
-    margin-left: 58px;
+  ${StyledDeleteButton} {
+    background: none;
+    position: absolute;
+    padding: 5px;
+    right: -20px;
+    top: -20px;
+    opacity: 0;
+    outline: none;
+
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  ${StyledDeleteIcon} {
+    width: 25px;
+    height: 22px;
+    opacity: 0.2;
+    cursor: pointer;
+  }
+
+  &:hover {
+    ${StyledDeleteButton} {
+      opacity: 1;
+    }
   }
 `;
 
-export { StyledMealList };
+const StyledLiContainer = styled(motion.div)`
+  display: inline-block;
+  position: relative;
+`;
+
+const StyledDeleteDialog = styled(motion.div)`
+  padding: 10px 0;
+  text-align: center;
+  background: rgba(182, 182, 182, 0.4);
+  border-radius: 5px;
+  position: absolute;
+  z-index: 999;
+  top: -55px;
+  right: 25px;
+
+  span {
+    cursor: pointer;
+    padding: 4px 15px;
+    z-index: 999;
+  }
+
+  &:hover {
+    span {
+      background: rgba(182, 182, 182, 1);
+    }
+  }
+`;
+
+const StyledTriangle = styled(VscTriangleDown)`
+  position: absolute;
+  top: -32px;
+  right: 44px;
+  width: 22px;
+  height: 22px;
+  ${({ theme }) => css`
+    color: ${theme.themeBrightGray};
+  `}
+  opacity: 0.4;
+`;
+
+const StyledDeleteModal = styled(motion.div)`
+  width: 100vw;
+  height: 100vh;
+  background: pink;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+`;
+
+const StyledContainer = styled(motion.div)``;
+
+export {
+  StyledMealList,
+  StyledContainer,
+  StyledDeleteButton,
+  StyledDeleteIcon,
+  StyledDeleteDialog,
+  StyledDeleteModal,
+  StyledLiContainer,
+  StyledTriangle
+};
