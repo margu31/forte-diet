@@ -39,7 +39,9 @@ const StyledLi = styled(motion.li)`
   div {
     display: flex;
     flex-flow: column nowrap;
-    background: #fff;
+    ${({ theme }) => css`
+      background: ${theme.themeDefaultWhite};
+    `}
     padding: 15px 0px 10px 0;
     border-radius: 4px;
 
@@ -90,7 +92,9 @@ const StyledHeader = styled(motion.div)`
 const StyledContainer = styled(motion.div)`
   width: inherit;
   height: inherit;
-  background: #fff;
+  ${({ theme }) => css`
+    background: ${theme.themeDefaultWhite};
+  `}
   box-shadow: 1px 1px 2px 0;
 
   ${StyledHeader}
