@@ -20,10 +20,11 @@ export const deleteMenuListAction = (date, mealId) => ({
   }
 });
 
-export const addWaterDoseAction = date => ({
+export const addWaterDoseAction = (date, waterDose) => ({
   type: ADD_WATER_DOSE,
   payload: {
-    date
+    date,
+    waterDose
   }
 });
 
