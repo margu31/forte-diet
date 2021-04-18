@@ -1,6 +1,5 @@
 const GET_MENU_LIST = 'mypage/GET_MENU_LIST';
 const DELETE_MENU_LIST = 'mypage/DELETE_MENU_LIST';
-// const ADD_NEW_MENU_LIST = 'mypage/ADD_NEW_MENU_LIST';
 const ADD_WATER_DOSE = 'mypage/ADD_WATER_DOSE';
 const RESET_WATER_DOSE = 'mypage/RESET_WATER_DOSE';
 const ADD_DAILY_REVIEW = 'mypage/ADD_DAILY_REVIEW';
@@ -21,19 +20,10 @@ export const deleteMenuListAction = (date, mealId) => ({
   }
 });
 
-// export const addNewMenuListAction = ({ data, date }) => ({
-//   type: ADD_NEW_MENU_LIST,
-//   payload: {
-//     data,
-//     date
-//   }
-// });
-
-export const addWaterDoseAction = (date, waterDose) => ({
+export const addWaterDoseAction = date => ({
   type: ADD_WATER_DOSE,
   payload: {
-    date,
-    waterDose
+    date
   }
 });
 
@@ -79,15 +69,6 @@ export default function menuList(state = initialState, action) {
           ]
         }
       };
-
-    // case ADD_NEW_MENU_LIST:
-    //   if (state[action.payload.date]) return state;
-
-    //   return {
-    //     ...state,
-    //     ...action.payload.data,
-    //     dailyReview: ''
-    //   };
     case ADD_WATER_DOSE:
       return {
         ...state,
