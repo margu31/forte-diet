@@ -55,17 +55,24 @@ export default function MealList({ mealListData, variants, onDelete, date }) {
       {isActive && <StyledDeleteModal onMouseDown={() => setIsActive(false)} />}
       {isActive && (
         <>
-          <StyledDeleteDialog>
+          <StyledDeleteDialog
+            initial={{ y: 2, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.1
+            }}
+            exit={{ x: 2, opacity: 0 }}
+          >
             <span
               onClick={() => {
                 onDelete(date, id);
                 setIsActive(false);
               }}
             >
-              식단 제거
+              Delete
             </span>
+            <StyledTriangle />
           </StyledDeleteDialog>
-          <StyledTriangle />
         </>
       )}
     </StyledLiContainer>

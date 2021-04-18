@@ -81,18 +81,18 @@ const StyledLiContainer = styled(motion.div)`
 `;
 
 const StyledDeleteDialog = styled(motion.div)`
-  padding: 10px 0;
+  padding: 12px 0;
   text-align: center;
   background: rgba(182, 182, 182, 0.4);
   border-radius: 5px;
   position: absolute;
   z-index: 999;
-  top: -55px;
+  top: -60px;
   right: 25px;
 
   span {
     cursor: pointer;
-    padding: 4px 15px;
+    padding: 6px 15px;
     z-index: 999;
   }
 
@@ -105,8 +105,8 @@ const StyledDeleteDialog = styled(motion.div)`
 
 const StyledTriangle = styled(VscTriangleDown)`
   position: absolute;
-  top: -32px;
-  right: 44px;
+  top: 27px;
+  right: 20px;
   width: 22px;
   height: 22px;
   ${({ theme }) => css`
