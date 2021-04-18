@@ -19,8 +19,7 @@ export default function Input({
   onBlur,
   onKeyPress,
   errorMessage,
-  autocomplete,
-  $a11yHidden,
+  a11yHidden,
   onKeyUp,
   icon,
   password,
@@ -30,12 +29,11 @@ export default function Input({
   return (
     <StyledInputWrapper {...restProps}>
       {type && <Icons type={type} />}
-      <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
-      {/* {$a11yHidden ? (
+      {a11yHidden ? (
         <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
       ) : (
         <StyledLabel htmlFor={id}>{label}</StyledLabel>
-      )} */}
+      )}
       <StyledInput
         id={id}
         name={name}
@@ -44,8 +42,7 @@ export default function Input({
         onChange={onChange}
         onBlur={onBlur}
         onKeyPress={onKeyPress}
-        autoComplete={autocomplete}
-        // autoComplete="off"
+        autoComplete="off"
         maxLength={maxLength}
         {...restProps}
         onKeyUp={onKeyUp}

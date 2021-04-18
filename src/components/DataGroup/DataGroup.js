@@ -50,7 +50,6 @@ const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage, maxDate }) => {
           onChange={onChange}
           onBlur={onBlur}
           errorMessage={errorMessage}
-          autocomplete="off"
           maxLength="10"
         />
       </div>
