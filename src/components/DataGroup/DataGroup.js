@@ -44,14 +44,14 @@ const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage, maxDate }) => {
         <Input
           type="text"
           id="mealTitle"
-          placeholder="오늘의 메뉴를 입력하세요! (8자 이내)"
+          placeholder="오늘의 메뉴를 입력하세요! (10자 이내)"
           name="title"
           label="Menu"
           onChange={onChange}
           onBlur={onBlur}
           errorMessage={errorMessage}
           autocomplete="off"
-          maxLength="8"
+          maxLength="10"
         />
       </div>
     </StyledDataGroup>
