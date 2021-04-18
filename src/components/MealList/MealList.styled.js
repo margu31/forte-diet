@@ -15,6 +15,7 @@ const StyledMealList = styled(motion.li)`
   cursor: default;
   position: relative;
   margin-right: 58px;
+  margin-bottom: 40px;
 
   div {
     border-radius: 50%;

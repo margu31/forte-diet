@@ -64,7 +64,6 @@ const initialState = {};
 export default function menuList(state = initialState, action) {
   switch (action.type) {
     case GET_MENU_LIST:
-      console.log('getget', { ...action.payload.data });
       return {
         ...action.payload.data
       };
@@ -73,12 +72,11 @@ export default function menuList(state = initialState, action) {
         ...state,
         [action.payload.date]: {
           ...state[action.payload.date],
-          meals: {
+          meals: [
             ...Object.entries({ ...state[action.payload.date].meals })
-              .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
               .map(data => data[1])
               .filter(meal => meal.id !== action.payload.mealId)
-          }
+          ]
         }
       };
 

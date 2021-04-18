@@ -6,7 +6,7 @@ const StyledDailyReview = styled.div`
   box-sizing: border-box;
   min-height: 110px;
   margin: 0;
-  margin-top: 25px;
+  margin-top: -10px;
   position: relative;
   z-index: 2;
 
