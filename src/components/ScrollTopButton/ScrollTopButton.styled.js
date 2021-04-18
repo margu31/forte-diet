@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { HiOutlinePlus } from 'react-icons/hi';
+import { IoArrowUpOutline } from 'react-icons/io5';
 
-const StyledPlusButton = styled(HiOutlinePlus)`
-  padding: 10px;
+const StyledTopButton = styled(IoArrowUpOutline)`
+  padding: 12px;
   box-sizing: border-box;
   width: 50px;
   height: 50px;
@@ -14,7 +14,7 @@ const StyledPlusButton = styled(HiOutlinePlus)`
   border-radius: 50%;
   position: fixed;
   bottom: 59px;
-  right: 90px;
+  right: 30px;
   cursor: pointer;
   opacity: 0.5;
 
@@ -26,4 +26,4 @@ const StyledPlusButton = styled(HiOutlinePlus)`
   }
 `;
 
-export { StyledPlusButton };
+export { StyledTopButton };

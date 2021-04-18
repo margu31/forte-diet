@@ -19,6 +19,8 @@ import {
 import MenuList from '../../components/MenuList/MenuList';
 import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
 import { updateWaterDoseAction } from 'redux/modules/healthBar';
+import ScrollTopButton from 'components/ScrollTopButton/ScrollTopButton';
+import { throttle } from 'lodash';
 
 export default function MenuListContainer({ history }) {
   const { authUser } = useSelector(state => state.auth);
@@ -94,6 +96,14 @@ export default function MenuListContainer({ history }) {
       : totalCalories;
   };
 
+  const onMoveToTop = () => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
   useEffect(() => {
     dispatch(signInAction({ uid: 'MWcXe49pXQdQk5xHduQu' }));
   }, [dispatch]);
@@ -102,6 +112,13 @@ export default function MenuListContainer({ history }) {
     if (!authUser) return null;
     dispatch(handleGetDietLists(authUser, getMenuListAction));
   }, [authUser, dispatch]);
+
+  useEffect(() => {
+    window.addEventListener(
+      'scroll',
+      throttle(() => {}, 1000)
+    );
+  }, []);
 
   if (!authUser) return null;
   const menuListData = Object.entries(menuList)
@@ -125,6 +142,7 @@ export default function MenuListContainer({ history }) {
         />
       ))}
       <MenuListToPosting onMoveToPosting={onMoveToPosting} />
+      <ScrollTopButton onMoveToTop={onMoveToTop} />
     </>
   );
 }
