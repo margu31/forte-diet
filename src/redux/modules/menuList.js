@@ -1,5 +1,5 @@
 const GET_MENU_LIST = 'mypage/GET_MENU_LIST';
-// const DELETE_MENU_LIST = 'mypage/DELETE_MENU_LIST';
+const DELETE_MENU_LIST = 'mypage/DELETE_MENU_LIST';
 // const ADD_NEW_MENU_LIST = 'mypage/ADD_NEW_MENU_LIST';
 const ADD_WATER_DOSE = 'mypage/ADD_WATER_DOSE';
 const RESET_WATER_DOSE = 'mypage/RESET_WATER_DOSE';
@@ -13,12 +13,13 @@ export const getMenuListAction = data => ({
   }
 });
 
-// export const deleteMenuListAction = data => ({
-//   type: DELETE_MENU_LIST,
-//   payload: {
-//     data
-//   }
-// });
+export const deleteMenuListAction = (date, mealId) => ({
+  type: DELETE_MENU_LIST,
+  payload: {
+    date,
+    mealId
+  }
+});
 
 // export const addNewMenuListAction = ({ data, date }) => ({
 //   type: ADD_NEW_MENU_LIST,
@@ -63,11 +64,24 @@ const initialState = {};
 export default function menuList(state = initialState, action) {
   switch (action.type) {
     case GET_MENU_LIST:
+      console.log('getget', { ...action.payload.data });
       return {
         ...action.payload.data
       };
-    // case DELETE_MENU_LIST:
-    //   return state;
+    case DELETE_MENU_LIST:
+      return {
+        ...state,
+        [action.payload.date]: {
+          ...state[action.payload.date],
+          meals: {
+            ...Object.entries({ ...state[action.payload.date].meals })
+              .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
+              .map(data => data[1])
+              .filter(meal => meal.id !== action.payload.mealId)
+          }
+        }
+      };
+
     // case ADD_NEW_MENU_LIST:
     //   if (state[action.payload.date]) return state;
 
