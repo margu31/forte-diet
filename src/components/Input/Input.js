@@ -20,26 +20,27 @@ export default function Input({
   onKeyPress,
   errorMessage,
   autocomplete,
-  $a11yHidden,
+  a11yHidden,
   onKeyUp,
   icon,
   password,
   maxLength,
+  changePasswordMode,
+  isShow,
   ...restProps
 }) {
   return (
     <StyledInputWrapper {...restProps}>
       {type && <Icons type={type} />}
-      <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
-      {/* {$a11yHidden ? (
+      {a11yHidden ? (
         <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
       ) : (
         <StyledLabel htmlFor={id}>{label}</StyledLabel>
-      )} */}
+      )}
       <StyledInput
         id={id}
         name={name}
-        type={type}
+        type={isShow === true ? "text" : isShow === false ? "password" : type}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
@@ -54,7 +55,9 @@ export default function Input({
         <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>
       ) : null}
       {type === "password" ? (
-        <Button>{<Icons type="showPassword" />}</Button>
+        <Button onClick={changePasswordMode}>
+          {<Icons type="showPassword" />}
+        </Button>
       ) : null}
     </StyledInputWrapper>
   );
