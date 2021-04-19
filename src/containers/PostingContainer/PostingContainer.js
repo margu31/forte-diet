@@ -13,9 +13,18 @@ import DataGroup from 'components/DataGroup/DataGroup';
 import { PostMeal } from 'api/firestore';
 import { getMenuListAction } from 'redux/modules/menuList';
 
+const today = new Date();
+const year = today.getFullYear();
+const getMonth = today.getMonth() + 1;
+const month = getMonth >= 10 ? getMonth : '0' + getMonth;
+const date = today.getDate();
+
+const maxDate = `${year}-${month}-${date}`;
+const day = today.toString().slice(0, 3).toUpperCase();
+
 const initialPostingFormValues = {
   id: 0,
-  date: '',
+  date: `${maxDate} ${day}`,
   photo: null,
   calories: 0,
   review: '',
@@ -44,7 +53,7 @@ function PostingContainer({ history }) {
         ...mealData,
         hasError: {
           ...mealData.hasError,
-          title: '한 글자 이상 입력해주세요!'
+          title: '한 글자 이상, 10자 이내로 입력해주세요!'
         }
       });
     } else {
@@ -114,7 +123,7 @@ function PostingContainer({ history }) {
 
     Object.entries(mealData).forEach(([key, value]) => {
       if (key === 'hasError') return;
-      // console.log(`${key}: ${value}`);
+      console.log(`${key}: ${value}`);
       formData.append(key, value);
     });
 
@@ -132,7 +141,7 @@ function PostingContainer({ history }) {
 
     const newFormData = Object.fromEntries(formData.entries());
 
-    // console.log(newFormData);
+    console.log(newFormData);
 
     PostMeal(authUser, newFormData);
     dispatch(getMenuListAction()); // myPage 실시간 업데이트 코드 추가
@@ -155,6 +164,10 @@ function PostingContainer({ history }) {
     }
   };
 
+  const goBack = () => {
+    history.goBack();
+  };
+
   return (
     <section>
       <Title logoIcon='true'>우식이의 오늘의 식단!</Title>
@@ -164,6 +177,7 @@ function PostingContainer({ history }) {
           onBlur={onBlur}
           onKeyPress={onKeyPress}
           errorMessage={mealData.hasError}
+          maxDate={maxDate}
         />
         <ReviewBox
           id='mealReview'
@@ -181,7 +195,9 @@ function PostingContainer({ history }) {
           onChange={onChange}
         />
         <div>
-          <Button type='button'>취소</Button>
+          <Button type='button' onSubmit={goBack}>
+            취소
+          </Button>
           <Button onSubmit={onSubmit}>등록!</Button>
         </div>
       </Form>
