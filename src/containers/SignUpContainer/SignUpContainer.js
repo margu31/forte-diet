@@ -9,7 +9,6 @@ import {
 import { signUpWithEmailAndPassword } from "api/auth";
 
 const formValue = {
-  id: null,
   password: null,
   email: null,
   gender: null,
@@ -17,7 +16,6 @@ const formValue = {
   nickname: null,
   weight: null,
   hasError: {
-    id: null,
     password: null,
     email: null,
     gender: null,
@@ -163,10 +161,9 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
       console.log(`${key}, ${value}`);
     });
 
-    const { id, email, password, weight, height, gender, nickname } = state;
+    const { email, password, weight, height, gender, nickname } = state;
 
-    signUpWithEmailAndPassword(id, password, {
-      email,
+    signUpWithEmailAndPassword(email, password, {
       weight,
       height,
       gender,
@@ -176,12 +173,10 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
   };
 
   const onBlur = (e) => {
-    if (e.target.name === "id") {
-      emailValid(e.target.value);
-    } else if (e.target.name === "password") {
+    if (e.target.name === "password") {
       passwordlValid(e.target.value);
     } else if (e.target.name === "email") {
-      idlValid(e.target.value);
+      emailValid(e.target.value);
     } else if (e.target.name === "height") {
       heightlValid(e.target.value);
     } else if (e.target.name === "weight") {
@@ -191,17 +186,17 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
     }
   };
 
-  const onKeyUp = (e) => {
+  const isDisabled =
+    state.hasError.email ||
+    state.hasError.password ||
+    !state.email ||
+    !state.password;
+
+  window.addEventListener("keyup", (e) => {
     if (e.key === "Escape") {
       closeModal();
     }
-  };
-
-  const isDisabled =
-    state.hasError.id ||
-    state.hasError.password ||
-    !state.id ||
-    !state.password;
+  });
 
   return (
     <SignUpForm
@@ -211,7 +206,6 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
       disabled={isDisabled}
       errorMessage={state.hasError}
       closeModal={closeModal}
-      onKeyUp={onKeyUp}
       {...restProps}
     />
   );
