@@ -1,6 +1,10 @@
 import Input from "components/Input/Input";
 import styled from "styled-components";
 
+export const StyledInputWrapper = styled.div`
+  margin-top: 4rem;
+`;
+
 export const StyledSettingInput = styled(Input)`
   label {
     display: inline-block;
@@ -37,4 +41,8 @@ export const StyledRadio = styled.div`
   input {
     display: inline-block;
   } */
+`;
+
+export const StyledButtonGroup = styled.div`
+  padding-top: 20px;
 `;
