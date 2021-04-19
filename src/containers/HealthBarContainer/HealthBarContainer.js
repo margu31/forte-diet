@@ -26,10 +26,6 @@ export default function HealthBarContainer() {
     return `${dayNum} ${dayStr}`;
   };
 
-  // const getTotalWaterDose = () => {
-  //   healthBar;
-  // };
-
   useEffect(() => {
     dispatch(signInAction({ uid: 'MWcXe49pXQdQk5xHduQu' }));
   }, [dispatch]);
@@ -40,6 +36,7 @@ export default function HealthBarContainer() {
   }, [authUser, dispatch]);
 
   if (!authUser) return null;
+  if (!healthBar[0]) return null;
 
   return (
     <HealthBar

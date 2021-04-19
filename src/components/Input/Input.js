@@ -45,8 +45,7 @@ export default function Input({
         onChange={onChange}
         onBlur={onBlur}
         onKeyPress={onKeyPress}
-        autoComplete={autocomplete}
-        // autoComplete="off"
+        autoComplete="off"
         maxLength={maxLength}
         {...restProps}
         onKeyUp={onKeyUp}

@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { normalize } from "polished";
+import { createGlobalStyle } from 'styled-components';
+import { normalize } from 'polished';
 
 const GlobalStyle = createGlobalStyle`
 ${normalize()}
@@ -53,17 +53,19 @@ html {
 `;
 
 export const palette = {
-  themePrimary: "#F3B34C",
-  themeSecondary: "#395B9D",
-  themePrimaryThick: "#F26830",
-  themeBright: "#F4F3EF", // 배경 베이지색
-  themeBrightYellow: "#FEFDF8", // input, textarea 배경색
-  themeBrightGray: "#B6B6B6",
-  themeDark: "#626262",
-  themeDefault: "#14182C",
-  themeDisable: "#878787",
-  themeHover: "#F5DEB7",
-  themeDefaultWhite: "#FFF",
+  themePrimary: '#F3B34C',
+  themeSecondary: '#395B9D',
+  themePrimaryThick: '#F26830',
+  themeTertiary: '#a2bf63',
+  themeQuaternary: '#ed5e5e',
+  themeBright: '#F4F3EF', // 배경 베이지색
+  themeBrightYellow: '#FEFDF8', // input, textarea 배경색
+  themeBrightGray: '#B6B6B6',
+  themeDark: '#626262',
+  themeDefault: '#14182C',
+  themeDisable: '#878787',
+  themeHover: '#F5DEB7',
+  themeDefaultWhite: '#FFF'
 };
 
 export default GlobalStyle;

@@ -2,14 +2,14 @@ import Input from "components/Input/Input";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import StyledDataGroup from "./DataGroup.styled";
 
-const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage }) => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const getMonth = today.getMonth() + 1;
-  const month = getMonth >= 10 ? getMonth : "0" + getMonth;
-  const date = today.getDate();
+const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage, maxDate }) => {
+  // const today = new Date();
+  // const year = today.getFullYear();
+  // const getMonth = today.getMonth() + 1;
+  // const month = getMonth >= 10 ? getMonth : "0" + getMonth;
+  // const date = today.getDate();
 
-  const maxDate = `${year}-${month}-${date}`;
+  // const maxDate = `${year}-${month}-${date}`;
 
   return (
     <StyledDataGroup>
@@ -28,7 +28,7 @@ const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage }) => {
           label="Date"
           onChange={onChange}
           max={maxDate}
-          value={maxDate.toString()}
+          defaultValue={maxDate.toString()}
         />
         <RadioGroup groupTitle="Type" onChange={onChange} />
         <Input
@@ -44,14 +44,13 @@ const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage }) => {
         <Input
           type="text"
           id="mealTitle"
-          placeholder="오늘의 메뉴를 입력하세요! (8자 이내)"
+          placeholder="오늘의 메뉴를 입력하세요! (10자 이내)"
           name="title"
           label="Menu"
           onChange={onChange}
           onBlur={onBlur}
           errorMessage={errorMessage}
-          autocomplete="off"
-          maxLength="8"
+          maxLength="10"
         />
       </div>
     </StyledDataGroup>

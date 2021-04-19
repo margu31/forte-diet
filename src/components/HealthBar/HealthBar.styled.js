@@ -1,117 +1,133 @@
 import styled, { css } from 'styled-components';
-import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
-import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
 import { motion } from 'framer-motion';
-const StyledWaterDose = styled(WaterDose)``;
+import { IoWater } from 'react-icons/io5';
+import { RiRestaurantFill } from 'react-icons/ri';
 
-const StyledDonut = styled(Donut)``;
+const StyledWaterDose = styled(IoWater)``;
+const StyledCalories = styled(RiRestaurantFill)``;
 
-const StyledButton = styled(motion.button)`
-  width: 120px;
-  padding: 15px 0 10px 0;
-  border-radius: 5px 0 0 5px;
-  text-align: center;
-  font-size: 1.3rem;
-  ${({ theme }) => css`
-    background: ${theme.themeSecondary};
-    color: ${theme.themeDefaultWhite};
-    box-shadow: 0 2px 5px ${theme.themeSecondary};
-  `}
-  cursor: pointer;
-  outline: none;
-  position: fixed;
-  top: 123px;
-  right: 20px;
-  z-index: 2;
-`;
-
-const StyledHealthBar = styled(motion.div)`
+const StyledNav = styled(motion.nav)`
   width: 130px;
-  height: 480px;
-  ${({ theme }) => css`
-    border: 4px solid ${theme.themeSecondary};
-    background: ${theme.themeBrightYellow};
-    box-shadow: 0 2px 5px ${theme.themeBrightGray};
-  `}
-  border-radius: 10px;
+  height: 395px;
   position: fixed;
   top: 100px;
-  right: 20px;
-  display: flex;
-  flex-flow: column;
+  right: 10px;
   overflow: hidden;
   font-size: 1.3rem;
-  padding: 15px 10px;
   z-index: 1;
-
-  /* $(StyledButton) {
-    width: 120px;
-    padding: 15px 0 10px 10px;
-    border-radius: 5px 0 0 5px;
-    text-align: left;
-    font-size: 1.3rem;
-    ${({ theme }) => css`
-    background: ${theme.themeSecondary};
-    color: ${theme.themeDefaultWhite};
-    box-shadow: 0 2px 5px ${theme.themeSecondary};
-  `}
-    cursor: pointer;
-    outline: none;
-  } */
+  display: flex;
+  border-radius: 5px;
 `;
 
-const StyledContainer = styled.ul`
+const StyledLi = styled(motion.li)`
+  width: 85%;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1px;
   display: flex;
   flex-flow: column nowrap;
-  margin-top: 65px;
+  margin: 0 auto 25px;
+  border-radius: 5px;
+  ${({ theme }) => css`
+    background: linear-gradient(
+      to bottom,
+      ${theme.themePrimaryThick},
+      ${theme.themePrimary}
+    );
+  `}
 
-  li {
-    font-size: 1.1rem;
-    text-align: center;
-    padding: 5px 0 0 0;
+  div {
     display: flex;
     flex-flow: column nowrap;
-    border-bottom: 2px solid rgba(242, 104, 48, 0.2);
-    margin-bottom: 15px;
+    ${({ theme }) => css`
+      background: ${theme.themeDefaultWhite};
+    `}
+    padding: 15px 0px 10px 0;
+    border-radius: 4px;
 
     h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
       ${({ theme }) => css`
-        color: ${theme.themeSecondary};
+        color: ${theme.themePrimaryThick};
       `}
     }
 
     div {
+      color: rgba(20, 24, 44, 0.8);
+      padding: 2px;
       display: flex;
+      flex-flow: row;
       justify-content: center;
+      align-items: center;
+    }
 
-      span {
-        margin-bottom: 5px;
-        color: rgba(20, 24, 44, 0.8);
-        padding: 4px;
-      }
-
-      ${StyledDonut} + span {
-        margin-bottom: 10px;
-      }
-
-      ${StyledWaterDose} {
-        width: 18px;
-        height: 19px;
-      }
-
-      ${StyledDonut} {
-        height: 20px;
-      }
+    span {
+      height: 7px;
+    }
+    ${StyledWaterDose} {
+      width: 16px;
+      height: 18px;
+    }
+    ${StyledCalories} {
+      width: 16px;
+      height: 18px;
+      margin-right: 4px;
     }
   }
 `;
 
+const StyledHeader = styled(motion.div)`
+  width: inherit;
+  height: 40px;
+  ${({ theme }) => css`
+    background: linear-gradient(
+      to left,
+      ${theme.themePrimaryThick},
+      ${theme.themePrimary}
+    );
+  `}
+`;
+
+const StyledContainer = styled(motion.div)`
+  width: inherit;
+  height: inherit;
+  ${({ theme }) => css`
+    background: ${theme.themeDefaultWhite};
+  `}
+
+  ${StyledHeader}
+`;
+
+const StyledUl = styled(motion.ul)`
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 20px;
+
+  ${StyledLi}
+`;
+
+const StyledButton = styled(motion.button)`
+  padding: 13px 13px 5px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  position: fixed;
+  top: 101px;
+  right: 10px;
+  z-index: 2;
+  background: none;
+`;
+
 export {
-  StyledHealthBar,
+  StyledNav,
   StyledContainer,
+  StyledUl,
+  StyledLi,
   StyledWaterDose,
-  StyledDonut,
-  StyledButton
+  StyledButton,
+  StyledHeader,
+  StyledCalories
 };
