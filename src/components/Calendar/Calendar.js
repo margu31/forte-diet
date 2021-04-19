@@ -18,7 +18,7 @@ export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const monthNames = [
     'January',
     'February',
@@ -85,7 +85,7 @@ export default function Calendar() {
     return $background;
   };
 
-  const styledTodayProps = date => {
+  const styledTodayBorderProps = date => {
     const today = new Date();
     const $border = [];
 
@@ -93,6 +93,15 @@ export default function Calendar() {
       $border.push(`1px solid ${palette.themeBrightGray}`);
 
     return $border;
+  };
+
+  const styledSelectedColorProps = date => {
+    const $selectedColor = [];
+
+    if (isEqualDate(date, currentDate))
+      $selectedColor.push(palette.themeDefaultWhite);
+
+    return $selectedColor;
   };
 
   const onClickPrev = () => {
@@ -125,7 +134,14 @@ export default function Calendar() {
       {isActive && (
         <>
           <StyledCalendarModal onClick={() => setIsActive(false)} />
-          <StyledCalendarDialog>
+          <StyledCalendarDialog
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.1
+            }}
+            exit={{ y: 10, opacity: 0 }}
+          >
             <h2 aria-hidden='true'>캘린더</h2>
             <StyledNav role='navigation' aria-labelledby='year-title'>
               <button onClick={onClickPrev}>
@@ -149,7 +165,8 @@ export default function Calendar() {
                   key={i}
                   $styledColorProps={styledColorProps(date)}
                   $styledBackgroundProps={styledBackgroundProps(date)}
-                  $styledTodayProps={styledTodayProps(date)}
+                  $styledTodayBorderProps={styledTodayBorderProps(date)}
+                  $styledSelectedColorProps={styledSelectedColorProps(date)}
                 >
                   {date.getDate()}
                 </StyledDate>
