@@ -10,8 +10,6 @@ export default function SignUpForm({
   onSubmit,
   disabled,
   closeModal,
-  onClick,
-  onKeyUp,
 }) {
   return (
     <StyledSignUpForm>
@@ -24,6 +22,7 @@ export default function SignUpForm({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        a11yHidden={true}
       />
       <SignUpFormInput
         label="패스워드"
@@ -34,7 +33,7 @@ export default function SignUpForm({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
-        onKeyUp={onKeyUp}
+        a11yHidden={true}
       />
       <SignUpFormInput
         label="별명"
@@ -45,6 +44,7 @@ export default function SignUpForm({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        a11yHidden={true}
       />
       <SignUpFormInput
         label="신장"
@@ -55,6 +55,7 @@ export default function SignUpForm({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        a11yHidden={true}
       />
       <SignUpFormInput
         label="몸무게"
@@ -65,6 +66,7 @@ export default function SignUpForm({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        a11yHidden={true}
       />
       <SignUpFormInput
         label="성별"
@@ -75,6 +77,7 @@ export default function SignUpForm({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
+        a11yHidden={true}
       />
       <Button
         $width="300"
