@@ -18,6 +18,7 @@ const ReviewBox = ({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
+        autoComplete="off"
       ></textarea>
       {hasError && <p>{hasError}</p>}
     </StyledReviewBox>

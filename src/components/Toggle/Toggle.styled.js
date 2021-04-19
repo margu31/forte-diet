@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { palette } from "../../styles";
 
 const StyledToggle = styled.div`
   font-size: 1.1rem;
@@ -20,8 +21,8 @@ const StyledToggle = styled.div`
     width: 88px;
     height: 32px;
     border-radius: 50px;
-    border: 4px solid #f26830;
-    background-color: #fefdf8;
+    border: 4px solid ${palette.themePrimaryThick};
+    background-color: ${palette.themeBrightYellow};
 
     span {
       position: absolute;
@@ -43,7 +44,7 @@ const StyledToggle = styled.div`
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background-color: #f26830;
+    background-color: ${palette.themePrimaryThick};
     left: 3px;
     top: 50%;
     transform: translateY(-50%);
@@ -51,10 +52,10 @@ const StyledToggle = styled.div`
   }
 
   input:checked + label {
-    background-color: #f26830;
+    background-color: ${palette.themePrimaryThick};
 
     & span:last-child {
-      background-color: #fefdf8;
+      background-color: ${palette.themeBrightYellow};
       right: 5px;
       width: 18px;
       height: 18px;
@@ -63,7 +64,7 @@ const StyledToggle = styled.div`
 
     & span:nth-child(2) {
       display: inline-block;
-      color: #fefdf8;
+      color: ${palette.themeBrightYellow};
       left: 9px;
     }
 

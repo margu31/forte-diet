@@ -1,37 +1,39 @@
-import styled, { css } from 'styled-components';
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import { palette } from "styles";
 
-export const StyledButton = styled.button`
-  ${({ $width, $height, $fontSize, $backgroundColor, $color, $hoverBackground, $hoverColor }) =>
-    css`
-      width: ${$width}px;
-      height: ${$height}px;
-      font-size: ${$fontSize}rem;
-      background-color: ${$backgroundColor};
-      color: ${$color};
-      line-height: ${$height}px;
-
-      &:hover {
-        background-color: ${$hoverBackground};
-        color: ${$hoverColor};
-      }
-    `}
-
-  ${({ $borderColor }) => {
-    return (
-      $borderColor &&
-      css`
-        border: 1px solid ${$borderColor};
-      `
-    );
-  }}
-
-  font-family: Chungchunsidae;
+export const StyledButton = styled(motion.button)`
   display: inline-block;
-  outline: none;
-  border-radius: 5px;
+  padding: 1.25rem 4rem 1.1rem;
+  /* width: 100px; */
+  /* height: 30px; */
+  font-size: 1.2rem;
+  color: ${palette.themeDefault};
+  border-radius: 0.5rem;
+  background-color: #9f9f9f33;
   cursor: pointer;
 
+  &:hover {
+    background-color: ${palette.themeBrightGray};
+  }
+
   & + & {
-    margin-left: 20px;
+    margin-left: 2rem;
+    background-color: #f2683033;
+    color: ${palette.themePrimaryThick};
+
+    &:hover {
+      background-color: ${palette.themePrimaryThick};
+      color: ${palette.themeDefaultWhite};
+    }
+  }
+
+  /* 접근성 - 키보드 포커싱일 경우 box-shadow */
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px ${palette.themePrimary};
+  }
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
   }
 `;

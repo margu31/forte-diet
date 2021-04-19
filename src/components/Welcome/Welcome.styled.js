@@ -1,26 +1,34 @@
 import styled, { css } from 'styled-components';
 import { palette } from '../../styles';
 import Button from 'components/Button/Button';
+import Dropdown from '../Dropdown/Dropdown';
 
 /* 래퍼 */
 
 export const StyledWelcomeWrapper = styled.section`
   min-height: 500px;
-  background-image: url('/example-bg.jpg');
+  background: url('/home-welcome.jpg');
   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
 `;
 
 /* 웰컴 컨텐츠 */
 
-const StyledDiv = styled.div`
+const MessageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 7% 2rem 7% 25rem;
-  width: 40vw;
+  padding: 7% 2rem 7% 20rem;
+  width: 100vw;
   min-height: 300px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+`;
+
+const StyledDiv = styled.div`
+  width: 40vw;
 `;
 
 const StyledP = styled.p`
@@ -44,38 +52,40 @@ const StyledTitle = styled.h2`
 
 const TutorialBtn = styled(Button)`
   padding: 1rem 2rem;
-  font-size: 1.2rem;
   background-color: transparent;
   border-radius: 50px;
-  color: ${palette.themeDefaultWhite};
-  border: 2px solid ${palette.themeDefaultWhite};
+  color: ${palette.themePrimary};
+  border: 2px solid ${palette.themePrimary};
 `;
 
 export const WelcomeContent = () => (
-  <StyledDiv>
-    <StyledTitle>우연히, 식단</StyledTitle>
-    <StyledP>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.
-    </StyledP>
-    <TutorialBtn>튜토리얼로 이동!</TutorialBtn>
-  </StyledDiv>
+  <MessageWrapper>
+    <StyledDiv>
+      <StyledTitle>우연히, 식단</StyledTitle>
+      <StyledP>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.
+      </StyledP>
+      <TutorialBtn>튜토리얼로 이동!</TutorialBtn>
+    </StyledDiv>
+  </MessageWrapper>
 );
 
 /* 검색창 */
 
 const SearchSection = styled.section`
   position: relative;
-  padding-left: 25rem;
+  padding-left: 20rem;
   flex-grow: 1;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
 `;
 
 const SearchInputForm = styled.form`
   position: absolute;
   top: 50%;
-  transform: translate3d(0, -50%, 0);
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 `;
 
 const SerachBar = styled.div`
@@ -132,6 +142,7 @@ export const Search = () => (
         <SerachBar>
           <SearchLabel>식단 검색: </SearchLabel>
           <SearchInput placeholder='브로콜리, 카레 ...' />
+          <Dropdown selects={['제라드', '효리즈만']} />
           <SearchBtn>Find</SearchBtn>
         </SerachBar>
       </fieldset>

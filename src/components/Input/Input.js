@@ -17,12 +17,14 @@ export default function Input({
   label,
   onChange,
   onBlur,
+  onKeyPress,
   errorMessage,
   autocomplete,
   $a11yHidden,
   onKeyUp,
   icon,
   password,
+  maxLength,
   ...restProps
 }) {
   return (
@@ -41,8 +43,10 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
+        onKeyPress={onKeyPress}
         autoComplete={autocomplete}
         // autoComplete="off"
+        maxLength={maxLength}
         {...restProps}
         onKeyUp={onKeyUp}
       ></StyledInput>
