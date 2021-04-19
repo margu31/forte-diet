@@ -19,11 +19,12 @@ const month = getMonth >= 10 ? getMonth : "0" + getMonth;
 const date = today.getDate();
 
 const maxDate = `${year}-${month}-${date}`;
+const defaultDate = maxDate.slice(2, 10).replace(/-/g, "");
 const day = today.toString().slice(0, 3).toUpperCase();
 
 const initialPostingFormValues = {
   id: 0,
-  date: `${maxDate} ${day}`,
+  date: `${defaultDate} ${day}`,
   photo: null,
   calories: 0,
   review: "",
