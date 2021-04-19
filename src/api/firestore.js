@@ -83,7 +83,33 @@ export const addWaterDose = (
   }
 };
 
+export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
+  const newMeals = dietList[date].meals.filter(meal => meal.id !== mealId);
+
+  try {
+    const user = await users.doc(uid);
+    user.set(
+      {
+        dietList: {
+          [date]: {
+            meals: newMeals
+          }
+        }
+      },
+      { merge: true }
+    );
+
+    return true;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+
+  /* diets에서도 지워야 함. */
+};
+
 /* 포스팅 페이지 */
+
+// export const newMeal = async
 
 export const PostMeal = async ({ uid }, mealdata) => {
   try {

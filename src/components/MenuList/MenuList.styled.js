@@ -6,7 +6,6 @@ const StyledMenuList = styled(motion.ul)`
   min-height: 340px;
   max-width: 900px;
   border: none;
-  /* border-left: 2px solid #eaeaea; */
   border-left: 2px solid #dbdbdb;
   margin-left: 17%;
   margin-top: 120px; /* 위쪽 nav 94px */

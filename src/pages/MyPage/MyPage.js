@@ -7,7 +7,7 @@ import CalendarContainer from 'containers/CalendarContainer/CalendarContainer';
 export default function MyPage({ history }) {
   return (
     <StyledMyPageWrapper>
-      {/* <HealthBarContainer /> */}
+      <HealthBarContainer />
       <MenuListContainer history={history} />
       <CalendarContainer />
     </StyledMyPageWrapper>

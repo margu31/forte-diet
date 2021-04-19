@@ -14,7 +14,7 @@ const StyledCalendarButton = styled.span`
   border-radius: 50%;
   position: fixed;
   bottom: 59px;
-  right: 125px;
+  right: 150px;
   cursor: pointer;
   opacity: 0.5;
 

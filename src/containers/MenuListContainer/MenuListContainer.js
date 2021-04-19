@@ -5,18 +5,22 @@ import {
   handleGetDietLists,
   addOrEditDailyReview,
   removeDailyReview,
-  addWaterDose
+  addWaterDose,
+  removeMeal
 } from '../../api/firestore';
 import {
   getMenuListAction,
   addWaterDoseAction,
   resetWaterDoseAction,
   addDailyReviewAction,
-  DeleteDailyReviewAction
+  DeleteDailyReviewAction,
+  deleteMenuListAction
 } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
 import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
 import { updateWaterDoseAction } from 'redux/modules/healthBar';
+import ScrollTopButton from 'components/ScrollTopButton/ScrollTopButton';
+import { throttle } from 'lodash';
 
 export default function MenuListContainer({ history }) {
   const { authUser } = useSelector(state => state.auth);
@@ -77,12 +81,27 @@ export default function MenuListContainer({ history }) {
     history.push('/posting');
   };
 
+  const onDelete = (date, mealId) => {
+    dispatch(
+      removeMeal({ uid: 'MWcXe49pXQdQk5xHduQu' }, menuList, date, mealId)
+    );
+    dispatch(deleteMenuListAction(date, mealId));
+  };
+
   const getTotalCalories = meals => {
     const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
 
     return totalCalories > 999
       ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       : totalCalories;
+  };
+
+  const onMoveToTop = () => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   };
 
   useEffect(() => {
@@ -93,6 +112,13 @@ export default function MenuListContainer({ history }) {
     if (!authUser) return null;
     dispatch(handleGetDietLists(authUser, getMenuListAction));
   }, [authUser, dispatch]);
+
+  useEffect(() => {
+    window.addEventListener(
+      'scroll',
+      throttle(() => {}, 1000)
+    );
+  }, []);
 
   if (!authUser) return null;
   const menuListData = Object.entries(menuList)
@@ -112,9 +138,11 @@ export default function MenuListContainer({ history }) {
           onRemove={onRemove}
           onAdd={onAdd}
           onReset={onReset}
+          onDelete={onDelete}
         />
       ))}
       <MenuListToPosting onMoveToPosting={onMoveToPosting} />
+      <ScrollTopButton onMoveToTop={onMoveToTop} />
     </>
   );
 }
