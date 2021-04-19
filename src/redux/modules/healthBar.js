@@ -1,5 +1,6 @@
 const GET_HEALTH_BAR_LIST = 'healthbar/GET_HEALTH_BAR_LIST';
 const UPDATE_WATER_DOSE = 'healthbar/UPDATE_WATER_DOSE';
+const UPDATE_CALORIES = 'healthbar/UPDATE_CALORIES';
 
 export const getHealthBarListAction = data => ({
   type: GET_HEALTH_BAR_LIST,
@@ -13,6 +14,14 @@ export const updateWaterDoseAction = (date, waterDose) => ({
   payload: {
     date,
     waterDose
+  }
+});
+
+export const updateCaloriesAction = (date, mealId) => ({
+  type: UPDATE_CALORIES,
+  payload: {
+    date,
+    mealId
   }
 });
 
@@ -34,6 +43,17 @@ export default function healthBar(state = initialState, action) {
       return state.map(data =>
         data.meals[0].date === action.payload.date
           ? { ...data, waterDose: action.payload.waterDose }
+          : data
+      );
+    case UPDATE_CALORIES:
+      return state.map(data =>
+        data.meals[0].date === action.payload.date
+          ? {
+              ...data,
+              meals: data.meals.filter(
+                data2 => data2.id !== action.payload.mealId
+              )
+            }
           : data
       );
 
