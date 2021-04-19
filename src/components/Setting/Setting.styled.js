@@ -6,10 +6,22 @@ export const StyledFormWrapper = styled.div`
   padding: 0 0 4rem 1.8rem;
   border-radius: 5px;
   /* background-color: ${palette.themeBrightYellow}; */
-  background-color: inherit;
+  /* background-color: inherit; */
+  /* box-shadow: 0 0 20px 5px ${palette.themeTertiary}; */
   /* box-shadow: 0 0 10px 5px ${palette.themePrimary}; */
-  box-shadow: 0 0 20px 5px ${palette.themeTertiary};
   /* box-shadow: 0 0 20px 5px ${palette.themePrimaryThick}; */
+  /* backdrop-filter: blur(5px); */
+  display: flex;
+`;
+export const StyledImage = styled.div`
+  /* background-image: url("/apples-1952999_1920.jpg"); */
+  /* background-image: url("/cooking-utensils-1149464_1920.jpg"); */
+  background-image: url("/smoothie-4625476_1920.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 420px;
+  height: 500px;
 `;
 
 export const StyledInputWrapper = styled.div`
@@ -48,7 +60,7 @@ export const StyledSettingInput = styled.div`
     font-size: 1.2rem;
     width: 60px;
     text-align: right;
-    color: ${palette.themeDefaultWhite};
+    /* color: ${palette.themeDefaultWhite}; */
   }
 
   input {
@@ -64,6 +76,8 @@ export const StyledSettingInput = styled.div`
 
     border: 0;
     border-bottom: 1px solid ${palette.themePrimary};
+
+    /* color: ${palette.themeDefaultWhite}; */
 
     &:focus {
       border: 2px solid;
@@ -95,7 +109,7 @@ export const StyledRadio = styled.div`
     text-align: right;
     width: 60px;
     margin-right: 2rem;
-    color: ${palette.themeDefaultWhite};
+    /* color: ${palette.themeDefaultWhite}; */
   }
 
   label {
@@ -103,6 +117,8 @@ export const StyledRadio = styled.div`
     width: 151px;
     height: 35px;
     line-height: 35px;
+
+    background-color: inherit;
 
     &:hover {
       /* border: 2px solid #f5af19; */
