@@ -9,21 +9,22 @@ export const LoginForm = ({
   onSubmit,
   disabled,
   closeModal,
-  onKeyUp,
+  changePasswordMode,
+  isShow,
 }) => {
   return (
     <StyledForm>
       <span>우연히, 식단</span>
       <LoginFormInput
-        label="이메일"
-        id="id"
-        name="id"
-        type="id"
+        label="email"
+        id="email"
+        name="email"
+        type="email"
         placeholder="이메일을 입력해주세요."
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
-        onKeyUp={onKeyUp}
+        a11yHidden={true}
       />
       <LoginFormInput
         label="비밀번호"
@@ -34,8 +35,9 @@ export const LoginForm = ({
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
-        onKeyUp={onKeyUp}
-        $a11yHidden="a11yHidden"
+        a11yHidden={true}
+        changePasswordMode={changePasswordMode}
+        isShow={isShow}
       />
       <Button
         $width="300"

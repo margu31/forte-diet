@@ -24,7 +24,8 @@ export const isHeight = (height) => {
 };
 
 export const isNickname = (nickname) => {
-  const nicknameRegExp = /^(?=.*[a-z]).{1,5}$/i;
+  const nicknameRegExp = /^(?=.*[a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9|~!^*()_+-|<>?:;`,{}\]\[/\'\"\\\']).{1,10}$/i;
+
   return nicknameRegExp.test(nickname);
 };
 

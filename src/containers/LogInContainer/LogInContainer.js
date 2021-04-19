@@ -6,15 +6,13 @@ import { handleSignInWithEmailAndPassword } from "api/auth";
 import { LoginForm } from "components/LoginForm/LoginForm";
 
 const formValue = {
-  id: null,
+  email: null,
   password: null,
   hasError: {
-    id: null,
+    email: null,
     password: null,
   },
 };
-
-// const ShowPaasord = false;
 
 export default function LogInContainer({
   a11yHidden,
@@ -24,7 +22,10 @@ export default function LogInContainer({
   const dispatch = useDispatch();
 
   const [state, setState] = useState(formValue);
+  const [isShow, setIsShow] = useState(false);
+
   const onChange = (e) => {
+    e.preventDefault();
     setState({ ...state, [e.target.name]: e.target.value.trim() });
   };
 
@@ -34,7 +35,7 @@ export default function LogInContainer({
         ...state,
         hasError: {
           ...state.hasError,
-          id: "이메일 형식에 맞지 않습니다.",
+          email: "이메일 형식에 맞지 않습니다.",
         },
       });
     } else {
@@ -76,14 +77,18 @@ export default function LogInContainer({
       console.log(`${key}, ${value}`);
     });
     dispatch(
-      handleSignInWithEmailAndPassword(state.id, state.password, signInAction)
+      handleSignInWithEmailAndPassword(
+        state.email,
+        state.password,
+        signInAction
+      )
     );
 
     closeModal();
   };
 
   const onBlur = (e) => {
-    if (e.target.name === "id") {
+    if (e.target.name === "email") {
       emailValid(e.target.value);
     } else {
       state.password = e.target.value;
@@ -91,17 +96,17 @@ export default function LogInContainer({
     }
   };
 
-  const onKeyUp = (e) => {
+  window.addEventListener("keyup", (e) => {
     if (e.key === "Escape") {
       closeModal();
     }
-  };
+  });
 
-  // const ChangePasswordMode = () => {
-  //   setState(({ isPasswordVisible }) => ({
-  //     isPasswordVisible: !isPasswordVisible,
-  //   }));
-  // };
+  const changePasswordMode = (e) => {
+    e.preventDefault();
+    setIsShow(!isShow);
+    e.target.focus();
+  };
 
   const isDisabled =
     state.hasError.id ||
@@ -117,9 +122,9 @@ export default function LogInContainer({
       disabled={isDisabled}
       errorMessage={state.hasError}
       closeModal={closeModal}
-      onKeyUp={onKeyUp}
       {...restProps}
-      a11yHidden={a11yHidden}
+      changePasswordMode={changePasswordMode}
+      isShow={isShow}
     />
   );
 }

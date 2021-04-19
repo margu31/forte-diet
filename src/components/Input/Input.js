@@ -19,11 +19,14 @@ export default function Input({
   onBlur,
   onKeyPress,
   errorMessage,
+  autocomplete,
   a11yHidden,
   onKeyUp,
   icon,
   password,
   maxLength,
+  changePasswordMode,
+  isShow,
   ...restProps
 }) {
   return (
@@ -37,7 +40,7 @@ export default function Input({
       <StyledInput
         id={id}
         name={name}
-        type={type}
+        type={isShow === true ? "text" : isShow === false ? "password" : type}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
@@ -51,7 +54,9 @@ export default function Input({
         <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>
       ) : null}
       {type === "password" ? (
-        <Button>{<Icons type="showPassword" />}</Button>
+        <Button onClick={changePasswordMode}>
+          {<Icons type="showPassword" />}
+        </Button>
       ) : null}
     </StyledInputWrapper>
   );
