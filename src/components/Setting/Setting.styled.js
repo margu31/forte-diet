@@ -5,9 +5,11 @@ export const StyledFormWrapper = styled.div`
   margin-top: 5rem;
   padding: 0 0 4rem 1.8rem;
   border-radius: 5px;
-  background-color: ${palette.themeBrightYellow};
+  /* background-color: ${palette.themeBrightYellow}; */
+  background-color: inherit;
   /* box-shadow: 0 0 10px 5px ${palette.themePrimary}; */
-  box-shadow: 0 0 5px 5px ${palette.themeTertiary};
+  box-shadow: 0 0 20px 5px ${palette.themeTertiary};
+  /* box-shadow: 0 0 20px 5px ${palette.themePrimaryThick}; */
 `;
 
 export const StyledInputWrapper = styled.div`
@@ -46,6 +48,7 @@ export const StyledSettingInput = styled.div`
     font-size: 1.2rem;
     width: 60px;
     text-align: right;
+    color: ${palette.themeDefaultWhite};
   }
 
   input {
@@ -57,6 +60,7 @@ export const StyledSettingInput = styled.div`
     margin-bottom: 2rem;
     padding-right: 35px;
     border-radius: 0;
+    background-color: inherit;
 
     border: 0;
     border-bottom: 1px solid ${palette.themePrimary};
@@ -91,6 +95,7 @@ export const StyledRadio = styled.div`
     text-align: right;
     width: 60px;
     margin-right: 2rem;
+    color: ${palette.themeDefaultWhite};
   }
 
   label {
@@ -107,5 +112,10 @@ export const StyledRadio = styled.div`
 `;
 
 export const StyledButtonGroup = styled.div`
-  padding-top: 20px;
+  padding-top: 30px;
+  padding-right: 1.8rem;
+
+  button {
+    width: 18rem;
+  }
 `;
