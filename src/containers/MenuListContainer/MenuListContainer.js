@@ -18,7 +18,10 @@ import {
 } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
 import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
-import { updateWaterDoseAction } from 'redux/modules/healthBar';
+import {
+  updateWaterDoseAction,
+  updateCaloriesAction
+} from 'redux/modules/healthBar';
 import ScrollTopButton from 'components/ScrollTopButton/ScrollTopButton';
 import { throttle } from 'lodash';
 
@@ -86,6 +89,7 @@ export default function MenuListContainer({ history }) {
       removeMeal({ uid: 'MWcXe49pXQdQk5xHduQu' }, menuList, date, mealId)
     );
     dispatch(deleteMenuListAction(date, mealId));
+    dispatch(updateCaloriesAction(date, mealId));
   };
 
   const getTotalCalories = meals => {
