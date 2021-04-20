@@ -7,6 +7,10 @@ export const StyledDietWrapper = styled.div`
   }
 `;
 
+export const StyledMeals = styled.ul`
+  display: flex;
+`;
+
 export const StyledMeal = styled(MealList)`
   li {
     margin: 0;
