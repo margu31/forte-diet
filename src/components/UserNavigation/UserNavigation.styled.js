@@ -23,4 +23,9 @@ export const StyledLi = styled.li`
 export const StyledButton = styled(Button)`
   color: ${palette.themeDefaultWhite};
   padding: 1rem 2rem;
+  background-color: transparent;
+
+  &:hover {
+    background-color: ${palette.themePrimary};
+  }
 `;

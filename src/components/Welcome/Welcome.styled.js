@@ -56,6 +56,11 @@ const TutorialBtn = styled(Button)`
   border-radius: 50px;
   color: ${palette.themePrimary};
   border: 2px solid ${palette.themePrimary};
+
+  &:hover {
+    background-color: ${palette.themePrimary};
+    color: ${palette.themeDefaultWhite};
+  }
 `;
 
 export const WelcomeContent = () => (
@@ -67,7 +72,7 @@ export const WelcomeContent = () => (
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat.
       </StyledP>
-      <TutorialBtn>튜토리얼로 이동!</TutorialBtn>
+      <TutorialBtn>튜토리얼로 이동하기</TutorialBtn>
     </StyledDiv>
   </MessageWrapper>
 );
@@ -115,7 +120,7 @@ const SearchInput = styled.input`
     opacity: 0.5;
   }
 
-  &:focus {
+  &:focus-visible {
     outline: none;
     ${({ theme }) => css`
       box-shadow: 0 0 0 4px ${theme.themePrimary};
@@ -127,12 +132,16 @@ const SearchInput = styled.input`
 `;
 
 const SearchBtn = styled(Button)`
-  padding: 2rem 4rem;
+  padding: 2rem 6rem;
   font-size: 1.2rem;
   background-color: transparent;
   border-radius: 0 50px 50px 0;
   color: ${palette.themeDefaultWhite};
   background-color: ${palette.themePrimary};
+
+  &:hover {
+    background-color: ${palette.themeSecondary};
+  }
 `;
 
 export const Search = () => (
@@ -143,7 +152,7 @@ export const Search = () => (
           <SearchLabel>식단 검색: </SearchLabel>
           <SearchInput placeholder='브로콜리, 카레 ...' />
           <Dropdown selects={['제라드', '효리즈만']} />
-          <SearchBtn>Find</SearchBtn>
+          <SearchBtn>Go!</SearchBtn>
         </SerachBar>
       </fieldset>
     </SearchInputForm>
