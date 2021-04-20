@@ -8,6 +8,28 @@ export default function SettingContainer({ history }) {
   const [user, setUser] = useState(authUser);
   console.log(authUser);
 
+  // const [inputs, setInputs] = useState({});
+
+  const onChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    Object.entries(user).forEach(([key, value]) => {
+      formData.append(key, value);
+      console.log(`${key}: ${value}`);
+    });
+
+    history.push("/myPage");
+  };
+
   const goBack = () => {
     history.goBack();
   };
@@ -21,7 +43,9 @@ export default function SettingContainer({ history }) {
         // userGender={authUser.gender}
         // userHeight={authUser.height}
         // userWeight={authUser.weight}
-        userId={authUser.uid}
+        // userId={authUser.uid}
+        onChange={onChange}
+        onSubmit={onSubmit}
         goBack={goBack}
       />
     </section>
