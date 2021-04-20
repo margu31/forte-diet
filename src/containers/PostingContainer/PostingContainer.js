@@ -134,7 +134,7 @@ function PostingContainer({ history }) {
     const newFormData = Object.fromEntries(formData.entries());
 
     // 새로운 메뉴 리스트라면, diets 테이블에 추가
-    if (!menuList.hasOwnProperty(mealData.date) || !menuList[mealData.date].meals.length) {
+    if (!menuList.hasOwnProperty(mealData.date)) {
       const dietId = await addNewDiet(newFormData);
       PostMeal(authUser, { ...newFormData }, dietId);
     } else PostMeal(authUser, newFormData);
