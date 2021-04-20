@@ -71,7 +71,7 @@ const Path = props => (
 );
 
 export default function HealthBar({ healthBar, getTotalCalories, getDate }) {
-  const [isOpen, toggleOpen] = useCycle(true, false);
+  const [isOpen, toggleOpen] = useCycle(false, true);
 
   return (
     <>

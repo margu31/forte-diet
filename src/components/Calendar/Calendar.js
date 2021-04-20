@@ -9,11 +9,12 @@ import {
   StyledDate,
   StyledGrid,
   StyledPrevButton,
-  StyledNextButton
+  StyledNextButton,
+  StyledDot
 } from './Calendar.styled';
 import { palette } from 'styles/index';
 
-export default function Calendar() {
+export default function Calendar({ calendarMenuList, onScroll }) {
   const [isActive, setIsActive] = useState(false);
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const year = currentDate.getFullYear();
@@ -34,12 +35,23 @@ export default function Calendar() {
     'December'
   ];
 
-  const formattedDate = () => {
+  const formattedDateForFetch = date => {
     const format = n => (n < 10 ? '0' + n : n + '');
-    return date =>
-      `${date.getFullYear()}-${format(date.getMonth() + 1)}-${format(
-        date.getDate()
-      )}`;
+
+    const selectedYear = date.getFullYear().toString().slice(2, 4);
+    const selectedMonth = format(+date.getMonth().toString() + 1);
+    const selectedDate = format(+date.getDate().toString());
+    const selectedDay = date.toString().slice(0, 3).toUpperCase();
+
+    return `${selectedYear}${selectedMonth}${selectedDate} ${selectedDay}`;
+  };
+
+  const formattedDateForSelect = date => {
+    const format = n => (n < 10 ? '0' + n : n + '');
+
+    return `${date.getFullYear()}-${format(date.getMonth() + 1)}-${format(
+      date.getDate()
+    )}`;
   };
 
   const eachCalendarDates = (() => {
@@ -90,7 +102,7 @@ export default function Calendar() {
     const $border = [];
 
     if (isEqualDate(date, today))
-      $border.push(`1px solid ${palette.themeBrightGray}`);
+      $border.push(`1px solid rgb(242, 104, 48, 0.5)`);
 
     return $border;
   };
@@ -161,7 +173,8 @@ export default function Calendar() {
               ))}
               {eachCalendarDates(year, month).map((date, i) => (
                 <StyledDate
-                  dataDate={formattedDate(date)}
+                  data-date={formattedDateForFetch(date)}
+                  data-date-origin={formattedDateForSelect(date)}
                   key={i}
                   $styledColorProps={styledColorProps(date)}
                   $styledBackgroundProps={styledBackgroundProps(date)}
@@ -169,6 +182,21 @@ export default function Calendar() {
                   $styledSelectedColorProps={styledSelectedColorProps(date)}
                 >
                   {date.getDate()}
+                  {calendarMenuList.includes(formattedDateForFetch(date)) && (
+                    <StyledDot
+                      $styledSelectedColorProps={styledSelectedColorProps(date)}
+                      onClick={e => {
+                        e.stopPropagation(); // 이벤트 전파 막기
+                        setCurrentDate(
+                          new Date(e.target.parentElement.dataset.dateOrigin)
+                        );
+                        setIsActive(false);
+                        onScroll(e.target.parentElement.dataset.date);
+                      }}
+                    >
+                      .
+                    </StyledDot>
+                  )}
                 </StyledDate>
               ))}
             </StyledGrid>
