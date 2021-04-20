@@ -28,6 +28,7 @@ export default function HealthBarContainer() {
   useEffect(() => {
     if (!authUser) return null;
     dispatch(handleGetDietLists(authUser, getHealthBarListAction));
+    dispatch(getHealthBarListAction(authUser.dietList));
   }, [authUser, dispatch]);
 
   if (!authUser) return null;

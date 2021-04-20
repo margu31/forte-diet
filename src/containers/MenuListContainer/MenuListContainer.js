@@ -16,17 +16,14 @@ import {
   deleteMenuListAction
 } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
-import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
 import {
   updateWaterDoseAction,
   updateCaloriesAction
 } from 'redux/modules/healthBar';
-import ScrollTopButton from 'components/ScrollTopButton/ScrollTopButton';
 import { throttle } from 'lodash';
 
-export default function MenuListContainer({ history }) {
-  const { authUser } = useSelector(state => state.auth);
-  console.log(authUser);
+export default function MenuListContainer() {
+  const { authUser, isAuthed } = useSelector(state => state.auth);
   const menuList = useSelector(state => state.menuList);
   const dispatch = useDispatch();
 
@@ -78,26 +75,10 @@ export default function MenuListContainer({ history }) {
       : totalCalories;
   };
 
-  // const onMoveToPosting = () => {
-  //   window.scroll({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: 'instant'
-  //   });
-  //   history.push('/posting');
-  // };
-
-  // const onMoveToTop = () => {
-  //   window.scroll({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: 'smooth'
-  //   });
-  // };
-
   useEffect(() => {
     if (!authUser) return null;
     dispatch(handleGetDietLists(authUser, getMenuListAction));
+    dispatch(getMenuListAction(authUser.dietList));
   }, [authUser, dispatch]);
 
   useEffect(() => {
@@ -107,19 +88,13 @@ export default function MenuListContainer({ history }) {
     );
   }, []);
 
-  if (!authUser)
+  if (!isAuthed)
     return (
       <div style={{ fontSize: '3rem', margin: '350px 300px' }}>
         가입하라~ 이 말입니다. 아시겠어여??????
       </div>
     );
 
-  if (!menuList.length)
-    return (
-      <div style={{ fontSize: '3rem', margin: '350px 300px' }}>
-        아무 식단도 없다~ 이 말입니다.<br></br> 아시겠어여???????
-      </div>
-    );
   const menuListData = Object.entries(menuList)
     .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
     .map(data => data[1]);
@@ -140,8 +115,6 @@ export default function MenuListContainer({ history }) {
           onDelete={onDelete}
         />
       ))}
-      {/* <MenuListToPosting onMoveToPosting={onMoveToPosting} />
-      <ScrollTopButton onMoveToTop={onMoveToTop} /> */}
     </>
   );
 }
