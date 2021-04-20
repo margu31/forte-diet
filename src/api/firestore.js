@@ -81,16 +81,27 @@ export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
 
   try {
     const user = await users.doc(uid);
-    user.set(
-      {
-        dietList: {
-          [date]: {
-            meals: newMeals
+
+    if (!newMeals.length)
+      user.set(
+        {
+          dietList: {
+            [date]: firebase.firestore.FieldValue.delete()
           }
-        }
-      },
-      { merge: true }
-    );
+        },
+        { merge: true }
+      );
+    else
+      user.set(
+        {
+          dietList: {
+            [date]: {
+              meals: newMeals
+            }
+          }
+        },
+        { merge: true }
+      );
 
     return true;
   } catch (e) {
