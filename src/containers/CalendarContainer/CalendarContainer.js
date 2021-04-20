@@ -3,6 +3,8 @@ import Calendar from 'components/Calendar/Calendar';
 import { useSelector } from 'react-redux';
 
 export default function CalendarContainer() {
+  const { authUser } = useSelector(state => state.auth);
+
   const menuList = useSelector(state => state.menuList);
   const calendarMenuList = Object.entries(menuList)
     .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
@@ -31,6 +33,8 @@ export default function CalendarContainer() {
       behavior: 'smooth'
     });
   };
+
+  if (!authUser) return null;
 
   return <Calendar calendarMenuList={calendarMenuList} onScroll={onScroll} />;
 }
