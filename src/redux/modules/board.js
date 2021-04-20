@@ -24,7 +24,7 @@ export const getSearchMenus = createBoardThunk(GET_SEARCH);
 
 const getPopularReducer = getBoardReducer(GET_POPULAR, 'popular');
 const getRecentReducer = getBoardReducer(GET_RECENT, 'recent');
-const getReducer = getBoardReducer(GET_POPULAR, 'popular');
+const getReducer = getBoardReducer(GET_SEARCH, 'search');
 
 export default function BoardReducer(state = initialState, action) {
   switch (action.type) {
