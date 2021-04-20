@@ -6,17 +6,17 @@ export default function BoardNavigation({ boardType, onClick }) {
     <BoardNav>
       <BoardUl>
         <BoardLi>
-          <BoardBtn id='popular' $isActive={boardType === 1} onClick={onClick}>
+          <BoardBtn id='popular' $isActive={boardType === 'popular'} onClick={onClick}>
             Popular
           </BoardBtn>
         </BoardLi>
         <BoardLi>
-          <BoardBtn id='recent' $isActive={boardType === 2} onClick={onClick}>
+          <BoardBtn id='recent' $isActive={boardType === 'recent'} onClick={onClick}>
             Recent
           </BoardBtn>
         </BoardLi>
         <BoardLi>
-          <BoardBtn id='search' $isActive={boardType === 3} onClick={onClick}>
+          <BoardBtn id='search' $isActive={boardType === 'search'} onClick={onClick}>
             Search
           </BoardBtn>
         </BoardLi>

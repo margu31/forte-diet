@@ -22,7 +22,6 @@ const MessageWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 7% 2rem 7% 20rem;
-  width: 100vw;
   min-height: 300px;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
 `;

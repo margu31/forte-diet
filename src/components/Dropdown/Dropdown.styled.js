@@ -46,7 +46,6 @@ export const StyledOptions = styled.li`
   `}
 
   ${({ $isShowOptions }) => {
-    console.log($isShowOptions);
     return $isShowOptions
       ? css`
           height: auto;
