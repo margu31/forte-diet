@@ -27,6 +27,8 @@ const formValue = {
 
 export default function SignUpContainer({ closeModal, ...restProps }) {
   const [state, setState] = useState(formValue);
+  const [isShow, setIsShow] = useState(false);
+
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value.trim() });
   };
@@ -37,7 +39,15 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
         ...state,
         hasError: {
           ...state.hasError,
-          id: "입력 형식에 맞지 않습니다.",
+          email: "입력 형식에 맞지 않습니다.",
+        },
+      });
+    } else if (value.length === 0) {
+      setState({
+        ...state,
+        hasError: {
+          ...state.hasError,
+          email: "이메일 형식으로 입력해주세요.",
         },
       });
     } else {
@@ -45,7 +55,7 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
         ...state,
         hasError: {
           ...state.hasError,
-          id: null,
+          email: null,
         },
       });
     }
@@ -186,6 +196,45 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
     }
   };
 
+  const onFocus = (e) => {
+    const targetName = e.target.name;
+    if (e.target.value.length === 0) {
+      switch (targetName) {
+        case "email":
+          setState({
+            ...state,
+            hasError: {
+              ...state.hasError,
+              email: "이메일 형식으로 입력해주세요.",
+            },
+          });
+          break;
+        case "password":
+          setState({
+            ...state,
+            hasError: {
+              ...state.hasError,
+              password:
+                "영어, 숫자, 특수문자 포함 6~20자 미만으로 입력해주세요.",
+            },
+          });
+          break;
+        case "nickname":
+          setState({
+            ...state,
+            hasError: {
+              ...state.hasError,
+              nickname:
+                "한글, 영어, 특수문자, 숫자 포함 5~20자 미만으로 작성해주세요",
+            },
+          });
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
   const isDisabled =
     state.hasError.email ||
     state.hasError.password ||
@@ -198,6 +247,12 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
     }
   });
 
+  const changePasswordMode = (e) => {
+    e.preventDefault();
+    setIsShow(!isShow);
+    e.target.focus();
+  };
+
   return (
     <SignUpForm
       onChange={onChange}
@@ -206,6 +261,9 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
       disabled={isDisabled}
       errorMessage={state.hasError}
       closeModal={closeModal}
+      changePasswordMode={changePasswordMode}
+      isShow={isShow}
+      onFocus={onFocus}
       {...restProps}
     />
   );
