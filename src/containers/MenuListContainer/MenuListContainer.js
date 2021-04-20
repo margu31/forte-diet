@@ -129,7 +129,12 @@ export default function MenuListContainer({ history }) {
     );
   }, []);
 
-  if (!authUser) return null;
+  if (!authUser)
+    return (
+      <div style={{ fontSize: '3rem', margin: '350px 300px' }}>
+        가입하라~ 이 말입니다. 아시겠어여??????
+      </div>
+    );
   const menuListData = Object.entries(menuList)
     .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
     .map(data => data[1]);
