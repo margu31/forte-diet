@@ -15,8 +15,8 @@ export const StyledFormWrapper = styled.div`
 `;
 export const StyledImage = styled.div`
   /* background-image: url("/apples-1952999_1920.jpg"); */
-  /* background-image: url("/cooking-utensils-1149464_1920.jpg"); */
-  background-image: url("/smoothie-4625476_1920.jpg");
+  background-image: url("/cooking-utensils-1149464_1920.jpg");
+  /* background-image: url("/smoothie-4625476_1920.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -92,7 +92,7 @@ export const StyledSettingInput = styled.div`
 
   svg {
     position: absolute;
-    top: 7px;
+    top: 6px;
     right: 45px;
     cursor: pointer;
     /* opacity: 0; */
