@@ -109,9 +109,9 @@ export default function LogInContainer({
   };
 
   const isDisabled =
-    state.hasError.id ||
+    state.hasError.email ||
     state.hasError.password ||
-    !state.id ||
+    !state.email ||
     !state.password;
 
   return (
