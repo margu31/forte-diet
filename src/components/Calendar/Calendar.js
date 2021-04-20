@@ -9,11 +9,12 @@ import {
   StyledDate,
   StyledGrid,
   StyledPrevButton,
-  StyledNextButton
+  StyledNextButton,
+  StyledDot
 } from './Calendar.styled';
 import { palette } from 'styles/index';
 
-export default function Calendar() {
+export default function Calendar({ calendarMenuList }) {
   const [isActive, setIsActive] = useState(false);
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const year = currentDate.getFullYear();
@@ -34,12 +35,15 @@ export default function Calendar() {
     'December'
   ];
 
-  const formattedDate = () => {
+  const formattedDate = date => {
     const format = n => (n < 10 ? '0' + n : n + '');
-    return date =>
-      `${date.getFullYear()}-${format(date.getMonth() + 1)}-${format(
-        date.getDate()
-      )}`;
+
+    const selectedYear = date.getFullYear().toString().slice(2, 4);
+    const selectedMonth = format(+date.getMonth().toString() + 1);
+    const selectedDate = format(+date.getDate().toString());
+    const selectedDay = date.toString().slice(0, 3).toUpperCase();
+
+    return `${selectedYear}${selectedMonth}${selectedDate} ${selectedDay}`;
   };
 
   const eachCalendarDates = (() => {
@@ -126,6 +130,7 @@ export default function Calendar() {
 
   if (!year) return null;
 
+  console.log('menuList', calendarMenuList);
   return (
     <>
       <StyledCalendarButton onClick={() => setIsActive(!isActive)}>
@@ -161,14 +166,27 @@ export default function Calendar() {
               ))}
               {eachCalendarDates(year, month).map((date, i) => (
                 <StyledDate
-                  dataDate={formattedDate(date)}
+                  data-date={formattedDate(date)}
                   key={i}
                   $styledColorProps={styledColorProps(date)}
                   $styledBackgroundProps={styledBackgroundProps(date)}
                   $styledTodayBorderProps={styledTodayBorderProps(date)}
                   $styledSelectedColorProps={styledSelectedColorProps(date)}
+                  onClick={e => {
+                    console.log(e.target.dataset.date);
+                  }}
                 >
                   {date.getDate()}
+                  {calendarMenuList.includes(formattedDate(date)) && (
+                    <StyledDot
+                      onClick={e => {
+                        e.stopPropagation(); // 이벤트 전파 막기
+                        console.log(e.target.parentElement.dataset.date);
+                      }}
+                    >
+                      .
+                    </StyledDot>
+                  )}
                 </StyledDate>
               ))}
             </StyledGrid>

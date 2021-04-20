@@ -42,6 +42,8 @@ const StyledNav = styled.div`
   flex-flow: row nowrap;
   justify-content: space-around;
   padding: 20px 0 18px 0;
+  cursor: default;
+
   ${({ theme }) => css`
     color: ${theme.themeDark};
   `}
@@ -87,6 +89,7 @@ const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
+  cursor: default;
 `;
 
 const StyledDay = styled.div`
@@ -105,9 +108,12 @@ const StyledDay = styled.div`
 
 const StyledDate = styled.div`
   cursor: pointer;
-  height: 47px;
+  height: 46px;
   padding-top: 18px;
   border-radius: 50%;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
 
   color: ${props => props.$styledColorProps};
   background: ${props => props.$styledBackgroundProps};
@@ -117,6 +123,24 @@ const StyledDate = styled.div`
   &:hover {
     ${({ theme }) => css`
       background: ${theme.themePrimaryThick};
+      color: ${theme.themeDefaultWhite};
+    `}
+  }
+`;
+
+const StyledDot = styled.span`
+  font-size: 2.5rem;
+  margin-top: -30px;
+  padding: 20px 0;
+  display: inline-block;
+  cursor: pointer;
+
+  ${({ theme }) => css`
+    color: ${theme.themePrimaryThick};
+  `}
+
+  &:hover {
+    ${({ theme }) => css`
       color: ${theme.themeDefaultWhite};
     `}
   }
@@ -165,5 +189,6 @@ export {
   StyledDate,
   StyledGrid,
   StyledPrevButton,
-  StyledNextButton
+  StyledNextButton,
+  StyledDot
 };
