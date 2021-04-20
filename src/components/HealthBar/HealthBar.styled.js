@@ -8,7 +8,6 @@ const StyledCalories = styled(RiRestaurantFill)``;
 
 const StyledNav = styled(motion.nav)`
   width: 130px;
-  height: 395px;
   position: fixed;
   top: 100px;
   right: 30px;
