@@ -27,6 +27,7 @@ export default function Input({
   maxLength,
   changePasswordMode,
   isShow,
+  onFocus,
   ...restProps
 }) {
   return (
@@ -49,6 +50,7 @@ export default function Input({
         maxLength={maxLength}
         {...restProps}
         onKeyUp={onKeyUp}
+        onFocus={onFocus}
       ></StyledInput>
       {errorMessage && errorMessage[name] ? (
         <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>
