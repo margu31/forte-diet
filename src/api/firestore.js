@@ -107,7 +107,7 @@ export const addNewDiet = async mealdata => {
     const newDietRef = await diets.add({
       dailyReview: null,
       createdAt: new Date(),
-      calorie: mealdata.calorie,
+      calories: mealdata.calories,
       like: 0,
       meals: [{ ...mealdata }]
     });
