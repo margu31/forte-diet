@@ -14,7 +14,7 @@ import {
 } from './Calendar.styled';
 import { palette } from 'styles/index';
 
-export default function Calendar({ calendarMenuList }) {
+export default function Calendar({ calendarMenuList, onScroll }) {
   const [isActive, setIsActive] = useState(false);
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const year = currentDate.getFullYear();
@@ -35,7 +35,7 @@ export default function Calendar({ calendarMenuList }) {
     'December'
   ];
 
-  const formattedDate = date => {
+  const formattedDateForFetch = date => {
     const format = n => (n < 10 ? '0' + n : n + '');
 
     const selectedYear = date.getFullYear().toString().slice(2, 4);
@@ -44,6 +44,14 @@ export default function Calendar({ calendarMenuList }) {
     const selectedDay = date.toString().slice(0, 3).toUpperCase();
 
     return `${selectedYear}${selectedMonth}${selectedDate} ${selectedDay}`;
+  };
+
+  const formattedDateForSelect = date => {
+    const format = n => (n < 10 ? '0' + n : n + '');
+
+    return `${date.getFullYear()}-${format(date.getMonth() + 1)}-${format(
+      date.getDate()
+    )}`;
   };
 
   const eachCalendarDates = (() => {
@@ -94,7 +102,7 @@ export default function Calendar({ calendarMenuList }) {
     const $border = [];
 
     if (isEqualDate(date, today))
-      $border.push(`1px solid ${palette.themeBrightGray}`);
+      $border.push(`1px solid rgb(242, 104, 48, 0.5)`);
 
     return $border;
   };
@@ -130,7 +138,6 @@ export default function Calendar({ calendarMenuList }) {
 
   if (!year) return null;
 
-  console.log('menuList', calendarMenuList);
   return (
     <>
       <StyledCalendarButton onClick={() => setIsActive(!isActive)}>
@@ -166,23 +173,24 @@ export default function Calendar({ calendarMenuList }) {
               ))}
               {eachCalendarDates(year, month).map((date, i) => (
                 <StyledDate
-                  data-date={formattedDate(date)}
+                  data-date={formattedDateForFetch(date)}
+                  data-date-origin={formattedDateForSelect(date)}
                   key={i}
                   $styledColorProps={styledColorProps(date)}
                   $styledBackgroundProps={styledBackgroundProps(date)}
                   $styledTodayBorderProps={styledTodayBorderProps(date)}
                   $styledSelectedColorProps={styledSelectedColorProps(date)}
-                  onClick={e => {
-                    console.log(e.target.dataset.date);
-                  }}
                 >
                   {date.getDate()}
-                  {calendarMenuList.includes(formattedDate(date)) && (
+                  {calendarMenuList.includes(formattedDateForFetch(date)) && (
                     <StyledDot
                       $styledSelectedColorProps={styledSelectedColorProps(date)}
                       onClick={e => {
                         e.stopPropagation(); // 이벤트 전파 막기
-                        console.log(e.target.parentElement.dataset.date);
+                        setCurrentDate(
+                          new Date(e.target.parentElement.dataset.dateOrigin)
+                        );
+                        onScroll(e.target.parentElement.dataset.date);
                       }}
                     >
                       .

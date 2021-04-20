@@ -109,7 +109,7 @@ const StyledDay = styled.div`
 const StyledDate = styled.div`
   cursor: pointer;
   height: 46px;
-  padding-top: 18px;
+  padding-top: 14px;
   border-radius: 50%;
   display: flex;
   flex-flow: column;
@@ -117,7 +117,7 @@ const StyledDate = styled.div`
 
   color: ${props => props.$styledColorProps};
   background: ${props => props.$styledBackgroundProps};
-  /* border: ${props => props.$styledTodayBorderProps}; */
+  border: ${props => props.$styledTodayBorderProps};
   color: ${props => props.$styledSelectedColorProps};
 
   &:hover {
