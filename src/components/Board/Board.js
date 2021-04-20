@@ -6,14 +6,26 @@ export default function Board() {
   const [boardType, setBoardType] = useState(1);
 
   const handleClick = e => {
-    setBoardType(parseInt(e.target.id.slice(e.target.id.length - 1), 10));
+    switch (e.target.id) {
+      case 'popular':
+        setBoardType(1);
+        break;
+      case 'recent':
+        setBoardType(2);
+        break;
+      case 'search':
+        setBoardType(3);
+        break;
+      default:
+        return;
+    }
   };
 
   return (
     <StyledBoardWrapper>
       <StyledBoardTitle>Trending</StyledBoardTitle>
       <BoardNavigation boardType={boardType} onClick={handleClick} />
-      <StyledBoardWindow />
+      <StyledBoardWindow boardType={boardType} />
     </StyledBoardWrapper>
   );
 }
