@@ -127,17 +127,15 @@ function PostingContainer({ history }) {
     //   : 0;
 
     // mealId 수정 코드
-    const mealId = menuList[mealData.date]
-      ? +menuList[mealData.date].meals[menuList[mealData.date].meals.length - 1].id + 1
-      : 0;
+    const mealId = menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]?.id + 1;
 
-    formData.append('id', mealId);
+    formData.append('id', mealId || 0);
 
     const newFormData = Object.fromEntries(formData.entries());
 
     // 새로운 메뉴 리스트라면, diets 테이블에 추가
-    if (menuList.hasOwnProperty(mealData.date)) {
-      const dietId = addNewDiet(newFormData);
+    if (!menuList.hasOwnProperty(mealData.date) || !menuList[mealData.date].meals.length) {
+      const dietId = await addNewDiet(newFormData);
       PostMeal(authUser, { ...newFormData, id: dietId });
     } else PostMeal(authUser, newFormData);
 
