@@ -117,7 +117,7 @@ const StyledDate = styled.div`
 
   color: ${props => props.$styledColorProps};
   background: ${props => props.$styledBackgroundProps};
-  border: ${props => props.$styledTodayBorderProps};
+  /* border: ${props => props.$styledTodayBorderProps}; */
   color: ${props => props.$styledSelectedColorProps};
 
   &:hover {
@@ -144,6 +144,8 @@ const StyledDot = styled.span`
       color: ${theme.themeDefaultWhite};
     `}
   }
+
+  color: ${props => props.$styledSelectedColorProps};
 `;
 
 const StyledCalendarButton = styled.span`

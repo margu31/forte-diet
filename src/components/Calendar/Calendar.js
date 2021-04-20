@@ -179,6 +179,7 @@ export default function Calendar({ calendarMenuList }) {
                   {date.getDate()}
                   {calendarMenuList.includes(formattedDate(date)) && (
                     <StyledDot
+                      $styledSelectedColorProps={styledSelectedColorProps(date)}
                       onClick={e => {
                         e.stopPropagation(); // 이벤트 전파 막기
                         console.log(e.target.parentElement.dataset.date);
