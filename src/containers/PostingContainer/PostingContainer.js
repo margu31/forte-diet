@@ -136,7 +136,7 @@ function PostingContainer({ history }) {
     // 새로운 메뉴 리스트라면, diets 테이블에 추가
     if (!menuList.hasOwnProperty(mealData.date) || !menuList[mealData.date].meals.length) {
       const dietId = await addNewDiet(newFormData);
-      PostMeal(authUser, { ...newFormData, id: dietId });
+      PostMeal(authUser, { ...newFormData }, dietId);
     } else PostMeal(authUser, newFormData);
 
     dispatch(getMenuListAction()); // myPage 실시간 업데이트 코드 추가

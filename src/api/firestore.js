@@ -118,21 +118,20 @@ export const addNewDiet = async mealdata => {
   }
 };
 
-export const PostMeal = async ({ uid }, mealdata) => {
+export const PostMeal = async ({ uid }, mealdata, dietId) => {
   try {
     const user = await users.doc(uid);
-    user.set(
-      {
-        dietList: {
-          [mealdata.date]: {
-            meals: firebase.firestore.FieldValue.arrayUnion({
-              ...mealdata
-            })
-          }
+    const newData = {
+      dietList: {
+        [mealdata.date]: {
+          meals: firebase.firestore.FieldValue.arrayUnion({
+            ...mealdata
+          })
         }
-      },
-      { merge: true }
-    );
+      }
+    };
+    if (dietId) newData.dietList[mealdata.date].id = dietId;
+    user.set(newData, { merge: true });
 
     return true;
   } catch (e) {
