@@ -81,6 +81,11 @@ export default function MenuListContainer({ history }) {
   };
 
   const onMoveToPosting = () => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
     history.push('/posting');
   };
 
