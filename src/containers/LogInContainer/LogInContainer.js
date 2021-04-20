@@ -1,94 +1,85 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { signInAction } from "redux/modules/auth/auth";
-import { isEmail, isPassword } from "utils/validation/LogInValidation";
-import { handleSignInWithEmailAndPassword } from "api/auth";
-import { LoginForm } from "components/LoginForm/LoginForm";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signInAction } from 'redux/modules/auth/auth';
+import { isEmail, isPassword } from 'utils/validation/LogInValidation';
+import { LoginForm } from 'components/LoginForm/LoginForm';
+import { handleSignInWithEmailAndPassword } from '../../api/auth';
 
 const formValue = {
   email: null,
   password: null,
   hasError: {
     email: null,
-    password: null,
-  },
+    password: null
+  }
 };
 
-export default function LogInContainer({
-  a11yHidden,
-  closeModal,
-  ...restProps
-}) {
+export default function LogInContainer({ a11yHidden, closeModal, ...restProps }) {
   const dispatch = useDispatch();
 
   const [state, setState] = useState(formValue);
   const [isShow, setIsShow] = useState(false);
 
-  const onChange = (e) => {
+  const onChange = e => {
     e.preventDefault();
     setState({ ...state, [e.target.name]: e.target.value.trim() });
   };
 
-  const emailValid = (value) => {
+  const emailValid = value => {
     if (!isEmail(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          email: "이메일 형식에 맞지 않습니다.",
-        },
+          email: '이메일 형식에 맞지 않습니다.'
+        }
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          id: null,
-        },
+          id: null
+        }
       });
     }
   };
 
-  const passwordlValid = (value) => {
+  const passwordlValid = value => {
     if (!isPassword(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          password: "비밀번호 형식에 맞지 않습니다.",
-        },
+          password: '비밀번호 형식에 맞지 않습니다.'
+        }
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          password: null,
-        },
+          password: null
+        }
       });
     }
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     const Formdata = new FormData();
     Object.entries(state).forEach(([key, value]) => {
       Formdata.append(key, value);
-      console.log(`${key}, ${value}`);
     });
-    dispatch(
-      handleSignInWithEmailAndPassword(
-        state.email,
-        state.password,
-        signInAction
-      )
-    );
+    const { email, password } = Object.fromEntries(Formdata.entries());
+
+    dispatch(handleSignInWithEmailAndPassword(email, password, signInAction));
 
     closeModal();
   };
 
-  const onBlur = (e) => {
-    if (e.target.name === "email") {
+  const onBlur = e => {
+    if (e.target.name === 'email') {
       emailValid(e.target.value);
     } else {
       state.password = e.target.value;
@@ -96,23 +87,20 @@ export default function LogInContainer({
     }
   };
 
-  window.addEventListener("keyup", (e) => {
-    if (e.key === "Escape") {
+  window.addEventListener('keyup', e => {
+    if (e.key === 'Escape') {
       closeModal();
     }
   });
 
-  const changePasswordMode = (e) => {
+  const changePasswordMode = e => {
     e.preventDefault();
     setIsShow(!isShow);
     e.target.focus();
   };
 
   const isDisabled =
-    state.hasError.id ||
-    state.hasError.password ||
-    !state.id ||
-    !state.password;
+    state.hasError.email || state.hasError.password || !state.email || !state.password;
 
   return (
     <LoginForm

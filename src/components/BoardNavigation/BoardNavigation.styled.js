@@ -23,7 +23,10 @@ export const BoardLi = styled.li`
 `;
 
 export const BoardBtn = styled(Button)`
+  background-color: transparent;
+
   &:hover {
+    color: ${palette.themePrimaryThick};
     background-color: transparent;
   }
   ${({ $isActive }) =>

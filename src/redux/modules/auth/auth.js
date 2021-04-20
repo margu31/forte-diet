@@ -1,25 +1,25 @@
 // 액션 타입
-const SIGN_IN = "auth/SIGN_IN";
-const SIGN_UP = "auth/SIGN_UP";
-const SIGN_OUT = "auth/SIGN_OUT";
+const SIGN_IN = 'auth/SIGN_IN';
+const SIGN_UP = 'auth/SIGN_UP';
+const SIGN_OUT = 'auth/SIGN_OUT';
 
 // 액션 생성 함수
-export const signInAction = (authUser) => ({
+export const signInAction = authUser => ({
   type: SIGN_IN,
   payload: {
-    authUser,
-  },
+    authUser
+  }
 });
 
 export const signOutAction = () => ({
-  type: SIGN_OUT,
+  type: SIGN_OUT
 });
 
-export const signUpAction = (authUser) => ({
+export const signUpAction = authUser => ({
   type: SIGN_OUT,
   payload: {
-    authUser,
-  },
+    authUser
+  }
 });
 
 // export const getAuthUserActionAsync = () => async (dispatch) => {
@@ -50,7 +50,7 @@ export const signUpAction = (authUser) => ({
 // 초깃값
 const initialState = {
   isAuthed: false,
-  authUser: null,
+  authUser: null
 };
 
 // 리듀서 reducer
@@ -59,19 +59,12 @@ export default function reducer(state = initialState, action) {
     case SIGN_IN:
       return {
         isAuthed: true,
-        authUser: action.payload.authUser,
+        authUser: action.payload.authUser
       };
-
     case SIGN_OUT:
       return {
         isAuthed: false,
-        authUser: null,
-      };
-
-    case SIGN_UP:
-      return {
-        isAuthed: false,
-        authUser: action.payload.authUser,
+        authUser: null
       };
     default:
       return state;
