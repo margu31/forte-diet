@@ -21,6 +21,7 @@ import {
   updateCaloriesAction
 } from 'redux/modules/healthBar';
 import { throttle } from 'lodash';
+import { getHealthBarListAction } from '../../redux/modules/healthBar';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);
@@ -63,8 +64,9 @@ export default function MenuListContainer() {
 
   const onDelete = (date, mealId) => {
     dispatch(removeMeal(authUser, menuList, date, mealId));
-    dispatch(deleteMenuListAction(date, mealId));
-    dispatch(updateCaloriesAction(date, mealId));
+    // dispatch(deleteMenuListAction(date, mealId));
+    // dispatch(updateCaloriesAction(date, mealId));
+    dispatch(getHealthBarListAction(authUser.dietList));
   };
 
   const getTotalCalories = meals => {

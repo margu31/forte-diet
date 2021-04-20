@@ -59,17 +59,29 @@ export default function menuList(state = initialState, action) {
         ...action.payload.data
       };
     case DELETE_MENU_LIST:
-      return {
-        ...state,
-        [action.payload.date]: {
-          ...state[action.payload.date],
-          meals: [
-            ...Object.entries({ ...state[action.payload.date].meals })
-              .map(data => data[1])
-              .filter(meal => meal.id !== action.payload.mealId)
-          ]
-        }
-      };
+      const newData = [
+        ...Object.entries({ ...state[action.payload.date].meals })
+          .map(data => data[1])
+          .filter(meal => meal.id !== action.payload.mealId)
+      ];
+
+      if (newData) {
+        return {
+          ...state,
+          [action.payload.date]: {
+            ...state[action.payload.date],
+            meals: newData
+          }
+        };
+      } else
+        return {
+          ...Object.assign(
+            {},
+            ...Object.entries({ ...state })
+              .filter(data => data[0] !== action.payload.date)
+              .map(arr => ({ [arr[0]]: arr[1] }))
+          )
+        };
     case ADD_WATER_DOSE:
       return {
         ...state,
