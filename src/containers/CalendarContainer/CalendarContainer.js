@@ -18,7 +18,13 @@ export default function CalendarContainer() {
       .filter(data => data[1].meals.length)
       .map(data => data[1])
       .slice(0, index)
-      .map(data => (data.meals.length > 4 ? count++ : null));
+      .map(data =>
+        data.meals.length > 4
+          ? data.meals.length > 8
+            ? (count += 2)
+            : (count += 1)
+          : null
+      );
 
     return count;
   };
