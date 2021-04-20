@@ -38,11 +38,11 @@ export default function SettingContainer({ history }) {
     <section>
       <Title logoIcon="true">회원 정보 수정</Title>
       <Setting
-        // userEmail={authUser.email}
-        // userNickname={authUser.nickname}
-        // userGender={authUser.gender}
-        // userHeight={authUser.height}
-        // userWeight={authUser.weight}
+        userEmail={authUser.email}
+        userNickname={authUser.nickname}
+        userGender={authUser.gender}
+        userHeight={authUser.height}
+        userWeight={authUser.weight}
         // userId={authUser.uid}
         onChange={onChange}
         onSubmit={onSubmit}
