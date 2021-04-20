@@ -15,6 +15,7 @@ const StyledCalendarModal = styled.div`
   left: 0;
   background: pink;
   opacity: 0;
+  z-index: 999;
 `;
 
 const StyledCalendarDialog = styled(motion.div)`

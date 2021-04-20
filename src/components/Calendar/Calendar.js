@@ -190,6 +190,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
                         setCurrentDate(
                           new Date(e.target.parentElement.dataset.dateOrigin)
                         );
+                        setIsActive(false);
                         onScroll(e.target.parentElement.dataset.date);
                       }}
                     >
