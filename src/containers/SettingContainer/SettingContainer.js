@@ -8,8 +8,6 @@ export default function SettingContainer({ history }) {
   const [user, setUser] = useState(authUser);
   console.log(authUser);
 
-  // const [inputs, setInputs] = useState({});
-
   const onChange = (e) => {
     setUser({
       ...user,
@@ -50,7 +48,6 @@ export default function SettingContainer({ history }) {
         userGender={authUser.gender}
         userHeight={authUser.height}
         userWeight={authUser.weight}
-        // userId={authUser.uid}
         onChange={onChange}
         onSubmit={onSubmit}
         goBack={goBack}
