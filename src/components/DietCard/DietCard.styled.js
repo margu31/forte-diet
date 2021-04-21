@@ -78,4 +78,23 @@ export const HeartIcon = styled(TiHeart)`
   box-sizing: border-box;
   position: relative;
   top: -0.2rem;
+  cursor: pointer;
+
+  &:hover {
+    color: ${palette.themeQuaternary};
+  }
+`;
+
+export const LikedHeartIcon = styled(TiHeart)`
+  color: ${palette.themeQuaternary};
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  position: relative;
+  top: -0.2rem;
+  cursor: pointer;
+
+  &:hover {
+    color: ${palette.themeDisable};
+  }
 `;
