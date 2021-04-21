@@ -51,3 +51,18 @@ export const addOrEditDailyReviewInDiets = async (dietId, review) => {
     throw new Error(e.message);
   }
 };
+
+export const removeDailyReviewInDiets = async dietId => {
+  try {
+    const diet = await diets.doc(dietId);
+
+    diet.set(
+      {
+        dailyReview: ''
+      },
+      { merge: true }
+    );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};

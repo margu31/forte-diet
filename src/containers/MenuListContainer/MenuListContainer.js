@@ -18,7 +18,7 @@ import MenuList from '../../components/MenuList/MenuList';
 import { updateWaterDoseAction } from 'redux/modules/healthBar';
 import { throttle } from 'lodash';
 import { getHealthBarListAction } from '../../redux/modules/healthBar';
-import { addOrEditDailyReviewInDiets } from '../../api/diets';
+import { addOrEditDailyReviewInDiets, removeDailyReviewInDiets } from 'api/diets';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);
@@ -41,6 +41,7 @@ export default function MenuListContainer() {
 
   const onRemove = date => {
     dispatch(removeDailyReview(authUser, date));
+    removeDailyReviewInDiets(menuList[date].id);
     dispatch(DeleteDailyReviewAction(date));
   };
 
