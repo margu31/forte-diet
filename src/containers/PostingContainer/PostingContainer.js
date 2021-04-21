@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Form from 'components/Form/Form';
-import {
-  menuValidation,
-  reviewValidation
-} from 'utils/validation/PostingValidation';
+import { menuValidation, reviewValidation } from 'utils/validation/PostingValidation';
 import Button from 'components/Button/Button';
 import Title from 'components/Title/Title';
 import ReviewBox from 'components/ReviewBox/ReviewBox';
@@ -101,9 +98,7 @@ function PostingContainer({ history }) {
         [e.target.name]: `${e.target.checked ? 'private' : 'public'}`
       });
     } else if (e.target.name === 'date') {
-      const oldDate = new Date(
-        e.target.value.slice(0, 10).replace(/-/g, '/')
-      ).toString();
+      const oldDate = new Date(e.target.value.slice(0, 10).replace(/-/g, '/')).toString();
       const newDay = oldDate.slice(0, 3).toUpperCase();
       const newDate = e.target.value.slice(2, 10).replace(/-/g, '');
 
@@ -134,8 +129,7 @@ function PostingContainer({ history }) {
 
     // mealId 수정 코드
     const mealId =
-      +menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]
-        ?.id + 1;
+      +menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]?.id + 1;
 
     formData.append('id', mealId || 0);
 
@@ -147,7 +141,7 @@ function PostingContainer({ history }) {
       PostMeal(authUser, { ...newFormData }, dietId);
     } else {
       PostMeal(authUser, newFormData);
-      addMealInDiets(menuList[mealData.date].id, { ...newFormData });
+      addMealInDiets(menuList[mealData.date], { ...newFormData });
     }
 
     dispatch(addMenuListAction(newFormData)); // myPage 실시간 업데이트 코드 추가
@@ -176,9 +170,7 @@ function PostingContainer({ history }) {
 
   if (!authUser)
     return (
-      <div
-        style={{ fontSize: '3rem', margin: '300px 40px', lineHeight: '5rem' }}
-      >
+      <div style={{ fontSize: '3rem', margin: '300px 40px', lineHeight: '5rem' }}>
         로그인하든지~ 가입하든지~ 둘 중 하나 하라~ 이 말입니다. 아시겠어여??????
       </div>
     );
@@ -203,12 +195,7 @@ function PostingContainer({ history }) {
           onBlur={onBlur}
           hasError={mealData.hasError.review}
         />
-        <Toggle
-          id='isPublic'
-          label1='Public'
-          label2='Private'
-          onChange={onChange}
-        />
+        <Toggle id='isPublic' label1='Public' label2='Private' onChange={onChange} />
         <div>
           <Button type='button' onSubmit={goBack}>
             취소

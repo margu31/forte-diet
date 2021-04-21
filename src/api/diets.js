@@ -105,12 +105,22 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
   }
 };
 
+const getTotalCalories = meals => {
+  const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
+
+  return totalCalories > 999
+    ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    : totalCalories;
+};
+
 /* meal 추가 */
-export const addMealInDiets = async (dietId, mealData) => {
+export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
   try {
     const diet = await diets.doc(dietId);
+    const totalCalories = parseInt(getTotalCalories(meals), 10);
     diet.set(
       {
+        calories: totalCalories + parseInt(mealData.calories, 10),
         meals: firebase.firestore.FieldValue.arrayUnion({
           ...mealData
         })

@@ -16,6 +16,6 @@ export const StyledDiets = styled.ul`
   display: flex;
   min-height: 100vh;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-top: 1rem;
 `;
