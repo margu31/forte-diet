@@ -53,7 +53,10 @@ export default function DailyReview({
             totalBytes < maxByte && setWroteReview(e.target.value);
             setTotalBytes(checkByte(e));
           }}
-          onFocus={e => setTotalBytes(checkByte(e))}
+          onFocus={e => {
+            setTotalBytes(checkByte(e));
+            e.target.selectionStart = e.target.value.length;
+          }}
           ref={dailyTextarea}
           disabled={reviewIsActive ? '' : 'disabled'}
         ></textarea>
