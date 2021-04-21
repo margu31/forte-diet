@@ -1,5 +1,6 @@
 import { firestore } from './auth';
 import firebase from 'firebase';
+import { getPopularMenus, getRecentMenus } from '../redux/modules/board';
 
 const diets = firestore.collection('diets');
 
@@ -135,6 +136,32 @@ export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
       },
       { merge: true }
     );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+/* 좋아요 토글 */
+export const handleEditLikeToDiets = ({ id: dietId }, boardType, newLike) => async dispatch => {
+  try {
+    const diet = await diets.doc(dietId);
+    diet.set(
+      {
+        like: newLike
+      },
+      { merge: true }
+    );
+
+    switch (boardType) {
+      case 'popular':
+        dispatch(getPopularMenus(25)());
+        break;
+      case 'recent':
+        dispatch(getRecentMenus(25)());
+        break;
+      default:
+        return;
+    }
   } catch (e) {
     throw new Error(e.message);
   }
