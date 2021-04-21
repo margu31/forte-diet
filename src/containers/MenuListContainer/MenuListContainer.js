@@ -12,14 +12,10 @@ import {
   addWaterDoseAction,
   resetWaterDoseAction,
   addDailyReviewAction,
-  DeleteDailyReviewAction,
-  deleteMenuListAction
+  DeleteDailyReviewAction
 } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
-import {
-  updateWaterDoseAction,
-  updateCaloriesAction
-} from 'redux/modules/healthBar';
+import { updateWaterDoseAction } from 'redux/modules/healthBar';
 import { throttle } from 'lodash';
 import { getHealthBarListAction } from '../../redux/modules/healthBar';
 
@@ -64,8 +60,6 @@ export default function MenuListContainer() {
 
   const onDelete = (date, mealId) => {
     dispatch(removeMeal(authUser, menuList, date, mealId));
-    // dispatch(deleteMenuListAction(date, mealId));
-    // dispatch(updateCaloriesAction(date, mealId));
     dispatch(getHealthBarListAction(authUser.dietList));
   };
 

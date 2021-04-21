@@ -33,11 +33,11 @@ export const StyledNicknameIcon = styled(Nickname)`
 `;
 
 export const StyledEyeIcon = styled(Eye)`
-  height: 2.5rem;
+  height: 2rem;
   color: #000;
 `;
 
 export const StyledEyeSlashIcon = styled(EyeSlash)`
-  height: 2.5rem;
+  height: 2rem;
   color: #000;
 `;
