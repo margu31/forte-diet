@@ -10,7 +10,8 @@ import {
   DailyReview,
   DonutIcon,
   HeartIcon,
-  WaterIcon
+  WaterIcon,
+  DietAuthor
 } from './DietCard.styled';
 
 export default function DietCard({ dietData, ...restProps }) {
@@ -33,6 +34,7 @@ export default function DietCard({ dietData, ...restProps }) {
   };
   return (
     <DietItem>
+      <DietAuthor>{dietData.author}</DietAuthor>
       <StyledDietCard>
         <MealImg
           $borderColor={changeBorderColor(dietData.meals[0].type)}
