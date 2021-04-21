@@ -16,6 +16,12 @@ export const StyledDietCard = styled.article`
   align-items: center;
 `;
 
+export const DietAuthor = styled.div`
+  padding-left: 0.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+`;
+
 export const MealImg = styled.img`
   ${({ $borderColor }) => css`
     border: 4px solid ${$borderColor};
@@ -43,6 +49,8 @@ export const DietInfo = styled.div`
 export const DailyReview = styled.p`
   width: 100%;
   padding: 0 0 1rem 1rem;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
 `;
 
 export const DonutIcon = styled(Donut)`

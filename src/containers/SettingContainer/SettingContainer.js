@@ -2,13 +2,12 @@ import Setting from "components/Setting/Setting";
 import Title from "components/Title/Title";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { editUserInfo } from "api/firestore";
 
 export default function SettingContainer({ history }) {
   const { authUser } = useSelector((state) => state.auth);
   const [user, setUser] = useState(authUser);
   console.log(authUser);
-
-  // const [inputs, setInputs] = useState({});
 
   const onChange = (e) => {
     setUser({
@@ -27,12 +26,24 @@ export default function SettingContainer({ history }) {
       console.log(`${key}: ${value}`);
     });
 
-    history.push("/myPage");
+    const newFormData = Object.fromEntries(formData.entries());
+    console.log(newFormData);
+
+    editUserInfo(authUser, newFormData);
+
+    // history.push("/myPage");
   };
 
   const goBack = () => {
     history.goBack();
   };
+
+  if (!authUser)
+    return (
+      <div style={{ fontSize: "3rem", margin: "300px 150px" }}>
+        로그인하라~ 이 말입니다. 아시겠어여??????
+      </div>
+    );
 
   return (
     <section>
@@ -43,7 +54,6 @@ export default function SettingContainer({ history }) {
         userGender={authUser.gender}
         userHeight={authUser.height}
         userWeight={authUser.weight}
-        // userId={authUser.uid}
         onChange={onChange}
         onSubmit={onSubmit}
         goBack={goBack}

@@ -143,7 +143,7 @@ function PostingContainer({ history }) {
 
     // 새로운 메뉴 리스트라면, diets 테이블에 추가
     if (!menuList.hasOwnProperty(mealData.date)) {
-      const dietId = await addNewDiet(newFormData);
+      const dietId = await addNewDiet(authUser, newFormData);
       PostMeal(authUser, { ...newFormData }, dietId);
     } else {
       PostMeal(authUser, newFormData);
@@ -157,6 +157,7 @@ function PostingContainer({ history }) {
   const onBlur = e => {
     if (e.target.name === 'title') {
       menuValid(e.target.value);
+      // console.log(mealData.hasError.title);
     } else if (e.target.name === 'review') {
       reviewValid(e.target.value);
     }
@@ -172,6 +173,15 @@ function PostingContainer({ history }) {
   const goBack = () => {
     history.goBack();
   };
+
+  if (!authUser)
+    return (
+      <div
+        style={{ fontSize: '3rem', margin: '300px 40px', lineHeight: '5rem' }}
+      >
+        로그인하든지~ 가입하든지~ 둘 중 하나 하라~ 이 말입니다. 아시겠어여??????
+      </div>
+    );
 
   return (
     <section>
