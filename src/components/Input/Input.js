@@ -32,7 +32,6 @@ export default function Input({
 }) {
   return (
     <StyledInputWrapper {...restProps}>
-      {type && <Icons type={type} />}
       {a11yHidden ? (
         <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
       ) : (
@@ -56,9 +55,15 @@ export default function Input({
         <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>
       ) : null}
       {type === "password" ? (
-        <Button onClick={changePasswordMode}>
-          {<Icons type="showPassword" />}
-        </Button>
+        isShow ? (
+          <Button onClick={changePasswordMode}>
+            {<Icons type="showPassword" />}
+          </Button>
+        ) : (
+          <Button onClick={changePasswordMode}>
+            {<Icons type="eyeSlash" />}
+          </Button>
+        )
       ) : null}
     </StyledInputWrapper>
   );

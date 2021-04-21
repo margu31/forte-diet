@@ -7,6 +7,7 @@ import {
   StyledHeightIcon,
   StyledNicknameIcon,
   StyledEyeIcon,
+  StyledEyeSlashIcon,
 } from "./Icons.styled";
 
 export default function Icons({ type, ...restProps }) {
@@ -27,6 +28,8 @@ export default function Icons({ type, ...restProps }) {
       return <StyledNicknameIcon />;
     case "showPassword":
       return <StyledEyeIcon />;
+    case "eyeSlash":
+      return <StyledEyeSlashIcon />;
 
     default:
       return null;
