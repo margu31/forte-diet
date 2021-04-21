@@ -21,8 +21,8 @@ const StyledCalendarModal = styled.div`
 const StyledCalendarDialog = styled(motion.div)`
   width: 340px;
   position: fixed;
-  bottom: 120px;
-  right: 150px;
+  top: 310px;
+  right: 215px;
   font-size: 1rem;
   z-index: 999;
   padding: 0 5px 7px 5px;

@@ -22,7 +22,7 @@ export default function MenuListBar({
   onReset
 }) {
   const [waterIsActive, setWaterIsActive] = useState(false);
-  let { waterDose } = useSelector(state => state.menuList[date]);
+  let { waterDose, like } = useSelector(state => state.menuList[date]);
   waterDose = waterDose || 0;
 
   const dayNum = date.slice(4, 6);
@@ -43,7 +43,7 @@ export default function MenuListBar({
       <span>{dayNum}</span>
       <div>
         <StyledLike />
-        <span>like 3</span>
+        <span>like {like || 0}</span>
       </div>
       <div>
         <StyledContainer
