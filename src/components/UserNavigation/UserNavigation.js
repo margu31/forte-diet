@@ -5,7 +5,7 @@ import LoginDialog from 'containers/LogInContainer/LogInContainer';
 import SignUpDialog from 'containers/SignUpContainer/SignUpContainer';
 import { StyledButton } from './UserNavigation.styled';
 
-export default function UserNavigation({ isAuthed, onSignOut }) {
+export default function UserNavigation({ auth, onSignOut }) {
   const [dialogType, setDialogType] = useState(null);
 
   const onOpen = e => {
@@ -30,7 +30,7 @@ export default function UserNavigation({ isAuthed, onSignOut }) {
       )}
       <nav>
         <StyledUl>
-          {!isAuthed ? (
+          {!auth.isAuthed ? (
             <>
               <StyledLi>
                 <StyledButton id='LoginDialog' onClick={onOpen}>
