@@ -83,3 +83,23 @@ export const updateWaterDoseInDiets = async (dietId, curDose, addDose) => {
     throw new Error(e.message);
   }
 };
+
+/* meal 삭제 */
+export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
+  const newMeals = dietList[date].meals.filter(meal => meal.id !== mealId);
+
+  try {
+    const diet = await diets.doc(dietId);
+
+    if (!newMeals.length) diet.delete();
+    else
+      diet.set(
+        {
+          meals: newMeals
+        },
+        { merge: true }
+      );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};

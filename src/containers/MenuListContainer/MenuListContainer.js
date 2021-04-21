@@ -21,6 +21,7 @@ import { getHealthBarListAction } from '../../redux/modules/healthBar';
 import {
   addOrEditDailyReviewInDiets,
   removeDailyReviewInDiets,
+  removeMealInDiets,
   updateWaterDoseInDiets
 } from 'api/diets';
 
@@ -69,6 +70,7 @@ export default function MenuListContainer() {
 
   const onDelete = (date, mealId) => {
     dispatch(removeMeal(authUser, menuList, date, mealId));
+    removeMealInDiets(menuList[date].id, menuList, date, mealId);
     dispatch(getHealthBarListAction(authUser.dietList));
   };
 
