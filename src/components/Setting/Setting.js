@@ -13,7 +13,7 @@ import {
 } from "./Setting.styled";
 // import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
 import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const Setting = ({
   userEmail,
@@ -21,30 +21,39 @@ const Setting = ({
   userGender,
   userHeight,
   userWeight,
-  // userId,
   onChange,
   onSubmit,
   goBack,
 }) => {
-  // const [inputs, setInputs] = useState({
-  //   email: "",
-  //   password: "",
-  //   nickname: "",
-  //   gender: "",
-  //   hieght: "",
-  //   weight: "",
-  // });
+  const passwordRef = useRef();
+  const nicknameRef = useRef();
+  const hieghtRef = useRef();
+  const weightRef = useRef();
 
-  const passwordRef = useRef(null);
-  const nicknameRef = useRef(null);
-  const hieghtRef = useRef(null);
-  const weightRef = useRef(null);
+  const [isActivePw, setIsActivePw] = useState(true);
+  const [isActiveNickname, setIsActiveNickname] = useState(true);
+  const [isActiveHieght, setIsActiveHieght] = useState(true);
+  const [isActiveWeight, setIsActiveWeight] = useState(true);
 
-  const button1Ref = useRef(null);
-  const button2Ref = useRef(null);
-  const button3Ref = useRef(null);
-  const button4Ref = useRef(null);
-  // const [email, password, nickname, gender, hieght, weight] = inputs;
+  const onClickEdit = (e) => {
+    switch (e.target.parentNode.htmlFor) {
+      case "password":
+        setIsActivePw(!isActivePw);
+        break;
+      case "nickname":
+        setIsActiveNickname(!isActiveNickname);
+        break;
+      case "hieght":
+        setIsActiveHieght(!isActiveHieght);
+        break;
+      case "weight":
+        setIsActiveWeight(!isActiveWeight);
+        break;
+      default:
+        console.log(e.target.parentNode.htmlFor);
+    }
+    // console.log(e.target.parentNode.htmlFor);
+  };
 
   // const onChangeValue = (e) => {
   //   const { value, name } = e.target;
@@ -55,84 +64,44 @@ const Setting = ({
   // };
 
   useEffect(() => {
-    button1Ref.current.addEventListener("click", () => {
-      // console.log(e.target.nextSibling);
-      passwordRef.current.focus();
-      // console.log(inputsRef.current.focus());
-    });
-    button2Ref.current.addEventListener("click", () => {
-      nicknameRef.current.focus();
-    });
-    button3Ref.current.addEventListener("click", () => {
-      hieghtRef.current.focus();
-    });
-    button4Ref.current.addEventListener("click", () => {
-      weightRef.current.focus();
-    });
-    return () => {
-      button1Ref.removeEventListener("click", () => console.log("test"));
-      button2Ref.removeEventListener("click", () => console.log("test"));
-      button3Ref.removeEventListener("click", () => console.log("test"));
-      button4Ref.removeEventListener("click", () => console.log("test"));
-    };
-  }, []);
+    if (!isActivePw) passwordRef.current.focus();
+    else if (!isActiveNickname) nicknameRef.current.focus();
+    else if (!isActiveHieght) hieghtRef.current.focus();
+    else if (!isActiveWeight) weightRef.current.focus();
+  }, [isActivePw, isActiveNickname, isActiveHieght, isActiveWeight]);
 
   return (
     <StyledFormWrapper>
       <Form legend="정보 수정">
         <StyledInputWrapper>
-          {/* <StyledSettingInput
-              type="text"
-              id="email"
-              label="이메일"
-              // readOnly={true}
-            />
-            <StyledSettingInput type="text" id="password" label="패스워드" />
-            <StyledSettingInput
-              type="text"
-              id="nickname"
-              label="닉네임"
-              // defaultValue={userNickname}
-            />
-            <StyledRadio>
-              <p>성별</p>
-              <InputRadio id="male" name="gender" value="male" label="남성" />
-              <InputRadio
-                id="female"
-                name="gender"
-                value="female"
-                label="여성"
-              />
-            </StyledRadio>
-            <StyledSettingInput type="text" id="hieght" label="신장" />
-            <StyledSettingInput type="text" id="weight" label="몸무게" /> */}
-
           <StyledSettingInput>
             <Input
               type="text"
-              // type="email"
               id="email"
               name="email"
               label="이메일"
               disabled="true"
-              // readOnly={true}
               defaultValue={userEmail}
             />
           </StyledSettingInput>
           <StyledSettingInput>
-            <Edit ref={button1Ref} />
+            <label htmlFor="password" onClick={onClickEdit}>
+              <Edit />
+            </label>
             <Input
               type="text"
               id="password"
               name="password"
               label="패스워드"
               onChange={onChange}
+              disabled={isActivePw}
               ref={passwordRef}
             />
-            {/* <StyledEdit onClick={onClickEdit} /> */}
           </StyledSettingInput>
           <StyledSettingInput>
-            <Edit ref={button2Ref} />
+            <label htmlFor="nickname" onClick={onClickEdit}>
+              <Edit />
+            </label>
             <Input
               type="text"
               id="nickname"
@@ -140,10 +109,9 @@ const Setting = ({
               label="닉네임"
               defaultValue={userNickname}
               onChange={onChange}
-              // ref={(ref) => (inputsRef.current["nickname"] = ref)}
+              disabled={isActiveNickname}
               ref={nicknameRef}
             />
-            {/* <StyledEdit onClick={onClickEdit} /> */}
           </StyledSettingInput>
           <StyledRadio>
             <p>성별</p>
@@ -163,8 +131,9 @@ const Setting = ({
             />
           </StyledRadio>
           <StyledSettingInput>
-            {/* <Edit onClick={onClickEdit} /> */}
-            <Edit ref={button3Ref} />
+            <label htmlFor="hieght" onClick={onClickEdit}>
+              <Edit />
+            </label>
             <Input
               type="text"
               id="hieght"
@@ -172,13 +141,14 @@ const Setting = ({
               label="신장"
               onChange={onChange}
               defaultValue={userHeight}
+              disabled={isActiveHieght}
               ref={hieghtRef}
             />
-            {/* <StyledEdit /> */}
           </StyledSettingInput>
           <StyledSettingInput>
-            {/* <Edit onClick={onClickEdit} /> */}
-            <Edit ref={button4Ref} />
+            <label htmlFor="weight" onClick={onClickEdit}>
+              <Edit />
+            </label>
             <Input
               type="text"
               id="weight"
@@ -186,9 +156,9 @@ const Setting = ({
               label="몸무게"
               onChange={onChange}
               defaultValue={userWeight}
+              disabled={isActiveWeight}
               ref={weightRef}
             />
-            {/* <StyledEdit /> */}
           </StyledSettingInput>
         </StyledInputWrapper>
         <StyledButtonGroup>
