@@ -1,12 +1,14 @@
 import Setting from "components/Setting/Setting";
 import Title from "components/Title/Title";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editUserInfo } from "api/firestore";
+import { editUserAction } from "redux/modules/auth/auth";
 
 export default function SettingContainer({ history }) {
   const { authUser } = useSelector((state) => state.auth);
   const [user, setUser] = useState(authUser);
+  const dispatch = useDispatch();
   console.log(authUser);
 
   const onChange = (e) => {
@@ -30,6 +32,7 @@ export default function SettingContainer({ history }) {
     console.log(newFormData);
 
     editUserInfo(authUser, newFormData);
+    dispatch(editUserAction(newFormData));
 
     history.push("/myPage");
   };
