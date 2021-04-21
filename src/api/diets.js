@@ -9,7 +9,11 @@ export const getRecentDiets = limit => async () => {
 
     const recentDiets = [];
 
-    response.forEach(doc => recentDiets.push(doc.data()));
+    response.forEach(doc => {
+      const datas = doc.data();
+      datas.id = doc.id;
+      recentDiets.push(datas);
+    });
 
     return recentDiets;
   } catch (e) {
@@ -23,7 +27,11 @@ export const getPopularDiets = limit => async () => {
 
     const popularDiets = [];
 
-    response.forEach(doc => popularDiets.push(doc.data()));
+    response.forEach(doc => {
+      const datas = doc.data();
+      datas.id = doc.id;
+      popularDiets.push(datas);
+    });
 
     return popularDiets;
   } catch (e) {
