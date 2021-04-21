@@ -6,7 +6,7 @@ import {
   StyledBoardWrapper,
   StyledDiets
 } from './Board.styled';
-import Diet from '../Diet/Diet';
+import DietCard from 'components/DietCard/DietCard';
 
 export default function Board({ boardType, setBoardType, diets }) {
   const handleClick = e => {
@@ -25,17 +25,9 @@ export default function Board({ boardType, setBoardType, diets }) {
     <StyledBoardWrapper>
       <StyledBoardTitle>Trending</StyledBoardTitle>
       <BoardNavigation boardType={boardType} onClick={handleClick} />
-      <StyledBoardWindow>
-        <StyledDiets>
-          {diets &&
-            diets.map((diet, idx) => (
-              <>
-                {idx}
-                <Diet dietData={diet} variants={item} />
-              </>
-            ))}
-        </StyledDiets>
-      </StyledBoardWindow>
+      <StyledDiets>
+        {diets && diets.map((diet, idx) => <DietCard dietData={diet} variants={item} />)}
+      </StyledDiets>
     </StyledBoardWrapper>
   );
 }

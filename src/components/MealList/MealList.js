@@ -15,8 +15,6 @@ export default function MealList({ mealListData, variants, onDelete, date, isHom
   const { photo, title, type, id } = mealListData;
   const [isActive, setIsActive] = useState(false);
 
-  console.log(isHome);
-
   const changeBorderColor = type => {
     switch (type) {
       case '아침':
