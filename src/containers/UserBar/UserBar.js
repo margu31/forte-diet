@@ -1,17 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { auth, createOrGetAuthUser, handleSignOut } from '../../api/auth';
+import { auth as Auth, createOrGetAuthUser, handleSignOut } from '../../api/auth';
 import UserNavigation from 'components/UserNavigation/UserNavigation';
 import { signInAction, signOutAction } from 'redux/modules/auth/auth';
 
 export default function UserBar() {
-  const { isAuthed } = useSelector(state => state.auth);
+  const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   // 인증 상태 감지 이벤트
   React.useEffect(() => {
     // 이벤츠 해제 함수 참조
-    const unsubscribe = auth.onAuthStateChanged(async currentUser => {
+    const unsubscribe = Auth.onAuthStateChanged(async currentUser => {
       if (currentUser) {
         const userRef = await createOrGetAuthUser(currentUser);
 
@@ -41,5 +41,5 @@ export default function UserBar() {
     dispatch(handleSignOut(signOutAction));
   };
 
-  return <UserNavigation isAuthed={isAuthed} onSignOut={onSignOut} />;
+  return <UserNavigation auth={auth} onSignOut={onSignOut} />;
 }

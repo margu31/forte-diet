@@ -152,16 +152,8 @@ export const handleEditLikeToDiets = ({ id: dietId }, boardType, newLike) => asy
       { merge: true }
     );
 
-    switch (boardType) {
-      case 'popular':
-        dispatch(getPopularMenus(25)());
-        break;
-      case 'recent':
-        dispatch(getRecentMenus(25)());
-        break;
-      default:
-        return;
-    }
+    dispatch(getRecentMenus(25)());
+    dispatch(getPopularMenus(25)());
   } catch (e) {
     throw new Error(e.message);
   }
