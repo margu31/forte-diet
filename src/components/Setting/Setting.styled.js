@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { palette } from "styles";
+// import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
+import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
+import { motion } from "framer-motion";
 
 export const StyledFormWrapper = styled.div`
   margin-top: 5rem;
@@ -95,9 +98,14 @@ export const StyledSettingInput = styled.div`
     top: 6px;
     right: 45px;
     cursor: pointer;
-    /* opacity: 0; */
   }
 `;
+
+// export const StyledEdit = styled(Edit)`
+//   position: absolute;
+//   top: 6px;
+//   right: 45px;
+// `;
 
 export const StyledRadio = styled.div`
   width: 417px;

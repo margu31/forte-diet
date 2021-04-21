@@ -9,10 +9,11 @@ import {
   StyledInputWrapper,
   StyledFormWrapper,
   StyledImage,
+  // StyledEdit,
 } from "./Setting.styled";
 // import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
 import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
-import { useRef, useState } from "react";
+import { useRef, useEffect } from "react";
 
 const Setting = ({
   userEmail,
@@ -25,16 +26,24 @@ const Setting = ({
   onSubmit,
   goBack,
 }) => {
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-    nickname: "",
-    gender: "",
-    hieght: "",
-    weight: "",
-  });
+  // const [inputs, setInputs] = useState({
+  //   email: "",
+  //   password: "",
+  //   nickname: "",
+  //   gender: "",
+  //   hieght: "",
+  //   weight: "",
+  // });
 
-  const inputsRef = useRef();
+  const passwordRef = useRef(null);
+  const nicknameRef = useRef(null);
+  const hieghtRef = useRef(null);
+  const weightRef = useRef(null);
+
+  const button1Ref = useRef(null);
+  const button2Ref = useRef(null);
+  const button3Ref = useRef(null);
+  const button4Ref = useRef(null);
   // const [email, password, nickname, gender, hieght, weight] = inputs;
 
   // const onChangeValue = (e) => {
@@ -45,9 +54,28 @@ const Setting = ({
   //   });
   // };
 
-  const onClickEdit = () => {
-    inputsRef.current.focus();
-  };
+  useEffect(() => {
+    button1Ref.current.addEventListener("click", () => {
+      // console.log(e.target.nextSibling);
+      passwordRef.current.focus();
+      // console.log(inputsRef.current.focus());
+    });
+    button2Ref.current.addEventListener("click", () => {
+      nicknameRef.current.focus();
+    });
+    button3Ref.current.addEventListener("click", () => {
+      hieghtRef.current.focus();
+    });
+    button4Ref.current.addEventListener("click", () => {
+      weightRef.current.focus();
+    });
+    return () => {
+      button1Ref.removeEventListener("click", () => console.log("test"));
+      button2Ref.removeEventListener("click", () => console.log("test"));
+      button3Ref.removeEventListener("click", () => console.log("test"));
+      button4Ref.removeEventListener("click", () => console.log("test"));
+    };
+  }, []);
 
   return (
     <StyledFormWrapper>
@@ -92,28 +120,30 @@ const Setting = ({
             />
           </StyledSettingInput>
           <StyledSettingInput>
+            <Edit ref={button1Ref} />
             <Input
               type="text"
               id="password"
               name="password"
               label="패스워드"
               onChange={onChange}
-              // ref={inputsRef}
+              ref={passwordRef}
             />
-            <Edit onClick={onClickEdit} />
+            {/* <StyledEdit onClick={onClickEdit} /> */}
           </StyledSettingInput>
           <StyledSettingInput>
+            <Edit ref={button2Ref} />
             <Input
               type="text"
-              // type="password"
               id="nickname"
               name="nickname"
               label="닉네임"
               defaultValue={userNickname}
               onChange={onChange}
-              // ref={inputsRef}
+              // ref={(ref) => (inputsRef.current["nickname"] = ref)}
+              ref={nicknameRef}
             />
-            <Edit onClick={onClickEdit} />
+            {/* <StyledEdit onClick={onClickEdit} /> */}
           </StyledSettingInput>
           <StyledRadio>
             <p>성별</p>
@@ -133,6 +163,8 @@ const Setting = ({
             />
           </StyledRadio>
           <StyledSettingInput>
+            {/* <Edit onClick={onClickEdit} /> */}
+            <Edit ref={button3Ref} />
             <Input
               type="text"
               id="hieght"
@@ -140,10 +172,13 @@ const Setting = ({
               label="신장"
               onChange={onChange}
               defaultValue={userHeight}
+              ref={hieghtRef}
             />
-            <Edit />
+            {/* <StyledEdit /> */}
           </StyledSettingInput>
           <StyledSettingInput>
+            {/* <Edit onClick={onClickEdit} /> */}
+            <Edit ref={button4Ref} />
             <Input
               type="text"
               id="weight"
@@ -151,8 +186,9 @@ const Setting = ({
               label="몸무게"
               onChange={onChange}
               defaultValue={userWeight}
+              ref={weightRef}
             />
-            <Edit />
+            {/* <StyledEdit /> */}
           </StyledSettingInput>
         </StyledInputWrapper>
         <StyledButtonGroup>
