@@ -18,7 +18,11 @@ import MenuList from '../../components/MenuList/MenuList';
 import { updateWaterDoseAction } from 'redux/modules/healthBar';
 import { throttle } from 'lodash';
 import { getHealthBarListAction } from '../../redux/modules/healthBar';
-import { addOrEditDailyReviewInDiets, removeDailyReviewInDiets } from 'api/diets';
+import {
+  addOrEditDailyReviewInDiets,
+  removeDailyReviewInDiets,
+  updateWaterDoseInDiets
+} from 'api/diets';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);
@@ -49,6 +53,7 @@ export default function MenuListContainer() {
     const additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
 
     dispatch(addWaterDose(authUser, date, currentDose, additionalDose));
+    updateWaterDoseInDiets(menuList[date].id, currentDose, additionalDose);
     dispatch(addWaterDoseAction(date, currentDose + additionalDose));
     dispatch(updateWaterDoseAction(date, currentDose + additionalDose));
   };
@@ -57,6 +62,7 @@ export default function MenuListContainer() {
     const RESET_WATER_DOSE = 0;
 
     dispatch(addWaterDose(authUser, date, RESET_WATER_DOSE, RESET_WATER_DOSE));
+    updateWaterDoseInDiets(menuList[date].id, RESET_WATER_DOSE, RESET_WATER_DOSE);
     dispatch(resetWaterDoseAction(date));
     dispatch(updateWaterDoseAction(date, RESET_WATER_DOSE));
   };

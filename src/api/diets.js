@@ -52,6 +52,7 @@ export const addOrEditDailyReviewInDiets = async (dietId, review) => {
   }
 };
 
+/* 데일리 리뷰 삭제 */
 export const removeDailyReviewInDiets = async dietId => {
   try {
     const diet = await diets.doc(dietId);
@@ -59,6 +60,22 @@ export const removeDailyReviewInDiets = async dietId => {
     diet.set(
       {
         dailyReview: ''
+      },
+      { merge: true }
+    );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+/* 물 섭취량 수정 */
+export const updateWaterDoseInDiets = async (dietId, curDose, addDose) => {
+  try {
+    const diet = await diets.doc(dietId);
+
+    diet.set(
+      {
+        waterDose: curDose + addDose
       },
       { merge: true }
     );
