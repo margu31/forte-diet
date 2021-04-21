@@ -33,8 +33,6 @@ export default function DailyReview({
     setTotalBytes(0);
   };
 
-  let cursorPosition = 0;
-
   return (
     <>
       {reviewIsActive && (
@@ -52,19 +50,11 @@ export default function DailyReview({
           placeholder='오늘도 즐거운 식사 되셨나요? 오늘의 느낀 점을 기록해보세요. (150btyes 이내)'
           value={wroteReview}
           onChange={e => {
-            if (totalBytes <= maxByte) {
-              setWroteReview(e.target.value);
-            } else {
-              setWroteReview(
-                e.target.value.substring(0, e.target.value.length - 1)
-              );
-            }
+            totalBytes <= maxByte
+              ? setWroteReview(e.target.value)
+              : setWroteReview(e.target.value.substring(0, 80));
             setTotalBytes(checkByte(e));
           }}
-          // onClick={e => {
-          //   cursorPosition = e.target.selectionStart;
-          //   console.log(cursorPosition);
-          // }}
           onFocus={e => {
             setTotalBytes(checkByte(e));
             e.target.selectionStart = e.target.value.length;
