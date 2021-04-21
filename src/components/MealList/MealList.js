@@ -11,9 +11,11 @@ import {
 } from './MealList.styled';
 import { palette } from 'styles/index';
 
-export default function MealList({ mealListData, variants, onDelete, date }) {
+export default function MealList({ mealListData, variants, onDelete, date, isHome, ...restProps }) {
   const { photo, title, type, id } = mealListData;
   const [isActive, setIsActive] = useState(false);
+
+  console.log(isHome);
 
   const changeBorderColor = type => {
     switch (type) {
@@ -34,14 +36,13 @@ export default function MealList({ mealListData, variants, onDelete, date }) {
   };
 
   return (
-    <StyledLiContainer>
-      <StyledMealList
-        $borderColor={changeBorderColor(type)}
-        variants={variants}
-      >
-        <StyledDeleteButton onClick={() => setIsActive(!isActive)}>
-          <StyledDeleteIcon />
-        </StyledDeleteButton>
+    <StyledLiContainer {...restProps}>
+      <StyledMealList $borderColor={changeBorderColor(type)} variants={variants}>
+        {!isHome && (
+          <StyledDeleteButton onClick={() => setIsActive(!isActive)}>
+            <StyledDeleteIcon />
+          </StyledDeleteButton>
+        )}
         <StyledContainer whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }}>
           {/* <img src={photo} alt={title} /> */}
           <img
@@ -52,8 +53,8 @@ export default function MealList({ mealListData, variants, onDelete, date }) {
         <span>{type}</span>
         <span>{title}</span>
       </StyledMealList>
-      {isActive && <StyledDeleteModal onMouseDown={() => setIsActive(false)} />}
-      {isActive && (
+      {!isHome && isActive && <StyledDeleteModal onMouseDown={() => setIsActive(false)} />}
+      {!isHome && isActive && (
         <>
           <StyledDeleteDialog
             initial={{ y: 2, opacity: 0 }}

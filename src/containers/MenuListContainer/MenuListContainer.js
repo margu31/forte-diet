@@ -18,6 +18,12 @@ import MenuList from '../../components/MenuList/MenuList';
 import { updateWaterDoseAction } from 'redux/modules/healthBar';
 import { throttle } from 'lodash';
 import { getHealthBarListAction } from '../../redux/modules/healthBar';
+import {
+  addOrEditDailyReviewInDiets,
+  removeDailyReviewInDiets,
+  removeMealInDiets,
+  updateWaterDoseInDiets
+} from 'api/diets';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);
@@ -34,11 +40,13 @@ export default function MenuListContainer() {
 
   const onSubmit = (date, review) => {
     dispatch(addOrEditDailyReview(authUser, date, review));
+    addOrEditDailyReviewInDiets(menuList[date].id, review);
     dispatch(addDailyReviewAction(date, review));
   };
 
   const onRemove = date => {
     dispatch(removeDailyReview(authUser, date));
+    removeDailyReviewInDiets(menuList[date].id);
     dispatch(DeleteDailyReviewAction(date));
   };
 
@@ -46,6 +54,7 @@ export default function MenuListContainer() {
     const additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
 
     dispatch(addWaterDose(authUser, date, currentDose, additionalDose));
+    updateWaterDoseInDiets(menuList[date].id, currentDose, additionalDose);
     dispatch(addWaterDoseAction(date, currentDose + additionalDose));
     dispatch(updateWaterDoseAction(date, currentDose + additionalDose));
   };
@@ -54,12 +63,14 @@ export default function MenuListContainer() {
     const RESET_WATER_DOSE = 0;
 
     dispatch(addWaterDose(authUser, date, RESET_WATER_DOSE, RESET_WATER_DOSE));
+    updateWaterDoseInDiets(menuList[date].id, RESET_WATER_DOSE, RESET_WATER_DOSE);
     dispatch(resetWaterDoseAction(date));
     dispatch(updateWaterDoseAction(date, RESET_WATER_DOSE));
   };
 
   const onDelete = (date, mealId) => {
     dispatch(removeMeal(authUser, menuList, date, mealId));
+    removeMealInDiets(menuList[date].id, menuList, date, mealId);
     dispatch(getHealthBarListAction(authUser.dietList));
   };
 

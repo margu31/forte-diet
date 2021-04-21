@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import { palette } from "../../styles";
 
-export const StyledInputWrapper = styled.div`
-  /* display: inline-flex;
-  flex-flow: column; */
-`;
+export const StyledInputWrapper = styled.div``;
 
 export const StyledLabel = styled.label`
   display: block;

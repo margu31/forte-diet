@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BoardNavigation from 'components/BoardNavigation/BoardNavigation';
-import { StyledBoardTitle, StyledBoardWindow, StyledBoardWrapper } from './Board.styled';
+import {
+  StyledBoardTitle,
+  StyledBoardWindow,
+  StyledBoardWrapper,
+  StyledDiets
+} from './Board.styled';
+import Diet from '../Diet/Diet';
 
-export default function Board() {
-  const [boardType, setBoardType] = useState(1);
-
+export default function Board({ boardType, setBoardType, diets }) {
   const handleClick = e => {
-    switch (e.target.id) {
-      case 'popular':
-        setBoardType(1);
-        break;
-      case 'recent':
-        setBoardType(2);
-        break;
-      case 'search':
-        setBoardType(3);
-        break;
-      default:
-        return;
+    setBoardType(e.target.id);
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
     }
   };
 
@@ -25,7 +25,17 @@ export default function Board() {
     <StyledBoardWrapper>
       <StyledBoardTitle>Trending</StyledBoardTitle>
       <BoardNavigation boardType={boardType} onClick={handleClick} />
-      <StyledBoardWindow boardType={boardType} />
+      <StyledBoardWindow>
+        <StyledDiets>
+          {diets &&
+            diets.map((diet, idx) => (
+              <>
+                {idx}
+                <Diet dietData={diet} variants={item} />
+              </>
+            ))}
+        </StyledDiets>
+      </StyledBoardWindow>
     </StyledBoardWrapper>
   );
 }

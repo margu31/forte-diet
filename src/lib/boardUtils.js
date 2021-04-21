@@ -6,8 +6,8 @@ export const boardReducerUtils = {
     error: null
   },
   loading: prevState => ({
+    ...prevState,
     loading: true,
-    data: prevState,
     error: null
   }),
   success: data => ({

@@ -30,7 +30,11 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
   const [isShow, setIsShow] = useState(false);
 
   const onChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value.trim() });
+    if (e.target.name === "gender") {
+      setState({ ...state, [e.target.name]: e.target.value.trim() });
+    } else {
+      setState({ ...state, [e.target.name]: e.target.value.trim() });
+    }
   };
 
   const emailValid = (value) => {
@@ -160,8 +164,6 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
       });
     }
   };
-
-  const genderValid = () => {};
 
   const onSubmit = (e) => {
     e.preventDefault();
