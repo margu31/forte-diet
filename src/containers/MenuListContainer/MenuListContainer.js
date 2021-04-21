@@ -18,6 +18,7 @@ import MenuList from '../../components/MenuList/MenuList';
 import { updateWaterDoseAction } from 'redux/modules/healthBar';
 import { throttle } from 'lodash';
 import { getHealthBarListAction } from '../../redux/modules/healthBar';
+import { addOrEditDailyReviewInDiets } from '../../api/diets';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);
@@ -34,6 +35,7 @@ export default function MenuListContainer() {
 
   const onSubmit = (date, review) => {
     dispatch(addOrEditDailyReview(authUser, date, review));
+    addOrEditDailyReviewInDiets(menuList[date].id, review);
     dispatch(addDailyReviewAction(date, review));
   };
 

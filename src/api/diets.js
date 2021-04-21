@@ -29,3 +29,25 @@ export const getPopularDiets = limit => async () => {
     throw new Error(e.message);
   }
 };
+
+/* -------------------------------------------------------------------------- */
+/*                                  다이어트 테이블                                  */
+/* -------------------------------------------------------------------------- */
+
+/* 데일리 리뷰 추가 및 수정 */
+export const addOrEditDailyReviewInDiets = async (dietId, review) => {
+  try {
+    const diet = await diets.doc(dietId);
+
+    diet.set(
+      {
+        dailyReview: review
+      },
+      { merge: true }
+    );
+
+    return true;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
