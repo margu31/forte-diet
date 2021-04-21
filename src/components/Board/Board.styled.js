@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Title from 'components/Title/Title';
 
 export const StyledBoardWrapper = styled.section`
-  padding: 8rem 10rem 0;
+  padding: 8rem 5rem 0;
 `;
 
 export const StyledBoardTitle = styled(Title)`
@@ -16,4 +16,9 @@ export const StyledBoardWindow = styled.article`
   min-height: 100vh;
   max-width: 70%;
   margin: 0 auto;
+`;
+
+export const StyledDiets = styled.ul`
+  display: inline-flex;
+  flex-direction: column;
 `;

@@ -14,7 +14,6 @@ export default function Dropdown({ selects }) {
   const dropdownWindow = useRef();
 
   const closeDropdown = e => {
-    console.log();
     if (e.target === dropdown.current || e.target === dropdownWindow.current) return;
     setIsShow(false);
   };

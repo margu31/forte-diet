@@ -149,3 +149,24 @@ export const PostMeal = async ({ uid }, mealdata, dietId) => {
     throw new Error(e.message);
   }
 };
+
+/* 셋팅 페이지 */
+
+/* 유저 정보 수정 api */
+
+export const editUserInfo = async ({ uid }, userInfo) => {
+  try {
+    const user = await users.doc(uid);
+
+    user.set(
+      {
+        ...userInfo
+      },
+      { merge: true }
+    );
+
+    return true;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
