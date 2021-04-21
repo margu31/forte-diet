@@ -113,9 +113,10 @@ export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
 
 /* 포스팅 페이지 */
 
-export const addNewDiet = async mealdata => {
+export const addNewDiet = async ({ nickname }, mealdata) => {
   try {
     const newDietRef = await diets.add({
+      author: nickname,
       dailyReview: null,
       createdAt: new Date(),
       calories: mealdata.calories,
