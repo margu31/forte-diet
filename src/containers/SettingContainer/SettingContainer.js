@@ -2,6 +2,7 @@ import Setting from "components/Setting/Setting";
 import Title from "components/Title/Title";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { editUserInfo } from "api/firestore";
 
 export default function SettingContainer({ history }) {
   const { authUser } = useSelector((state) => state.auth);
@@ -25,7 +26,12 @@ export default function SettingContainer({ history }) {
       console.log(`${key}: ${value}`);
     });
 
-    history.push("/myPage");
+    const newFormData = Object.fromEntries(formData.entries());
+    console.log(newFormData);
+
+    editUserInfo(authUser, newFormData);
+
+    // history.push("/myPage");
   };
 
   const goBack = () => {
