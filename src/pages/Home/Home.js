@@ -3,6 +3,7 @@ import Welcome from 'components/Welcome/Welcome';
 import UserBar from 'containers/UserBar/UserBar';
 import { StyledHomePageWrapper } from './Home.styled';
 import BoardContainer from 'containers/BoardContainer/BoardContainer';
+import HealthBarContainer from 'containers/HealthBarContainer/HealthBarContainer';
 
 export default function Home() {
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function Home() {
       <UserBar />
       <Welcome />
       <BoardContainer />
+      <HealthBarContainer />
     </StyledHomePageWrapper>
   );
 }

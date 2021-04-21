@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from 'styled-components';
+import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
 
 export const StyledBackground = styled.section`
   width: 100vw;
@@ -11,6 +12,12 @@ export const StyledBackground = styled.section`
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
   /* background-position: center; */
+
+  ${StyledButton} {
+    ${({ theme }) => css`
+      color: ${theme.themeDefault};
+    `}
+  }
 `;
 
 export const StyledSettingPage = styled.div`
