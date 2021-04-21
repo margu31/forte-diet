@@ -1,4 +1,5 @@
 import { firestore } from './auth';
+import firebase from 'firebase';
 
 const diets = firestore.collection('diets');
 
@@ -99,6 +100,23 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
         },
         { merge: true }
       );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+/* meal 추가 */
+export const addMealInDiets = async (dietId, mealData) => {
+  try {
+    const diet = await diets.doc(dietId);
+    diet.set(
+      {
+        meals: firebase.firestore.FieldValue.arrayUnion({
+          ...mealData
+        })
+      },
+      { merge: true }
+    );
   } catch (e) {
     throw new Error(e.message);
   }

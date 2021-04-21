@@ -9,6 +9,7 @@ import Toggle from 'components/Toggle/Toggle';
 import DataGroup from 'components/DataGroup/DataGroup';
 import { addNewDiet, PostMeal } from 'api/firestore';
 import { getMenuListAction } from 'redux/modules/menuList';
+import { addMealInDiets } from 'api/diets';
 
 const today = new Date();
 const year = today.getFullYear();
@@ -137,7 +138,10 @@ function PostingContainer({ history }) {
     if (!menuList.hasOwnProperty(mealData.date)) {
       const dietId = await addNewDiet(newFormData);
       PostMeal(authUser, { ...newFormData }, dietId);
-    } else PostMeal(authUser, newFormData);
+    } else {
+      PostMeal(authUser, newFormData);
+      addMealInDiets(menuList[mealData.date].id, { ...newFormData });
+    }
 
     dispatch(getMenuListAction()); // myPage 실시간 업데이트 코드 추가
     history.push('/myPage');
@@ -146,7 +150,6 @@ function PostingContainer({ history }) {
   const onBlur = e => {
     if (e.target.name === 'title') {
       menuValid(e.target.value);
-      console.log(mealData.hasError.title);
     } else if (e.target.name === 'review') {
       reviewValid(e.target.value);
     }
