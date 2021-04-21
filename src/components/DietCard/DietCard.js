@@ -1,4 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { addLikeToUser } from '../../api/auth';
+import { handleEditLikeToDiets } from '../../api/diets';
+import { pushLikeAction } from '../../redux/modules/auth/auth';
 import { palette } from '../../styles';
 import {
   DietItem,
@@ -11,10 +15,12 @@ import {
   DonutIcon,
   HeartIcon,
   WaterIcon,
-  DietAuthor
+  DietAuthor,
+  LikedHeartIcon
 } from './DietCard.styled';
 
-export default function DietCard({ dietData, ...restProps }) {
+export default function DietCard({ dietData, auth, boardType, ...restProps }) {
+  const dispatch = useDispatch();
   const changeBorderColor = type => {
     switch (type) {
       case '아침':
@@ -32,6 +38,28 @@ export default function DietCard({ dietData, ...restProps }) {
         return palette.themeSecondary;
     }
   };
+
+  const isLiked = auth.authUser?.like.includes(dietData.id);
+
+  /* 밑에 두 함수 합치는 리팩토링 필요 */
+  const handleLike = () => {
+    const newLike = [...auth.authUser.like, dietData.id];
+    dispatch(pushLikeAction(newLike));
+
+    addLikeToUser(auth.authUser, newLike);
+
+    dispatch(handleEditLikeToDiets(dietData, boardType, dietData.like + 1));
+  };
+
+  const handleDisLike = () => {
+    const newLike = [...auth.authUser.like].filter(id => id !== dietData.id);
+    dispatch(pushLikeAction(newLike));
+
+    addLikeToUser(auth.authUser, newLike);
+
+    dispatch(handleEditLikeToDiets(dietData, boardType, dietData.like - 1));
+  };
+
   return (
     <DietItem>
       <DietAuthor>{dietData.author}</DietAuthor>
@@ -48,7 +76,12 @@ export default function DietCard({ dietData, ...restProps }) {
             <WaterIcon /> {dietData.waterDose || '0'}ml
           </DietInfo>
           <Likes>
-            <HeartIcon /> {dietData.like || '0'}
+            {isLiked ? (
+              <LikedHeartIcon onClick={handleDisLike} />
+            ) : (
+              <HeartIcon onClick={handleLike} />
+            )}{' '}
+            {dietData.like || '0'}
           </Likes>
         </DietInfos>
         <DailyReview>{dietData.dailyReview}</DailyReview>

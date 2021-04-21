@@ -1,14 +1,9 @@
 import React from 'react';
 import BoardNavigation from 'components/BoardNavigation/BoardNavigation';
-import {
-  StyledBoardTitle,
-  StyledBoardWindow,
-  StyledBoardWrapper,
-  StyledDiets
-} from './Board.styled';
+import { StyledBoardTitle, StyledBoardWrapper, StyledDiets } from './Board.styled';
 import DietCard from 'components/DietCard/DietCard';
 
-export default function Board({ boardType, setBoardType, diets }) {
+export default function Board({ boardType, setBoardType, diets, auth }) {
   const handleClick = e => {
     setBoardType(e.target.id);
   };
@@ -26,7 +21,10 @@ export default function Board({ boardType, setBoardType, diets }) {
       <StyledBoardTitle>Trending</StyledBoardTitle>
       <BoardNavigation boardType={boardType} onClick={handleClick} />
       <StyledDiets>
-        {diets && diets.map((diet, idx) => <DietCard dietData={diet} variants={item} />)}
+        {diets &&
+          diets.map(diet => (
+            <DietCard boardType={boardType} auth={auth} dietData={diet} variants={item} />
+          ))}
       </StyledDiets>
     </StyledBoardWrapper>
   );
