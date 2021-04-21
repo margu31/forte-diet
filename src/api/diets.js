@@ -1,5 +1,6 @@
 import { firestore } from './auth';
 import firebase from 'firebase';
+import { getPopularMenus, getRecentMenus } from '../redux/modules/board';
 
 const diets = firestore.collection('diets');
 
@@ -9,7 +10,11 @@ export const getRecentDiets = limit => async () => {
 
     const recentDiets = [];
 
-    response.forEach(doc => recentDiets.push(doc.data()));
+    response.forEach(doc => {
+      const datas = doc.data();
+      datas.id = doc.id;
+      recentDiets.push(datas);
+    });
 
     return recentDiets;
   } catch (e) {
@@ -23,7 +28,11 @@ export const getPopularDiets = limit => async () => {
 
     const popularDiets = [];
 
-    response.forEach(doc => popularDiets.push(doc.data()));
+    response.forEach(doc => {
+      const datas = doc.data();
+      datas.id = doc.id;
+      popularDiets.push(datas);
+    });
 
     return popularDiets;
   } catch (e) {
@@ -127,6 +136,32 @@ export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
       },
       { merge: true }
     );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+/* 좋아요 토글 */
+export const handleEditLikeToDiets = ({ id: dietId }, boardType, newLike) => async dispatch => {
+  try {
+    const diet = await diets.doc(dietId);
+    diet.set(
+      {
+        like: newLike
+      },
+      { merge: true }
+    );
+
+    switch (boardType) {
+      case 'popular':
+        dispatch(getPopularMenus(25)());
+        break;
+      case 'recent':
+        dispatch(getRecentMenus(25)());
+        break;
+      default:
+        return;
+    }
   } catch (e) {
     throw new Error(e.message);
   }

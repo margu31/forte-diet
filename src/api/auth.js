@@ -116,6 +116,7 @@ export const createOrGetAuthUser = async (user, additionalData = {}) => {
         email,
         photoURL,
         createdAt,
+        like: [],
         // 추가 데이터가 전달된 경우 병합(믹스인)
         ...additionalData
       });
@@ -160,4 +161,24 @@ export const setAuthPersist = value => {
   }
 
   auth.setPersistence(firebase.auth.Auth.Persistence[mode]);
+};
+
+/* 좋아요 추가 함수 */
+export const addLikeToUser = async (user, newLike) => {
+  // 사용자 정보가 전달되지 않으면 오류
+  if (!user) {
+    throw new Error('createOrGetAuthUser 유틸리티는 user 값 입력이 필요합니다.');
+  }
+
+  // 인증 사용자 문서 참조 생성
+  const userRef = firestore.doc(`users/${user.uid}`);
+
+  userRef.set(
+    {
+      like: newLike
+    },
+    { merge: true }
+  );
+
+  return true;
 };

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function BoardContainer() {
   const board = useSelector(state => state.board);
+  const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   const [boardType, setBoardType] = useState('popular');
@@ -14,5 +15,12 @@ export default function BoardContainer() {
     dispatch(getRecentMenus(25)());
   }, []);
 
-  return <Board boardType={boardType} setBoardType={setBoardType} diets={board[boardType]?.data} />;
+  return (
+    <Board
+      boardType={boardType}
+      setBoardType={setBoardType}
+      diets={board[boardType]?.data}
+      auth={auth}
+    />
+  );
 }
