@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { signInAction } from '../../redux/modules/auth/auth';
 import {
   handleGetDietLists,
   addOrEditDailyReview,
@@ -13,20 +12,15 @@ import {
   addWaterDoseAction,
   resetWaterDoseAction,
   addDailyReviewAction,
-  DeleteDailyReviewAction,
-  deleteMenuListAction
+  DeleteDailyReviewAction
 } from '../../redux/modules/menuList';
 import MenuList from '../../components/MenuList/MenuList';
-import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
-import {
-  updateWaterDoseAction,
-  updateCaloriesAction
-} from 'redux/modules/healthBar';
-import ScrollTopButton from 'components/ScrollTopButton/ScrollTopButton';
+import { updateWaterDoseAction } from 'redux/modules/healthBar';
 import { throttle } from 'lodash';
+import { getHealthBarListAction } from '../../redux/modules/healthBar';
 
-export default function MenuListContainer({ history }) {
-  const { authUser } = useSelector(state => state.auth);
+export default function MenuListContainer() {
+  const { authUser, isAuthed } = useSelector(state => state.auth);
   const menuList = useSelector(state => state.menuList);
   const dispatch = useDispatch();
 
@@ -39,28 +33,19 @@ export default function MenuListContainer({ history }) {
   };
 
   const onSubmit = (date, review) => {
-    dispatch(
-      addOrEditDailyReview({ uid: 'MWcXe49pXQdQk5xHduQu' }, date, review)
-    );
+    dispatch(addOrEditDailyReview(authUser, date, review));
     dispatch(addDailyReviewAction(date, review));
   };
 
   const onRemove = date => {
-    dispatch(removeDailyReview({ uid: 'MWcXe49pXQdQk5xHduQu' }, date));
+    dispatch(removeDailyReview(authUser, date));
     dispatch(DeleteDailyReviewAction(date));
   };
 
   const onAdd = (date, currentDose, e) => {
     const additionalDose = parseInt(e.target.innerText.slice(1, 4), 10);
 
-    dispatch(
-      addWaterDose(
-        { uid: 'MWcXe49pXQdQk5xHduQu' },
-        date,
-        currentDose,
-        additionalDose
-      )
-    );
+    dispatch(addWaterDose(authUser, date, currentDose, additionalDose));
     dispatch(addWaterDoseAction(date, currentDose + additionalDose));
     dispatch(updateWaterDoseAction(date, currentDose + additionalDose));
   };
@@ -68,28 +53,14 @@ export default function MenuListContainer({ history }) {
   const onReset = date => {
     const RESET_WATER_DOSE = 0;
 
-    dispatch(
-      addWaterDose(
-        { uid: 'MWcXe49pXQdQk5xHduQu' },
-        date,
-        RESET_WATER_DOSE,
-        RESET_WATER_DOSE
-      )
-    );
+    dispatch(addWaterDose(authUser, date, RESET_WATER_DOSE, RESET_WATER_DOSE));
     dispatch(resetWaterDoseAction(date));
     dispatch(updateWaterDoseAction(date, RESET_WATER_DOSE));
   };
 
-  const onMoveToPosting = () => {
-    history.push('/posting');
-  };
-
   const onDelete = (date, mealId) => {
-    dispatch(
-      removeMeal({ uid: 'MWcXe49pXQdQk5xHduQu' }, menuList, date, mealId)
-    );
-    dispatch(deleteMenuListAction(date, mealId));
-    dispatch(updateCaloriesAction(date, mealId));
+    dispatch(removeMeal(authUser, menuList, date, mealId));
+    dispatch(getHealthBarListAction(authUser.dietList));
   };
 
   const getTotalCalories = meals => {
@@ -100,21 +71,10 @@ export default function MenuListContainer({ history }) {
       : totalCalories;
   };
 
-  const onMoveToTop = () => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-  };
-
-  useEffect(() => {
-    dispatch(signInAction({ uid: 'MWcXe49pXQdQk5xHduQu' }));
-  }, [dispatch]);
-
   useEffect(() => {
     if (!authUser) return null;
     dispatch(handleGetDietLists(authUser, getMenuListAction));
+    dispatch(getMenuListAction(authUser.dietList));
   }, [authUser, dispatch]);
 
   useEffect(() => {
@@ -124,7 +84,13 @@ export default function MenuListContainer({ history }) {
     );
   }, []);
 
-  if (!authUser) return null;
+  if (!isAuthed)
+    return (
+      <div style={{ fontSize: '3rem', margin: '350px 300px' }}>
+        가입하라~ 이 말입니다. 아시겠어여??????
+      </div>
+    );
+
   const menuListData = Object.entries(menuList)
     .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
     .map(data => data[1]);
@@ -145,8 +111,6 @@ export default function MenuListContainer({ history }) {
           onDelete={onDelete}
         />
       ))}
-      <MenuListToPosting onMoveToPosting={onMoveToPosting} />
-      <ScrollTopButton onMoveToTop={onMoveToTop} />
     </>
   );
 }

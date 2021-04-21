@@ -32,7 +32,8 @@ export default function healthBar(state = initialState, action) {
     case GET_HEALTH_BAR_LIST:
       const healthBarData = Object.entries({ ...action.payload.data })
         .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
-        .map(data => data[1]);
+        .map(data => data[1])
+        .filter(data => data.meals);
 
       if (healthBarData.length > 3) {
         return healthBarData.slice(0, 3);

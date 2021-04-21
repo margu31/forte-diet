@@ -8,7 +8,7 @@ const StyledDailyReview = styled.div`
   margin: 0;
   margin-top: -10px;
   position: relative;
-  z-index: 2;
+  z-index: 999;
 
   textarea {
     border-radius: 10px;
@@ -79,7 +79,7 @@ const StyledDailyReviewModal = styled.div`
   width: 100vw;
   height: 100vh;
   background: pink;
-  z-index: 1;
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;

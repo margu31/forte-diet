@@ -8,13 +8,12 @@ const StyledCalories = styled(RiRestaurantFill)``;
 
 const StyledNav = styled(motion.nav)`
   width: 130px;
-  height: 395px;
   position: fixed;
   top: 100px;
-  right: 10px;
+  right: 30px;
   overflow: hidden;
   font-size: 1.3rem;
-  z-index: 1;
+  z-index: 999;
   display: flex;
   border-radius: 5px;
 `;
@@ -116,8 +115,8 @@ const StyledButton = styled(motion.button)`
   outline: none;
   position: fixed;
   top: 101px;
-  right: 10px;
-  z-index: 2;
+  right: 30px;
+  z-index: 999;
   background: none;
 `;
 

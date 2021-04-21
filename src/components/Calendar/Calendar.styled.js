@@ -15,6 +15,7 @@ const StyledCalendarModal = styled.div`
   left: 0;
   background: pink;
   opacity: 0;
+  z-index: 999;
 `;
 
 const StyledCalendarDialog = styled(motion.div)`
@@ -42,6 +43,8 @@ const StyledNav = styled.div`
   flex-flow: row nowrap;
   justify-content: space-around;
   padding: 20px 0 18px 0;
+  cursor: default;
+
   ${({ theme }) => css`
     color: ${theme.themeDark};
   `}
@@ -87,6 +90,7 @@ const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
+  cursor: default;
 `;
 
 const StyledDay = styled.div`
@@ -105,9 +109,12 @@ const StyledDay = styled.div`
 
 const StyledDate = styled.div`
   cursor: pointer;
-  height: 47px;
-  padding-top: 18px;
+  height: 46px;
+  padding-top: 14px;
   border-radius: 50%;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
 
   color: ${props => props.$styledColorProps};
   background: ${props => props.$styledBackgroundProps};
@@ -120,6 +127,26 @@ const StyledDate = styled.div`
       color: ${theme.themeDefaultWhite};
     `}
   }
+`;
+
+const StyledDot = styled.span`
+  font-size: 2.5rem;
+  margin-top: -30px;
+  padding: 20px 0;
+  display: inline-block;
+  cursor: pointer;
+
+  ${({ theme }) => css`
+    color: ${theme.themePrimaryThick};
+  `}
+
+  &:hover {
+    ${({ theme }) => css`
+      color: ${theme.themeDefaultWhite};
+    `}
+  }
+
+  color: ${props => props.$styledSelectedColorProps};
 `;
 
 const StyledCalendarButton = styled.span`
@@ -165,5 +192,6 @@ export {
   StyledDate,
   StyledGrid,
   StyledPrevButton,
-  StyledNextButton
+  StyledNextButton,
+  StyledDot
 };
