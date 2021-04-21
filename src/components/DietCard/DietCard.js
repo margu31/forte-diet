@@ -43,6 +43,7 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
 
   /* 밑에 두 함수 합치는 리팩토링 필요 */
   const handleLike = () => {
+    if (!auth.authUser) return;
     const newLike = [...auth.authUser.like, dietData.id];
     dispatch(pushLikeAction(newLike));
 
