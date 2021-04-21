@@ -1,4 +1,7 @@
 import Input from "components/Input/Input";
+import { StyledInputWrapper } from "components/Input/Input.styled";
+import SignUpFormRadioGroup from "components/SignUpRadioGroup/SignUpRadioGroup";
+import { StyledRadioGroup } from "components/SignUpRadioGroup/SignUpRadioGroup.styled";
 import styled, { css } from "styled-components";
 
 export const StyledSignUpForm = styled.form`
@@ -9,39 +12,17 @@ export const StyledSignUpForm = styled.form`
   padding-top: 40px;
   padding-bottom: 25px;
   width: 800px;
-  min-height: 500px;
+  height: auto;
   position: relative;
   border-radius: 10px;
-  backdrop-filter: blur(10px);
   ${({ theme }) => css`
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: ${theme.themePrimary};
   `}
 
-  span {
-    ${({ theme }) => css`
-      color: ${theme.themePrimary};
-    `}
-    font-size: 4rem;
-    margin: 50px 0;
+  label {
+    font-size: 1.3rem;
+    font-weight: 700;
   }
-
-  div {
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-  }
-
-  /* label {
-    overflow: hidden;
-    position: absolute;
-    clip: rect(0 0 0 0);
-    clip-path: polygon(0 0, 0 0, 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    white-space: nowrap;
-  } */
-
   input {
     width: 200px;
     height: 40px;
@@ -51,20 +32,25 @@ export const StyledSignUpForm = styled.form`
     margin-left: 1rem;
     background-color: rgba(0, 0, 0, 0.3);
     margin-right: 20px;
-    border-radius: 0;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 3px solid black;
+    border-radius: 5px;
+    border: 3px solid;
+    ${({ theme }) => css`
+      border-color: ${theme.themePrimary};
+    `}
+    ${({ theme }) => css`
+      background-color: 0 0 0 4px ${theme.themeBrightYellow};
+    `}
     background-color: transparent;
     outline: none;
     box-shadow: none;
-    color: #fff;
+    ${({ theme }) => css`
+      background-color: 0 0 0 4px ${theme.themeDefault};
+    `}
     font-size: 1.5rem;
 
     &::placeholder {
       font-size: 1.3rem;
-      color: #fff;
+      color: #333;
     }
 
     &:focus {
@@ -80,15 +66,15 @@ export const StyledSignUpForm = styled.form`
 
   p {
     margin-top: 10px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   button {
+    margin-top: 15px;
     background-color: white;
     border-radius: 50px;
     border: none;
     height: 50px;
-    /* margin-top: 30px; */
     cursor: pointer;
     font-size: 1.5rem;
 
@@ -106,17 +92,61 @@ export const StyledSignUpForm = styled.form`
     width: 50px;
     background-color: transparent;
     margin-top: 0;
-    color: #fff;
+    color: #333;
     font-size: 1.5rem;
   }
 `;
 
 export const SignUpFormInput = styled(Input)`
   position: relative;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
   p {
     position: absolute;
-    top: 100%;
-    left: 13%;
+    top: 80%;
+    left: 30%;
+  }
+  button {
+    padding: 11px 5px 12px 5px;
+    margin-right: 10px;
+  }
+`;
+
+export const StyledBasicInformationGroup = styled.div`
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 130px;
+  background-color: #fff;
+
+  p:first-child {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 10px;
+  }
+`;
+
+export const StyledAdditionalInformationGroup = styled.div`
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 800px;
+  background-color: #fff;
+  margin-bottom: 10px;
+
+  p:first-child {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 10px;
   }
 `;
