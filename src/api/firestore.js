@@ -120,6 +120,7 @@ export const addNewDiet = async mealdata => {
       createdAt: new Date(),
       calories: mealdata.calories,
       like: 0,
+      waterDose: 0,
       meals: [{ ...mealdata }]
     });
 
