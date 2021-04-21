@@ -34,6 +34,13 @@ export default function SettingContainer({ history }) {
     history.goBack();
   };
 
+  if (!authUser)
+    return (
+      <div style={{ fontSize: "3rem", margin: "300px 150px" }}>
+        로그인하라~ 이 말입니다. 아시겠어여??????
+      </div>
+    );
+
   return (
     <section>
       <Title logoIcon="true">회원 정보 수정</Title>
