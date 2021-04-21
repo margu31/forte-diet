@@ -27,12 +27,12 @@ const Setting = ({
 }) => {
   const passwordRef = useRef();
   const nicknameRef = useRef();
-  const hieghtRef = useRef();
+  const heightRef = useRef();
   const weightRef = useRef();
 
   const [isActivePw, setIsActivePw] = useState(true);
   const [isActiveNickname, setIsActiveNickname] = useState(true);
-  const [isActiveHieght, setIsActiveHieght] = useState(true);
+  const [isActiveHeight, setIsActiveHeight] = useState(true);
   const [isActiveWeight, setIsActiveWeight] = useState(true);
 
   const onClickEdit = (e) => {
@@ -43,8 +43,8 @@ const Setting = ({
       case "nickname":
         setIsActiveNickname(!isActiveNickname);
         break;
-      case "hieght":
-        setIsActiveHieght(!isActiveHieght);
+      case "height":
+        setIsActiveHeight(!isActiveHeight);
         break;
       case "weight":
         setIsActiveWeight(!isActiveWeight);
@@ -65,10 +65,10 @@ const Setting = ({
 
   useEffect(() => {
     if (!isActivePw) passwordRef.current.focus();
-    else if (!isActiveNickname) nicknameRef.current.focus();
-    else if (!isActiveHieght) hieghtRef.current.focus();
-    else if (!isActiveWeight) weightRef.current.focus();
-  }, [isActivePw, isActiveNickname, isActiveHieght, isActiveWeight]);
+    if (!isActiveNickname) nicknameRef.current.focus();
+    if (!isActiveHeight) heightRef.current.focus();
+    if (!isActiveWeight) weightRef.current.focus();
+  }, [isActivePw, isActiveNickname, isActiveHeight, isActiveWeight]);
 
   return (
     <StyledFormWrapper>
@@ -131,18 +131,18 @@ const Setting = ({
             />
           </StyledRadio>
           <StyledSettingInput>
-            <label htmlFor="hieght" onClick={onClickEdit}>
+            <label htmlFor="height" onClick={onClickEdit}>
               <Edit />
             </label>
             <Input
               type="text"
-              id="hieght"
-              name="hieght"
+              id="height"
+              name="height"
               label="신장"
               onChange={onChange}
               defaultValue={userHeight}
-              disabled={isActiveHieght}
-              ref={hieghtRef}
+              disabled={isActiveHeight}
+              ref={heightRef}
             />
           </StyledSettingInput>
           <StyledSettingInput>
