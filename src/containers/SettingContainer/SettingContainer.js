@@ -31,7 +31,7 @@ export default function SettingContainer({ history }) {
 
     editUserInfo(authUser, newFormData);
 
-    // history.push("/myPage");
+    history.push("/myPage");
   };
 
   const goBack = () => {
