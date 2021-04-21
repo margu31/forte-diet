@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyledMyPageWrapper } from './MyPage.styled';
 import MenuListContainer from 'containers/MenuListContainer/MenuListContainer';
 import HealthBarContainer from 'containers/HealthBarContainer/HealthBarContainer';
@@ -9,11 +9,6 @@ import ScrollTopButton from 'components/ScrollTopButton/ScrollTopButton';
 
 export default function MyPage({ history }) {
   const onMoveToPosting = () => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'instant'
-    });
     history.push('/posting');
   };
 
@@ -24,6 +19,14 @@ export default function MyPage({ history }) {
       behavior: 'smooth'
     });
   };
+
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+  }, []);
 
   return (
     <StyledMyPageWrapper>
