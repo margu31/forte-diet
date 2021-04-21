@@ -9,11 +9,10 @@ import {
   StyledInputWrapper,
   StyledFormWrapper,
   StyledImage,
-  // StyledEdit,
 } from "./Setting.styled";
 // import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
 import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 
 const Setting = ({
   userEmail,
@@ -30,45 +29,18 @@ const Setting = ({
   const heightRef = useRef();
   const weightRef = useRef();
 
-  const [isActivePw, setIsActivePw] = useState(true);
-  const [isActiveNickname, setIsActiveNickname] = useState(true);
-  const [isActiveHeight, setIsActiveHeight] = useState(true);
-  const [isActiveWeight, setIsActiveWeight] = useState(true);
-
-  const onClickEdit = (e) => {
-    switch (e.target.parentNode.htmlFor) {
-      case "password":
-        setIsActivePw(!isActivePw);
-        break;
-      case "nickname":
-        setIsActiveNickname(!isActiveNickname);
-        break;
-      case "height":
-        setIsActiveHeight(!isActiveHeight);
-        break;
-      case "weight":
-        setIsActiveWeight(!isActiveWeight);
-        break;
-      default:
-        console.log(e.target.parentNode.htmlFor);
-    }
-    // console.log(e.target.parentNode.htmlFor);
+  const onPasswordEdit = () => {
+    passwordRef.current.disabled = false;
   };
-
-  // const onChangeValue = (e) => {
-  //   const { value, name } = e.target;
-  //   setInputs({
-  //     ...inputs,
-  //     [name]: value,
-  //   });
-  // };
-
-  useEffect(() => {
-    if (!isActivePw) passwordRef.current.focus();
-    if (!isActiveNickname) nicknameRef.current.focus();
-    if (!isActiveHeight) heightRef.current.focus();
-    if (!isActiveWeight) weightRef.current.focus();
-  }, [isActivePw, isActiveNickname, isActiveHeight, isActiveWeight]);
+  const onNicknameEdit = () => {
+    nicknameRef.current.disabled = false;
+  };
+  const onHeightEdit = () => {
+    heightRef.current.disabled = false;
+  };
+  const onWeightEdit = () => {
+    weightRef.current.disabled = false;
+  };
 
   return (
     <StyledFormWrapper>
@@ -85,7 +57,7 @@ const Setting = ({
             />
           </StyledSettingInput>
           <StyledSettingInput>
-            <label htmlFor="password" onClick={onClickEdit}>
+            <label htmlFor="password" onClick={onPasswordEdit}>
               <Edit />
             </label>
             <Input
@@ -94,12 +66,12 @@ const Setting = ({
               name="password"
               label="패스워드"
               onChange={onChange}
-              disabled={isActivePw}
+              disabled="true"
               ref={passwordRef}
             />
           </StyledSettingInput>
           <StyledSettingInput>
-            <label htmlFor="nickname" onClick={onClickEdit}>
+            <label htmlFor="nickname" onClick={onNicknameEdit}>
               <Edit />
             </label>
             <Input
@@ -109,7 +81,7 @@ const Setting = ({
               label="닉네임"
               defaultValue={userNickname}
               onChange={onChange}
-              disabled={isActiveNickname}
+              disabled="true"
               ref={nicknameRef}
             />
           </StyledSettingInput>
@@ -131,7 +103,7 @@ const Setting = ({
             />
           </StyledRadio>
           <StyledSettingInput>
-            <label htmlFor="height" onClick={onClickEdit}>
+            <label htmlFor="height" onClick={onHeightEdit}>
               <Edit />
             </label>
             <Input
@@ -141,12 +113,12 @@ const Setting = ({
               label="신장"
               onChange={onChange}
               defaultValue={userHeight}
-              disabled={isActiveHeight}
+              disabled="true"
               ref={heightRef}
             />
           </StyledSettingInput>
           <StyledSettingInput>
-            <label htmlFor="weight" onClick={onClickEdit}>
+            <label htmlFor="weight" onClick={onWeightEdit}>
               <Edit />
             </label>
             <Input
@@ -156,7 +128,7 @@ const Setting = ({
               label="몸무게"
               onChange={onChange}
               defaultValue={userWeight}
-              disabled={isActiveWeight}
+              disabled="true"
               ref={weightRef}
             />
           </StyledSettingInput>
