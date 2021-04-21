@@ -12,7 +12,7 @@ import {
 } from "./Setting.styled";
 // import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
 import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 const Setting = ({
   userEmail,
@@ -20,100 +20,70 @@ const Setting = ({
   userGender,
   userHeight,
   userWeight,
-  // userId,
   onChange,
   onSubmit,
   goBack,
 }) => {
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-    nickname: "",
-    gender: "",
-    hieght: "",
-    weight: "",
-  });
+  const passwordRef = useRef();
+  const nicknameRef = useRef();
+  const heightRef = useRef();
+  const weightRef = useRef();
 
-  const inputsRef = useRef();
-  // const [email, password, nickname, gender, hieght, weight] = inputs;
-
-  // const onChangeValue = (e) => {
-  //   const { value, name } = e.target;
-  //   setInputs({
-  //     ...inputs,
-  //     [name]: value,
-  //   });
-  // };
-
-  const onClickEdit = () => {
-    inputsRef.current.focus();
+  const onPasswordEdit = () => {
+    passwordRef.current.disabled = false;
+  };
+  const onNicknameEdit = () => {
+    nicknameRef.current.disabled = false;
+  };
+  const onHeightEdit = () => {
+    heightRef.current.disabled = false;
+  };
+  const onWeightEdit = () => {
+    weightRef.current.disabled = false;
   };
 
   return (
     <StyledFormWrapper>
       <Form legend="정보 수정">
         <StyledInputWrapper>
-          {/* <StyledSettingInput
-              type="text"
-              id="email"
-              label="이메일"
-              // readOnly={true}
-            />
-            <StyledSettingInput type="text" id="password" label="패스워드" />
-            <StyledSettingInput
-              type="text"
-              id="nickname"
-              label="닉네임"
-              // defaultValue={userNickname}
-            />
-            <StyledRadio>
-              <p>성별</p>
-              <InputRadio id="male" name="gender" value="male" label="남성" />
-              <InputRadio
-                id="female"
-                name="gender"
-                value="female"
-                label="여성"
-              />
-            </StyledRadio>
-            <StyledSettingInput type="text" id="hieght" label="신장" />
-            <StyledSettingInput type="text" id="weight" label="몸무게" /> */}
-
           <StyledSettingInput>
             <Input
               type="text"
-              // type="email"
               id="email"
               name="email"
               label="이메일"
               disabled="true"
-              // readOnly={true}
               defaultValue={userEmail}
             />
           </StyledSettingInput>
           <StyledSettingInput>
+            <label htmlFor="password" onClick={onPasswordEdit}>
+              <Edit />
+            </label>
             <Input
               type="text"
               id="password"
               name="password"
               label="패스워드"
               onChange={onChange}
-              // ref={inputsRef}
+              disabled="true"
+              ref={passwordRef}
             />
-            <Edit onClick={onClickEdit} />
           </StyledSettingInput>
           <StyledSettingInput>
+            <label htmlFor="nickname" onClick={onNicknameEdit}>
+              <Edit />
+            </label>
             <Input
               type="text"
-              // type="password"
               id="nickname"
               name="nickname"
               label="닉네임"
               defaultValue={userNickname}
               onChange={onChange}
-              // ref={inputsRef}
+              disabled="true"
+              ref={nicknameRef}
             />
-            <Edit onClick={onClickEdit} />
           </StyledSettingInput>
           <StyledRadio>
             <p>성별</p>
@@ -133,17 +103,24 @@ const Setting = ({
             />
           </StyledRadio>
           <StyledSettingInput>
+            <label htmlFor="height" onClick={onHeightEdit}>
+              <Edit />
+            </label>
             <Input
               type="text"
-              id="hieght"
-              name="hieght"
+              id="height"
+              name="height"
               label="신장"
               onChange={onChange}
               defaultValue={userHeight}
+              disabled="true"
+              ref={heightRef}
             />
-            <Edit />
           </StyledSettingInput>
           <StyledSettingInput>
+            <label htmlFor="weight" onClick={onWeightEdit}>
+              <Edit />
+            </label>
             <Input
               type="text"
               id="weight"
@@ -151,8 +128,9 @@ const Setting = ({
               label="몸무게"
               onChange={onChange}
               defaultValue={userWeight}
+              disabled="true"
+              ref={weightRef}
             />
-            <Edit />
           </StyledSettingInput>
         </StyledInputWrapper>
         <StyledButtonGroup>
