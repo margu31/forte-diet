@@ -8,7 +8,7 @@ const StyledWaterDose = styled(IoWater)``;
 const StyledCalories = styled(RiRestaurantFill)``;
 
 const StyledNav = styled(motion.nav)`
-  width: 130px;
+  width: 140px;
   position: fixed;
   top: 100px;
   right: 30px;

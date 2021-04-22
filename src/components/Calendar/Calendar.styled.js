@@ -24,7 +24,7 @@ const StyledCalendarDialog = styled(motion.div)`
   position: fixed;
   top: 310px;
   right: 215px;
-  font-size: ${fontSizeKit.xSmall};
+  font-size: ${fontSizeKit.small};
   font-weight: ${fontWeightKit.bold};
   color: ${palette.themeDark};
   z-index: 999;
@@ -101,7 +101,7 @@ const StyledDay = styled.div`
 const StyledDate = styled.div`
   cursor: pointer;
   height: 46px;
-  padding-top: 14px;
+  padding-top: 11px;
   border-radius: 50%;
   display: flex;
   flex-flow: column;

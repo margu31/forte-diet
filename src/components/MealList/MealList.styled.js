@@ -94,6 +94,9 @@ const StyledDeleteDialog = styled(motion.div)`
     cursor: pointer;
     padding: 6px 15px;
     z-index: 999;
+    font-size: ${fontSizeKit.xSmall};
+    font-weight: ${fontWeightKit.bold};
+    color: ${palette.themeDefault};
   }
 
   &:hover {
@@ -105,7 +108,7 @@ const StyledDeleteDialog = styled(motion.div)`
 
 const StyledTriangle = styled(VscTriangleDown)`
   position: absolute;
-  top: 27px;
+  top: 28px;
   right: 20px;
   width: 22px;
   height: 22px;
