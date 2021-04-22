@@ -1,25 +1,29 @@
 import InputRadio from "components/Radio/InputRadio";
-import styled from "styled-components";
-
-const StyledRadioTitle = styled.p`
-  position: absolute;
-  font-size: 1.1.rem;
-  margin: 0.5rem 0;
-  text-indent: 1rem;
-  margin-right: 1rem;
-`;
+import styled, { css } from "styled-components";
+import { palette } from "styles";
 
 const StyledRadioGroup = styled.div`
-  position: relative;
-  width: auto;
-  height: auto;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 50px;
+  text-align: center;
+  width: 300px;
+  height: 50px;
   border-radius: 5px;
-  margin-bottom: 10px;
+
+  label {
+    width: 100px;
+    height: 40px;
+    margin-top: 7px;
+    line-height: 40px;
+    border: 3px solid ${palette.themePrimary};
+  }
 
   span:first-of-type {
     label {
       border-radius: 5px 0 0 5px;
+      border-right: 0;
     }
   }
   span:last-of-type {
@@ -29,10 +33,14 @@ const StyledRadioGroup = styled.div`
   }
 `;
 
-export const SignUpInputRadio = styled(InputRadio)`
-  label {
-    margin-right: 5px;
-  }
+const StyledRadioTitle = styled.p`
+  display: inline-block;
+  width: 90px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-indent: 1rem;
+  margin-right: 2rem;
+  line-height: 50px;
+  text-align: center;
 `;
-
 export { StyledRadioGroup, StyledRadioTitle };
