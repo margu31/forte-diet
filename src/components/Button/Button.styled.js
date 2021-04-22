@@ -36,4 +36,13 @@ export const StyledButton = styled(motion.button)`
   &:focus:not(:focus-visible) {
     box-shadow: none;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: #f2683033;
+      color: ${palette.themePrimaryThick};
+    }
+  }
 `;
