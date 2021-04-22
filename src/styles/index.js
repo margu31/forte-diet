@@ -26,6 +26,7 @@ time, mark, audio, video, textarea, button {
   box-sizing: border-box;
   list-style: none;
   letter-spacing: inherit;
+  user-select: none;
 
 }
 /* HTML5 display-role reset for older browsers */
