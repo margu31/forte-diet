@@ -68,7 +68,8 @@ export const palette = {
   themeDefaultWhite: '#FFF'
 };
 
-export const fontSize = {
+export const fontSizeKit = {
+  xSmall: '1.1rem',
   small: '1.3rem',
   medium: '1.6rem',
   large: '2.2rem',
@@ -76,7 +77,7 @@ export const fontSize = {
   xxLarge: '3rem'
 };
 
-export const fontWeight = {
+export const fontWeightKit = {
   normal: '400',
   bold: '700',
   extraBold: '800'
