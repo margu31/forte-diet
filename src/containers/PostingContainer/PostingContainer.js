@@ -156,7 +156,16 @@ function PostingContainer({ history }) {
     history.push("/myPage");
   };
 
-  const onBlur = (e) => {
+  // const onBlur = (e) => {
+  //   if (e.target.name === "title") {
+  //     menuValid(e.target.value);
+  //     // console.log(mealData.hasError.title);
+  //   } else if (e.target.name === "review") {
+  //     reviewValid(e.target.value);
+  //   }
+  // };
+
+  const onKeyUp = (e) => {
     if (e.target.name === "title") {
       menuValid(e.target.value);
       // console.log(mealData.hasError.title);
@@ -198,7 +207,8 @@ function PostingContainer({ history }) {
       <Form legend="식단 포스팅">
         <DataGroup
           onChange={onChange}
-          onBlur={onBlur}
+          // onBlur={onBlur}
+          onKeyUp={onKeyUp}
           onKeyPress={onKeyPress}
           errorMessage={mealData.hasError}
           maxDate={maxDate}
@@ -209,7 +219,8 @@ function PostingContainer({ history }) {
           label="Review: "
           placeholder="자유롭게 리뷰를 남겨주세요! (500자 이내)"
           onChange={onChange}
-          onBlur={onBlur}
+          // onBlur={onBlur}
+          onKeyUp={onKeyUp}
           hasError={mealData.hasError.review}
         />
         <Toggle
