@@ -11,7 +11,7 @@ export const StyledSignUpForm = styled.form`
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 25px;
-  width: 800px;
+  width: 700px;
   height: auto;
   position: relative;
   border-radius: 10px;
@@ -23,15 +23,62 @@ export const StyledSignUpForm = styled.form`
     font-size: 1.3rem;
     font-weight: 700;
   }
+
+  button {
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 50px;
+    border: none;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1.5rem;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  button:last-child {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0px;
+    height: 40px;
+    width: 50px;
+    background-color: transparent;
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    text-align: left;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 700;
+    padding-left: 10px;
+  }
+`;
+
+export const SignUpFormInput = styled(Input)`
+  position: relative;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  width: 300px;
+  line-height: 50px;
+  text-align: center;
+
   input {
+    position: relative;
     width: 200px;
     height: 40px;
     box-sizing: border-box;
     border-radius: 50px;
     border: none;
     margin-left: 1rem;
+    margin-bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    margin-right: 20px;
     border-radius: 5px;
     border: 3px solid;
     ${({ theme }) => css`
@@ -64,53 +111,23 @@ export const StyledSignUpForm = styled.form`
     }
   }
 
-  p {
-    margin-top: 10px;
-    font-size: 1.2rem;
-  }
-
   button {
-    margin-top: 15px;
-    background-color: white;
-    border-radius: 50px;
-    border: none;
-    height: 50px;
-    cursor: pointer;
-    font-size: 1.5rem;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
+    padding: 12px 5px 12px 20px;
+    /* margin-left: 10px; */
+    background-color: yellow;
   }
 
-  button:last-child {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 0px;
-    height: 40px;
-    width: 50px;
-    background-color: transparent;
-    margin-top: 0;
-    color: #333;
-    font-size: 1.5rem;
-  }
-`;
-
-export const SignUpFormInput = styled(Input)`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
   p {
     position: absolute;
-    top: 80%;
-    left: 30%;
+    top: 70%;
+    left: -20%;
+    font-size: 1.3rem;
+    display: inline-block;
+    width: 500px;
   }
-  button {
-    padding: 11px 5px 12px 5px;
-    margin-right: 10px;
+
+  label {
+    width: 90px;
   }
 `;
 
@@ -118,35 +135,21 @@ export const StyledBasicInformationGroup = styled.div`
   position: relative;
   display: flex;
   flex-flow: row;
-  justify-content: center;
+  justify-content: space-around;
+
   align-items: center;
   width: 800px;
   height: 130px;
   background-color: #fff;
-
-  p:first-child {
-    font-size: 1.5rem;
-    position: absolute;
-    top: 0;
-    left: 10px;
-  }
 `;
 
 export const StyledAdditionalInformationGroup = styled.div`
-  position: relative;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 250px;
   width: 800px;
   background-color: #fff;
   margin-bottom: 10px;
-
-  p:first-child {
-    font-size: 1.5rem;
-    position: absolute;
-    top: 0;
-    left: 10px;
-  }
 `;

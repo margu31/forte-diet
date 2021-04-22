@@ -25,10 +25,10 @@ export default function SignUpForm({
 }) {
   return (
     <StyledSignUpForm>
+      <h3>Basic Information</h3>
       <StyledBasicInformationGroup>
-        <p>Basic Information</p>
         <SignUpFormInput
-          label="email"
+          label="Email"
           id="email"
           name="email"
           type="text"
@@ -40,7 +40,7 @@ export default function SignUpForm({
           onFocus={onFocus}
         />
         <SignUpFormInput
-          label="password"
+          label="Password"
           id="password"
           name="password"
           type="password"
@@ -55,9 +55,9 @@ export default function SignUpForm({
         />
       </StyledBasicInformationGroup>
       <StyledAdditionalInformationGroup>
-        <p>Additional Information</p>
+        <h3>Additional Information</h3>
         <SignUpFormInput
-          label="nickname"
+          label="Nickname"
           id="nickname"
           name="nickname"
           type="text"
@@ -69,7 +69,7 @@ export default function SignUpForm({
           onFocus={onFocus}
         />
         <SignUpFormInput
-          label="height"
+          label="Height"
           id="height"
           name="height"
           type="text"
@@ -80,7 +80,7 @@ export default function SignUpForm({
           a11yHidden={false}
         />
         <SignUpFormInput
-          label="weight"
+          label="Weight"
           id="weight"
           name="weight"
           type="text"
@@ -90,7 +90,7 @@ export default function SignUpForm({
           errorMessage={errorMessage}
           a11yHidden={false}
         />
-        <SignUpRadioGroup groupTitle="성별" onChange={onChange} />
+        <SignUpRadioGroup groupTitle="Gender" onChange={onChange} />
       </StyledAdditionalInformationGroup>
 
       <Button
