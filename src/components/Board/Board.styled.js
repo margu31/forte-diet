@@ -12,13 +12,10 @@ export const StyledBoardTitle = styled(Title)`
   }
 `;
 
-export const StyledBoardWindow = styled.article`
-  min-height: 100vh;
-  max-width: 70%;
-  margin: 0 auto;
-`;
-
 export const StyledDiets = styled.ul`
-  display: inline-flex;
-  flex-direction: column;
+  display: flex;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 3rem;
 `;

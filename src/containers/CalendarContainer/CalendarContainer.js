@@ -20,9 +20,7 @@ export default function CalendarContainer() {
       .slice(0, index)
       .map(data =>
         data.meals.length > 4
-          ? data.meals.length > 8
-            ? (count += 2)
-            : (count += 1)
+          ? (count += 1 * Math.floor(data.meals.length / 4))
           : null
       );
 

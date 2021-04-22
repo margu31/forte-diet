@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { palette } from "styles";
+// import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
+import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
+import { motion } from "framer-motion";
 
 export const StyledFormWrapper = styled.div`
   margin-top: 5rem;
@@ -15,7 +18,7 @@ export const StyledFormWrapper = styled.div`
 `;
 export const StyledImage = styled.div`
   /* background-image: url("/apples-1952999_1920.jpg"); */
-  background-image: url("/cooking-utensils-1149464_1920.jpg");
+  background-image: url("/setting-_image.jpg");
   /* background-image: url("/smoothie-4625476_1920.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
@@ -92,10 +95,9 @@ export const StyledSettingInput = styled.div`
 
   svg {
     position: absolute;
-    top: 6px;
+    top: 15px;
     right: 45px;
     cursor: pointer;
-    /* opacity: 0; */
   }
 `;
 

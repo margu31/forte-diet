@@ -25,7 +25,7 @@ const StyledLi = styled(motion.li)`
   padding: 1px;
   display: flex;
   flex-flow: column nowrap;
-  margin: 0 auto 25px;
+  margin: 0 auto 20px;
   border-radius: 5px;
   ${({ theme }) => css`
     background: linear-gradient(

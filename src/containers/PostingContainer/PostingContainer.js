@@ -8,7 +8,7 @@ import ReviewBox from 'components/ReviewBox/ReviewBox';
 import Toggle from 'components/Toggle/Toggle';
 import DataGroup from 'components/DataGroup/DataGroup';
 import { addNewDiet, PostMeal } from 'api/firestore';
-import { getMenuListAction } from 'redux/modules/menuList';
+import { addMenuListAction } from 'redux/modules/menuList';
 import { addMealInDiets } from 'api/diets';
 
 const today = new Date();
@@ -128,7 +128,8 @@ function PostingContainer({ history }) {
     //   : 0;
 
     // mealId 수정 코드
-    const mealId = menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]?.id + 1;
+    const mealId =
+      +menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]?.id + 1;
 
     formData.append('id', mealId || 0);
 
@@ -136,20 +137,21 @@ function PostingContainer({ history }) {
 
     // 새로운 메뉴 리스트라면, diets 테이블에 추가
     if (!menuList.hasOwnProperty(mealData.date)) {
-      const dietId = await addNewDiet(newFormData);
+      const dietId = await addNewDiet(authUser, newFormData);
       PostMeal(authUser, { ...newFormData }, dietId);
     } else {
       PostMeal(authUser, newFormData);
-      addMealInDiets(menuList[mealData.date].id, { ...newFormData });
+      addMealInDiets(menuList[mealData.date], { ...newFormData });
     }
 
-    dispatch(getMenuListAction()); // myPage 실시간 업데이트 코드 추가
+    dispatch(addMenuListAction(newFormData)); // myPage 실시간 업데이트 코드 추가
     history.push('/myPage');
   };
 
   const onBlur = e => {
     if (e.target.name === 'title') {
       menuValid(e.target.value);
+      // console.log(mealData.hasError.title);
     } else if (e.target.name === 'review') {
       reviewValid(e.target.value);
     }
@@ -165,6 +167,13 @@ function PostingContainer({ history }) {
   const goBack = () => {
     history.goBack();
   };
+
+  if (!authUser)
+    return (
+      <div style={{ fontSize: '3rem', margin: '300px 40px', lineHeight: '5rem' }}>
+        로그인하든지~ 가입하든지~ 둘 중 하나 하라~ 이 말입니다. 아시겠어여??????
+      </div>
+    );
 
   return (
     <section>

@@ -24,8 +24,6 @@ export default function MealList({
   const [isActive, setIsActive] = useState(false);
   const [showMealModal, setShowMealModal] = useState(false);
 
-  console.log(isHome);
-
   const changeBorderColor = (type) => {
     switch (type) {
       case "아침":

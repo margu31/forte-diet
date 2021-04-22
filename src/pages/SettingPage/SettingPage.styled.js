@@ -1,8 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from 'styled-components';
+import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
 
 export const StyledBackground = styled.section`
-  width: 100vw;
+  max-width: 85vw;
   height: 100vh;
+  flex-grow: 9;
+  margin-top: 70px;
   /* background-image: url("/agriculture-1846358_1920.jpg"); */
   /* background-image: url("/basil-3532424_1920.jpg"); */
   /* background-image: url("/grapefruit-1647688_1920.jpg"); */
@@ -11,6 +14,12 @@ export const StyledBackground = styled.section`
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
   /* background-position: center; */
+
+  ${StyledButton} {
+    ${({ theme }) => css`
+      color: ${theme.themeDefault};
+    `}
+  }
 `;
 
 export const StyledSettingPage = styled.div`

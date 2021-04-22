@@ -26,6 +26,7 @@ time, mark, audio, video, textarea, button {
   box-sizing: border-box;
   list-style: none;
   letter-spacing: inherit;
+  user-select: none;
 
 }
 /* HTML5 display-role reset for older browsers */
@@ -39,7 +40,7 @@ body {
   margin: 0;
     padding: 0;
     background: #F4F3EF;
-    font-family: Chungchunsidae, sans-serif, -apple-system, BlinkMacSystemFont,
+    font-family: 'Nanum Gothic', sans-serif, -apple-system, BlinkMacSystemFont,
     'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue';
   -webkit-font-smoothing: antialiased;
@@ -53,7 +54,7 @@ html {
 `;
 
 export const palette = {
-  themePrimary: '#F3B34C',
+  themePrimary: '#f3b34c',
   themeSecondary: '#395B9D',
   themePrimaryThick: '#F26830',
   themeTertiary: '#a2bf63',
@@ -65,7 +66,23 @@ export const palette = {
   themeDefault: '#14182C',
   themeDisable: '#878787',
   themeHover: '#F5DEB7',
-  themeDefaultWhite: '#FFF'
+  themeDefaultWhite: '#FFF',
+  themeFont: '#4a4a4a'
+};
+
+export const fontSizeKit = {
+  xSmall: '1.1rem',
+  small: '1.3rem',
+  medium: '1.6rem',
+  large: '2.2rem',
+  xLarge: '2.5rem',
+  xxLarge: '3rem'
+};
+
+export const fontWeightKit = {
+  normal: '400',
+  bold: '700',
+  extraBold: '800'
 };
 
 export default GlobalStyle;
