@@ -100,15 +100,14 @@ const Setting = ({
               name="gender"
               value="male"
               label="남성"
-              onChange={onChange}
+              // onChange={onChange}
               checked={userGender === "male" ? true : false}
             />
             <InputRadio
               id="female"
               name="gender"
               value="female"
-              label="여성"
-              onChange={onChange}
+              // onChange={onChange}
               checked={userGender === "female" ? true : false}
             />
           </StyledRadio>
