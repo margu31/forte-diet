@@ -107,6 +107,7 @@ const Setting = ({
               id="female"
               name="gender"
               value="female"
+              label="여성"
               // onChange={onChange}
               checked={userGender === "female" ? true : false}
             />

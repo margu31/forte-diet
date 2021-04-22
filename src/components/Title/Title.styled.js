@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ReactComponent as Logo } from "assets/logos/logo1.svg";
+import { fontSizeKit, fontWeightKit } from "styles";
 
 export const StyledLogo = styled(Logo)`
   /* display: inline-block; */
@@ -22,7 +23,8 @@ export const StyledLogo = styled(Logo)`
 
 export const StyledTitle = styled(motion.h2)`
   display: inline-block;
-  font-size: 2.5rem;
+  font-size: ${fontSizeKit.xxLarge};
+  font-weight: ${fontWeightKit.bold};
   position: relative;
   text-indent: 20px;
   height: 50px;
