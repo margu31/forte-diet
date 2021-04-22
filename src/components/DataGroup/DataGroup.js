@@ -18,6 +18,7 @@ const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage, maxDate }) => {
         id="postingFile"
         name="postingFile"
         label="사진 등록"
+        accept="image/*"
         onChange={onChange}
       />
       <div className="collection">
