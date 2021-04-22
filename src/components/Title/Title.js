@@ -1,12 +1,7 @@
-import { StyledLogo, StyledTitle } from "./Title.styled";
+import { StyledTitle } from "./Title.styled";
 
-const Title = ({ children, logoIcon, ...restProps }) => {
-  return (
-    <StyledTitle {...restProps}>
-      {children}
-      {logoIcon && <StyledLogo></StyledLogo>}
-    </StyledTitle>
-  );
+const Title = ({ children, ...restProps }) => {
+  return <StyledTitle {...restProps}>{children}</StyledTitle>;
 };
 
 export default Title;
