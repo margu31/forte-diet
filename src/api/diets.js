@@ -142,7 +142,7 @@ export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
 };
 
 /* 좋아요 토글 */
-export const handleEditLikeToDiets = ({ id: dietId }, boardType, newLike) => async dispatch => {
+export const handleEditLikeToDiets = ({ id: dietId }, newLike) => async dispatch => {
   try {
     const diet = await diets.doc(dietId);
     diet.set(

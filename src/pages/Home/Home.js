@@ -3,7 +3,6 @@ import Welcome from 'components/Welcome/Welcome';
 import UserBar from 'containers/UserBar/UserBar';
 import { StyledHomePageWrapper } from './Home.styled';
 import BoardContainer from 'containers/BoardContainer/BoardContainer';
-import HealthBarContainer from 'containers/HealthBarContainer/HealthBarContainer';
 import ScrollTopButton from '../../components/ScrollTopButton/ScrollTopButton';
 
 export default function Home() {
@@ -28,7 +27,6 @@ export default function Home() {
       <UserBar />
       <Welcome />
       <BoardContainer />
-      <HealthBarContainer />
       <ScrollTopButton onMoveToTop={onMoveToTop} />
     </StyledHomePageWrapper>
   );

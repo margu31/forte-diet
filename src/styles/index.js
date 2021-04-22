@@ -26,6 +26,7 @@ time, mark, audio, video, textarea, button {
   box-sizing: border-box;
   list-style: none;
   letter-spacing: inherit;
+  user-select: none;
 
 }
 /* HTML5 display-role reset for older browsers */
@@ -53,7 +54,7 @@ html {
 `;
 
 export const palette = {
-  themePrimary: '#F3B34C',
+  themePrimary: '#f3b34c',
   themeSecondary: '#395B9D',
   themePrimaryThick: '#F26830',
   themeTertiary: '#a2bf63',
@@ -65,7 +66,8 @@ export const palette = {
   themeDefault: '#14182C',
   themeDisable: '#878787',
   themeHover: '#F5DEB7',
-  themeDefaultWhite: '#FFF'
+  themeDefaultWhite: '#FFF',
+  themeFont: '#4a4a4a'
 };
 
 export const fontSizeKit = {

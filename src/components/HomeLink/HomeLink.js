@@ -6,7 +6,7 @@ export default function HomeLink() {
   return (
     <h1>
       <Link to='/'>
-        <StyledLogo />
+        <StyledLogo>우연히, 식단</StyledLogo>
       </Link>
     </h1>
   );
