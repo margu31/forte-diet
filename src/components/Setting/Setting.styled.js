@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { palette } from "styles";
+import { fontSizeKit, fontWeightKit, palette } from "styles";
 // import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
 import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
 import { motion } from "framer-motion";
 
 export const StyledFormWrapper = styled.div`
   margin-top: 5rem;
-  padding: 0 0 4rem 1.8rem;
+  /* padding: 0 0 4rem 1.8rem; */
   border-radius: 5px;
   /* background-color: ${palette.themeBrightYellow}; */
   /* background-color: inherit; */
@@ -15,20 +15,19 @@ export const StyledFormWrapper = styled.div`
   /* box-shadow: 0 0 20px 5px ${palette.themePrimaryThick}; */
   /* backdrop-filter: blur(5px); */
   display: flex;
+  justify-content: space-evenly;
 `;
 export const StyledImage = styled.div`
-  /* background-image: url("/apples-1952999_1920.jpg"); */
   background-image: url("/setting-_image.jpg");
-  /* background-image: url("/smoothie-4625476_1920.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 420px;
-  height: 500px;
+  width: 400px;
+  height: 490px;
 `;
 
 export const StyledInputWrapper = styled.div`
-  margin-top: 4.5rem;
+  margin-top: 4rem;
 `;
 
 // export const StyledSettingInput = styled(Input)`
@@ -60,7 +59,8 @@ export const StyledSettingInput = styled.div`
 
   label {
     display: inline-block;
-    font-size: 1.2rem;
+    font-size: ${fontSizeKit.medium};
+    font-weight: ${fontWeightKit.bold};
     width: 60px;
     text-align: right;
     /* color: ${palette.themeDefaultWhite}; */
@@ -70,9 +70,9 @@ export const StyledSettingInput = styled.div`
     box-sizing: border-box;
     width: 30rem;
     height: 35px;
-    font-size: 1.1rem;
+    font-size: ${fontSizeKit.small};
     margin-left: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     padding-right: 35px;
     border-radius: 0;
     background-color: inherit;
@@ -100,14 +100,23 @@ export const StyledSettingInput = styled.div`
     cursor: pointer;
   }
 `;
+export const StyledError = styled.p`
+  color: #ff0000;
+  font-size: ${fontSizeKit.xSmall};
+  position: absolute;
+  bottom: 7px;
+  left: 8.5rem;
+`;
 
 export const StyledRadio = styled.div`
   width: 417px;
-  margin-bottom: 2rem;
+  margin-bottom: 2.4rem;
+  margin-top: 1.8rem;
 
   p {
     display: inline-block;
-    font-size: 1.2rem;
+    font-size: ${fontSizeKit.medium};
+    font-weight: ${fontWeightKit.bold};
     text-align: right;
     width: 60px;
     margin-right: 2rem;
@@ -119,21 +128,25 @@ export const StyledRadio = styled.div`
     width: 151px;
     height: 35px;
     line-height: 35px;
+    font-size: ${fontSizeKit.small};
+    cursor: auto;
 
     background-color: inherit;
 
     &:hover {
-      /* border: 2px solid #f5af19; */
-      background: linear-gradient(to bottom, #fdc830, #f37335);
+      /* background: linear-gradient(to bottom, #fdc830, #f37335); */
+      background-color: inherit;
+      color: inherit;
     }
   }
 `;
 
 export const StyledButtonGroup = styled.div`
   padding-top: 30px;
-  padding-right: 1.8rem;
 
   button {
     width: 18rem;
+    font-size: ${fontSizeKit.small};
+    font-weight: ${fontWeightKit.bold};
   }
 `;

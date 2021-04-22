@@ -29,7 +29,8 @@ export default function SettingContainer({ history }) {
       setError({
         ...error,
         nicknameError:
-          "5자 이상, 20자 미만으로 작성해주세요. (한글, 영문, 특수문자, 숫자 가능)",
+          // "5~20자 이내로 작성해주세요. (한글, 영문, 특수문자, 숫자 가능)",
+          "5~20자 이내 (한글, 영문, 특수문자, 숫자 가능)",
       });
     } else {
       setError({
@@ -95,10 +96,10 @@ export default function SettingContainer({ history }) {
     const newFormData = Object.fromEntries(formData.entries());
     console.log(newFormData);
 
-    // editUserInfo(authUser, newFormData);
-    // dispatch(editUserAction(newFormData));
+    editUserInfo(authUser, newFormData);
+    dispatch(editUserAction(newFormData));
 
-    // history.push("/myPage");
+    history.push("/myPage");
   };
 
   const isDisabled =
