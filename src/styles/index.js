@@ -71,6 +71,7 @@ export const palette = {
 };
 
 export const fontSizeKit = {
+  xSmall: '1.1rem',
   small: '1.3rem',
   medium: '1.6rem',
   large: '2.2rem',
