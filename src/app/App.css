@@ -12,3 +12,19 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: '116angmuburi';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/116angmuburi.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Handletter';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
