@@ -1,29 +1,8 @@
-@font-face {
-  font-family: 'Chungchunsidae';
-  src: url('../assets/fonts/Chungchunsidae.ttf');
-}
-
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
 
 @font-face {
   font-family: 'InkLipquid';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: '116angmuburi';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/116angmuburi.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Handletter';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff')
     format('woff');
   font-weight: normal;
   font-style: normal;
