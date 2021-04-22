@@ -1,13 +1,14 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { TiHeart } from 'react-icons/ti';
 import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
 import { ReactComponent as Pencil } from '../../assets/icons/MenuList/pencil.svg';
 import { VscTriangleRight } from 'react-icons/vsc';
 import { motion } from 'framer-motion';
+import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
 const StyledMenuListBar = styled.div`
-  color: #14182c;
+  color: ${palette.themeDefault};
   width: 70px;
   height: 261px;
   position: absolute;
@@ -16,10 +17,15 @@ const StyledMenuListBar = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: ${fontSizeKit.small};
+
+  span {
+    font-weight: ${fontWeightKit.bold};
+    font-size: ${fontSizeKit.small};
+  }
 
   span + span {
-    font-size: 2.2rem;
+    font-size: ${fontSizeKit.large};
     margin-top: 4px;
   }
 `;
@@ -34,7 +40,8 @@ const StyledLike = styled(TiHeart)`
 
   & + span {
     display: block;
-    font-size: 1rem;
+    font-size: ${fontSizeKit.small};
+    font-weight: ${fontWeightKit.normal};
     color: #faafaf;
     text-align: center;
     margin-top: -5px;
@@ -53,7 +60,9 @@ const StyledWaterDose = styled(WaterDose)`
 
   & + span {
     display: block;
-    font-size: 1rem;
+    font-size: ${fontSizeKit.small};
+    font-weight: ${fontWeightKit.normal};
+
     color: #34b0c0;
     text-align: center;
     margin-top: 3px;
@@ -68,9 +77,7 @@ const StyledWaterDoseDialog = styled(motion.div)`
   top: 45px;
   left: -78px;
   background: rgba(182, 182, 182, 0.4);
-  ${({ theme }) => css`
-    box-shadow: -1px 1px 3px ${theme.themeBrightGray};
-  `}
+  box-shadow: -1px 1px 3px ${palette.themeBrightGray};
   display: flex;
   flex-flow: column;
   font-size: 1.2rem;
@@ -84,12 +91,10 @@ const StyledWaterDoseDialog = styled(motion.div)`
   }
 
   span + span {
-    font-size: 1.2rem;
+    font-size: ${fontSizeKit.small};
     border-radius: 0;
     margin-top: 0;
-    ${({ theme }) => css`
-      border-top: 1px solid ${theme.themeBrightGray};
-    `}
+    border-top: 1px solid ${palette.themeBrightGray};
   }
 
   span + span + span + span {
@@ -108,9 +113,7 @@ const StyledTriangle = styled(VscTriangleRight)`
   top: 48%;
   width: 25px;
   height: 25px;
-  ${({ theme }) => css`
-    color: ${theme.themeBrightGray};
-  `}
+  color: ${palette.themeBrightGray};
   opacity: 0.4;
 `;
 
@@ -123,7 +126,9 @@ const StyledDonut = styled(Donut)`
 
   & + span {
     display: block;
-    font-size: 1rem;
+    font-size: ${fontSizeKit.small};
+    font-weight: ${fontWeightKit.normal};
+
     color: #6c3909;
     text-align: center;
     margin-top: -4px;
@@ -141,7 +146,9 @@ const StyledPencil = styled(Pencil)`
 
   & + span {
     display: block;
-    font-size: 1rem;
+    font-size: ${fontSizeKit.small};
+    font-weight: ${fontWeightKit.normal};
+
     color: #ffc219;
     text-align: center;
     margin-top: 4px;

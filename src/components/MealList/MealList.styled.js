@@ -1,7 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { TiDelete } from 'react-icons/ti';
 import { motion } from 'framer-motion';
 import { VscTriangleDown } from 'react-icons/vsc';
+import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
 const StyledDeleteButton = styled(motion.button)``;
 const StyledDeleteIcon = styled(TiDelete)``;
@@ -9,9 +10,7 @@ const StyledDeleteIcon = styled(TiDelete)``;
 const StyledMealList = styled(motion.li)`
   list-style: none;
   display: inline-block;
-  ${({ theme }) => css`
-    color: ${theme.themeDefault};
-  `}
+  color: ${palette.themeDefault};
   cursor: default;
   position: relative;
   margin-right: 58px;
@@ -38,12 +37,13 @@ const StyledMealList = styled(motion.li)`
     display: block;
     margin: 0;
     text-align: center;
-    font-size: 1.6rem;
+    font-size: ${fontSizeKit.medium};
+    font-weight: ${fontWeightKit.bold};
   }
 
   span + span {
     margin-top: 8px;
-    font-size: 1.4rem;
+    font-size: ${fontSizeKit.small};
     opacity: 0.6;
   }
 
@@ -109,9 +109,7 @@ const StyledTriangle = styled(VscTriangleDown)`
   right: 20px;
   width: 22px;
   height: 22px;
-  ${({ theme }) => css`
-    color: ${theme.themeBrightGray};
-  `}
+  color: ${palette.themeBrightGray};
   opacity: 0.4;
 `;
 

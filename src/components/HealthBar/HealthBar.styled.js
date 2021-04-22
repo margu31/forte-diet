@@ -1,7 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { IoWater } from 'react-icons/io5';
 import { RiRestaurantFill } from 'react-icons/ri';
+import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
 const StyledWaterDose = styled(IoWater)``;
 const StyledCalories = styled(RiRestaurantFill)``;
@@ -12,7 +13,6 @@ const StyledNav = styled(motion.nav)`
   top: 100px;
   right: 30px;
   overflow: hidden;
-  font-size: 1.3rem;
   z-index: 999;
   display: flex;
   border-radius: 5px;
@@ -20,36 +20,31 @@ const StyledNav = styled(motion.nav)`
 
 const StyledLi = styled(motion.li)`
   width: 85%;
-  font-size: 1rem;
+  font-size: ${fontSizeKit.xSmall};
   text-align: center;
   padding: 1px;
   display: flex;
   flex-flow: column nowrap;
   margin: 0 auto 20px;
   border-radius: 5px;
-  ${({ theme }) => css`
-    background: linear-gradient(
-      to bottom,
-      ${theme.themePrimaryThick},
-      ${theme.themePrimary}
-    );
-  `}
+  background: linear-gradient(
+    to bottom,
+    ${palette.themePrimaryThick},
+    ${palette.themePrimary}
+  );
 
   div {
     display: flex;
     flex-flow: column nowrap;
-    ${({ theme }) => css`
-      background: ${theme.themeDefaultWhite};
-    `}
+    background: ${palette.themeDefaultWhite};
     padding: 15px 0px 10px 0;
     border-radius: 4px;
 
     h3 {
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-      ${({ theme }) => css`
-        color: ${theme.themePrimaryThick};
-      `}
+      font-size: ${fontSizeKit.xSmall};
+      font-weight: ${fontWeightKit.bold};
+      margin-bottom: 7px;
+      color: ${palette.themePrimaryThick};
     }
 
     div {
@@ -62,7 +57,9 @@ const StyledLi = styled(motion.li)`
     }
 
     span {
-      height: 7px;
+      height: 9px;
+      font-size: ${fontSizeKit.xSmall};
+      font-weight: ${fontWeightKit.bold};
     }
     ${StyledWaterDose} {
       width: 16px;
@@ -79,21 +76,17 @@ const StyledLi = styled(motion.li)`
 const StyledHeader = styled(motion.div)`
   width: inherit;
   height: 40px;
-  ${({ theme }) => css`
-    background: linear-gradient(
-      to left,
-      ${theme.themePrimaryThick},
-      ${theme.themePrimary}
-    );
-  `}
+  background: linear-gradient(
+    to left,
+    ${palette.themePrimaryThick},
+    ${palette.themePrimary}
+  );
 `;
 
 const StyledContainer = styled(motion.div)`
   width: inherit;
   height: inherit;
-  ${({ theme }) => css`
-    background: ${theme.themeDefaultWhite};
-  `}
+  background: ${palette.themeDefaultWhite};
 
   ${StyledHeader}
 `;

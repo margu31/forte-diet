@@ -1,8 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
 import { motion } from 'framer-motion';
+import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
 const StyledPrevButton = styled(IoIosArrowBack)``;
 const StyledNextButton = styled(IoIosArrowForward)``;
@@ -23,12 +24,12 @@ const StyledCalendarDialog = styled(motion.div)`
   position: fixed;
   top: 310px;
   right: 215px;
-  font-size: 1rem;
+  font-size: ${fontSizeKit.xSmall};
+  font-weight: ${fontWeightKit.bold};
+  color: ${palette.themeDark};
   z-index: 999;
   padding: 0 5px 7px 5px;
-  ${({ theme }) => css`
-    background: ${theme.themeDefaultWhite};
-  `}
+  background: ${palette.themeDefaultWhite};
   border-radius: 30px;
   box-shadow: 2px 2px 6px rgba(182, 182, 182, 0.6);
   overflow: hidden;
@@ -45,17 +46,11 @@ const StyledNav = styled.div`
   padding: 20px 0 18px 0;
   cursor: default;
 
-  ${({ theme }) => css`
-    color: ${theme.themeDark};
-  `}
-
   button {
     background: none;
     cursor: pointer;
     outline: none;
-    ${({ theme }) => css`
-      color: ${theme.themeDark};
-    `}
+    color: ${palette.themeDark};
 
     ${StyledPrevButton} {
       width: 20px;
@@ -71,17 +66,16 @@ const StyledNav = styled.div`
   div {
     width: 150px;
     text-align: center;
-    font-size: 1.1rem;
+    font-weight: ${fontWeightKit.bold};
 
     div {
       padding: 5px 0;
+      font-size: ${fontSizeKit.small};
     }
 
     div + div {
-      font-size: 1.5rem;
-      ${({ theme }) => css`
-        color: ${theme.themePrimaryThick};
-      `}
+      font-size: ${fontSizeKit.medium};
+      color: ${palette.themePrimaryThick};
     }
   }
 `;
@@ -97,13 +91,10 @@ const StyledDay = styled.div`
   padding: 8px 0 3px 0;
   margin-bottom: 10px;
   text-transform: uppercase;
-  ${({ theme }) => css`
-    color: ${theme.themeQuaternary};
-  `}
+  color: ${palette.themeQuaternary};
+
   & + & {
-    ${({ theme }) => css`
-      color: ${theme.themeDark};
-    `}
+    color: ${palette.themeDark};
   }
 `;
 
@@ -122,28 +113,21 @@ const StyledDate = styled.div`
   color: ${props => props.$styledSelectedColorProps};
 
   &:hover {
-    ${({ theme }) => css`
-      background: ${theme.themePrimaryThick};
-      color: ${theme.themeDefaultWhite};
-    `}
+    background: ${palette.themePrimaryThick};
+    color: ${palette.themeDefaultWhite};
   }
 `;
 
 const StyledDot = styled.span`
-  font-size: 2.5rem;
-  margin-top: -30px;
+  font-size: ${fontSizeKit.xLarge};
+  margin-top: -33px;
   padding: 20px 0;
   display: inline-block;
   cursor: pointer;
-
-  ${({ theme }) => css`
-    color: ${theme.themePrimaryThick};
-  `}
+  color: ${palette.themePrimaryThick};
 
   &:hover {
-    ${({ theme }) => css`
-      color: ${theme.themeDefaultWhite};
-    `}
+    color: ${palette.themeDefaultWhite};
   }
 
   color: ${props => props.$styledSelectedColorProps};
@@ -154,11 +138,9 @@ const StyledCalendarButton = styled.span`
   height: 50px;
   padding: 20px;
   box-sizing: border-box;
-  ${({ theme }) => css`
-    color: ${theme.themeDefault};
-    background-color: ${theme.themeDefaultWhite};
-    box-shadow: 1px 1px 8px ${theme.themeBrightGray};
-  `}
+  color: ${palette.themeDefault};
+  background-color: ${palette.themeDefaultWhite};
+  box-shadow: 1px 1px 8px ${palette.themeBrightGray};
   border-radius: 50%;
   position: fixed;
   bottom: 59px;
@@ -168,9 +150,7 @@ const StyledCalendarButton = styled.span`
 
   &:hover {
     opacity: 1;
-    ${({ theme }) => css`
-      background: ${theme.themeHover};
-    `}
+    background: ${palette.themeHover};
   }
 `;
 
