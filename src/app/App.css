@@ -1,12 +1,9 @@
-@font-face {
-  font-family: 'Chungchunsidae';
-  src: url('../assets/fonts/Chungchunsidae.ttf');
-}
-
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
 
-/* 
 @font-face {
-  font-family: 'Nanum Gothic';
-  src: url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
-} */
+  font-family: 'InkLipquid';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

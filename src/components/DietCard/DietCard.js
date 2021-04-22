@@ -49,7 +49,7 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
 
     addLikeToUser(auth.authUser, newLike);
 
-    dispatch(handleEditLikeToDiets(dietData, boardType, dietData.like + 1));
+    dispatch(handleEditLikeToDiets(dietData, dietData.like + 1));
   };
 
   const handleDisLike = () => {
@@ -58,7 +58,7 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
 
     addLikeToUser(auth.authUser, newLike);
 
-    dispatch(handleEditLikeToDiets(dietData, boardType, dietData.like - 1));
+    dispatch(handleEditLikeToDiets(dietData, dietData.like - 1));
   };
 
   return (
