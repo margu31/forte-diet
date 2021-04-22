@@ -103,12 +103,13 @@ export default function SettingContainer({ history }) {
   };
 
   const isDisabled =
-    !user.nickname ||
-    !user.height ||
-    !user.weight ||
-    error.nicknameError ||
-    error.heightError ||
-    error.weightError;
+    authUser &&
+    (!user.nickname ||
+      !user.height ||
+      !user.weight ||
+      error.nicknameError ||
+      error.heightError ||
+      error.weightError);
 
   const goBack = () => {
     history.goBack();

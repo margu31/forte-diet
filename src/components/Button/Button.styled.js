@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { palette } from "styles";
+import { fontSizeKit, fontWeightKit, palette } from "styles";
 
 export const StyledButton = styled(motion.button)`
   display: inline-block;
-  padding: 1.25rem 4rem 1.1rem;
-  /* width: 100px; */
-  /* height: 30px; */
-  font-size: 1.2rem;
+  padding: 1.25rem 6rem 1.1rem;
+  margin-bottom: 30px;
+  font-size: ${fontSizeKit.medium};
+  font-weight: ${fontWeightKit.bold};
   color: ${palette.themeDefault};
   border-radius: 0.5rem;
   background-color: #9f9f9f33;

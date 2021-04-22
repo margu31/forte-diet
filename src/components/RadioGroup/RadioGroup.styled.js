@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { fontSizeKit, fontWeightKit } from "styles";
 
 const StyledRadioTitle = styled.p`
-  font-size: 1.1.rem;
-  margin: 0.5rem 0;
+  font-size: ${fontSizeKit.medium};
+  font-weight: ${fontWeightKit.bold};
+  margin: 5px 0 7px 0;
   text-indent: 1rem;
 `;
 
