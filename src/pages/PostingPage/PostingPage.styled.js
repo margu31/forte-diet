@@ -4,6 +4,7 @@ import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
 const StylePostingPage = styled.div`
   min-height: 100vh;
   width: 692px;
+
   margin: 0 auto;
   padding-top: 20px;
 

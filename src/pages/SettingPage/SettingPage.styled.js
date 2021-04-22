@@ -2,8 +2,9 @@ import styled, { css } from 'styled-components';
 import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
 
 export const StyledBackground = styled.section`
-  width: 100vw;
+  max-width: 85vw;
   height: 100vh;
+  flex-grow: 9;
   /* background-image: url("/agriculture-1846358_1920.jpg"); */
   /* background-image: url("/basil-3532424_1920.jpg"); */
   /* background-image: url("/grapefruit-1647688_1920.jpg"); */
