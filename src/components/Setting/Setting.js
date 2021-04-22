@@ -9,6 +9,7 @@ import {
   StyledInputWrapper,
   StyledFormWrapper,
   StyledImage,
+  StyledError,
 } from "./Setting.styled";
 // import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
 import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
@@ -21,17 +22,20 @@ const Setting = ({
   userHeight,
   userWeight,
   onChange,
+  onKeyUp,
   onSubmit,
   goBack,
+  ErrorMessage,
+  isDisabled,
 }) => {
-  const passwordRef = useRef();
+  // const passwordRef = useRef();
   const nicknameRef = useRef();
   const heightRef = useRef();
   const weightRef = useRef();
 
-  const onPasswordEdit = () => {
-    passwordRef.current.disabled = false;
-  };
+  // const onPasswordEdit = () => {
+  //   passwordRef.current.disabled = false;
+  // };
   const onNicknameEdit = () => {
     nicknameRef.current.disabled = false;
   };
@@ -56,7 +60,7 @@ const Setting = ({
               defaultValue={userEmail}
             />
           </StyledSettingInput>
-          <StyledSettingInput>
+          {/* <StyledSettingInput>
             <label htmlFor="password" onClick={onPasswordEdit}>
               <Edit />
             </label>
@@ -69,7 +73,7 @@ const Setting = ({
               disabled="true"
               ref={passwordRef}
             />
-          </StyledSettingInput>
+          </StyledSettingInput> */}
           <StyledSettingInput>
             <label htmlFor="nickname" onClick={onNicknameEdit}>
               <Edit />
@@ -81,9 +85,13 @@ const Setting = ({
               label="닉네임"
               defaultValue={userNickname}
               onChange={onChange}
+              onKeyUp={onKeyUp}
               disabled="true"
               ref={nicknameRef}
             />
+            {ErrorMessage.nicknameError !== null && (
+              <StyledError>{ErrorMessage.nicknameError}</StyledError>
+            )}
           </StyledSettingInput>
           <StyledRadio>
             <p>성별</p>
@@ -114,10 +122,14 @@ const Setting = ({
               name="height"
               label="신장"
               onChange={onChange}
+              onKeyUp={onKeyUp}
               defaultValue={userHeight}
               disabled="true"
               ref={heightRef}
             />
+            {ErrorMessage.heightError !== null && (
+              <StyledError>{ErrorMessage.heightError}</StyledError>
+            )}
           </StyledSettingInput>
           <StyledSettingInput>
             <label htmlFor="weight" onClick={onWeightEdit}>
@@ -129,17 +141,23 @@ const Setting = ({
               name="weight"
               label="몸무게"
               onChange={onChange}
+              onKeyUp={onKeyUp}
               defaultValue={userWeight}
               disabled="true"
               ref={weightRef}
             />
+            {ErrorMessage.weightError && (
+              <StyledError>{ErrorMessage.weightError}</StyledError>
+            )}
           </StyledSettingInput>
         </StyledInputWrapper>
         <StyledButtonGroup>
           <Button type="button" onSubmit={goBack}>
             취소
           </Button>
-          <Button onSubmit={onSubmit}>수정</Button>
+          <Button onSubmit={onSubmit} disabled={isDisabled}>
+            수정
+          </Button>
         </StyledButtonGroup>
       </Form>
       <StyledImage />
