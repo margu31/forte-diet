@@ -54,7 +54,7 @@ html {
 `;
 
 export const palette = {
-  themePrimary: '#F3B34C',
+  themePrimary: '#f3b34c',
   themeSecondary: '#395B9D',
   themePrimaryThick: '#F26830',
   themeTertiary: '#a2bf63',
@@ -66,10 +66,11 @@ export const palette = {
   themeDefault: '#14182C',
   themeDisable: '#878787',
   themeHover: '#F5DEB7',
-  themeDefaultWhite: '#FFF'
+  themeDefaultWhite: '#FFF',
+  themeFont: '#4a4a4a'
 };
 
-export const fontSize = {
+export const fontSizeKit = {
   small: '1.3rem',
   medium: '1.6rem',
   large: '2.2rem',
@@ -77,7 +78,7 @@ export const fontSize = {
   xxLarge: '3rem'
 };
 
-export const fontWeight = {
+export const fontWeightKit = {
   normal: '400',
   bold: '700',
   extraBold: '800'

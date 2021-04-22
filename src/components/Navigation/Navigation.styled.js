@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineUser } from 'react-icons/ai';
 import { BsHouse, BsPen, BsGear } from 'react-icons/bs';
-import { palette } from '../../styles';
+import { fontSizeKit, fontWeightKit, palette } from '../../styles';
 
 export const StyledUl = styled.ul`
   display: inline-flex;
@@ -13,25 +13,21 @@ export const StyledUl = styled.ul`
 
 export const StyledLi = styled.li`
   width: 100%;
+  text-align: center;
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 0;
-  width: 100%;
-  font-size: 1.4rem;
-  color: ${palette.themeDefault};
-
-  transition: all 0.2s;
-
-  &:hover {
-    transform: scale(1.2, 1.2);
-  }
+  padding: 2rem 8rem 2rem 2rem;
+  font-size: ${fontSizeKit.medium};
+  font-weight: ${fontWeightKit.normal};
+  color: ${palette.themeDefaultWhite};
 
   &.active {
-    background-color: ${palette.themeBright};
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     transform: none;
   }
 `;

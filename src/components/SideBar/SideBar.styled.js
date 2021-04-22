@@ -2,12 +2,13 @@ import styled, { css } from 'styled-components';
 import { palette } from '../../styles';
 
 export const StyledSideBarWrapper = styled.div`
-  max-width: 15vw;
-  background-color: ${palette.themeBright};
+  min-width: 14vw;
+  background-color: ${palette.themePrimary};
   z-index: 99;
 `;
 
 export const StyledSideBar = styled.nav`
+  min-width: 14vw;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
