@@ -114,6 +114,20 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
   }
 };
 
+/* menu 삭제 */
+export const handleDeleteDietInDiets = dietId => async dispatch => {
+  try {
+    const diet = await diets.doc(dietId);
+
+    diet.delete();
+
+    dispatch(getPopularMenus(25)());
+    dispatch(getRecentMenus(25)());
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 const getTotalCalories = meals => {
   const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
 
