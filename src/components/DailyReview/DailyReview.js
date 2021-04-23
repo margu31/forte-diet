@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { checkByte } from '../../utils/validation/DailyReviewValidation';
-import { useSelector } from 'react-redux';
 import {
   StyledDailyReview,
   StyledDailyReviewModal
@@ -12,26 +11,12 @@ export default function DailyReview({
   reviewIsActive,
   setReviewIsActive,
   onSubmit,
-  onRemove
+  onRemove,
+  dailyReview
 }) {
-  let { dailyReview } = useSelector(state => state.menuList[date]);
-  dailyReview = dailyReview || '';
-
-  const [wroteReview, setWroteReview] = useState(dailyReview);
+  const [wroteReview, setWroteReview] = useState(dailyReview || '');
   const [totalBytes, setTotalBytes] = useState(0);
   const maxByte = 148;
-
-  const onSubmitReview = () => {
-    onSubmit(date, wroteReview);
-    setReviewIsActive(false);
-  };
-
-  const onDeleteReview = () => {
-    onRemove(date);
-    setWroteReview('');
-    setReviewIsActive(false);
-    setTotalBytes(0);
-  };
 
   return (
     <>
@@ -65,8 +50,18 @@ export default function DailyReview({
         {reviewIsActive && (
           <>
             <span>{totalBytes}/150bytes</span>
-            <button onMouseDown={() => onDeleteReview()}>삭제</button>
-            <button onMouseDown={() => onSubmitReview()}>등록</button>
+            <button
+              onMouseDown={() =>
+                onRemove(date, setWroteReview, setReviewIsActive, setTotalBytes)
+              }
+            >
+              삭제
+            </button>
+            <button
+              onMouseDown={() => onSubmit(date, wroteReview, setReviewIsActive)}
+            >
+              등록
+            </button>
           </>
         )}
       </StyledDailyReview>
