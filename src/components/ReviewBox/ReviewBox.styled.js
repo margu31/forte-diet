@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { palette } from "../../styles";
+import { fontSizeKit, palette } from "../../styles";
 
 const StyledReviewBox = styled.div`
   position: relative;
@@ -28,25 +28,24 @@ const StyledReviewBox = styled.div`
   }
 
   textarea {
-    width: 690px;
-    min-height: 170px;
+    width: 730px;
+    min-height: 240px;
     outline: none;
     border: 1px solid ${palette.themeSecondary};
     border-radius: 5px;
     padding: 20px 15px;
     background-color: ${palette.themeBrightYellow};
     resize: none;
-    letter-spacing: 0.15rem;
-    line-height: 1.5;
-    font-size: 1.5rem;
+    line-height: 1.8;
+    font-size: ${fontSizeKit.medium};
   }
 
   p {
     position: absolute;
-    left: 15px;
-    bottom: -25px;
+    left: 20px;
+    bottom: -30px;
     color: #ff0000;
-    font-size: 1rem;
+    font-size: ${fontSizeKit.xSmall};
     margin: 5px 0;
   }
 `;
