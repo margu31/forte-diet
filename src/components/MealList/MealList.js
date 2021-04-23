@@ -46,14 +46,13 @@ export default function MealList({
     setShowMealModal(!showMealModal);
   };
 
-  // const closeMealModal = (e) => {
-  //   setShowMealModal(!showMealModal);
-  // };
-
   return (
     <>
       {showMealModal === true ? (
-        <MealModalContainer onMealModal={onMealModal}></MealModalContainer>
+        <MealModalContainer
+          onMealModal={onMealModal}
+          mealListData={mealListData}
+        ></MealModalContainer>
       ) : null}
       <StyledLiContainer {...restProps}>
         <StyledMealList

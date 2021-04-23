@@ -1,10 +1,10 @@
 import React from "react";
 import { MyReViewContainer, MyReViewtext } from "./MyReview.styled";
 
-export default function MyReview() {
+export default function MyReview({ review }) {
   return (
     <MyReViewContainer>
-      <MyReViewtext></MyReViewtext>
+      <MyReViewtext>{review}</MyReViewtext>
     </MyReViewContainer>
   );
 }
