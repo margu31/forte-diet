@@ -53,7 +53,7 @@ export default function MenuListBar({
     const newLike = [...authUser.like, menuListData.id];
     dispatch(pushLikeAction(newLike));
 
-    addLikeToUser(authUser, newLike);
+    addLikeToUser(authUser, newLike, menuListData, menuListData.like + 1);
 
     dispatch(handleEditLikeToDiets(menuListData, menuListData.like + 1));
     dispatch(
@@ -65,7 +65,7 @@ export default function MenuListBar({
     const newLike = [...authUser.like].filter(id => id !== menuListData.id);
     dispatch(pushLikeAction(newLike));
 
-    addLikeToUser(authUser, newLike);
+    addLikeToUser(authUser, newLike, menuListData, menuListData.like + 1);
 
     dispatch(handleEditLikeToDiets(menuListData, menuListData.like - 1));
     dispatch(
@@ -80,27 +80,12 @@ export default function MenuListBar({
         {newMonth}/{newDate}
       </span>
       <div>
-        {/* <StyledContainer
-          initial={{ x: 0 }}
-          whileHover={{
-            x: [0, 3, -3, 3, -3, 3, -3],
-            transition: {
-              duration: 0.6,
-              type: 'spring',
-              mass: 0.6,
-              stiffness: 300,
-              repeat: Infinity,
-              repeatType: 'mirror'
-            }
-          }}
-        > */}
         {isLiked ? (
           <StyledLike onClick={handleDisLike} />
         ) : (
           <StyledDisLike onClick={handleLike} />
         )}
         <span>like {menuListData.like || '0'}</span>
-        {/* </StyledContainer> */}
       </div>
       <div>
         <StyledContainer
