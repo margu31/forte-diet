@@ -143,7 +143,10 @@ export const PostMeal = async ({ uid }, mealdata, dietId) => {
         }
       }
     };
-    if (dietId) newData.dietList[mealdata.date].id = dietId;
+    if (dietId) {
+      newData.dietList[mealdata.date].id = dietId;
+      newData.dietList[mealdata.date].like = 0;
+    }
     user.set(newData, { merge: true });
 
     return true;
