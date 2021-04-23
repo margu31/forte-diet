@@ -4,11 +4,11 @@ const StyledDataGroup = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
-  padding: 0 30px;
+  padding: 0 40px;
   margin-top: 3rem;
 
   .collection {
-    padding: 30px 0;
+    padding: 55px 0;
   }
 
   /* label {
