@@ -159,6 +159,7 @@ export const addNewDiet = async ({ uid, nickname }, mealdata) => {
     const newDietRef = await diets.add({
       uid,
       author: nickname,
+      date: mealdata.date,
       dailyReview: null,
       createdAt: new Date(),
       calories: mealdata.calories,
