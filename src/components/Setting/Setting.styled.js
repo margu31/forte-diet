@@ -146,7 +146,8 @@ export const StyledButtonGroup = styled.div`
 
   button {
     width: 18rem;
-    font-size: ${fontSizeKit.small};
+    /* font-size: ${fontSizeKit.small}; */
+    font-size: ${fontSizeKit.medium};
     font-weight: ${fontWeightKit.bold};
   }
 `;
