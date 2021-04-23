@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette } from 'styles';
+import { palette, fontSizeKit } from 'styles';
 import Button from 'components/Button/Button';
 
 export const StyledUserBarWrapper = styled.section`
@@ -24,6 +24,7 @@ export const StyledButton = styled(Button)`
   color: ${palette.themeDefaultWhite};
   padding: 1rem 2rem;
   background-color: transparent;
+  font-size: ${fontSizeKit.small};
 
   &:hover {
     background-color: ${palette.themePrimary};
