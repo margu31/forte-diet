@@ -45,10 +45,14 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
   const handleLike = () => {
     if (!auth.authUser) return;
     const newLike = [...auth.authUser.like, dietData.id];
+
+    // auth 상태에 like 리스트 업데이트 <- 이거 밑에 거 dispatch하면서 함께 하면 될 듯
     dispatch(pushLikeAction(newLike));
 
-    addLikeToUser(auth.authUser, newLike);
+    // firebase/users 테이블에 like 리스트 업데이트
+    addLikeToUser(auth.authUser, newLike, dietData, dietData.like + 1);
 
+    // firebase/diets 테이블에 like 수 업데이트 -> board 상태 최신화
     dispatch(handleEditLikeToDiets(dietData, dietData.like + 1));
   };
 
@@ -56,7 +60,7 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
     const newLike = [...auth.authUser.like].filter(id => id !== dietData.id);
     dispatch(pushLikeAction(newLike));
 
-    addLikeToUser(auth.authUser, newLike);
+    addLikeToUser(auth.authUser, newLike, dietData, dietData.like + 1);
 
     dispatch(handleEditLikeToDiets(dietData, dietData.like - 1));
   };
