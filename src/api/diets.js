@@ -6,7 +6,7 @@ const diets = firestore.collection('diets');
 
 export const getRecentDiets = limit => async () => {
   try {
-    const response = await diets.orderBy('createdAt', 'desc').limit(limit).get();
+    const response = await diets.orderBy('updatedAt', 'desc').limit(limit).get();
 
     const recentDiets = [];
 
@@ -41,7 +41,7 @@ export const getPopularDiets = limit => async () => {
 };
 
 /* -------------------------------------------------------------------------- */
-/*                                  다이어트 테이블                                  */
+/*                            다이어트 테이블                                  */
 /* -------------------------------------------------------------------------- */
 
 /* 데일리 리뷰 추가 및 수정 */
@@ -51,7 +51,8 @@ export const addOrEditDailyReviewInDiets = async (dietId, review) => {
 
     diet.set(
       {
-        dailyReview: review
+        dailyReview: review,
+        updatedAt: new Date()
       },
       { merge: true }
     );
@@ -69,7 +70,8 @@ export const removeDailyReviewInDiets = async dietId => {
 
     diet.set(
       {
-        dailyReview: ''
+        dailyReview: '',
+        updatedAt: new Date()
       },
       { merge: true }
     );
@@ -85,7 +87,8 @@ export const updateWaterDoseInDiets = async (dietId, curDose, addDose) => {
 
     diet.set(
       {
-        waterDose: curDose + addDose
+        waterDose: curDose + addDose,
+        updatedAt: new Date()
       },
       { merge: true }
     );
@@ -105,7 +108,8 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
     else
       diet.set(
         {
-          meals: newMeals
+          meals: newMeals,
+          updatedAt: new Date()
         },
         { merge: true }
       );
@@ -143,6 +147,7 @@ export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
     const totalCalories = parseInt(getTotalCalories(meals), 10);
     diet.set(
       {
+        updatedAt: new Date(),
         calories: totalCalories + parseInt(mealData.calories, 10),
         meals: firebase.firestore.FieldValue.arrayUnion({
           ...mealData
@@ -161,7 +166,8 @@ export const handleEditLikeToDiets = ({ id: dietId }, newLike) => async dispatch
     const diet = await diets.doc(dietId);
     diet.set(
       {
-        like: newLike
+        like: newLike,
+        updatedAt: new Date()
       },
       { merge: true }
     );

@@ -162,6 +162,7 @@ export const addNewDiet = async ({ uid, nickname }, mealdata) => {
       date: mealdata.date,
       dailyReview: null,
       createdAt: new Date(),
+      updatedAt: new Date(),
       calories: mealdata.calories,
       like: 0,
       waterDose: 0,
