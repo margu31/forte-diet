@@ -37,11 +37,11 @@ const StyledLi = styled(motion.li)`
     display: flex;
     flex-flow: column nowrap;
     background: ${palette.themeDefaultWhite};
-    padding: 15px 0px 10px 0;
+    padding: 13px 0px 10px 0;
     border-radius: 4px;
 
     h3 {
-      font-size: ${fontSizeKit.xSmall};
+      font-size: ${fontSizeKit.small};
       font-weight: ${fontWeightKit.bold};
       margin-bottom: 7px;
       color: ${palette.themePrimaryThick};
