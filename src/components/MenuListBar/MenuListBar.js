@@ -25,8 +25,9 @@ export default function MenuListBar({
   let { waterDose, like } = useSelector(state => state.menuList[date]);
   waterDose = waterDose || 0;
 
-  const dayNum = date.slice(4, 6);
-  const dayStr = date.slice(7, 10);
+  const newMonth = parseInt(date.slice(2, 4), 10);
+  const newDate = date.slice(4, 6);
+  const newDay = date.slice(7, 10);
 
   const onClickWaterDose = e => {
     if (e.target.innerText === '초기화') {
@@ -39,8 +40,10 @@ export default function MenuListBar({
 
   return (
     <StyledMenuListBar>
-      <span>{dayStr}</span>
-      <span>{dayNum}</span>
+      <span>{newDay}</span>
+      <span>
+        {newMonth}/{newDate}
+      </span>
       <div>
         <StyledLike />
         <span>like {like || 0}</span>

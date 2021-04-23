@@ -21,12 +21,13 @@ const StyledMenuListBar = styled.div`
 
   span {
     font-weight: ${fontWeightKit.bold};
-    font-size: ${fontSizeKit.small};
+    font-size: ${fontSizeKit.medium};
   }
 
   span + span {
-    font-size: ${fontSizeKit.large};
-    margin-top: 4px;
+    font-size: ${fontSizeKit.medium};
+    letter-spacing: 0.2rem;
+    margin-top: 6px;
   }
 `;
 
