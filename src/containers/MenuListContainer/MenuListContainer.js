@@ -63,7 +63,11 @@ export default function MenuListContainer() {
     const RESET_WATER_DOSE = 0;
 
     dispatch(addWaterDose(authUser, date, RESET_WATER_DOSE, RESET_WATER_DOSE));
-    updateWaterDoseInDiets(menuList[date].id, RESET_WATER_DOSE, RESET_WATER_DOSE);
+    updateWaterDoseInDiets(
+      menuList[date].id,
+      RESET_WATER_DOSE,
+      RESET_WATER_DOSE
+    );
     dispatch(resetWaterDoseAction(date));
     dispatch(updateWaterDoseAction(date, RESET_WATER_DOSE));
   };
@@ -120,6 +124,7 @@ export default function MenuListContainer() {
           onAdd={onAdd}
           onReset={onReset}
           onDelete={onDelete}
+          authUser={authUser}
         />
       ))}
     </>
