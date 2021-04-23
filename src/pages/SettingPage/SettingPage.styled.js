@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
+import { palette } from 'styles';
 
 export const StyledBackground = styled.section`
   max-width: 85vw;
@@ -16,9 +17,7 @@ export const StyledBackground = styled.section`
   /* background-position: center; */
 
   ${StyledButton} {
-    ${({ theme }) => css`
-      color: ${theme.themeDefault};
-    `}
+    color: ${palette.themeDefault};
   }
 `;
 

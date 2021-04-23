@@ -7,7 +7,10 @@ const diets = firestore.collection('diets');
 
 /* 마이 페이지 */
 
-export const handleGetDietLists = ({ uid }, updateDietAction) => async dispatch => {
+export const handleGetDietLists = (
+  { uid },
+  updateDietAction
+) => async dispatch => {
   try {
     const snapshot = await users.where('id', '==', uid).get();
 
@@ -59,7 +62,12 @@ export const removeDailyReview = ({ uid }, date) => async () => {
   }
 };
 
-export const addWaterDose = ({ uid }, date, currentDose, additionalDose) => async () => {
+export const addWaterDose = (
+  { uid },
+  date,
+  currentDose,
+  additionalDose
+) => async () => {
   try {
     const user = await users.doc(uid);
     user.set(
@@ -113,7 +121,11 @@ export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
 };
 
 /* 좋아요 토글 */
-export const handleEditLikeNumberToUsers = ({ uid }, { date }, like) => async dispatch => {
+export const handleEditLikeNumberToUsers = (
+  { uid },
+  date,
+  like
+) => async () => {
   try {
     const user = await users.doc(uid);
     user.set(

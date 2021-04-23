@@ -38,12 +38,32 @@ const StyledLike = styled(TiHeart)`
   box-sizing: border-box;
   display: block;
   margin-top: 20px;
+  cursor: pointer;
 
   & + span {
     display: block;
     font-size: ${fontSizeKit.small};
     font-weight: ${fontWeightKit.normal};
     color: #faafaf;
+    text-align: center;
+    margin-top: -5px;
+  }
+`;
+
+const StyledDisLike = styled(TiHeart)`
+  color: ${palette.themeBrightGray};
+  width: 35px;
+  height: 35px;
+  box-sizing: border-box;
+  display: block;
+  margin-top: 20px;
+  cursor: pointer;
+
+  & + span {
+    display: block;
+    font-size: ${fontSizeKit.small};
+    font-weight: ${fontWeightKit.normal};
+    color: ${palette.themeBrightGray};
     text-align: center;
     margin-top: -5px;
   }
@@ -164,5 +184,6 @@ export {
   StyledPencil,
   StyledWaterDoseDialog,
   StyledTriangle,
-  StyledContainer
+  StyledContainer,
+  StyledDisLike
 };
