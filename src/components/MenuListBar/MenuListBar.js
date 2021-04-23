@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   StyledMenuListBar,
   StyledLike,
@@ -8,8 +8,13 @@ import {
   StyledPencil,
   StyledWaterDoseDialog,
   StyledTriangle,
-  StyledContainer
+  StyledContainer,
+  StyledDisLike
 } from './MenuListBar.styled';
+import { pushLikeAction } from '../../redux/modules/auth/auth';
+import { addLikeToUser } from 'api/auth';
+import { handleEditLikeToDiets } from 'api/diets';
+import { handleEditLikeNumberToUsers } from 'api/firestore';
 
 export default function MenuListBar({
   date,
@@ -19,14 +24,17 @@ export default function MenuListBar({
   menuListData,
   onClick,
   dailyTextarea,
-  onReset
+  onReset,
+  authUser
 }) {
   const [waterIsActive, setWaterIsActive] = useState(false);
-  let { waterDose, like } = useSelector(state => state.menuList[date]);
+  let { waterDose } = useSelector(state => state.menuList[date]);
   waterDose = waterDose || 0;
+  const dispatch = useDispatch();
 
-  const dayNum = date.slice(4, 6);
-  const dayStr = date.slice(7, 10);
+  const newMonth = parseInt(date.slice(2, 4), 10);
+  const newDate = date.slice(4, 6);
+  const newDay = date.slice(7, 10);
 
   const onClickWaterDose = e => {
     if (e.target.innerText === '초기화') {
@@ -37,13 +45,47 @@ export default function MenuListBar({
     setWaterIsActive(false);
   };
 
+  const isLiked = authUser?.like.includes(menuListData.id);
+
+  /* 밑에 두 함수 합치는 리팩토링 필요 */
+  const handleLike = () => {
+    if (!authUser) return;
+    const newLike = [...authUser.like, menuListData.id];
+    dispatch(pushLikeAction(newLike));
+
+    addLikeToUser(authUser, newLike, menuListData, menuListData.like + 1);
+
+    dispatch(handleEditLikeToDiets(menuListData, menuListData.like + 1));
+    dispatch(
+      handleEditLikeNumberToUsers(authUser, date, menuListData.like + 1)
+    );
+  };
+
+  const handleDisLike = () => {
+    const newLike = [...authUser.like].filter(id => id !== menuListData.id);
+    dispatch(pushLikeAction(newLike));
+
+    addLikeToUser(authUser, newLike, menuListData, menuListData.like + 1);
+
+    dispatch(handleEditLikeToDiets(menuListData, menuListData.like - 1));
+    dispatch(
+      handleEditLikeNumberToUsers(authUser, date, menuListData.like - 1)
+    );
+  };
+
   return (
     <StyledMenuListBar>
-      <span>{dayStr}</span>
-      <span>{dayNum}</span>
+      <span>{newDay}</span>
+      <span>
+        {newMonth}/{newDate}
+      </span>
       <div>
-        <StyledLike />
-        <span>like {like || 0}</span>
+        {isLiked ? (
+          <StyledLike onClick={handleDisLike} />
+        ) : (
+          <StyledDisLike onClick={handleLike} />
+        )}
+        <span>like {menuListData.like || '0'}</span>
       </div>
       <div>
         <StyledContainer

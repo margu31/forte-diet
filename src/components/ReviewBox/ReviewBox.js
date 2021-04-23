@@ -6,7 +6,8 @@ const ReviewBox = ({
   label,
   placeholder,
   onChange,
-  onBlur,
+  // onBlur,
+  onKeyUp,
   hasError,
 }) => {
   return (
@@ -17,7 +18,8 @@ const ReviewBox = ({
         name={name}
         placeholder={placeholder}
         onChange={onChange}
-        onBlur={onBlur}
+        // onBlur={onBlur}
+        onKeyUp={onKeyUp}
         autoComplete="off"
       ></textarea>
       {hasError && <p>{hasError}</p>}

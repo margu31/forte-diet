@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import { palette } from '../../styles';
 
 export const StyledSideBarWrapper = styled.div`
-  min-width: 14vw;
   background-color: ${palette.themePrimary};
   z-index: 99;
 `;

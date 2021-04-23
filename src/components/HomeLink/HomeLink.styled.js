@@ -5,7 +5,7 @@ export const StyledLogo = styled.div`
   font-family: 'InkLipquid';
   position: relative;
   padding: 5rem 0;
-  font-size: 3.8rem;
+  font-size: 3.5rem;
   font-weight: ${fontWeightKit.normal};
   margin: 3rem 0;
   color: ${palette.themeDefaultWhite};

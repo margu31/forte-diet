@@ -1,16 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { IoArrowUpOutline } from 'react-icons/io5';
+import { palette } from 'styles';
 
 const StyledTopButton = styled(IoArrowUpOutline)`
   padding: 12px;
   box-sizing: border-box;
   width: 50px;
   height: 50px;
-  ${({ theme }) => css`
-    color: ${theme.themeDefault};
-    background-color: ${theme.themeDefaultWhite};
-    box-shadow: 1px 1px 8px ${theme.themeBrightGray};
-  `}
+  color: ${palette.themeDefault};
+  background-color: ${palette.themeDefaultWhite};
+  box-shadow: 1px 1px 8px ${palette.themeBrightGray};
   border-radius: 50%;
   position: fixed;
   bottom: 59px;
@@ -20,9 +19,7 @@ const StyledTopButton = styled(IoArrowUpOutline)`
 
   &:hover {
     opacity: 1;
-    ${({ theme }) => css`
-      background: ${theme.themeHover};
-    `}
+    background: ${palette.themeHover};
   }
 `;
 

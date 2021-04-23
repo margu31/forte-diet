@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { palette } from "../../styles";
+import { fontSizeKit, fontWeightKit, palette } from "../../styles";
 
 const StyledToggle = styled.div`
-  font-size: 1.1rem;
-  width: 690px;
+  font-size: ${fontSizeKit.small};
+  width: 700px;
   text-align: right;
   padding-right: 15px;
-  margin: 5px 0;
+  margin: 10px 0 20px;
 
   input {
     display: none;
@@ -18,8 +18,8 @@ const StyledToggle = styled.div`
     display: inline-block;
     cursor: pointer;
     user-select: none;
-    width: 88px;
-    height: 32px;
+    width: 95px;
+    height: 35px;
     border-radius: 50px;
     border: 4px solid ${palette.themePrimaryThick};
     background-color: ${palette.themeBrightYellow};
@@ -27,12 +27,13 @@ const StyledToggle = styled.div`
     span {
       position: absolute;
       display: inline-block;
-      height: 25px;
-      line-height: 25px;
+      height: 30px;
+      line-height: 28px;
+      font-weight: ${fontWeightKit.bold};
     }
 
     & span:first-child {
-      right: 12px;
+      right: 15px;
     }
 
     & span:nth-child(2) {
@@ -41,8 +42,8 @@ const StyledToggle = styled.div`
   }
 
   & span:last-child {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background-color: ${palette.themePrimaryThick};
     left: 3px;
@@ -56,16 +57,15 @@ const StyledToggle = styled.div`
 
     & span:last-child {
       background-color: ${palette.themeBrightYellow};
-      right: 5px;
-      width: 18px;
-      height: 18px;
-      transform: translate3d(57px, -50%, 0);
+      width: 20px;
+      height: 20px;
+      transform: translate3d(60px, -50%, 0);
     }
 
     & span:nth-child(2) {
       display: inline-block;
       color: ${palette.themeBrightYellow};
-      left: 9px;
+      left: 10px;
     }
 
     & span:first-child {
