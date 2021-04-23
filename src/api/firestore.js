@@ -166,9 +166,10 @@ export const handleDeleteDietInUsers = ({ uid }, { id, date }) => async dispatch
 
 /* 포스팅 페이지 */
 
-export const addNewDiet = async ({ nickname }, mealdata) => {
+export const addNewDiet = async ({ uid, nickname }, mealdata) => {
   try {
     const newDietRef = await diets.add({
+      uid,
       author: nickname,
       dailyReview: null,
       createdAt: new Date(),
