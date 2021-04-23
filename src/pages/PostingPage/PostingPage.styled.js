@@ -3,7 +3,8 @@ import { StyledButton } from "components/UserNavigation/UserNavigation.styled";
 
 const StylePostingPage = styled.div`
   min-height: 100vh;
-  width: 692px;
+  /* width: 692px; */
+  width: 90rem;
 
   margin: 0 auto;
   margin-top: 70px;

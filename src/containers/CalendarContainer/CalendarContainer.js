@@ -32,7 +32,7 @@ export default function CalendarContainer() {
     const addOffsetY = checkMealListLength(offsetY);
 
     window.scroll({
-      top: 465 * offsetY + 227 * addOffsetY,
+      top: 464 * offsetY + 227 * addOffsetY,
       left: 0,
       behavior: 'smooth'
     });
