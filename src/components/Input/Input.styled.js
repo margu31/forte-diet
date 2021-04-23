@@ -10,7 +10,7 @@ export const StyledLabel = styled.label`
   font-size: ${fontSizeKit.medium};
   font-weight: ${fontWeightKit.bold};
 
-  &[for="postingFile"] {
+  /* &[for="postingFile"] {
     width: 280px;
     height: 280px;
     border-radius: 50%;
@@ -21,7 +21,7 @@ export const StyledLabel = styled.label`
     background-color: ${palette.themeBrightYellow};
     margin: 40px 0;
     font-size: ${fontSizeKit.small};
-  }
+  } */
 `;
 
 export const StyledInput = styled.input`
@@ -35,9 +35,9 @@ export const StyledInput = styled.input`
   outline: none;
   font-size: ${fontSizeKit.medium};
 
-  &[type="file"] {
+  /* &[type="file"] {
     display: none;
-  }
+  } */
 
   &[type="date"] {
     cursor: pointer;
