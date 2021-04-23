@@ -60,7 +60,7 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
     const newLike = [...auth.authUser.like].filter(id => id !== dietData.id);
     dispatch(pushLikeAction(newLike));
 
-    addLikeToUser(auth.authUser, newLike, dietData, dietData.like + 1);
+    addLikeToUser(auth.authUser, newLike, dietData, dietData.like - 1);
 
     dispatch(handleEditLikeToDiets(dietData, dietData.like - 1));
   };
