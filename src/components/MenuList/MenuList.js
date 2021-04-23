@@ -13,7 +13,8 @@ export default function MenuList({
   onAdd,
   onReset,
   onDelete,
-  authUser
+  authUser,
+  onDeleteAll
 }) {
   const dailyTextarea = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
@@ -74,6 +75,7 @@ export default function MenuList({
           dailyTextarea={dailyTextarea}
           onReset={onReset}
           authUser={authUser}
+          onDeleteAll={onDeleteAll}
         />
       </StyledMenuList>
     </>

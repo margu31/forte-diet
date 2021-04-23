@@ -5,7 +5,8 @@ import {
   addOrEditDailyReview,
   removeDailyReview,
   addWaterDose,
-  removeMeal
+  removeMeal,
+  handleDeleteDietInUsers
 } from '../../api/firestore';
 import {
   getMenuListAction,
@@ -86,6 +87,10 @@ export default function MenuListContainer() {
       : totalCalories;
   };
 
+  const onDeleteAll = menuListData => {
+    dispatch(handleDeleteDietInUsers(authUser, menuListData));
+  };
+
   useEffect(() => {
     if (!authUser) return null;
     dispatch(handleGetDietLists(authUser, getMenuListAction));
@@ -125,6 +130,7 @@ export default function MenuListContainer() {
           onReset={onReset}
           onDelete={onDelete}
           authUser={authUser}
+          onDeleteAll={onDeleteAll}
         />
       ))}
     </>

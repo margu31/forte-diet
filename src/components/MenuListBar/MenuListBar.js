@@ -5,11 +5,12 @@ import {
   StyledLike,
   StyledWaterDose,
   StyledDonut,
-  StyledPencil,
+  StyledMore,
   StyledWaterDoseDialog,
   StyledTriangle,
   StyledContainer,
-  StyledDisLike
+  StyledDisLike,
+  StyledMoreDialog
 } from './MenuListBar.styled';
 import { pushLikeAction } from '../../redux/modules/auth/auth';
 import { addLikeToUser } from 'api/auth';
@@ -25,9 +26,11 @@ export default function MenuListBar({
   onClick,
   dailyTextarea,
   onReset,
-  authUser
+  authUser,
+  onDeleteAll
 }) {
   const [waterIsActive, setWaterIsActive] = useState(false);
+  const [moreIsActive, setMoreIsActive] = useState(false);
   let { waterDose } = useSelector(state => state.menuList[date]);
   waterDose = waterDose || 0;
   const dispatch = useDispatch();
@@ -65,7 +68,7 @@ export default function MenuListBar({
     const newLike = [...authUser.like].filter(id => id !== menuListData.id);
     dispatch(pushLikeAction(newLike));
 
-    addLikeToUser(authUser, newLike, menuListData, menuListData.like + 1);
+    addLikeToUser(authUser, newLike, menuListData, menuListData.like - 1);
 
     dispatch(handleEditLikeToDiets(menuListData, menuListData.like - 1));
     dispatch(
@@ -134,28 +137,36 @@ export default function MenuListBar({
         <span>{getTotalCalories(menuListData.meals)}kcal</span>
       </div>
       <div>
-        <StyledContainer
-          initial={{ x: 0 }}
-          whileHover={{
-            x: [0, 3, -3, 3, -3, 3, -3],
-            transition: {
-              duration: 0.6,
-              type: 'spring',
-              mass: 0.6,
-              stiffness: 300,
-              repeat: Infinity,
-              repeatType: 'mirror'
-            }
-          }}
-        >
-          <StyledPencil
-            onClick={async () => {
-              await setReviewIsActive(true);
-              await onClick(dailyTextarea);
+        <StyledMore onClick={() => setMoreIsActive(!moreIsActive)} />
+        {moreIsActive && (
+          <StyledMoreDialog
+            initial={{ x: 2, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              duration: 0.1
             }}
-          />
-          <span>Diary</span>
-        </StyledContainer>
+            exit={{ x: 2, opacity: 0 }}
+          >
+            <span
+              onClick={async () => {
+                await setReviewIsActive(true);
+                await onClick(dailyTextarea);
+                setMoreIsActive(false);
+              }}
+            >
+              오늘 기록
+            </span>
+            <span
+              onClick={() => {
+                onDeleteAll(menuListData);
+                setMoreIsActive(false);
+              }}
+            >
+              전체 삭제
+            </span>
+            <StyledTriangle />
+          </StyledMoreDialog>
+        )}
       </div>
     </StyledMenuListBar>
   );
