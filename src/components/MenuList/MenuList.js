@@ -14,7 +14,10 @@ export default function MenuList({
   onReset,
   onDelete,
   authUser,
-  onDeleteAll
+  onDeleteAll,
+  handleLike,
+  handleDisLike,
+  onClickWaterDose
 }) {
   const dailyTextarea = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
@@ -46,11 +49,10 @@ export default function MenuList({
   return (
     <>
       <StyledMenuList variants={container} initial='hidden' animate='visible'>
-        {/* TODO: key 바꿔야함!!!! */}
-        {menuListData.meals.map((mealList, i) => (
+        {menuListData.meals.map(mealList => (
           <MealList
             mealListData={mealList}
-            key={i}
+            key={mealList.id}
             variants={item}
             onDelete={onDelete}
             date={date}
@@ -63,19 +65,22 @@ export default function MenuList({
           setReviewIsActive={setReviewIsActive}
           onSubmit={onSubmit}
           onRemove={onRemove}
+          dailyReview={menuListData.dailyReview}
         />
         <MenuListBar
           date={date}
-          onAdd={onAdd}
           getTotalCalories={getTotalCalories}
           reviewIsActive={reviewIsActive}
           setReviewIsActive={setReviewIsActive}
           menuListData={menuListData}
           onClick={onClick}
           dailyTextarea={dailyTextarea}
-          onReset={onReset}
           authUser={authUser}
           onDeleteAll={onDeleteAll}
+          handleLike={handleLike}
+          handleDisLike={handleDisLike}
+          waterDose={menuListData.waterDose}
+          onClickWaterDose={onClickWaterDose}
         />
       </StyledMenuList>
     </>
