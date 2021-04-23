@@ -42,8 +42,8 @@ const StyledCalendarDialog = styled(motion.div)`
 const StyledNav = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
-  padding: 20px 0 18px 0;
+  justify-content: space-between;
+  padding: 20px 15px 18px 15px;
   cursor: default;
 
   button {
@@ -162,6 +162,22 @@ const StyledCalendarIcon = styled(FaRegCalendarAlt)`
   height: 20px;
 `;
 
+const StyledTodayButton = styled.button`
+  font-size: ${fontSizeKit.xSmall};
+  position: absolute;
+  top: 30px;
+  right: 52px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  color: ${palette.themeBrightGray};
+  border: 1px solid ${palette.themeBrightGray};
+
+  &:hover {
+    border: 1px solid ${palette.themePrimaryThick};
+    color: ${palette.themePrimaryThick};
+  }
+`;
+
 export {
   StyledCalendarButton,
   StyledCalendarIcon,
@@ -173,5 +189,6 @@ export {
   StyledGrid,
   StyledPrevButton,
   StyledNextButton,
-  StyledDot
+  StyledDot,
+  StyledTodayButton
 };
