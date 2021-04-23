@@ -1,5 +1,6 @@
 import { firestore } from './auth';
 import firebase from 'firebase';
+import { handleDeleteDietInDiets } from './diets';
 
 const users = firestore.collection('users');
 const diets = firestore.collection('diets');
@@ -125,6 +126,27 @@ export const handleEditLikeNumberToUsers = ({ uid }, { date }, like) => async di
       },
       { merge: true }
     );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+/* menu 삭제 */
+export const handleDeleteDietInUsers = ({ uid }, { id, date }) => async dispatch => {
+  try {
+    const user = await users.doc(uid);
+    user.set(
+      {
+        dietList: {
+          [date]: firebase.firestore.FieldValue.delete()
+        }
+      },
+      { merge: true }
+    );
+
+    dispatch(handleDeleteDietInDiets(id));
+
+    return true;
   } catch (e) {
     throw new Error(e.message);
   }
