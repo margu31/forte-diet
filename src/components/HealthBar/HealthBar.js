@@ -13,7 +13,7 @@ import { motion, useCycle } from 'framer-motion';
 
 const sidebar = {
   open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at 110px 20px)`,
+    clipPath: `circle(${height * 2 + 200}px at 120px 20px)`,
     transition: {
       type: 'spring',
       stiffness: 20,
@@ -21,7 +21,7 @@ const sidebar = {
     }
   }),
   closed: {
-    clipPath: 'circle(20px at 110px 20px)',
+    clipPath: 'circle(20px at 120px 20px)',
     transition: {
       delay: 0.2,
       type: 'spring',
@@ -71,7 +71,7 @@ const Path = props => (
 );
 
 export default function HealthBar({ healthBar, getTotalCalories, getDate }) {
-  const [isOpen, toggleOpen] = useCycle(false, true);
+  const [isOpen, toggleOpen] = useCycle(true, false);
 
   return (
     <>

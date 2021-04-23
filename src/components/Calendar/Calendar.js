@@ -10,7 +10,8 @@ import {
   StyledGrid,
   StyledPrevButton,
   StyledNextButton,
-  StyledDot
+  StyledDot,
+  StyledTodayButton
 } from './Calendar.styled';
 import { palette } from 'styles/index';
 
@@ -166,6 +167,14 @@ export default function Calendar({ calendarMenuList, onScroll }) {
               <button onClick={onClickNext}>
                 <StyledNextButton />
               </button>
+              <StyledTodayButton
+                onClick={e => {
+                  e.stopPropagation(); // 이벤트 전파 막기
+                  setCurrentDate(new Date());
+                }}
+              >
+                Today
+              </StyledTodayButton>
             </StyledNav>
             <StyledGrid>
               {dayNames.map((day, i) => (

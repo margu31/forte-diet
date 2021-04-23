@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
 const StyledDailyReview = styled.div`
   width: 730px;
@@ -12,16 +13,17 @@ const StyledDailyReview = styled.div`
 
   textarea {
     border-radius: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 12px 20px 25px 20px;
     width: 100%;
     height: 100%;
     line-height: 30px;
     background: inherit;
-    color: #14182c;
+    color: ${palette.themeDefault};
     opacity: 0.8;
     resize: none;
-    font-size: 1.2rem;
+    font-size: ${fontSizeKit.small};
+    font-weight: ${fontWeightKit.bold};
     outline: none;
 
     &:focus {
@@ -35,12 +37,10 @@ const StyledDailyReview = styled.div`
   }
 
   span {
-    font-size: 1rem;
-    ${({ theme }) => css`
-      color: ${theme.themeBrightGray};
-    `}
+    font-size: ${fontSizeKit.xSmall};
+    color: ${palette.themeBrightGray};
     position: absolute;
-    bottom: 29px;
+    bottom: 27px;
     right: 90px;
   }
 
@@ -48,8 +48,10 @@ const StyledDailyReview = styled.div`
     background: inherit;
     border-radius: 10px;
     font: inherit;
-    font-size: 1.1rem;
-    color: #14182c;
+    font-size: ${fontSizeKit.xSmall};
+    color: ${palette.themeDefault};
+    font-weight: ${fontWeightKit.bold};
+
     padding: 7px;
     box-sizing: border-box;
     border: none;
@@ -68,9 +70,7 @@ const StyledDailyReview = styled.div`
     right: 8px;
 
     &:hover {
-      ${({ theme }) => css`
-        background: ${theme.themeHover};
-      `}
+      background: ${palette.themeHover};
     }
   }
 `;
