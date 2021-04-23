@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
+import { palette } from 'styles';
 
 const StyledMyPageWrapper = styled.section`
   min-height: 100vh;
@@ -7,9 +8,7 @@ const StyledMyPageWrapper = styled.section`
   max-width: 85vw;
 
   ${StyledButton} {
-    ${({ theme }) => css`
-      color: ${theme.themeDefault};
-    `}
+    color: ${palette.themeDefault};
   }
 `;
 

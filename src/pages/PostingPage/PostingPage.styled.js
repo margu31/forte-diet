@@ -1,5 +1,6 @@
-import styled, { css } from "styled-components";
-import { StyledButton } from "components/UserNavigation/UserNavigation.styled";
+import styled from 'styled-components';
+import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
+import { palette } from 'styles';
 
 const StylePostingPage = styled.div`
   min-height: 100vh;
@@ -11,9 +12,7 @@ const StylePostingPage = styled.div`
   padding-top: 20px;
 
   ${StyledButton} {
-    ${({ theme }) => css`
-      color: ${theme.themeDefault};
-    `}
+    color: ${palette.themeDefault};
   }
 `;
 
