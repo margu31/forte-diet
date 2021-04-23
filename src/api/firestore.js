@@ -111,6 +111,25 @@ export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
   /* diets에서도 지워야 함. */
 };
 
+/* 좋아요 토글 */
+export const handleEditLikeNumberToUsers = ({ uid }, { date }, like) => async dispatch => {
+  try {
+    const user = await users.doc(uid);
+    user.set(
+      {
+        dietList: {
+          [date]: {
+            like
+          }
+        }
+      },
+      { merge: true }
+    );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 /* 포스팅 페이지 */
 
 export const addNewDiet = async ({ nickname }, mealdata) => {
