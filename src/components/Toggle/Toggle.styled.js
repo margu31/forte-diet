@@ -5,8 +5,8 @@ const StyledToggle = styled.div`
   font-size: ${fontSizeKit.small};
   width: 700px;
   text-align: right;
-  padding-right: 15px;
-  margin: 10px 0 20px;
+  padding-right: 5px;
+  margin: 15px 0 20px;
 
   input {
     display: none;
