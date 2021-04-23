@@ -164,7 +164,7 @@ const StyledMore = styled(RiMore2Line)`
   display: block;
   margin: 20px auto 0;
   cursor: pointer;
-  color: ${palette.themeDark};
+  color: ${palette.themeBrightGray};
 `;
 
 const StyledMoreDialog = styled(motion.div)`
