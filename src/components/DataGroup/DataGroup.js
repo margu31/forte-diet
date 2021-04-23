@@ -2,7 +2,14 @@ import Input from "components/Input/Input";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import StyledDataGroup from "./DataGroup.styled";
 
-const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage, maxDate }) => {
+const DataGroup = ({
+  onChange,
+  onBlur,
+  onKeyPress,
+  errorMessage,
+  maxDate,
+  onKeyUp,
+}) => {
   // const today = new Date();
   // const year = today.getFullYear();
   // const getMonth = today.getMonth() + 1;
@@ -18,6 +25,7 @@ const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage, maxDate }) => {
         id="postingFile"
         name="postingFile"
         label="사진 등록"
+        accept="image/*"
         onChange={onChange}
       />
       <div className="collection">
@@ -48,7 +56,8 @@ const DataGroup = ({ onChange, onBlur, onKeyPress, errorMessage, maxDate }) => {
           name="title"
           label="Menu"
           onChange={onChange}
-          onBlur={onBlur}
+          // onBlur={onBlur}
+          onKeyUp={onKeyUp}
           errorMessage={errorMessage}
           maxLength="10"
         />

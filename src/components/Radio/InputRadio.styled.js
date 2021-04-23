@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { palette } from "styles";
+import { fontSizeKit, fontWeightKit, palette } from "styles";
 
 const StyledInputRadio = styled.span`
   label {
-    font-size: 1.1rem;
+    font-size: ${fontSizeKit.medium};
     width: 86px;
-    height: 30px;
-    line-height: 30px;
+    height: 35px;
+    line-height: 35px;
     background-color: ${palette.themeBrightYellow};
     border: 1px solid ${palette.themePrimary};
     display: inline-block;
