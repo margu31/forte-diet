@@ -130,10 +130,6 @@ function PostingContainer({ history }) {
 
     // console.log(formData);
 
-    // const mealId = menuList[mealData.date]
-    //   ? menuList[mealData.date].meals.length + 1
-    //   : 0;
-
     // mealId 수정 코드
     const mealId =
       +menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]
@@ -168,7 +164,6 @@ function PostingContainer({ history }) {
   const onKeyUp = (e) => {
     if (e.target.name === "title") {
       menuValid(e.target.value);
-      // console.log(mealData.hasError.title);
     } else if (e.target.name === "review") {
       reviewValid(e.target.value);
     }
@@ -207,7 +202,6 @@ function PostingContainer({ history }) {
       <Form legend="식단 포스팅">
         <DataGroup
           onChange={onChange}
-          // onBlur={onBlur}
           onKeyUp={onKeyUp}
           onKeyPress={onKeyPress}
           errorMessage={mealData.hasError}
@@ -219,7 +213,6 @@ function PostingContainer({ history }) {
           label="Review: "
           placeholder="자유롭게 리뷰를 남겨주세요! (500자 이내)"
           onChange={onChange}
-          // onBlur={onBlur}
           onKeyUp={onKeyUp}
           hasError={mealData.hasError.review}
         />
@@ -234,7 +227,7 @@ function PostingContainer({ history }) {
             취소
           </Button>
           <Button onSubmit={onSubmit} disabled={isDisabled}>
-            등록!
+            등록
           </Button>
         </div>
       </Form>
