@@ -81,9 +81,9 @@ const StyledWaterDoseDialog = styled(motion.div)`
   box-shadow: -1px 1px 3px ${palette.themeBrightGray};
   display: flex;
   flex-flow: column;
-  font-size: 1.2rem;
 
   span {
+    font-size: ${fontSizeKit.small};
     text-align: center;
     padding: 11px;
     border-radius: 8px 8px 0 0;
