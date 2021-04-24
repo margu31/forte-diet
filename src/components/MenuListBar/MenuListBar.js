@@ -1,77 +1,40 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   StyledMenuListBar,
   StyledLike,
   StyledWaterDose,
   StyledDonut,
-  StyledPencil,
+  StyledMore,
   StyledWaterDoseDialog,
   StyledTriangle,
   StyledContainer,
-  StyledDisLike
+  StyledDisLike,
+  StyledMoreDialog
 } from './MenuListBar.styled';
-import { pushLikeAction } from '../../redux/modules/auth/auth';
-import { addLikeToUser } from 'api/auth';
-import { handleEditLikeToDiets } from 'api/diets';
-import { handleEditLikeNumberToUsers } from 'api/firestore';
 
 export default function MenuListBar({
   date,
-  onAdd,
   getTotalCalories,
   setReviewIsActive,
   menuListData,
   onClick,
   dailyTextarea,
-  onReset,
-  authUser
+  authUser,
+  onDeleteAll,
+  handleLike,
+  handleDisLike,
+  waterDose,
+  onClickWaterDose
 }) {
   const [waterIsActive, setWaterIsActive] = useState(false);
-  let { waterDose } = useSelector(state => state.menuList[date]);
+  const [moreIsActive, setMoreIsActive] = useState(false);
   waterDose = waterDose || 0;
-  const dispatch = useDispatch();
 
   const newMonth = parseInt(date.slice(2, 4), 10);
   const newDate = date.slice(4, 6);
   const newDay = date.slice(7, 10);
 
-  const onClickWaterDose = e => {
-    if (e.target.innerText === '초기화') {
-      onReset(date);
-    } else {
-      onAdd(date, waterDose, e);
-    }
-    setWaterIsActive(false);
-  };
-
   const isLiked = authUser?.like.includes(menuListData.id);
-
-  /* 밑에 두 함수 합치는 리팩토링 필요 */
-  const handleLike = () => {
-    if (!authUser) return;
-    const newLike = [...authUser.like, menuListData.id];
-    dispatch(pushLikeAction(newLike));
-
-    addLikeToUser(authUser, newLike, menuListData, menuListData.like + 1);
-
-    dispatch(handleEditLikeToDiets(menuListData, menuListData.like + 1));
-    dispatch(
-      handleEditLikeNumberToUsers(authUser, date, menuListData.like + 1)
-    );
-  };
-
-  const handleDisLike = () => {
-    const newLike = [...authUser.like].filter(id => id !== menuListData.id);
-    dispatch(pushLikeAction(newLike));
-
-    addLikeToUser(authUser, newLike, menuListData, menuListData.like + 1);
-
-    dispatch(handleEditLikeToDiets(menuListData, menuListData.like - 1));
-    dispatch(
-      handleEditLikeNumberToUsers(authUser, date, menuListData.like - 1)
-    );
-  };
 
   return (
     <StyledMenuListBar>
@@ -81,9 +44,9 @@ export default function MenuListBar({
       </span>
       <div>
         {isLiked ? (
-          <StyledLike onClick={handleDisLike} />
+          <StyledLike onClick={() => handleDisLike(menuListData, date)} />
         ) : (
-          <StyledDisLike onClick={handleLike} />
+          <StyledDisLike onClick={() => handleLike(menuListData, date)} />
         )}
         <span>like {menuListData.like || '0'}</span>
       </div>
@@ -120,10 +83,34 @@ export default function MenuListBar({
               }}
               exit={{ x: 2, opacity: 0 }}
             >
-              <span onClick={e => onClickWaterDose(e)}>+100ml</span>
-              <span onClick={e => onClickWaterDose(e)}>+300ml</span>
-              <span onClick={e => onClickWaterDose(e)}>+500ml</span>
-              <span onClick={e => onClickWaterDose(e)}>초기화</span>
+              <span
+                onClick={e =>
+                  onClickWaterDose(e, date, waterDose, setWaterIsActive)
+                }
+              >
+                +100ml
+              </span>
+              <span
+                onClick={e =>
+                  onClickWaterDose(e, date, waterDose, setWaterIsActive)
+                }
+              >
+                +300ml
+              </span>
+              <span
+                onClick={e =>
+                  onClickWaterDose(e, date, waterDose, setWaterIsActive)
+                }
+              >
+                +500ml
+              </span>
+              <span
+                onClick={e =>
+                  onClickWaterDose(e, date, waterDose, setWaterIsActive)
+                }
+              >
+                초기화
+              </span>
               <StyledTriangle />
             </StyledWaterDoseDialog>
           </>
@@ -134,28 +121,36 @@ export default function MenuListBar({
         <span>{getTotalCalories(menuListData.meals)}kcal</span>
       </div>
       <div>
-        <StyledContainer
-          initial={{ x: 0 }}
-          whileHover={{
-            x: [0, 3, -3, 3, -3, 3, -3],
-            transition: {
-              duration: 0.6,
-              type: 'spring',
-              mass: 0.6,
-              stiffness: 300,
-              repeat: Infinity,
-              repeatType: 'mirror'
-            }
-          }}
-        >
-          <StyledPencil
-            onClick={async () => {
-              await setReviewIsActive(true);
-              await onClick(dailyTextarea);
+        <StyledMore onClick={() => setMoreIsActive(!moreIsActive)} />
+        {moreIsActive && (
+          <StyledMoreDialog
+            initial={{ x: 2, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              duration: 0.1
             }}
-          />
-          <span>Diary</span>
-        </StyledContainer>
+            exit={{ x: 2, opacity: 0 }}
+          >
+            <span
+              onClick={async () => {
+                await setReviewIsActive(true);
+                await onClick(dailyTextarea);
+                setMoreIsActive(false);
+              }}
+            >
+              오늘 기록
+            </span>
+            <span
+              onClick={() => {
+                onDeleteAll(menuListData);
+                setMoreIsActive(false);
+              }}
+            >
+              전체 삭제
+            </span>
+            <StyledTriangle />
+          </StyledMoreDialog>
+        )}
       </div>
     </StyledMenuListBar>
   );

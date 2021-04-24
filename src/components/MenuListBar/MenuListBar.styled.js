@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { TiHeart } from 'react-icons/ti';
 import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
 import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
-import { ReactComponent as Pencil } from '../../assets/icons/MenuList/pencil.svg';
 import { VscTriangleRight } from 'react-icons/vsc';
+import { RiMore2Line } from 'react-icons/ri';
 import { motion } from 'framer-motion';
 import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
@@ -157,22 +157,57 @@ const StyledDonut = styled(Donut)`
   }
 `;
 
-const StyledPencil = styled(Pencil)`
-  width: 37px;
-  height: 37px;
+const StyledMore = styled(RiMore2Line)`
+  width: 30px;
+  height: 30px;
   box-sizing: border-box;
   display: block;
-  margin: 10px auto 0;
+  margin: 20px auto 0;
   cursor: pointer;
+  color: ${palette.themeBrightGray};
+`;
 
-  & + span {
-    display: block;
+const StyledMoreDialog = styled(motion.div)`
+  width: 80px;
+  height: auto;
+  position: absolute;
+  border-radius: 8px;
+  top: 210px;
+  left: -78px;
+  background: rgba(182, 182, 182, 0.4);
+  box-shadow: -1px 1px 3px ${palette.themeBrightGray};
+  display: flex;
+  flex-flow: column;
+
+  span {
     font-size: ${fontSizeKit.small};
-    font-weight: ${fontWeightKit.normal};
-
-    color: #ffc219;
     text-align: center;
-    margin-top: 4px;
+    padding: 11px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  span + span {
+    font-size: ${fontSizeKit.small};
+    border-radius: 0;
+    margin-top: 0;
+    border-top: 1px solid ${palette.themeBrightGray};
+    border-radius: 0 0 8px 8px;
+    letter-spacing: 0.1rem;
+  }
+
+  span:hover {
+    background: ${palette.themePrimary};
+    opacity: 0.6;
+  }
+
+  span + span:hover {
+    background: rgba(182, 182, 182, 1);
+  }
+
+  ${StyledTriangle} {
+    top: 22px;
   }
 `;
 
@@ -181,9 +216,10 @@ export {
   StyledLike,
   StyledWaterDose,
   StyledDonut,
-  StyledPencil,
+  StyledMore,
   StyledWaterDoseDialog,
   StyledTriangle,
   StyledContainer,
-  StyledDisLike
+  StyledDisLike,
+  StyledMoreDialog
 };

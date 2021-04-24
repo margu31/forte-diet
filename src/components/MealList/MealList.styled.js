@@ -88,7 +88,7 @@ const StyledDeleteDialog = styled(motion.div)`
   position: absolute;
   z-index: 999;
   top: -60px;
-  right: 25px;
+  right: 32px;
 
   span {
     cursor: pointer;
@@ -109,7 +109,7 @@ const StyledDeleteDialog = styled(motion.div)`
 const StyledTriangle = styled(VscTriangleDown)`
   position: absolute;
   top: 28px;
-  right: 20px;
+  right: 13px;
   width: 22px;
   height: 22px;
   color: ${palette.themeBrightGray};

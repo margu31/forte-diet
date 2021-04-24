@@ -94,7 +94,7 @@ export default function MealList({
                   setIsActive(false);
                 }}
               >
-                Delete
+                삭제
               </span>
               <StyledTriangle />
             </StyledDeleteDialog>

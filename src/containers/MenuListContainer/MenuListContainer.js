@@ -5,7 +5,9 @@ import {
   addOrEditDailyReview,
   removeDailyReview,
   addWaterDose,
-  removeMeal
+  removeMeal,
+  handleDeleteDietInUsers,
+  handleEditLikeNumberToUsers
 } from '../../api/firestore';
 import {
   getMenuListAction,
@@ -22,8 +24,11 @@ import {
   addOrEditDailyReviewInDiets,
   removeDailyReviewInDiets,
   removeMealInDiets,
-  updateWaterDoseInDiets
+  updateWaterDoseInDiets,
+  handleEditLikeToDiets
 } from 'api/diets';
+import { pushLikeAction } from '../../redux/modules/auth/auth';
+import { addLikeToUser } from 'api/auth';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);
@@ -38,13 +43,19 @@ export default function MenuListContainer() {
     ref.current.focus();
   };
 
-  const onSubmit = (date, review) => {
+  const onSubmit = (date, review, setReviewIsActive) => {
+    setReviewIsActive(false);
+
     dispatch(addOrEditDailyReview(authUser, date, review));
     addOrEditDailyReviewInDiets(menuList[date].id, review);
     dispatch(addDailyReviewAction(date, review));
   };
 
-  const onRemove = date => {
+  const onRemove = (date, setWroteReview, setReviewIsActive, setTotalBytes) => {
+    setWroteReview('');
+    setReviewIsActive(false);
+    setTotalBytes(0);
+
     dispatch(removeDailyReview(authUser, date));
     removeDailyReviewInDiets(menuList[date].id);
     dispatch(DeleteDailyReviewAction(date));
@@ -72,6 +83,15 @@ export default function MenuListContainer() {
     dispatch(updateWaterDoseAction(date, RESET_WATER_DOSE));
   };
 
+  const onClickWaterDose = (e, date, waterDose, setWaterIsActive) => {
+    if (e.target.innerText === '초기화') {
+      onReset(date);
+    } else {
+      onAdd(date, waterDose, e);
+    }
+    setWaterIsActive(false);
+  };
+
   const onDelete = (date, mealId) => {
     dispatch(removeMeal(authUser, menuList, date, mealId));
     removeMealInDiets(menuList[date].id, menuList, date, mealId);
@@ -84,6 +104,32 @@ export default function MenuListContainer() {
     return totalCalories > 999
       ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       : totalCalories;
+  };
+
+  const onDeleteAll = menuListData => {
+    dispatch(handleDeleteDietInUsers(authUser, menuListData));
+  };
+
+  const handleLike = (menuListData, date) => {
+    if (!authUser) return;
+    const newLike = [...authUser.like, menuListData.id];
+    dispatch(pushLikeAction(newLike));
+    addLikeToUser(authUser, newLike, menuListData, menuListData.like + 1);
+    dispatch(handleEditLikeToDiets(menuListData, menuListData.like + 1));
+    dispatch(
+      handleEditLikeNumberToUsers(authUser, date, menuListData.like + 1)
+    );
+  };
+
+  const handleDisLike = (menuListData, date) => {
+    if (!authUser) return;
+    const newLike = [...authUser.like].filter(id => id !== menuListData.id);
+    dispatch(pushLikeAction(newLike));
+    addLikeToUser(authUser, newLike, menuListData, menuListData.like - 1);
+    dispatch(handleEditLikeToDiets(menuListData, menuListData.like - 1));
+    dispatch(
+      handleEditLikeNumberToUsers(authUser, date, menuListData.like - 1)
+    );
   };
 
   useEffect(() => {
@@ -112,19 +158,20 @@ export default function MenuListContainer() {
 
   return (
     <>
-      {/* TODO: key 바꿔야함!!!! */}
       {menuListData.map((menuList, i) => (
         <MenuList
-          key={i}
+          key={menuList.id}
           menuListData={menuList}
           getTotalCalories={getTotalCalories}
           onClick={onClick}
           onSubmit={onSubmit}
           onRemove={onRemove}
-          onAdd={onAdd}
-          onReset={onReset}
           onDelete={onDelete}
           authUser={authUser}
+          onDeleteAll={onDeleteAll}
+          handleLike={handleLike}
+          handleDisLike={handleDisLike}
+          onClickWaterDose={onClickWaterDose}
         />
       ))}
     </>

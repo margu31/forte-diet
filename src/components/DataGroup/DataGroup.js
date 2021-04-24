@@ -1,3 +1,4 @@
+import DragDrop from "components/DragDrop/DragDrop";
 import Input from "components/Input/Input";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import StyledDataGroup from "./DataGroup.styled";
@@ -20,14 +21,15 @@ const DataGroup = ({
 
   return (
     <StyledDataGroup>
-      <Input
+      {/* <Input
         type="file"
         id="postingFile"
         name="postingFile"
         label="사진 등록"
         accept="image/*"
         onChange={onChange}
-      />
+      /> */}
+      <DragDrop />
       <div className="collection">
         <Input
           type="date"
