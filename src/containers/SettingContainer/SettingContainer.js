@@ -1,6 +1,6 @@
 import Setting from "components/Setting/Setting";
 import Title from "components/Title/Title";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editUserInfo } from "api/firestore";
 import { editUserAction } from "redux/modules/auth/auth";
@@ -20,9 +20,33 @@ export default function SettingContainer({ history }) {
   const { authUser } = useSelector((state) => state.auth);
   const [user, setUser] = useState(authUser);
   const dispatch = useDispatch();
-  // console.log(authUser);
+  // console.log("authUser :", authUser);
+  // console.log("user :", user);
 
+  const [isDisabled, setIsDisabled] = useState(true);
   const [error, setError] = useState(initialError);
+  const { nicknameError, heightError, weightError } = error;
+
+  useEffect(() => {
+    if (authUser) {
+      if (nicknameError || heightError || weightError) {
+        setIsDisabled(true);
+        return;
+      } else {
+        setIsDisabled(false);
+      }
+
+      if (
+        authUser.nickname !== user.nickname ||
+        authUser.weight !== user.weight ||
+        authUser.height !== user.height
+      ) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
+    }
+  }, [authUser, user, nicknameError, heightError, weightError]);
 
   const nicknameValid = (nickname) => {
     if (!isNickname(nickname)) {
@@ -102,15 +126,6 @@ export default function SettingContainer({ history }) {
     history.push("/myPage");
   };
 
-  const isDisabled =
-    authUser &&
-    (!user.nickname ||
-      !user.height ||
-      !user.weight ||
-      error.nicknameError ||
-      error.heightError ||
-      error.weightError);
-
   const goBack = () => {
     history.goBack();
   };
@@ -126,11 +141,11 @@ export default function SettingContainer({ history }) {
     <section>
       <Title logoIcon="true">회원 정보 수정</Title>
       <Setting
-        userEmail={authUser.email}
-        userNickname={authUser.nickname}
-        userGender={authUser.gender}
-        userHeight={authUser.height}
-        userWeight={authUser.weight}
+        userEmail={user.email}
+        userNickname={user.nickname}
+        userGender={user.gender}
+        userHeight={user.height}
+        userWeight={user.weight}
         ErrorMessage={error}
         onChange={onChange}
         onKeyUp={onKeyUp}
