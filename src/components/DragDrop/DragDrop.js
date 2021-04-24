@@ -6,12 +6,14 @@ import {
 // import { ReactComponent as Picture } from "assets/icons/InputIcons/picture.svg";
 import { ReactComponent as Photo } from "assets/icons/InputIcons/photo.svg";
 import { ReactComponent as Upload } from "assets/icons/InputIcons/framing.svg";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const DragDrop = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadedFile, setLoadedFile] = useState(false);
+
+  const imgRef = useRef();
 
   const onDragEnter = (e) => {
     e.preventDefault();
@@ -40,6 +42,17 @@ const DragDrop = () => {
     setIsLoaded(true);
     setIsDragging(false);
     // console.log(e.dataTransfer.files);
+    const file = e.dataTransfer.files;
+    // console.log(file);
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      // console.log(e.target.result);
+      imgRef.current.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file[0]);
   };
 
   const onDragEnd = (e) => {
@@ -49,11 +62,22 @@ const DragDrop = () => {
   };
 
   const onChangeFile = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     // console.log("change");
     setLoadedFile(true);
     console.log(e.target.files);
-    console.log(e.target.files[0].name);
+    console.log(e.target.files[0]);
+    // console.log(e.target.files[0].name);
+    // console.log(imgRef.current);
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      imgRef.current.src = e.target.result;
+      // console.log("result: ", e.target.result);
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   return (
@@ -72,8 +96,9 @@ const DragDrop = () => {
         accept="image/*"
         onChange={onChangeFile}
       />
-      {(isLoaded && !isDragging) || loadedFile ? (
-        <img src="/peaches-1522680_1920.jpg" alt="" />
+      {/* <img src="" alt="" ref={imgRef} /> */}
+      {(isLoaded && !isDragging) || (loadedFile && !isDragging) ? (
+        <img src="" alt="" ref={imgRef} />
       ) : null}
       <StyledDefaultView>
         {/* <Picture /> */}

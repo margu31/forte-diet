@@ -13,6 +13,7 @@ import DataGroup from "components/DataGroup/DataGroup";
 import { addNewDiet, PostMeal } from "api/firestore";
 import { addMenuListAction } from "redux/modules/menuList";
 import { addMealInDiets } from "api/diets";
+import Guide from "components/Guide/Guide";
 
 const today = new Date();
 const year = today.getFullYear();
