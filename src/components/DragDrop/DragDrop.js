@@ -15,31 +15,45 @@ const DragDrop = () => {
 
   const onDragEnter = (e) => {
     e.preventDefault();
-    console.log("Drag Enter");
+    e.stopPropagation();
+    // console.log("Drag Enter");
   };
 
   const onDragOver = (e) => {
     e.preventDefault();
-    console.log("Drag Over");
+    e.stopPropagation();
+    // console.log("Drag Over");
     setIsDragging(true);
   };
 
   const onDragLeave = (e) => {
     e.preventDefault();
-    console.log("Drag Leave");
+    e.stopPropagation();
+    // console.log("Drag Leave");
     setIsDragging(false);
   };
 
   const onDrop = (e) => {
     e.preventDefault();
-    console.log("Drop");
+    e.stopPropagation();
+    // console.log("Drop");
     setIsLoaded(true);
+    setIsDragging(false);
+    // console.log(e.dataTransfer.files);
+  };
+
+  const onDragEnd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsDragging(false);
   };
 
   const onChangeFile = (e) => {
     console.log(e.target);
+    // console.log("change");
     setLoadedFile(true);
+    console.log(e.target.files);
+    console.log(e.target.files[0].name);
   };
 
   return (
@@ -48,9 +62,16 @@ const DragDrop = () => {
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
+      onDragEnd={onDragEnd}
     >
       <label htmlFor="fileUpload">사진 업로드</label>
-      <input type="file" id="fileUpload" name="photo" onChange={onChangeFile} />
+      <input
+        type="file"
+        id="fileUpload"
+        name="photo"
+        accept="image/*"
+        onChange={onChangeFile}
+      />
       {(isLoaded && !isDragging) || loadedFile ? (
         <img src="/peaches-1522680_1920.jpg" alt="" />
       ) : null}
