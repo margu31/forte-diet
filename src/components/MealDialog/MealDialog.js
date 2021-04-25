@@ -12,8 +12,6 @@ import {
 
 export default function MealDialog({
   onMealModal,
-  id,
-  dailyid,
   photo,
   review,
   prevMeal,
