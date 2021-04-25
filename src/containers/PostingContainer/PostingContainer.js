@@ -13,7 +13,6 @@ import DataGroup from "components/DataGroup/DataGroup";
 import { addNewDiet, PostMeal } from "api/firestore";
 import { addMenuListAction } from "redux/modules/menuList";
 import { addMealInDiets } from "api/diets";
-import Guide from "components/Guide/Guide";
 
 const today = new Date();
 const year = today.getFullYear();
@@ -225,21 +224,24 @@ function PostingContainer({ history }) {
   };
 
   const onChangeFile = (e) => {
-    setLoadedFile(true);
-    console.log(e.target.files);
-    console.log(e.target.files[0]);
+    if (e.target.files.length === 0) return;
+    else {
+      setLoadedFile(true);
+      console.log(e.target.files);
+      console.log(e.target.files[0]);
 
-    const reader = new FileReader();
+      const reader = new FileReader();
 
-    reader.onload = (e) => {
-      imgRef.current.src = e.target.result;
-      setMealData({
-        ...mealData,
-        photo: imgRef.current.src,
-      });
-    };
+      reader.onload = (e) => {
+        imgRef.current.src = e.target.result;
+        setMealData({
+          ...mealData,
+          photo: imgRef.current.src,
+        });
+      };
 
-    reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(e.target.files[0]);
+    }
   };
 
   const goBack = () => {
@@ -300,7 +302,6 @@ function PostingContainer({ history }) {
           </Button>
         </div>
       </Form>
-      {/* <Guide /> */}
     </section>
   );
 }
