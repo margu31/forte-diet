@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "components/Form/Form";
 import {
@@ -13,7 +13,6 @@ import DataGroup from "components/DataGroup/DataGroup";
 import { addNewDiet, PostMeal } from "api/firestore";
 import { addMenuListAction } from "redux/modules/menuList";
 import { addMealInDiets } from "api/diets";
-import Guide from "components/Guide/Guide";
 
 const today = new Date();
 const year = today.getFullYear();
@@ -48,7 +47,18 @@ function PostingContainer({ history }) {
   const [mealData, setMealData] = useState(initialPostingFormValues);
   const { authUser } = useSelector((state) => state.auth);
   const menuList = useSelector((state) => state.menuList);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadedFile, setLoadedFile] = useState(false);
+  const imgRef = useRef();
   const dispatch = useDispatch();
+
+  const isDisabled =
+    !mealData.review ||
+    !mealData.title ||
+    !mealData.type ||
+    mealData.hasError.review ||
+    mealData.hasError.title;
 
   const menuValid = (menu) => {
     if (!menuValidation(menu)) {
@@ -127,9 +137,8 @@ function PostingContainer({ history }) {
     Object.entries(mealData).forEach(([key, value]) => {
       if (key === "hasError") return;
       formData.append(key, value);
+      console.log(`${key}: `, `${value}`);
     });
-
-    // console.log(formData);
 
     // mealId 수정 코드
     const mealId =
@@ -153,15 +162,6 @@ function PostingContainer({ history }) {
     history.push("/myPage");
   };
 
-  // const onBlur = (e) => {
-  //   if (e.target.name === "title") {
-  //     menuValid(e.target.value);
-  //     // console.log(mealData.hasError.title);
-  //   } else if (e.target.name === "review") {
-  //     reviewValid(e.target.value);
-  //   }
-  // };
-
   const onKeyUp = (e) => {
     if (e.target.name === "title") {
       menuValid(e.target.value);
@@ -172,17 +172,70 @@ function PostingContainer({ history }) {
 
   const onKeyPress = (e) => {
     if (e.charCode === 45) {
-      console.log("바보");
       e.preventDefault();
     }
   };
 
-  const isDisabled =
-    !mealData.review ||
-    !mealData.title ||
-    !mealData.type ||
-    mealData.hasError.review ||
-    mealData.hasError.title;
+  const onDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const onDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const onDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const onDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsLoaded(true);
+    setIsDragging(false);
+    const file = e.dataTransfer.files;
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      imgRef.current.src = e.target.result;
+      setMealData({
+        ...mealData,
+        photo: imgRef.current.src,
+      });
+    };
+
+    reader.readAsDataURL(file[0]);
+  };
+
+  const onDragEnd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const onChangeFile = (e) => {
+    setLoadedFile(true);
+    console.log(e.target.files);
+    console.log(e.target.files[0]);
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      imgRef.current.src = e.target.result;
+      setMealData({
+        ...mealData,
+        photo: imgRef.current.src,
+      });
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+  };
 
   const goBack = () => {
     history.goBack();
@@ -207,6 +260,16 @@ function PostingContainer({ history }) {
           onKeyPress={onKeyPress}
           errorMessage={mealData.hasError}
           maxDate={maxDate}
+          onDragEnter={onDragEnter}
+          onDragOver={onDragOver}
+          onDragLeave={onDragLeave}
+          onDrop={onDrop}
+          onDragEnd={onDragEnd}
+          onChangeFile={onChangeFile}
+          isLoaded={isLoaded}
+          isDragging={isDragging}
+          loadedFile={loadedFile}
+          imgRef={imgRef}
         />
         <ReviewBox
           id="mealReview"
