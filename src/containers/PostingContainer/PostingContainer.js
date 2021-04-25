@@ -13,6 +13,7 @@ import DataGroup from "components/DataGroup/DataGroup";
 import { addNewDiet, PostMeal } from "api/firestore";
 import { addMenuListAction } from "redux/modules/menuList";
 import { addMealInDiets } from "api/diets";
+import Guide from "components/Guide/Guide";
 
 const today = new Date();
 const year = today.getFullYear();
@@ -171,7 +172,11 @@ function PostingContainer({ history }) {
   };
 
   const onKeyPress = (e) => {
-    if (e.charCode === 45) {
+    if (
+      e.charCode === 45 ||
+      (e.keyCode >= 48 && e.keyCode <= 57) ||
+      (e.keyCode >= 96 && e.keyCode <= 105)
+    ) {
       e.preventDefault();
     }
   };
@@ -295,6 +300,7 @@ function PostingContainer({ history }) {
           </Button>
         </div>
       </Form>
+      {/* <Guide /> */}
     </section>
   );
 }
