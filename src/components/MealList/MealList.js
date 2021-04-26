@@ -23,7 +23,6 @@ export default function MealList({
   const { photo, title, type, id } = mealListData;
   const [isActive, setIsActive] = useState(false);
   const [showMealModal, setShowMealModal] = useState(false);
-
   const changeBorderColor = type => {
     switch (type) {
       case '아침':
