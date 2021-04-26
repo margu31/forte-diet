@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledPlusButton } from './MenuListToPosting.styled';
+import { StyledPlusButton, StyledPlusIcon } from './MenuListToPosting.styled';
 import { useSelector } from 'react-redux';
 
 export default function MenuListToPosting({ onMoveToPosting }) {
@@ -7,5 +7,13 @@ export default function MenuListToPosting({ onMoveToPosting }) {
 
   if (!authUser) return null;
 
-  return <StyledPlusButton onClick={onMoveToPosting} />;
+  return (
+    <StyledPlusButton
+      onClick={onMoveToPosting}
+      tabIndex='0'
+      aria-label='포스팅 페이지로 이동'
+    >
+      <StyledPlusIcon />
+    </StyledPlusButton>
+  );
 }
