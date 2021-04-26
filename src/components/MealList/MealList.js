@@ -66,11 +66,7 @@ export default function MealList({
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1 }}
           >
-            {/* <img src={photo} alt={title} /> */}
-            <img
-              src='https://i.pinimg.com/564x/b7/20/36/b720364e1b6503bafba08dc2a905c17d.jpg'
-              alt={title}
-            />
+            <img src={photo} alt={title} />
           </StyledContainer>
           <span>{type}</span>
           <span>{title}</span>
