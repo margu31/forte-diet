@@ -9,7 +9,6 @@ import {
   StyledSignUpForm,
   StyledBasicInformationGroup,
   StyledAdditionalInformationGroup,
-  StyledSignUpFormRadioGroup,
 } from "./SignUpForm.styled";
 
 export default function SignUpForm({
@@ -25,73 +24,68 @@ export default function SignUpForm({
 }) {
   return (
     <StyledSignUpForm>
-      <h3>Basic Information</h3>
-      <StyledBasicInformationGroup>
-        <SignUpFormInput
-          label="Email"
-          id="email"
-          name="email"
-          type="text"
-          placeholder="이메일을 입력해주세요."
-          onChange={onChange}
-          onBlur={onBlur}
-          errorMessage={errorMessage}
-          a11yHidden={false}
-          onFocus={onFocus}
-        />
-        <SignUpFormInput
-          label="Password"
-          id="password"
-          name="password"
-          type="password"
-          placeholder="비밀번호를 입력해주세요."
-          onChange={onChange}
-          onBlur={onBlur}
-          errorMessage={errorMessage}
-          a11yHidden={false}
-          changePasswordMode={changePasswordMode}
-          isShow={isShow}
-          onFocus={onFocus}
-        />
-      </StyledBasicInformationGroup>
-      <StyledAdditionalInformationGroup>
-        <h3>Additional Information</h3>
-        <SignUpFormInput
-          label="Nickname"
-          id="nickname"
-          name="nickname"
-          type="text"
-          placeholder="별명을 입력해주세요."
-          onChange={onChange}
-          onBlur={onBlur}
-          errorMessage={errorMessage}
-          a11yHidden={false}
-          onFocus={onFocus}
-        />
-        <SignUpFormInput
-          label="Height"
-          id="height"
-          name="height"
-          type="text"
-          placeholder="키를 입력해주세요."
-          onChange={onChange}
-          onBlur={onBlur}
-          errorMessage={errorMessage}
-          a11yHidden={false}
-        />
-        <SignUpFormInput
-          label="Weight"
-          id="weight"
-          name="weight"
-          type="text"
-          placeholder="몸무게를 입력해주세요."
-          onChange={onChange}
-          onBlur={onBlur}
-          errorMessage={errorMessage}
-          a11yHidden={false}
-        />
-        <SignUpRadioGroup groupTitle="Gender" onChange={onChange} />
-      </StyledAdditionalInformationGroup>
+      <h3>회원가입</h3>
+      <SignUpFormInput
+        label="Email"
+        id="email"
+        name="email"
+        type="text"
+        placeholder="이메일을 입력해주세요."
+        onChange={onChange}
+        onBlur={onBlur}
+        errorMessage={errorMessage}
+        a11yHidden={false}
+        onFocus={onFocus}
+      />
+      <SignUpFormInput
+        label="Password"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="비밀번호를 입력해주세요."
+        onChange={onChange}
+        onBlur={onBlur}
+        errorMessage={errorMessage}
+        a11yHidden={false}
+        changePasswordMode={changePasswordMode}
+        isShow={isShow}
+        onFocus={onFocus}
+      />
+      <SignUpFormInput
+        label="Nickname"
+        id="nickname"
+        name="nickname"
+        type="text"
+        placeholder="별명을 입력해주세요."
+        onChange={onChange}
+        onBlur={onBlur}
+        errorMessage={errorMessage}
+        a11yHidden={false}
+        onFocus={onFocus}
+      />
+      <SignUpFormInput
+        label="Height"
+        id="height"
+        name="height"
+        type="text"
+        placeholder="키를 입력해주세요."
+        onChange={onChange}
+        onBlur={onBlur}
+        errorMessage={errorMessage}
+        a11yHidden={false}
+      />
+      <SignUpFormInput
+        label="Weight"
+        id="weight"
+        name="weight"
+        type="text"
+        placeholder="몸무게를 입력해주세요."
+        onChange={onChange}
+        onBlur={onBlur}
+        errorMessage={errorMessage}
+        a11yHidden={false}
+      />
+      <SignUpRadioGroup groupTitle="Gender" onChange={onChange} />
 
       <Button
         $width="300"
