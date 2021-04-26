@@ -3,7 +3,7 @@
   "name": "건강한 하루의 식단 기록. 우연히, 식단",
   "icons": [{
     "src": "favicon.svg",
-    "sizes": "64x64 32x32 24x24 16x16",
+    "sizes": "64x64 32x32 24x24 16x16"
   }],
   "start_url": ".",
   "display": "standalone",
