@@ -7,7 +7,7 @@ import { palette, fontSizeKit, fontWeightKit } from 'styles';
 const StyledDeleteButton = styled(motion.button)``;
 const StyledDeleteIcon = styled(TiDelete)``;
 
-const StyledMealList = styled(motion.li)`
+const StyledMealList = styled(motion.div)`
   list-style: none;
   display: inline-block;
   color: ${palette.themeDefault};
@@ -75,7 +75,7 @@ const StyledMealList = styled(motion.li)`
   }
 `;
 
-const StyledLiContainer = styled(motion.div)`
+const StyledLiContainer = styled(motion.li)`
   display: inline-block;
   position: relative;
 `;
