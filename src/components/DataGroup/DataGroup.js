@@ -10,6 +10,16 @@ const DataGroup = ({
   errorMessage,
   maxDate,
   onKeyUp,
+  onDragEnd,
+  onDragEnter,
+  onDragLeave,
+  onDragOver,
+  onDrop,
+  onChangeFile,
+  isLoaded,
+  isDragging,
+  loadedFile,
+  imgRef,
 }) => {
   // const today = new Date();
   // const year = today.getFullYear();
@@ -29,7 +39,18 @@ const DataGroup = ({
         accept="image/*"
         onChange={onChange}
       /> */}
-      <DragDrop />
+      <DragDrop
+        onDragEnter={onDragEnter}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+        onDragEnd={onDragEnd}
+        onChangeFile={onChangeFile}
+        isLoaded={isLoaded}
+        isDragging={isDragging}
+        loadedFile={loadedFile}
+        imgRef={imgRef}
+      />
       <div className="collection">
         <Input
           type="date"
