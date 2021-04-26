@@ -4,16 +4,19 @@ import styled, { css } from "styled-components";
 
 export const StyledMealContainer = styled.div`
   position: relative;
-  /* overflow: hidden; */
-  width: 500px;
-  height: 500px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const StyledMealWrapper = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 500px;
+  height: 500px;
 `;
 
 export const MealDialogPrevButton = styled(Button)`
