@@ -1,6 +1,6 @@
 import { firestore } from './auth';
 import firebase from 'firebase';
-import { handleDeleteDietInDiets } from './diets';
+import { handleDeleteDietInDiets, handleEditMealInDiets } from './diets';
 
 const users = firestore.collection('users');
 const diets = firestore.collection('diets');
@@ -195,6 +195,30 @@ export const PostMeal = async ({ uid }, mealdata, dietId) => {
       newData.dietList[mealdata.date].like = 0;
     }
     user.set(newData, { merge: true });
+
+    return true;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+export const handleEditMealinUsers = ({ uid }, dietList, mealdata) => async dispatch => {
+  try {
+    const user = await users.doc(uid);
+    const newMeals = [...dietList[mealdata.date].meals]
+      .filter(meal => meal.id !== mealdata.id)
+      .push(mealdata);
+    const newData = {
+      dietList: {
+        [mealdata.date]: {
+          date: mealdata.date,
+          meals: newMeals
+        }
+      }
+    };
+    user.set(newData, { merge: true });
+
+    dispatch(handleEditMealInDiets(dietList[mealdata.date], mealdata));
 
     return true;
   } catch (e) {
