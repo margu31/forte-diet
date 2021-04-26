@@ -5,7 +5,6 @@ import StyledDataGroup from "./DataGroup.styled";
 
 const DataGroup = ({
   onChange,
-  onBlur,
   onKeyPress,
   errorMessage,
   maxDate,
@@ -20,25 +19,10 @@ const DataGroup = ({
   isDragging,
   loadedFile,
   imgRef,
+  canvasRef,
 }) => {
-  // const today = new Date();
-  // const year = today.getFullYear();
-  // const getMonth = today.getMonth() + 1;
-  // const month = getMonth >= 10 ? getMonth : "0" + getMonth;
-  // const date = today.getDate();
-
-  // const maxDate = `${year}-${month}-${date}`;
-
   return (
     <StyledDataGroup>
-      {/* <Input
-        type="file"
-        id="postingFile"
-        name="postingFile"
-        label="사진 등록"
-        accept="image/*"
-        onChange={onChange}
-      /> */}
       <DragDrop
         onDragEnter={onDragEnter}
         onDragOver={onDragOver}
@@ -50,6 +34,7 @@ const DataGroup = ({
         isDragging={isDragging}
         loadedFile={loadedFile}
         imgRef={imgRef}
+        canvasRef={canvasRef}
       />
       <div className="collection">
         <Input
@@ -79,7 +64,6 @@ const DataGroup = ({
           name="title"
           label="Menu"
           onChange={onChange}
-          // onBlur={onBlur}
           onKeyUp={onKeyUp}
           errorMessage={errorMessage}
           maxLength="10"
