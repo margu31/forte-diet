@@ -5,8 +5,11 @@ import { TiHeart } from 'react-icons/ti';
 import { palette } from '../../styles';
 
 export const DietItem = styled.li`
+  padding: 1rem;
   margin-bottom: 5rem;
   width: 30%;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.1);
 `;
 
 export const StyledDietCard = styled.article`
@@ -42,15 +45,16 @@ export const DietInfos = styled.section`
 export const DietInfo = styled.div`
   display: flex;
   align-items: center;
-
   margin-right: 1rem;
 `;
 
 export const DailyReview = styled.p`
   width: 100%;
-  padding: 0 0 1rem 1rem;
+  padding: 1rem;
+  border-radius: 10px;
   font-size: 1.2rem;
   line-height: 1.6rem;
+  background-color: ${palette.themeBright};
 `;
 
 export const DonutIcon = styled(Donut)`

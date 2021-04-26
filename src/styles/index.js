@@ -67,7 +67,8 @@ export const palette = {
   themeDisable: '#878787',
   themeHover: '#F5DEB7',
   themeDefaultWhite: '#FFF',
-  themeFont: '#4a4a4a'
+  themeFont: '#4a4a4a',
+  themeFooter: '#3c3c3c'
 };
 
 export const fontSizeKit = {

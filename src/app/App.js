@@ -5,22 +5,26 @@ import './App.css';
 import { StyledApp } from './App.styled';
 import { Home, MyPage, PostingPage, SettingPage } from 'pages';
 import SideBar from 'components/SideBar/SideBar';
+import Footer from '../components/Footer/Footer';
 
 function App() {
   return (
-    <StyledApp>
+    <div>
       <GlobalStyle />
       <ThemeProvider theme={palette}>
-        <SideBar />
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/myPage' component={MyPage} />
-          <Route path='/posting' component={PostingPage} />
-          <Route path='/setting' component={SettingPage} />
-          {/* Redirect 폴백 페이지 추가하여야 함 */}
-        </Switch>
+        <StyledApp>
+          <SideBar />
+          <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/myPage' component={MyPage} />
+            <Route path='/posting' component={PostingPage} />
+            <Route path='/setting' component={SettingPage} />
+            {/* Redirect 폴백 페이지 추가하여야 함 */}
+          </Switch>
+        </StyledApp>
+        <Footer />
       </ThemeProvider>
-    </StyledApp>
+    </div>
   );
 }
 

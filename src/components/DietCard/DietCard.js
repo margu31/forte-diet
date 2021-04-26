@@ -89,7 +89,7 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
             {dietData.like || '0'}
           </Likes>
         </DietInfos>
-        <DailyReview>{dietData.dailyReview}</DailyReview>
+        {dietData.dailyReview && <DailyReview>{dietData.dailyReview}</DailyReview>}
       </StyledDietCard>
     </DietItem>
   );
