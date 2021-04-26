@@ -27,7 +27,7 @@ const StyledCalendarDialog = styled(motion.div)`
   font-size: ${fontSizeKit.small};
   font-weight: ${fontWeightKit.bold};
   color: ${palette.themeDark};
-  z-index: 999;
+  z-index: 9999;
   padding: 0 5px 10px 5px;
   background: ${palette.themeDefaultWhite};
   border-radius: 30px;
@@ -133,7 +133,7 @@ const StyledDot = styled.span`
   color: ${props => props.$styledSelectedColorProps};
 `;
 
-const StyledCalendarButton = styled.span`
+const StyledCalendarButton = styled.button`
   width: 50px;
   height: 50px;
   padding: 20px;
