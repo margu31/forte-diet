@@ -100,6 +100,11 @@ export const updateWaterDoseInDiets = async (dietId, curDose, addDose) => {
 /* meal 삭제 */
 export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
   const newMeals = dietList[date].meals.filter(meal => meal.id !== mealId);
+  const newTitles = dietList[date].meals.reduce((titles, meal) => {
+    meal.id !== mealId && titles.push(meal.title);
+
+    return titles;
+  }, []);
 
   try {
     const diet = await diets.doc(dietId);
@@ -108,6 +113,7 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
     else
       diet.set(
         {
+          titles: newTitles,
           meals: newMeals,
           updatedAt: new Date()
         },
@@ -147,6 +153,7 @@ export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
     const totalCalories = parseInt(getTotalCalories(meals), 10);
     diet.set(
       {
+        titles: firebase.firestore.FieldValue.arrayUnion(mealData.title),
         updatedAt: new Date(),
         calories: totalCalories + parseInt(mealData.calories, 10),
         meals: firebase.firestore.FieldValue.arrayUnion({
