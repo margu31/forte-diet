@@ -40,6 +40,23 @@ export const getPopularDiets = limit => async () => {
   }
 };
 
+export const getSearchDiets = searchWord => async () => {
+  try {
+    const response = await diets.where('titles', 'array-contains', '물').get();
+
+    const searchDiets = [];
+    response.forEach(doc => {
+      const datas = doc.data();
+      datas.id = doc.id;
+      searchDiets.push(datas);
+    });
+
+    return searchDiets;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 /* -------------------------------------------------------------------------- */
 /*                            다이어트 테이블                                  */
 /* -------------------------------------------------------------------------- */
