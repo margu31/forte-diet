@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import { palette } from '../../styles';
 import Button from 'components/Button/Button';
-import Dropdown from '../Dropdown/Dropdown';
 
 /* 래퍼 */
 
@@ -78,27 +77,27 @@ export const WelcomeContent = () => (
 
 /* 검색창 */
 
-const SearchSection = styled.section`
+export const SearchSection = styled.section`
   position: relative;
   padding-left: 20rem;
   flex-grow: 1;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
 `;
 
-const SearchInputForm = styled.form`
+export const SearchInputForm = styled.form`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
 `;
 
-const SerachBar = styled.div`
+export const SerachBar = styled.div`
   position: relative;
   display: flex;
   align-items: center;
 `;
 
-const SearchLabel = styled.label`
+export const SearchLabel = styled.label`
   position: absolute;
   top: 50%;
   transform: translate3d(0, -50%, 0);
@@ -107,7 +106,7 @@ const SearchLabel = styled.label`
   left: 3rem;
 `;
 
-const SearchInput = styled.input`
+export const SearchInput = styled.input`
   width: 200px;
   height: 50px;
   border-radius: 50px 0 0 50px;
@@ -130,7 +129,7 @@ const SearchInput = styled.input`
   }
 `;
 
-const SearchBtn = styled(Button)`
+export const SearchBtn = styled(Button)`
   padding: 2rem 6rem;
   font-size: 1.2rem;
   background-color: transparent;
@@ -143,7 +142,7 @@ const SearchBtn = styled(Button)`
   }
 `;
 
-export const Search = () => (
+/* export const Search = () => (
   <SearchSection>
     <SearchInputForm legend='식단 검색'>
       <fieldset>
@@ -157,3 +156,4 @@ export const Search = () => (
     </SearchInputForm>
   </SearchSection>
 );
+ */
