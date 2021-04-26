@@ -7,7 +7,7 @@ import { RiMore2Line } from 'react-icons/ri';
 import { motion } from 'framer-motion';
 import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
-const StyledMenuListBar = styled.div`
+const StyledMenuListBar = styled.li`
   color: ${palette.themeDefault};
   width: 70px;
   height: 261px;
