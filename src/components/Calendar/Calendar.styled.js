@@ -147,6 +147,7 @@ const StyledCalendarButton = styled.button`
   right: 150px;
   cursor: pointer;
   opacity: 0.5;
+  z-index: 999;
 
   &:hover {
     opacity: 1;
