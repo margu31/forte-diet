@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   StyledMealList,
   StyledContainer,
@@ -7,10 +7,10 @@ import {
   StyledDeleteDialog,
   StyledDeleteModal,
   StyledLiContainer,
-  StyledTriangle
-} from './MealList.styled';
-import { palette } from 'styles/index';
-import MealModalContainer from 'containers/MealModalContainer/MealModalContainer';
+  StyledTriangle,
+} from "./MealList.styled";
+import { palette } from "styles/index";
+import MealModalContainer from "containers/MealModalContainer/MealModalContainer";
 
 export default function MealList({
   mealListData,
@@ -24,22 +24,22 @@ export default function MealList({
   const [isActive, setIsActive] = useState(false);
   const [showMealModal, setShowMealModal] = useState(false);
 
-  const changeBorderColor = type => {
+  const changeBorderColor = (type) => {
     switch (type) {
-      case '아침':
+      case "아침":
         return palette.themeTertiary;
-      case '점심':
+      case "점심":
         return palette.themePrimary;
-      case '저녁':
+      case "저녁":
         return palette.themeSecondary;
-      case '간식':
+      case "간식":
         return palette.themeQuaternary;
       default:
         return palette.themeSecondary;
     }
   };
 
-  const onMealModal = e => {
+  const onMealModal = (e) => {
     setShowMealModal(!showMealModal);
   };
 
@@ -49,6 +49,7 @@ export default function MealList({
         <MealModalContainer
           onMealModal={onMealModal}
           mealListData={mealListData}
+          showMealModal={showMealModal}
         ></MealModalContainer>
       ) : null}
       <StyledLiContainer {...restProps}>
@@ -68,7 +69,7 @@ export default function MealList({
           >
             {/* <img src={photo} alt={title} /> */}
             <img
-              src='https://i.pinimg.com/564x/b7/20/36/b720364e1b6503bafba08dc2a905c17d.jpg'
+              src="https://i.pinimg.com/564x/b7/20/36/b720364e1b6503bafba08dc2a905c17d.jpg"
               alt={title}
             />
           </StyledContainer>
@@ -84,7 +85,7 @@ export default function MealList({
               initial={{ y: 2, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                duration: 0.1
+                duration: 0.1,
               }}
               exit={{ x: 2, opacity: 0 }}
             >

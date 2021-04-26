@@ -14,7 +14,7 @@ export const LoginForm = ({
 }) => {
   return (
     <StyledForm>
-      <span>우연히, 식단</span>
+      <h3>로그인</h3>
       <LoginFormInput
         label="email"
         id="email"
