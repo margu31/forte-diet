@@ -21,8 +21,7 @@ const GET_SEARCH_ERROR = 'board/GET_SEARCH_ERROR';
 
 export const getPopularMenus = limit => createBoardThunk(GET_POPULAR, getPopularDiets(limit));
 export const getRecentMenus = limit => createBoardThunk(GET_RECENT, getRecentDiets(limit));
-export const getSearchMenus = (searchWord, limit) =>
-  createBoardThunk(GET_SEARCH, getSearchDiets(limit), searchWord);
+export const getSearchMenus = limit => createBoardThunk(GET_SEARCH, getSearchDiets(limit));
 
 const getPopularReducer = getBoardReducer(GET_POPULAR, 'popular');
 const getRecentReducer = getBoardReducer(GET_RECENT, 'recent');

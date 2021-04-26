@@ -24,7 +24,7 @@ export default function Welcome() {
   const handleSearch = e => {
     e.preventDefault();
 
-    dispatch(getSearchMenus(search, 25)());
+    dispatch(getSearchMenus(25)(search));
   };
   return (
     <StyledWelcomeWrapper>
