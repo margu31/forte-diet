@@ -28,6 +28,15 @@ time, mark, audio, video, textarea, button {
   letter-spacing: inherit;
   user-select: none;
 
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px #f3b34c;
+    opacity: 1;
+  }
+
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -67,7 +76,8 @@ export const palette = {
   themeDisable: '#878787',
   themeHover: '#F5DEB7',
   themeDefaultWhite: '#FFF',
-  themeFont: '#4a4a4a'
+  themeFont: '#4a4a4a',
+  tabFocusing: '#0f2d9b'
 };
 
 export const fontSizeKit = {
