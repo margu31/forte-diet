@@ -141,7 +141,11 @@ export default function Calendar({ calendarMenuList, onScroll }) {
 
   return (
     <>
-      <StyledCalendarButton onClick={() => setIsActive(!isActive)}>
+      <StyledCalendarButton
+        onClick={() => setIsActive(!isActive)}
+        tabIndex='0'
+        aria-label='식단 캘린더'
+      >
         <StyledCalendarIcon />
       </StyledCalendarButton>
       {isActive && (

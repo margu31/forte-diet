@@ -15,7 +15,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video, textarea, button {
+time, mark, audio, video, textarea, button, svg {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -28,6 +28,16 @@ time, mark, audio, video, textarea, button {
   letter-spacing: inherit;
   user-select: none;
 
+  &:focus {
+    /* outline: none; */
+    /* box-shadow: 0 0 0 2px #f3b34c; */
+    opacity: 1;
+  }
+
+  &:focus:not(:focus-visible) {
+    /* box-shadow: none; */
+    outline: none;
+  }
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
