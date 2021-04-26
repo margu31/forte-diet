@@ -29,13 +29,14 @@ time, mark, audio, video, textarea, button, svg {
   user-select: none;
 
   &:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px #f3b34c;
+    /* outline: none; */
+    /* box-shadow: 0 0 0 2px #f3b34c; */
     opacity: 1;
   }
 
   &:focus:not(:focus-visible) {
-    box-shadow: none;
+    /* box-shadow: none; */
+    outline: none;
   }
 }
 /* HTML5 display-role reset for older browsers */
@@ -76,8 +77,7 @@ export const palette = {
   themeDisable: '#878787',
   themeHover: '#F5DEB7',
   themeDefaultWhite: '#FFF',
-  themeFont: '#4a4a4a',
-  tabFocusing: '#0f2d9b'
+  themeFont: '#4a4a4a'
 };
 
 export const fontSizeKit = {
