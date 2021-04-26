@@ -51,6 +51,7 @@ function PostingContainer({ history }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadedFile, setLoadedFile] = useState(false);
   const imgRef = useRef();
+  const canvasRef = useRef();
   const dispatch = useDispatch();
 
   const isDisabled =
@@ -180,6 +181,40 @@ function PostingContainer({ history }) {
     }
   };
 
+  const ReSizeImage = (e) => {
+    const img = new Image();
+    img.src = e.target.result;
+
+    img.onload = (e) => {
+      const canvas = canvasRef.current;
+      const MAX_SIZE = 320;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height) {
+        if (width > MAX_SIZE) {
+          height *= MAX_SIZE / width;
+          width = MAX_SIZE;
+        }
+      } else {
+        if (height > MAX_SIZE) {
+          width *= MAX_SIZE / height;
+          height = MAX_SIZE;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL();
+      imgRef.current.src = dataUrl;
+
+      setMealData({
+        ...mealData,
+        photo: imgRef.current.src,
+      });
+    };
+  };
+
   const onDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -202,16 +237,12 @@ function PostingContainer({ history }) {
     e.stopPropagation();
     setIsLoaded(true);
     setIsDragging(false);
-    const file = e.dataTransfer.files;
 
+    const file = e.dataTransfer.files;
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      imgRef.current.src = e.target.result;
-      setMealData({
-        ...mealData,
-        photo: imgRef.current.src,
-      });
+      ReSizeImage(e);
     };
 
     reader.readAsDataURL(file[0]);
@@ -227,21 +258,16 @@ function PostingContainer({ history }) {
     if (e.target.files.length === 0) return;
     else {
       setLoadedFile(true);
-      console.log(e.target.files);
-      console.log(e.target.files[0]);
 
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        imgRef.current.src = e.target.result;
-        setMealData({
-          ...mealData,
-          photo: imgRef.current.src,
-        });
+        ReSizeImage(e);
       };
 
       reader.readAsDataURL(e.target.files[0]);
     }
+    // console.log(e.target.files[0]);
   };
 
   const goBack = () => {
@@ -277,6 +303,7 @@ function PostingContainer({ history }) {
           isDragging={isDragging}
           loadedFile={loadedFile}
           imgRef={imgRef}
+          canvasRef={canvasRef}
         />
         <ReviewBox
           id="mealReview"
