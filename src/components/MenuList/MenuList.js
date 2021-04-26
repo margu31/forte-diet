@@ -19,6 +19,7 @@ export default function MenuList({
   id
 }) {
   const dailyTextarea = useRef();
+  const mealListFocus = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
 
   if (!menuListData.meals[0]) return null;
@@ -70,6 +71,7 @@ export default function MenuList({
             variants={item}
             onDelete={onDelete}
             date={date}
+            mealListFocus={mealListFocus}
           />
         ))}
         <DailyReview
@@ -81,6 +83,7 @@ export default function MenuList({
           onRemove={onRemove}
           dailyReview={menuListData.dailyReview}
           id={id}
+          mealListFocus={mealListFocus}
         />
       </StyledMenuList>
     </>
