@@ -1,6 +1,6 @@
 import InputRadio from "components/Radio/InputRadio";
 import styled, { css } from "styled-components";
-import { palette } from "styles";
+import { fontSizeKit, fontWeightKit, palette } from "styles";
 
 const StyledRadioGroup = styled.div`
   display: flex;
@@ -18,6 +18,8 @@ const StyledRadioGroup = styled.div`
     margin-top: 7px;
     line-height: 40px;
     border: 3px solid ${palette.themePrimary};
+    font-size: ${fontSizeKit.medium};
+    font-weight: ${fontWeightKit.normal};
   }
 
   span:first-of-type {
@@ -36,8 +38,8 @@ const StyledRadioGroup = styled.div`
 const StyledRadioTitle = styled.p`
   display: inline-block;
   width: 90px;
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: ${fontSizeKit.medium};
+  font-weight: ${fontWeightKit.extraBold};
   text-indent: 1rem;
   margin-right: 2rem;
   line-height: 50px;

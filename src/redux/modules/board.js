@@ -1,5 +1,5 @@
 import { createBoardThunk, getBoardReducer } from 'lib/boardUtils';
-import { getPopularDiets, getRecentDiets } from '../../api/diets';
+import { getPopularDiets, getRecentDiets, getSearchDiets } from 'api/diets';
 
 const initialState = {
   popular: null,
@@ -15,13 +15,13 @@ const GET_RECENT = 'board/GET_RECENT';
 const GET_RECENT_SUCCESS = 'board/GET_RECENT_SUCCESS';
 const GET_RECENT_ERROR = 'board/GET_RECENT_ERROR';
 
-const GET_SEARCH = 'board/GET_SEARCH';
+export const GET_SEARCH = 'board/GET_SEARCH';
 const GET_SEARCH_SUCCESS = 'board/GET_SEARCH_SUCCESS';
 const GET_SEARCH_ERROR = 'board/GET_SEARCH_ERROR';
 
 export const getPopularMenus = limit => createBoardThunk(GET_POPULAR, getPopularDiets(limit));
 export const getRecentMenus = limit => createBoardThunk(GET_RECENT, getRecentDiets(limit));
-export const getSearchMenus = limit => createBoardThunk(GET_SEARCH);
+export const getSearchMenus = limit => createBoardThunk(GET_SEARCH, getSearchDiets(limit));
 
 const getPopularReducer = getBoardReducer(GET_POPULAR, 'popular');
 const getRecentReducer = getBoardReducer(GET_RECENT, 'recent');

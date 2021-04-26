@@ -49,6 +49,7 @@ export default function MealList({
         <MealModalContainer
           onMealModal={onMealModal}
           mealListData={mealListData}
+          showMealModal={showMealModal}
         ></MealModalContainer>
       ) : null}
       <StyledLiContainer {...restProps}>

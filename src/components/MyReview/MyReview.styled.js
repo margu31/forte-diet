@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const MyReViewContainer = styled.div`
   display: flex;
   background-color: transparent;
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 150px;
 `;
 
 export const MyReViewtext = styled.div`

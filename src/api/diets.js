@@ -2,8 +2,18 @@ import { firestore } from './auth';
 import firebase from 'firebase';
 import { getPopularMenus, getRecentMenus } from '../redux/modules/board';
 
+/* 유틸 */
+const getTotalCalories = meals => {
+  const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
+
+  return totalCalories > 999
+    ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    : totalCalories;
+};
+
 const diets = firestore.collection('diets');
 
+/* 패치 */
 export const getRecentDiets = limit => async () => {
   try {
     const response = await diets.orderBy('updatedAt', 'desc').limit(limit).get();
@@ -35,6 +45,23 @@ export const getPopularDiets = limit => async () => {
     });
 
     return popularDiets;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+export const getSearchDiets = limit => async searchWord => {
+  try {
+    const response = await diets.where('titles', 'array-contains', searchWord).limit(limit).get();
+
+    const searchDiets = [];
+    response.forEach(doc => {
+      const datas = doc.data();
+      datas.id = doc.id;
+      searchDiets.push(datas);
+    });
+
+    return searchDiets;
   } catch (e) {
     throw new Error(e.message);
   }
@@ -100,19 +127,55 @@ export const updateWaterDoseInDiets = async (dietId, curDose, addDose) => {
 /* meal 삭제 */
 export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
   const newMeals = dietList[date].meals.filter(meal => meal.id !== mealId);
+  const newTitles = dietList[date].meals.reduce((titles, meal) => {
+    meal.id !== mealId && titles.push(meal.title);
+
+    return titles;
+  }, []);
 
   try {
     const diet = await diets.doc(dietId);
+    const totalCalories = parseInt(getTotalCalories(newMeals), 10);
 
     if (!newMeals.length) diet.delete();
     else
       diet.set(
         {
+          titles: newTitles,
           meals: newMeals,
+          calories: totalCalories,
           updatedAt: new Date()
         },
         { merge: true }
       );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+/* meal 수정 */
+export const handleEditMealInDiets = ({ id: dietId, meals }, mealData) => async dispatch => {
+  const newMeals = meals.filter(meal => meal.id !== mealData.id);
+  const newTitles = meals.reduce((titles, meal) => {
+    meal.id !== mealData.id && titles.push(meal.title);
+
+    return titles;
+  }, []);
+  try {
+    const diet = await diets.doc(dietId);
+    const totalCalories = parseInt(getTotalCalories(newMeals), 10);
+    diet.set(
+      {
+        titles: newTitles,
+        meals: newMeals,
+        calories: totalCalories,
+        updatedAt: new Date()
+      },
+      { merge: true }
+    );
+
+    dispatch(getPopularMenus(25)());
+    dispatch(getRecentMenus(25)());
   } catch (e) {
     throw new Error(e.message);
   }
@@ -132,14 +195,6 @@ export const handleDeleteDietInDiets = dietId => async dispatch => {
   }
 };
 
-const getTotalCalories = meals => {
-  const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
-
-  return totalCalories > 999
-    ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    : totalCalories;
-};
-
 /* meal 추가 */
 export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
   try {
@@ -147,6 +202,7 @@ export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
     const totalCalories = parseInt(getTotalCalories(meals), 10);
     diet.set(
       {
+        titles: firebase.firestore.FieldValue.arrayUnion(mealData.title),
         updatedAt: new Date(),
         calories: totalCalories + parseInt(mealData.calories, 10),
         meals: firebase.firestore.FieldValue.arrayUnion({

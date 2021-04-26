@@ -1,27 +1,25 @@
 import Input from "components/Input/Input";
-import { StyledInputWrapper } from "components/Input/Input.styled";
-import SignUpFormRadioGroup from "components/SignUpRadioGroup/SignUpRadioGroup";
-import { StyledRadioGroup } from "components/SignUpRadioGroup/SignUpRadioGroup.styled";
 import styled, { css } from "styled-components";
+import { fontSizeKit, fontWeightKit, palette } from "styles";
 
 export const StyledSignUpForm = styled.form`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   padding-top: 40px;
-  padding-bottom: 25px;
-  width: 700px;
+  /* padding-bottom: 25px; */
+  width: 550px;
   height: auto;
   position: relative;
-  border-radius: 10px;
-  ${({ theme }) => css`
-    background-color: ${theme.themePrimary};
-  `}
+  border-radius: 20px;
+  background-color: ${palette.themeBright};
+  border: 3px solid;
+  border-color: ${palette.themePrimary};
 
   label {
-    font-size: 1.3rem;
-    font-weight: 700;
+    font-size: ${fontSizeKit.medium};
+    font-weight: ${fontWeightKit.bold};
   }
 
   button {
@@ -31,7 +29,7 @@ export const StyledSignUpForm = styled.form`
     border: none;
     height: 50px;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: ${fontSizeKit.medium};
 
     &:disabled {
       cursor: not-allowed;
@@ -46,17 +44,29 @@ export const StyledSignUpForm = styled.form`
     height: 40px;
     width: 50px;
     background-color: transparent;
-    margin-top: 0;
-    color: #333;
-    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+    color: ${palette.themeDefault};
+    font-size: ${fontSizeKit.extraBold};
+    :hover {
+      border-radius: 0 17px 0 0;
+    }
   }
 
   h3 {
     text-align: left;
+    margin-left: 10px;
+    padding: 10px 0;
     width: 100%;
-    font-size: 2rem;
-    font-weight: 700;
+    border-left: 3px solid black;
+    border-color: ${palette.themePrimary};
+    font-size: ${fontSizeKit.large};
+    font-weight: ${fontWeightKit.bold};
+    /* background-color: ${palette.themeDefaultWhite}; */
+    /* font-size: 2rem; */
     padding-left: 10px;
+    /* border-top: 2px solid; */
+    /* border-bottom: 2px solid; */
   }
 `;
 
@@ -68,36 +78,30 @@ export const SignUpFormInput = styled(Input)`
   width: 300px;
   line-height: 50px;
   text-align: center;
+  margin-bottom: 20px;
 
   input {
     position: relative;
     width: 200px;
     height: 40px;
     box-sizing: border-box;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     border: none;
     margin-left: 1rem;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
     background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    border: 3px solid;
-    ${({ theme }) => css`
-      border-color: ${theme.themePrimary};
-    `}
-    ${({ theme }) => css`
-      background-color: 0 0 0 4px ${theme.themeBrightYellow};
-    `}
+    border-radius: 0;
+    border-bottom: 2px solid;
+    border-color: ${palette.themePrimary};
     background-color: transparent;
     outline: none;
     box-shadow: none;
-    ${({ theme }) => css`
-      background-color: 0 0 0 4px ${theme.themeDefault};
-    `}
-    font-size: 1.5rem;
+    background-color: 0 0 0 4px ${palette.themeDefault};
+    font-size: ${fontSizeKit.medium};
 
     &::placeholder {
-      font-size: 1.3rem;
-      color: #333;
+      font-size: ${fontSizeKit.small};
+      color: ${palette.themeDefault};
     }
 
     &:focus {
@@ -115,13 +119,17 @@ export const SignUpFormInput = styled(Input)`
     padding: 12px 5px 12px 20px;
     /* margin-left: 10px; */
     background-color: yellow;
+    width: 100px;
+    height: 100px;
   }
 
   p {
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: -20%;
-    font-size: 1.3rem;
+    font-size: ${fontSizeKit.small};
+    font-weight: ${fontWeightKit.bold};
+
     display: inline-block;
     width: 500px;
   }
@@ -131,16 +139,15 @@ export const SignUpFormInput = styled(Input)`
   }
 `;
 
-export const StyledBasicInformationGroup = styled.div`
+/* export const StyledBasicInformationGroup = styled.div`
   position: relative;
   display: flex;
   flex-flow: row;
   justify-content: space-around;
-
   align-items: center;
   width: 800px;
   height: 130px;
-  background-color: #fff;
+  background-color: transparent;
 `;
 
 export const StyledAdditionalInformationGroup = styled.div`
@@ -150,6 +157,5 @@ export const StyledAdditionalInformationGroup = styled.div`
   align-items: center;
   height: 250px;
   width: 800px;
-  background-color: #fff;
-  margin-bottom: 10px;
-`;
+  background-color: transparent;
+`; */
