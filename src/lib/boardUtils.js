@@ -1,3 +1,5 @@
+import { GET_SEARCH } from 'redux/modules/board';
+
 /* 상태 Creator */
 export const boardReducerUtils = {
   inital: {
@@ -23,7 +25,7 @@ export const boardReducerUtils = {
 };
 
 /* Thunk 함수 Creator */
-export const createBoardThunk = (type, api) => {
+export const createBoardThunk = (type, api, searchWord) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
   return () => async dispatch => {
@@ -32,7 +34,7 @@ export const createBoardThunk = (type, api) => {
     });
 
     try {
-      const res = await api(type);
+      const res = await api(type === GET_SEARCH ? searchWord : type);
       dispatch({
         type: SUCCESS,
         payload: res

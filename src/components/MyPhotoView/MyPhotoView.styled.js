@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const MyPhotoViewContainer = styled.div`
   display: flex;
   background-color: transparent;
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 200px;
 `;
 
 export const MyPhotoViewImg = styled.img`
