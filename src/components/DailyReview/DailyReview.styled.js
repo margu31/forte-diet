@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
-const StyledDailyReview = styled.div`
+const StyledDailyReview = styled.li`
   width: 730px;
   border-radius: 10px;
   box-sizing: border-box;

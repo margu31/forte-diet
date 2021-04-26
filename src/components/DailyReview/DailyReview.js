@@ -12,7 +12,8 @@ export default function DailyReview({
   setReviewIsActive,
   onSubmit,
   onRemove,
-  dailyReview
+  dailyReview,
+  id
 }) {
   const [wroteReview, setWroteReview] = useState(dailyReview || '');
   const [totalTextLength, setTotalTextLength] = useState(0);
@@ -30,7 +31,7 @@ export default function DailyReview({
       <StyledDailyReview>
         <textarea
           name='dailyReview'
-          id='dailyReview'
+          id={id}
           rows='2'
           placeholder='오늘도 즐거운 식사 되셨나요? 오늘의 느낀 점을 기록해보세요. (80자 이내)'
           value={wroteReview}
