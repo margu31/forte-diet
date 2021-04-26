@@ -17,7 +17,7 @@ const StyledRadioGroup = styled.div`
     height: 40px;
     margin-top: 7px;
     line-height: 40px;
-    border: 3px solid ${palette.themePrimary};
+    border: 2px solid ${palette.themePrimary};
     font-size: ${fontSizeKit.medium};
     font-weight: ${fontWeightKit.normal};
   }

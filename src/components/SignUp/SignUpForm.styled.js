@@ -1,3 +1,4 @@
+import Button from "components/Button/Button";
 import Input from "components/Input/Input";
 import styled, { css } from "styled-components";
 import { fontSizeKit, fontWeightKit, palette } from "styles";
@@ -8,7 +9,6 @@ export const StyledSignUpForm = styled.form`
   align-items: center;
   justify-content: center;
   padding-top: 40px;
-  /* padding-bottom: 25px; */
   width: 550px;
   height: auto;
   position: relative;
@@ -22,7 +22,7 @@ export const StyledSignUpForm = styled.form`
     font-weight: ${fontWeightKit.bold};
   }
 
-  button {
+   /* button {
     margin-top: 15px;
     background-color: white;
     border-radius: 50px;
@@ -30,13 +30,15 @@ export const StyledSignUpForm = styled.form`
     height: 50px;
     cursor: pointer;
     font-size: ${fontSizeKit.medium};
+    border: 2px solid;
+  border-color: ${palette.themePrimary};
 
     &:disabled {
       cursor: not-allowed;
-    }
+    } */
   }
 
-  button:last-child {
+  /* button:last-child {
     position: absolute;
     top: 0;
     right: 0;
@@ -51,7 +53,7 @@ export const StyledSignUpForm = styled.form`
     :hover {
       border-radius: 0 17px 0 0;
     }
-  }
+  } */
 
   h3 {
     text-align: left;
@@ -62,11 +64,7 @@ export const StyledSignUpForm = styled.form`
     border-color: ${palette.themePrimary};
     font-size: ${fontSizeKit.large};
     font-weight: ${fontWeightKit.bold};
-    /* background-color: ${palette.themeDefaultWhite}; */
-    /* font-size: 2rem; */
     padding-left: 10px;
-    /* border-top: 2px solid; */
-    /* border-bottom: 2px solid; */
   }
 `;
 
@@ -85,10 +83,8 @@ export const SignUpFormInput = styled(Input)`
     width: 200px;
     height: 40px;
     box-sizing: border-box;
-    /* border-radius: 50px; */
     border: none;
     margin-left: 1rem;
-    /* margin-bottom: 0; */
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 0;
     border-bottom: 2px solid;
@@ -116,11 +112,12 @@ export const SignUpFormInput = styled(Input)`
   }
 
   button {
-    padding: 12px 5px 12px 20px;
-    /* margin-left: 10px; */
-    background-color: yellow;
-    width: 100px;
-    height: 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
   }
 
   p {
@@ -159,3 +156,40 @@ export const StyledAdditionalInformationGroup = styled.div`
   width: 800px;
   background-color: transparent;
 `; */
+
+export const SignUpFormSubmitButton = styled(Button)`
+  width: 200px;
+  height: 50px;
+  margin-top: 15px;
+  background-color: ${palette.themeDefaultWhite};
+  border-radius: 50px;
+  border: none;
+  height: 50px;
+  font-size: ${fontSizeKit.medium};
+  border: 2px solid;
+  border-color: ${palette.themePrimary};
+  padding: 0;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
+
+export const SignUpFormCloseButton = styled(Button)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 17px 0 0;
+
+  height: 40px;
+  width: 50px;
+  border-color: ${palette.themePrimary};
+  margin: 0;
+  padding: 0;
+  /* color: ${palette.themeDefault}; */
+  font-size: ${fontSizeKit.extraBold};
+  :hover {
+    border-radius: 0 17px 0 0;
+  }
+`;
