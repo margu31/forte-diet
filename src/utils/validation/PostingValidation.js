@@ -1,6 +1,6 @@
 export const reviewValidation = (review) => {
   // 모든 글자 1글자 이상 500글자 이하
-  const reviewRegExp = /^.{1,500}$/;
+  const reviewRegExp = /^.{1,500}$/im;
   return reviewRegExp.test(review);
 };
 
