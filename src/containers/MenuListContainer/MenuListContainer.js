@@ -158,9 +158,10 @@ export default function MenuListContainer() {
 
   return (
     <>
-      {menuListData.map((menuList, i) => (
+      {menuListData.map(menuList => (
         <MenuList
           key={menuList.id}
+          id={menuList.id}
           menuListData={menuList}
           getTotalCalories={getTotalCalories}
           onClick={onClick}

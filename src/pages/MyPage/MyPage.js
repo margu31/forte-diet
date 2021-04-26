@@ -31,6 +31,7 @@ export default function MyPage({ history }) {
   return (
     <StyledMyPageWrapper>
       <UserBar />
+      <h2>마이페이지</h2>
       <HealthBarContainer />
       <MenuListContainer history={history} />
       <CalendarContainer />
