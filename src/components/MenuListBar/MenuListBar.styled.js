@@ -109,6 +109,7 @@ const StyledWaterDoseDialog = styled(motion.div)`
   flex-flow: column;
 
   span {
+    width: 80px;
     font-size: ${fontSizeKit.small};
     text-align: center;
     padding: 11px;
@@ -128,7 +129,8 @@ const StyledWaterDoseDialog = styled(motion.div)`
     border-radius: 0 0 8px 8px;
   }
 
-  span:hover {
+  span:hover,
+  span:focus {
     background: #34b0c0;
     opacity: 0.8;
   }
@@ -203,18 +205,31 @@ const StyledMoreDialog = styled(motion.div)`
     letter-spacing: 0.1rem;
   }
 
-  span:hover {
+  span:hover,
+  span:focus {
     background: ${palette.themePrimary};
     opacity: 0.6;
   }
 
-  span + span:hover {
+  span + span:hover,
+  span + span:focus {
     background: rgba(182, 182, 182, 1);
   }
 
   ${StyledTriangle} {
     top: 22px;
   }
+`;
+
+const StyledModal = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: pink;
+  opacity: 0;
+  z-index: 0;
 `;
 
 export {
@@ -227,5 +242,6 @@ export {
   StyledTriangle,
   StyledContainer,
   StyledDisLike,
-  StyledMoreDialog
+  StyledMoreDialog,
+  StyledModal
 };

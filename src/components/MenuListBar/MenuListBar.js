@@ -9,7 +9,8 @@ import {
   StyledTriangle,
   StyledContainer,
   StyledDisLike,
-  StyledMoreDialog
+  StyledMoreDialog,
+  StyledModal
 } from './MenuListBar.styled';
 
 export default function MenuListBar({
@@ -114,6 +115,11 @@ export default function MenuListBar({
 
         {waterIsActive && (
           <>
+            <StyledModal
+              onMouseDown={() => {
+                setWaterIsActive(false);
+              }}
+            />
             <StyledWaterDoseDialog
               initial={{ x: 2, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -210,58 +216,65 @@ export default function MenuListBar({
           }}
         />
         {moreIsActive && (
-          <StyledMoreDialog
-            initial={{ x: 2, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{
-              duration: 0.1
-            }}
-            exit={{ x: 2, opacity: 0 }}
-            onKeyDown={e => {
-              if (e.keyCode === 27) {
-                setMoreIsActive(false);
-              }
-            }}
-          >
-            <span
-              onClick={async () => {
-                await setReviewIsActive(true);
-                await onClick(dailyTextarea);
+          <>
+            <StyledModal
+              onMouseDown={() => {
                 setMoreIsActive(false);
               }}
-              onKeyDown={async e => {
-                if (e.keyCode === 13) {
+            />
+            <StyledMoreDialog
+              initial={{ x: 2, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{
+                duration: 0.1
+              }}
+              exit={{ x: 2, opacity: 0 }}
+              onKeyDown={e => {
+                if (e.keyCode === 27) {
+                  setMoreIsActive(false);
+                }
+              }}
+            >
+              <span
+                onClick={async () => {
                   await setReviewIsActive(true);
                   await onClick(dailyTextarea);
                   setMoreIsActive(false);
-                }
-              }}
-              tabIndex='0'
-              aria-label='오늘 기록 작성'
-            >
-              오늘 기록
-            </span>
-            <span
-              onClick={() => {
-                onDeleteAll(menuListData);
-                setMoreIsActive(false);
-              }}
-              onKeyDown={e => {
-                if (e.keyCode === 13) {
+                }}
+                onKeyDown={async e => {
+                  if (e.keyCode === 13) {
+                    await setReviewIsActive(true);
+                    await onClick(dailyTextarea);
+                    setMoreIsActive(false);
+                  }
+                }}
+                tabIndex='0'
+                aria-label='오늘 기록 작성'
+              >
+                오늘 기록
+              </span>
+              <span
+                onClick={() => {
                   onDeleteAll(menuListData);
                   setMoreIsActive(false);
-                }
-                if (e.keyCode === 9) {
-                  setMoreIsActive(false);
-                }
-              }}
-              tabIndex='0'
-              aria-label='식단 전체 삭제'
-            >
-              전체 삭제
-            </span>
-            <StyledTriangle />
-          </StyledMoreDialog>
+                }}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    onDeleteAll(menuListData);
+                    setMoreIsActive(false);
+                  }
+                  if (e.keyCode === 9) {
+                    setMoreIsActive(false);
+                  }
+                }}
+                tabIndex='0'
+                aria-label='식단 전체 삭제'
+              >
+                전체 삭제
+              </span>
+              <StyledTriangle />
+            </StyledMoreDialog>
+          </>
         )}
       </div>
     </StyledMenuListBar>
