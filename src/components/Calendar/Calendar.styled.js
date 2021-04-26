@@ -22,13 +22,13 @@ const StyledCalendarModal = styled.div`
 const StyledCalendarDialog = styled(motion.div)`
   width: 340px;
   position: fixed;
-  top: 310px;
+  top: 305px;
   right: 215px;
   font-size: ${fontSizeKit.small};
   font-weight: ${fontWeightKit.bold};
   color: ${palette.themeDark};
   z-index: 999;
-  padding: 0 5px 7px 5px;
+  padding: 0 5px 10px 5px;
   background: ${palette.themeDefaultWhite};
   border-radius: 30px;
   box-shadow: 2px 2px 6px rgba(182, 182, 182, 0.6);
