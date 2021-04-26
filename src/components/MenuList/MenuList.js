@@ -10,16 +10,16 @@ export default function MenuList({
   onClick,
   onSubmit,
   onRemove,
-  onAdd,
-  onReset,
   onDelete,
   authUser,
   onDeleteAll,
   handleLike,
   handleDisLike,
-  onClickWaterDose
+  onClickWaterDose,
+  id
 }) {
   const dailyTextarea = useRef();
+  const mealListFocus = useRef();
   const [reviewIsActive, setReviewIsActive] = useState(false);
 
   if (!menuListData.meals[0]) return null;
@@ -49,24 +49,6 @@ export default function MenuList({
   return (
     <>
       <StyledMenuList variants={container} initial='hidden' animate='visible'>
-        {menuListData.meals.map(mealList => (
-          <MealList
-            mealListData={mealList}
-            key={mealList.id}
-            variants={item}
-            onDelete={onDelete}
-            date={date}
-          />
-        ))}
-        <DailyReview
-          date={date}
-          dailyTextarea={dailyTextarea}
-          reviewIsActive={reviewIsActive}
-          setReviewIsActive={setReviewIsActive}
-          onSubmit={onSubmit}
-          onRemove={onRemove}
-          dailyReview={menuListData.dailyReview}
-        />
         <MenuListBar
           date={date}
           getTotalCalories={getTotalCalories}
@@ -81,6 +63,27 @@ export default function MenuList({
           handleDisLike={handleDisLike}
           waterDose={menuListData.waterDose}
           onClickWaterDose={onClickWaterDose}
+        />
+        {menuListData.meals.map(mealList => (
+          <MealList
+            mealListData={mealList}
+            key={mealList.id}
+            variants={item}
+            onDelete={onDelete}
+            date={date}
+            mealListFocus={mealListFocus}
+          />
+        ))}
+        <DailyReview
+          date={date}
+          dailyTextarea={dailyTextarea}
+          reviewIsActive={reviewIsActive}
+          setReviewIsActive={setReviewIsActive}
+          onSubmit={onSubmit}
+          onRemove={onRemove}
+          dailyReview={menuListData.dailyReview}
+          id={id}
+          mealListFocus={mealListFocus}
         />
       </StyledMenuList>
     </>
