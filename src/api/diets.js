@@ -2,8 +2,18 @@ import { firestore } from './auth';
 import firebase from 'firebase';
 import { getPopularMenus, getRecentMenus } from '../redux/modules/board';
 
+/* 유틸 */
+const getTotalCalories = meals => {
+  const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
+
+  return totalCalories > 999
+    ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    : totalCalories;
+};
+
 const diets = firestore.collection('diets');
 
+/* 패치 */
 export const getRecentDiets = limit => async () => {
   try {
     const response = await diets.orderBy('updatedAt', 'desc').limit(limit).get();
@@ -125,6 +135,7 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
 
   try {
     const diet = await diets.doc(dietId);
+    const totalCalories = parseInt(getTotalCalories(newMeals), 10);
 
     if (!newMeals.length) diet.delete();
     else
@@ -132,10 +143,39 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
         {
           titles: newTitles,
           meals: newMeals,
+          calories: totalCalories,
           updatedAt: new Date()
         },
         { merge: true }
       );
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+/* meal 수정 */
+export const handleEditMealInDiets = ({ id: dietId, meals }, mealData) => async dispatch => {
+  const newMeals = meals.filter(meal => meal.id !== mealData.id);
+  const newTitles = meals.reduce((titles, meal) => {
+    meal.id !== mealData.id && titles.push(meal.title);
+
+    return titles;
+  }, []);
+  try {
+    const diet = await diets.doc(dietId);
+    const totalCalories = parseInt(getTotalCalories(newMeals), 10);
+    diet.set(
+      {
+        titles: newTitles,
+        meals: newMeals,
+        calories: totalCalories,
+        updatedAt: new Date()
+      },
+      { merge: true }
+    );
+
+    dispatch(getPopularMenus(25)());
+    dispatch(getRecentMenus(25)());
   } catch (e) {
     throw new Error(e.message);
   }
@@ -153,14 +193,6 @@ export const handleDeleteDietInDiets = dietId => async dispatch => {
   } catch (e) {
     throw new Error(e.message);
   }
-};
-
-const getTotalCalories = meals => {
-  const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
-
-  return totalCalories > 999
-    ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    : totalCalories;
 };
 
 /* meal 추가 */
