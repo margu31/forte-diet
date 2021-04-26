@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const MyReViewContainer = styled.div`
+export const MyTitleContainer = styled.div`
   display: flex;
   background-color: transparent;
   width: 500px;
   height: 150px;
 `;
 
-export const MyReViewtext = styled.div`
+export const MyTitlewtext = styled.div`
   background-color: yellowgreen;
   margin: auto;
   width: auto;
