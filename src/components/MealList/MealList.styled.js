@@ -54,7 +54,6 @@ const StyledMealList = styled(motion.div)`
     right: -20px;
     top: -20px;
     opacity: 0;
-    outline: none;
 
     &:focus {
       opacity: 1;

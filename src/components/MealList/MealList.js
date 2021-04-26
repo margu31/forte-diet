@@ -18,6 +18,7 @@ export default function MealList({
   onDelete,
   date,
   isHome,
+  mealListFocus,
   ...restProps
 }) {
   const { photo, title, type, id } = mealListData;
@@ -54,21 +55,37 @@ export default function MealList({
         <StyledMealList
           $borderColor={changeBorderColor(type)}
           variants={variants}
+          ref={mealListFocus}
         >
-          {!isHome && (
-            <StyledDeleteButton onClick={() => setIsActive(!isActive)}>
-              <StyledDeleteIcon />
-            </StyledDeleteButton>
-          )}
           <StyledContainer
             onClick={onMealModal}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1 }}
+            tabIndex='0'
+            onKeyDown={e => {
+              if (e.keyCode === 13) {
+                onMealModal();
+              }
+            }}
+            aria-label={`${type} ${title}`}
           >
             <img src={photo} alt={title} />
           </StyledContainer>
           <span>{type}</span>
           <span>{title}</span>
+          {!isHome && (
+            <StyledDeleteButton
+              onClick={() => setIsActive(!isActive)}
+              onKeyDown={e => {
+                if (e.keyCode === 13) {
+                  setIsActive(!isActive);
+                }
+              }}
+              aria-label='삭제'
+            >
+              <StyledDeleteIcon />
+            </StyledDeleteButton>
+          )}
         </StyledMealList>
         {!isHome && isActive && (
           <StyledDeleteModal onMouseDown={() => setIsActive(false)} />
@@ -88,6 +105,20 @@ export default function MealList({
                   onDelete(date, id);
                   setIsActive(false);
                 }}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    onDelete(date, id);
+                    setIsActive(false);
+                  }
+                  if (e.keyCode === 27) {
+                    setIsActive(false);
+                  }
+                  if (e.keyCode === 9) {
+                    setIsActive(false);
+                  }
+                }}
+                tabIndex='0'
+                aria-label='정말로 삭제하시겠습니까?'
               >
                 삭제
               </span>
