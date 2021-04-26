@@ -13,7 +13,6 @@ export const StyledSideBar = styled.nav`
   align-items: center;
   padding-bottom: 3rem;
   transition: transform 0.2s;
-  background-color: ${palette.themePrimary};
   /* box-shadow: 1px 1px 0.5em ${palette.themeBrightGray}, -1px -1px 0em ${palette.themeBrightGray}; */
 
   ${({ sideBarHeight }) => css`

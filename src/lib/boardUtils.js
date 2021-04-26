@@ -25,16 +25,16 @@ export const boardReducerUtils = {
 };
 
 /* Thunk 함수 Creator */
-export const createBoardThunk = (type, api, searchWord) => {
+export const createBoardThunk = (type, api) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
-  return () => async dispatch => {
+  return searchWord => async dispatch => {
     dispatch({
       type
     });
 
     try {
-      const res = await api(type === GET_SEARCH ? searchWord : type);
+      const res = await api(searchWord || type);
       dispatch({
         type: SUCCESS,
         payload: res
