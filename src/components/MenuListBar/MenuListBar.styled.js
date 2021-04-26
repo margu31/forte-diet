@@ -19,6 +19,12 @@ const StyledMenuListBar = styled.li`
   align-items: center;
   font-size: ${fontSizeKit.small};
 
+  div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
   span {
     font-weight: ${fontWeightKit.bold};
     font-size: ${fontSizeKit.medium};
