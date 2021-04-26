@@ -30,7 +30,6 @@ export const MealImg = styled.img`
     border: 4px solid ${$borderColor};
   `}
   width: 100%;
-  height: 100%;
   border-radius: 10px;
 `;
 
