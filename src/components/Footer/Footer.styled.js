@@ -10,7 +10,7 @@ export const FooterWrapper = styled.div`
   flex-direction: column;
   padding: 5rem 20rem;
   background-color: ${palette.themeFooter};
-  color: ${palette.themeDefaultWhite};
+  color: ${palette.themeBrightGray};
 `;
 
 export const FooterInfoWrapper = styled.div`
@@ -37,7 +37,7 @@ export const FooterContentHeader = styled.div`
 `;
 
 export const ContactColumn = styled(FooterColumn)`
-  width: 20%;
+  width: 15%;
 `;
 
 export const ContactHeader = styled(FooterContentHeader)`
@@ -45,37 +45,37 @@ export const ContactHeader = styled(FooterContentHeader)`
 `;
 
 export const FooterContent = styled.p`
+  padding: 0.5rem 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   font-size: ${fontSizeKit.small};
   line-height: ${fontSizeKit.large};
 `;
 
-export const FooterLink = styled.a``;
+export const FooterLink = styled.a`
+  margin-left: 1rem;
+  color: ${palette.themeBrightGray};
+`;
 
 const iconStyle = () => css`
-  width: 25px;
-  height: 25px;
-  color: ${palette.themeDefaultWhite};
+  width: 20px;
+  height: 20px;
 `;
 
 export const GithubIcon = styled(GrGithub)`
   ${iconStyle()};
-  margin-left: 1rem;
 `;
 
 export const FacebookIcon = styled(FaFacebook)`
   ${iconStyle()};
-  margin-left: 3rem;
 `;
 
 export const TwitterIcon = styled(CgTwitter)`
   ${iconStyle()};
   color: ${palette.themeFooter};
-  background-color: ${palette.themeDefaultWhite};
+  background-color: ${palette.themeBrightGray};
   border-radius: 50%;
-  margin-left: 3rem;
 `;
 
 export const StyledFox = styled(Fox)`
