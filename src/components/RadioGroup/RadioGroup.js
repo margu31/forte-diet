@@ -1,7 +1,7 @@
 import InputRadio from "components/Radio/InputRadio";
 import { StyledRadioGroup, StyledRadioTitle } from "./RadioGroup.styled";
 
-const RadioGroup = ({ groupTitle, onChange }) => {
+const RadioGroup = ({ groupTitle, onChange, isEditing, defaultType }) => {
   return (
     <>
       <StyledRadioTitle>{groupTitle}</StyledRadioTitle>
@@ -12,6 +12,7 @@ const RadioGroup = ({ groupTitle, onChange }) => {
           value="아침"
           label="아침"
           onChange={onChange}
+          checked={isEditing ? (defaultType === "아침" ? true : false) : null}
         />
         <InputRadio
           id="lunch"
@@ -19,6 +20,7 @@ const RadioGroup = ({ groupTitle, onChange }) => {
           value="점심"
           label="점심"
           onChange={onChange}
+          checked={isEditing ? (defaultType === "점심" ? true : false) : null}
         />
         <InputRadio
           id="dinner"
@@ -26,6 +28,7 @@ const RadioGroup = ({ groupTitle, onChange }) => {
           value="저녁"
           label="저녁"
           onChange={onChange}
+          checked={isEditing ? (defaultType === "저녁" ? true : false) : null}
         />
         <InputRadio
           id="snack"
@@ -33,6 +36,7 @@ const RadioGroup = ({ groupTitle, onChange }) => {
           value="간식"
           label="간식"
           onChange={onChange}
+          checked={isEditing ? (defaultType === "간식" ? true : false) : null}
         />
       </StyledRadioGroup>
     </>
