@@ -2,9 +2,10 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as Donut } from 'assets/icons/MenuList/donut.svg';
 import { ReactComponent as waterDrop } from 'assets/icons/MenuList/waterDrop.svg';
 import { TiHeart } from 'react-icons/ti';
-import { palette } from '../../styles';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
+import { motion } from 'framer-motion';
 
-export const DietItem = styled.li`
+export const DietItem = styled(motion.li)`
   padding: 1rem;
   margin-bottom: 5rem;
   width: 30%;
@@ -22,7 +23,8 @@ export const StyledDietCard = styled.article`
 
 export const DietAuthor = styled.div`
   padding-left: 0.5rem;
-  font-size: 1.4rem;
+  font-size: ${fontSizeKit.small};
+  font-weight: ${fontWeightKit.bold};
   margin-bottom: 1rem;
 `;
 
@@ -41,7 +43,6 @@ export const MealImgContainer = styled.div`
 export const MealImg = styled.img`
   ${({ $imgStyle }) => css`
     ${$imgStyle};
-    ${console.log($imgStyle)}
   `};
 `;
 
@@ -63,7 +64,7 @@ export const DailyReview = styled.p`
   width: 100%;
   padding: 1rem;
   border-radius: 10px;
-  font-size: 1.2rem;
+  font-size: ${fontSizeKit.small};
   line-height: 1.6rem;
   background-color: ${palette.themeBright};
 `;
