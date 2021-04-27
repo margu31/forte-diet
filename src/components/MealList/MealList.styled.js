@@ -28,8 +28,19 @@ const StyledMealList = styled(motion.div)`
     cursor: pointer;
 
     img {
-      width: auto;
-      height: 138px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 5px #395b9d;
+      opacity: 1;
+    }
+
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
     }
   }
 
@@ -98,9 +109,11 @@ const StyledDeleteDialog = styled(motion.div)`
     color: ${palette.themeDefault};
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     span {
       background: rgba(182, 182, 182, 1);
+      opacity: 1;
     }
   }
 `;

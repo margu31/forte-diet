@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
-export const StyledTitle = styled(motion.h2)`
+export const StyledTitle = styled(motion.h3)`
   display: inline-block;
   font-size: ${fontSizeKit.xxLarge};
   font-weight: ${fontWeightKit.bold};

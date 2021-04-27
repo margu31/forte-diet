@@ -1,5 +1,10 @@
 import React from 'react';
-import { StyledLi, StyledUl, StyledUserBarWrapper } from './UserNavigation.styled';
+import {
+  StyledLi,
+  StyledUl,
+  StyledUserBarWrapper,
+  UserNavigationHeading
+} from './UserNavigation.styled';
 import { Modal } from 'components/Modal/Modal';
 import LoginDialog from 'containers/LogInContainer/LogInContainer';
 import SignUpDialog from 'containers/SignUpContainer/SignUpContainer';
@@ -14,6 +19,7 @@ export default function UserNavigation({
 }) {
   return (
     <StyledUserBarWrapper>
+      <UserNavigationHeading>유저 네비게이션</UserNavigationHeading>
       {dialogType && (
         <Modal>
           {dialogType === 'LoginDialog' ? (

@@ -4,7 +4,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editUserInfo } from 'api/firestore';
 import { editUserAction } from 'redux/modules/auth/auth';
-import { isHeight, isNickname, isWeight } from 'utils/validation/SignUpValidation';
+import {
+  isHeight,
+  isNickname,
+  isWeight
+} from 'utils/validation/SignUpValidation';
+import NotFound from 'components/NotFound/NotFound';
 
 const initialError = {
   nicknameError: null,
@@ -125,12 +130,7 @@ export default function SettingContainer({ history }) {
     history.goBack();
   };
 
-  if (!authUser)
-    return (
-      <div style={{ fontSize: '3rem', margin: '300px 150px' }}>
-        로그인하라~ 이 말입니다. 아시겠어여??????
-      </div>
-    );
+  if (!authUser) return <NotFound text='로그인 후 이용해 주새오.' />;
 
   return (
     <section>

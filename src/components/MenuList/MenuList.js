@@ -25,6 +25,9 @@ export default function MenuList({
   if (!menuListData.meals[0]) return null;
   const { date } = menuListData.meals[0];
 
+  /* -------------------------------------------------------------------------- */
+  /*                         framer-motion animation                            */
+  /* -------------------------------------------------------------------------- */
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -43,6 +46,8 @@ export default function MenuList({
       opacity: 1
     }
   };
+
+  /* -------------------------------------------------------------------------- */
 
   if (typeof menuListData.meals.map !== 'function') return null;
 

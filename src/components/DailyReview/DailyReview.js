@@ -21,6 +21,42 @@ export default function DailyReview({
   const maxTextLength = 80;
   const deleteButton = useRef();
 
+  /* -------------------------------------------------------------------------- */
+  /*                           웹 접근성 키보드 이벤트 코드                            */
+  /* -------------------------------------------------------------------------- */
+  const forDeleteButton = e => {
+    if (e.keyCode === 13) {
+      onRemove(date, setWroteReview, setReviewIsActive, setTotalTextLength);
+    }
+    if (e.keyCode === 27) {
+      setReviewIsActive(false);
+    }
+  };
+
+  const forSubmitButton = async e => {
+    if (e.keyCode === 13) {
+      onSubmit(date, wroteReview, setReviewIsActive);
+    }
+    if (e.keyCode === 9) {
+      await setReviewIsActive(false);
+      await mealListFocus.current.focus();
+    }
+    if (e.keyCode === 27) {
+      setReviewIsActive(false);
+    }
+  };
+
+  const forTextarea = e => {
+    if (e.keyCode === 9) {
+      deleteButton.current.focus();
+    }
+    if (e.keyCode === 27) {
+      setReviewIsActive(false);
+    }
+  };
+
+  /* -------------------------------------------------------------------------- */
+
   return (
     <>
       {reviewIsActive && (
@@ -45,38 +81,13 @@ export default function DailyReview({
                   setTotalTextLength
                 )
               }
-              onKeyDown={e => {
-                if (e.keyCode === 13) {
-                  onRemove(
-                    date,
-                    setWroteReview,
-                    setReviewIsActive,
-                    setTotalTextLength
-                  );
-                }
-                if (e.keyCode === 27) {
-                  setReviewIsActive(false);
-                }
-              }}
+              onKeyDown={e => forDeleteButton(e)}
             >
               삭제
             </button>
             <button
               onMouseDown={() => onSubmit(date, wroteReview, setReviewIsActive)}
-              onKeyDown={async e => {
-                if (e.keyCode === 13) {
-                  onSubmit(date, wroteReview, setReviewIsActive);
-                }
-                if (e.keyCode === 9) {
-                  await setReviewIsActive(false);
-                  console.log(mealListFocus.current);
-                  await mealListFocus.current.focus();
-                  console.log('여긴되냐?');
-                }
-                if (e.keyCode === 27) {
-                  setReviewIsActive(false);
-                }
-              }}
+              onKeyDown={e => forSubmitButton(e)}
             >
               등록
             </button>
@@ -100,14 +111,7 @@ export default function DailyReview({
           }}
           ref={dailyTextarea}
           disabled={reviewIsActive ? '' : 'disabled'}
-          onKeyDown={e => {
-            if (e.keyCode === 9) {
-              deleteButton.current.focus();
-            }
-            if (e.keyCode === 27) {
-              setReviewIsActive(false);
-            }
-          }}
+          onKeyDown={e => forTextarea(e)}
           tabIndex='0'
         ></textarea>
       </StyledDailyReview>

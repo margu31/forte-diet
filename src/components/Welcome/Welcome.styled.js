@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { fontSizeKit, palette } from '../../styles';
+import { a11yHidden, fontSizeKit, palette } from '../../styles';
 import Button from 'components/Button/Button';
 
 /* 래퍼 */
@@ -12,6 +12,12 @@ export const StyledWelcomeWrapper = styled.section`
   background-position: center;
   display: flex;
   flex-direction: column;
+`;
+
+/* 헤딩 */
+
+export const WelcomeHeading = styled.h3`
+  ${a11yHidden()}
 `;
 
 /* 웰컴 컨텐츠 */
@@ -37,7 +43,7 @@ const StyledP = styled.p`
   color: ${palette.themeDefaultWhite};
 `;
 
-const StyledTitle = styled.h2`
+const StyledTitle = styled.h4`
   font-size: ${fontSizeKit.xxLarge};
   color: ${palette.themeDefaultWhite};
 `;
@@ -76,6 +82,10 @@ export const SearchSection = styled.section`
   padding-left: 20rem;
   flex-grow: 1;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
+`;
+
+export const SearchHeading = styled.h4`
+  ${a11yHidden()}
 `;
 
 export const SearchInputForm = styled.form`
