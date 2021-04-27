@@ -71,7 +71,7 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
       <StyledDietCard>
         <MealImg
           $borderColor={changeBorderColor(dietData.meals[0].type)}
-          src='https://i.pinimg.com/564x/b7/20/36/b720364e1b6503bafba08dc2a905c17d.jpg'
+          src={dietData.meals[0].photo}
         />
         <DietInfos>
           <DietInfo>
