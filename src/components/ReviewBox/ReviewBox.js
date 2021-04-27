@@ -6,9 +6,9 @@ const ReviewBox = ({
   label,
   placeholder,
   onChange,
-  // onBlur,
   onKeyUp,
   hasError,
+  defaultReview,
 }) => {
   return (
     <StyledReviewBox>
@@ -18,9 +18,9 @@ const ReviewBox = ({
         name={name}
         placeholder={placeholder}
         onChange={onChange}
-        // onBlur={onBlur}
         onKeyUp={onKeyUp}
         autoComplete="off"
+        defaultValue={defaultReview}
       ></textarea>
       {hasError && <p>{hasError}</p>}
     </StyledReviewBox>

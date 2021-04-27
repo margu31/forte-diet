@@ -8,6 +8,12 @@ const DataGroup = ({
   onKeyPress,
   errorMessage,
   maxDate,
+  isEditing,
+  defaultDate,
+  defaultUrl,
+  defaultType,
+  defaultCalories,
+  defaultTitle,
   onKeyUp,
   onDragEnd,
   onDragEnter,
@@ -35,6 +41,7 @@ const DataGroup = ({
         loadedFile={loadedFile}
         imgRef={imgRef}
         fileRef={fileRef}
+        defaultUrl={isEditing ? defaultUrl : null}
       />
       <div className="collection">
         <Input
@@ -44,9 +51,14 @@ const DataGroup = ({
           label="Date"
           onChange={onChange}
           max={maxDate}
-          defaultValue={maxDate.toString()}
+          defaultValue={isEditing ? defaultDate : maxDate.toString()}
         />
-        <RadioGroup groupTitle="Type" onChange={onChange} />
+        <RadioGroup
+          groupTitle="Type"
+          onChange={onChange}
+          isEditing={isEditing}
+          defaultType={isEditing ? defaultType : null}
+        />
         <Input
           type="number"
           id="mealCalories"
@@ -56,6 +68,7 @@ const DataGroup = ({
           onChange={onChange}
           onKeyPress={onKeyPress}
           min="0"
+          value={isEditing ? defaultCalories : null}
         />
         <Input
           type="text"
@@ -67,6 +80,7 @@ const DataGroup = ({
           onKeyUp={onKeyUp}
           errorMessage={errorMessage}
           maxLength="10"
+          defaultValue={isEditing ? defaultTitle : null}
         />
       </div>
     </StyledDataGroup>

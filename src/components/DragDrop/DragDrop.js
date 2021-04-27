@@ -8,6 +8,7 @@ import { ReactComponent as Photo } from "assets/icons/InputIcons/photo.svg";
 import { ReactComponent as Upload } from "assets/icons/InputIcons/framing.svg";
 
 const DragDrop = ({
+  defaultUrl,
   onDragEnd,
   onDragEnter,
   onDragLeave,
@@ -37,9 +38,11 @@ const DragDrop = ({
         onChange={onChangeFile}
         ref={fileRef}
       />
-      {(isLoaded && !isDragging) || (loadedFile && !isDragging) ? (
+      {(isLoaded && !isDragging) ||
+      (loadedFile && !isDragging) ||
+      defaultUrl ? (
         <>
-          <img src="" alt="" ref={imgRef} />
+          <img src={defaultUrl} alt="" ref={imgRef} />
         </>
       ) : null}
       <StyledDefaultView>
