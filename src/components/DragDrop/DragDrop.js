@@ -19,6 +19,7 @@ const DragDrop = ({
   loadedFile,
   imgRef,
   canvasRef,
+  fileRef,
 }) => {
   return (
     <StyledFileWrapper
@@ -35,6 +36,7 @@ const DragDrop = ({
         name="photo"
         accept="image/*"
         onChange={onChangeFile}
+        ref={fileRef}
       />
       {(isLoaded && !isDragging) || (loadedFile && !isDragging) ? (
         <>

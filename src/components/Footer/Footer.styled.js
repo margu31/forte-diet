@@ -8,7 +8,7 @@ import { FaFacebook } from 'react-icons/fa';
 export const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5rem 20rem;
+  padding: 3rem 20rem 2rem;
   background-color: ${palette.themeFooter};
   color: ${palette.themeBrightGray};
 `;
@@ -17,7 +17,7 @@ export const FooterInfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 4rem;
+  padding-bottom: 1rem;
 `;
 
 export const FooterColumn = styled.div`
@@ -33,7 +33,7 @@ export const FooterContentHeader = styled.div`
   display: flex;
   align-items: center;
   font-size: ${fontSizeKit.medium};
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const ContactColumn = styled(FooterColumn)`
@@ -41,11 +41,11 @@ export const ContactColumn = styled(FooterColumn)`
 `;
 
 export const ContactHeader = styled(FooterContentHeader)`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const FooterContent = styled.p`
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -89,7 +89,7 @@ export const StyledFox = styled(Fox)`
 export const RightWrapper = styled.div`
   border-top: 1px solid ${palette.themeBrightGray};
   display: flex;
-  padding-top: 4rem;
+  padding-top: 2rem;
   justify-content: space-between;
 `;
 

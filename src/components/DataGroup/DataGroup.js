@@ -20,6 +20,7 @@ const DataGroup = ({
   loadedFile,
   imgRef,
   canvasRef,
+  fileRef,
 }) => {
   return (
     <StyledDataGroup>
@@ -35,6 +36,7 @@ const DataGroup = ({
         loadedFile={loadedFile}
         imgRef={imgRef}
         canvasRef={canvasRef}
+        fileRef={fileRef}
       />
       <div className="collection">
         <Input

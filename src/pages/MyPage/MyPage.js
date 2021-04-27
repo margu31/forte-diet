@@ -30,11 +30,12 @@ export default function MyPage({ history }) {
 
   return (
     <StyledMyPageWrapper>
+      <h2 tabIndex='0'>마이페이지</h2>
       <UserBar />
-      <HealthBarContainer />
-      <MenuListContainer history={history} />
       <CalendarContainer />
       <MenuListToPosting onMoveToPosting={onMoveToPosting} />
+      <MenuListContainer history={history} />
+      <HealthBarContainer />
       <ScrollTopButton onMoveToTop={onMoveToTop} />
     </StyledMyPageWrapper>
   );

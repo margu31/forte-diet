@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { palette, fontSizeKit, fontWeightKit } from 'styles';
 
-const StyledDailyReview = styled.div`
+const StyledDailyReview = styled.li`
   width: 730px;
   border-radius: 10px;
   box-sizing: border-box;
@@ -42,6 +42,7 @@ const StyledDailyReview = styled.div`
     position: absolute;
     bottom: 27px;
     right: 90px;
+    z-index: 999;
   }
 
   button {
@@ -58,18 +59,26 @@ const StyledDailyReview = styled.div`
     position: absolute;
     bottom: 20px;
     right: 45px;
-    outline: none;
     cursor: pointer;
 
-    &:hover {
+    z-index: 999;
+
+    &:hover,
+    &:focus {
       background: #eaeaea;
+    }
+
+    &:focus ~ textarea {
+      box-shadow: 3px 3px 3px #e0dfde;
+      background: rgba(255, 255, 255, 0.6);
     }
   }
 
   button + button {
     right: 8px;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: ${palette.themeHover};
     }
   }

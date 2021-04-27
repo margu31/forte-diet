@@ -13,6 +13,7 @@ import DataGroup from "components/DataGroup/DataGroup";
 import { addNewDiet, PostMeal } from "api/firestore";
 import { addMenuListAction } from "redux/modules/menuList";
 import { addMealInDiets } from "api/diets";
+import { uploadImgToAmazon } from "../../api/amazon";
 
 const today = new Date();
 const year = today.getFullYear();
@@ -52,6 +53,7 @@ function PostingContainer({ history }) {
   const [loadedFile, setLoadedFile] = useState(false);
   const imgRef = useRef();
   const canvasRef = useRef();
+  const fileRef = useRef();
   const dispatch = useDispatch();
 
   const isDisabled =
@@ -138,7 +140,6 @@ function PostingContainer({ history }) {
     Object.entries(mealData).forEach(([key, value]) => {
       if (key === "hasError") return;
       formData.append(key, value);
-      console.log(`${key}: `, `${value}`);
     });
 
     // mealId 수정 코드
@@ -150,13 +151,23 @@ function PostingContainer({ history }) {
 
     const newFormData = Object.fromEntries(formData.entries());
 
+    const photoFile = fileRef.current.files[0] || null;
+    const photoId = authUser.uid + mealData.date + (mealId || 0);
+    const photoUrl = await uploadImgToAmazon(photoFile, photoId);
+
     // 새로운 메뉴 리스트라면, diets 테이블에 추가
     if (!menuList.hasOwnProperty(mealData.date)) {
-      const dietId = await addNewDiet(authUser, newFormData);
-      PostMeal(authUser, { ...newFormData }, dietId);
+      const dietId = await addNewDiet(authUser, {
+        ...newFormData,
+        photo: photoUrl,
+      });
+      PostMeal(authUser, { ...newFormData, photo: photoUrl }, dietId);
     } else {
       PostMeal(authUser, newFormData);
-      addMealInDiets(menuList[mealData.date], { ...newFormData });
+      addMealInDiets(menuList[mealData.date], {
+        ...newFormData,
+        photo: photoUrl,
+      });
     }
 
     dispatch(addMenuListAction(newFormData)); // myPage 실시간 업데이트 코드 추가
@@ -333,6 +344,7 @@ function PostingContainer({ history }) {
           loadedFile={loadedFile}
           imgRef={imgRef}
           canvasRef={canvasRef}
+          fileRef={fileRef}
         />
         <ReviewBox
           id="mealReview"
