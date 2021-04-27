@@ -64,6 +64,7 @@ export default function MealModalContainer({
         authUser: authUser,
         id: id,
         menuList: menuList,
+        date: date,
       },
     });
   };

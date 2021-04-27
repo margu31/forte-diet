@@ -14,7 +14,6 @@ const PostEditPage = ({ history }) => {
       behavior: "instant",
     });
   }, []);
-  console.log(location.state.id);
   return (
     <StylePostEditPage>
       <UserBar />
