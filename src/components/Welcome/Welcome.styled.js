@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { fontSizeKit, palette } from '../../styles';
+import { a11yHidden, fontSizeKit, palette } from '../../styles';
 import Button from 'components/Button/Button';
 
 /* 래퍼 */
@@ -12,6 +12,12 @@ export const StyledWelcomeWrapper = styled.section`
   background-position: center;
   display: flex;
   flex-direction: column;
+`;
+
+/* 헤딩 */
+
+export const WelcomeHeading = styled.h3`
+  ${a11yHidden()}
 `;
 
 /* 웰컴 컨텐츠 */
