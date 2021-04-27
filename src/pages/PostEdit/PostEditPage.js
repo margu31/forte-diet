@@ -2,9 +2,11 @@ import HealthBarContainer from "containers/HealthBarContainer/HealthBarContainer
 import PostEditContainer from "containers/PostEditContainer/PostEditContainer";
 import UserBar from "containers/UserBar/UserBar";
 import { useEffect } from "react";
+import { useLocation } from "react-router";
 import StylePostEditPage from "./PostEditPage.styled";
 
 const PostEditPage = ({ history }) => {
+  const location = useLocation();
   useEffect(() => {
     window.scroll({
       top: 0,
@@ -12,7 +14,7 @@ const PostEditPage = ({ history }) => {
       behavior: "instant",
     });
   }, []);
-
+  console.log(location.state.id);
   return (
     <StylePostEditPage>
       <UserBar />
