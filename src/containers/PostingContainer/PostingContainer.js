@@ -226,8 +226,10 @@ function PostingContainer({ history }) {
         photo: imgRef.current.src,
       });
     };
-
     reader.readAsDataURL(file[0]);
+    // input에 업로드 파일 추가
+    e.target.files = file;
+    console.log(fileRef.current.files);
   };
 
   const onDragEnd = (e) => {
