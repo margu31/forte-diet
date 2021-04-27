@@ -109,9 +109,11 @@ const StyledDeleteDialog = styled(motion.div)`
     color: ${palette.themeDefault};
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     span {
       background: rgba(182, 182, 182, 1);
+      opacity: 1;
     }
   }
 `;

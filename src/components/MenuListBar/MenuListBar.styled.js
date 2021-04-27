@@ -132,7 +132,7 @@ const StyledWaterDoseDialog = styled(motion.div)`
   span:hover,
   span:focus {
     background: #34b0c0;
-    opacity: 0.8;
+    opacity: 1;
   }
 `;
 
@@ -208,7 +208,7 @@ const StyledMoreDialog = styled(motion.div)`
   span:hover,
   span:focus {
     background: ${palette.themePrimary};
-    opacity: 0.6;
+    opacity: 1;
   }
 
   span + span:hover,
