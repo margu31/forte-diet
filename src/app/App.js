@@ -19,7 +19,7 @@ function App() {
             <Route path="/myPage" component={MyPage} />
             <Route path="/posting" component={PostingPage} />
             <Route path="/setting" component={SettingPage} />
-            <Route path="/postEdit/" component={PostEditPage} />
+            <Route path="/postEdit" component={PostEditPage} />
             {/* Redirect 폴백 페이지 추가하여야 함 */}
           </Switch>
         </StyledApp>
