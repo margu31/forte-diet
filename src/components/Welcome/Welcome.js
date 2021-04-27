@@ -9,7 +9,8 @@ import {
   SerachBar,
   SearchLabel,
   SearchInput,
-  SearchBtn
+  SearchBtn,
+  SearchHeading
 } from './Welcome.styled';
 import Dropdown from '../Dropdown/Dropdown';
 import { useDispatch } from 'react-redux';
@@ -32,6 +33,7 @@ export default function Welcome() {
       <WelcomeHeading>우연히, 식단 페이지 소개 및 식단 검색</WelcomeHeading>
       <WelcomeContent />
       <SearchSection>
+        <SearchHeading>식단 검색</SearchHeading>
         <SearchInputForm legend='식단 검색'>
           <fieldset>
             <SerachBar>
