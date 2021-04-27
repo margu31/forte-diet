@@ -20,7 +20,7 @@ const StyledCalendarModal = styled.div`
 `;
 
 const StyledCalendarDialog = styled(motion.div)`
-  width: 340px;
+  width: 355px;
   position: fixed;
   top: 290px;
   right: 215px;
@@ -102,6 +102,7 @@ const StyledDay = styled.div`
 const StyledDate = styled.div`
   cursor: pointer;
   height: 46px;
+  width: 46px;
   padding-top: 11px;
   border-radius: 50%;
   display: flex;
