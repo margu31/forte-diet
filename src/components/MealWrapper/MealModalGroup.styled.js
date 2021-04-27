@@ -20,6 +20,46 @@ export const StyledMealWrapper = styled.div`
   height: 600px;
 `;
 
+export const MealDialogSubmitButton = styled(Button)`
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  margin: 0;
+  padding: 0.5em 2em;
+  background-color: transparent;
+  border-radius: 50px;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: coral;
+    color: #fff;
+  }
+
+  & + & {
+    background-color: white;
+  }
+`;
+
+export const MealDialogEditButton = styled(Button)`
+  margin: 0;
+  margin-left: 0;
+  position: absolute;
+  bottom: 2%;
+  right: 0;
+  padding: 0.5em 2em;
+  /* border-radius: 10px; */
+  background-color: transparent;
+
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: coral;
+    color: #fff;
+  }
+
+  & + & {
+    background-color: red;
+  }
+`;
+
 export const MealDialogPrevButton = styled(Button)`
   position: absolute;
   margin-left: 0;
@@ -42,39 +82,8 @@ export const MealDialogNextButton = styled(Button)`
   right: 0%;
   padding: 0.5em 2em;
   /* color: coral; */
+  background-color: white;
   border-radius: 10px;
-  &:hover {
-    transition: all 0.3s ease-in-out;
-    background-color: coral;
-    color: #fff;
-  }
-`;
-
-export const MealDialogSubmitButton = styled(Button)`
-  position: absolute;
-  bottom: 2%;
-  left: 0;
-  margin: 0;
-  padding: 0.5em 2em;
-  background-color: transparent;
-  border-radius: 50px;
-  &:hover {
-    transition: all 0.3s ease-in-out;
-    background-color: coral;
-    color: #fff;
-  }
-`;
-
-export const MealDialogEditButton = styled(Button)`
-  margin: 0;
-  margin-left: 0;
-  position: absolute;
-  bottom: 2%;
-  right: 0;
-  padding: 0.5em 2em;
-  /* border-radius: 10px; */
-  background-color: transparent;
-
   &:hover {
     transition: all 0.3s ease-in-out;
     background-color: coral;
@@ -92,5 +101,15 @@ export const MealDialogCloseButton = styled(Button)`
     transition: all 0.3s ease-in-out;
     background-color: coral;
     color: #fff;
+  }
+`;
+
+export const Styledddd = styled.div`
+  button {
+    background-color: red;
+
+    & + & {
+      background-color: white;
+    }
   }
 `;

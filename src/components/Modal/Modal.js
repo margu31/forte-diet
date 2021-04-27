@@ -1,9 +1,9 @@
 import React from "react";
 import { StyledModal } from "./Modal.styled";
 
-export const Modal = ({ children }) => {
+export const Modal = ({ children, ...restProps }) => {
   return (
-    <StyledModal>
+    <StyledModal {...restProps}>
       {children}
       {/* <LogInContainer /> */}
     </StyledModal>

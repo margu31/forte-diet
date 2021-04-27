@@ -86,7 +86,6 @@ export default function MealModalContainer({
         prevMeal={prevMeal}
         nextMeal={nextMeal}
         mealListData={mealListData}
-        currentMealId={currentMealArrayIndex}
         mealLength={mealLength}
         onSetting={onSetting}
         slideRef={slideRef}
