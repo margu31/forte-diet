@@ -16,13 +16,13 @@ const StyledSpeech = styled.div`
   padding: 50px;
   font-size: ${fontSizeKit.xLarge};
   font-weight: ${fontWeightKit.extraBold};
-  color: #666666;
+  color: ${palette.themeDark};
   position: absolute;
   top: 35%;
   left: 60%;
   transform: translateX(-60%);
   border-radius: 15px;
-  border: 4px solid #666666;
+  border: 4px solid ${palette.themeDark};
 
   &:after,
   &:before {
@@ -38,13 +38,13 @@ const StyledSpeech = styled.div`
 
   &:after {
     border-color: rgba(244, 243, 239, 0);
-    border-top-color: #f4f3ef;
+    border-top-color: ${palette.themeBright};
     border-width: 20px;
     margin-left: -20px;
   }
   &:before {
     border-color: rgba(102, 102, 102, 0);
-    border-top-color: #666666;
+    border-top-color: ${palette.themeDark};
     border-width: 26px;
     margin-left: -26px;
   }
