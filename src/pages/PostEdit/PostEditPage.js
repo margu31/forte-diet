@@ -14,6 +14,7 @@ const PostEditPage = ({ history }) => {
       behavior: "instant",
     });
   }, []);
+
   return (
     <StylePostEditPage>
       <UserBar />

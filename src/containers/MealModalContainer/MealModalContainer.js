@@ -58,13 +58,15 @@ export default function MealModalContainer({
   };
 
   const onSetting = () => {
+    const mealDate = mealsArrayList.filter((data) => data.id === id);
+
     history.push({
       pathname: "/postEdit",
       state: {
         authUser: authUser,
         id: id,
+        mealDate: mealDate,
         menuList: menuList,
-        date: date,
       },
     });
   };
@@ -93,14 +95,14 @@ export default function MealModalContainer({
   // }
 
   // console.log(mealsArrayList);
-  console.log(mealsArrayList.map((data) => parseInt(data.id)));
-  console.log(id, "props로 받는 id");
-  console.log(mealLength, "인덱스 길이");
+  // console.log(mealsArrayList.map((data) => parseInt(data.id)));
+  // console.log(id, "props로 받는 id");
+  // console.log(mealLength, "인덱스 길이");
   // console.log(
   //   mealsArrayList.map((data) => parseInt(data.id)).indexOf(currentMealId)
   // );
 
-  console.log(mealIdIndex, "배열에서 맞는 값에 인텍스 추출");
+  // console.log(mealIdIndex, "배열에서 맞는 값에 인텍스 추출");
 
   // console.log(mealIdIndex, "다른 id 탈출");
 
@@ -108,9 +110,9 @@ export default function MealModalContainer({
 
   // const fff = [1, 3, 5];
   // console.log(fff.findIndex((id) => id === 3));
-  console.log(authUser);
-  console.log(menuList);
-  console.log(id);
+  // console.log(authUser);
+  // console.log(menuList);
+  // console.log(id);
   return (
     <>
       <MealModalGroup
