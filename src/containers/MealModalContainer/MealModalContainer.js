@@ -1,6 +1,7 @@
 import { MealModalGroup } from "components/MealWrapper/MealModalGroup";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import SettingPage from "../../pages/SettingPage/SettingPage";
 
 export default function MealModalContainer({
@@ -8,9 +9,10 @@ export default function MealModalContainer({
   mealListData,
   showMealModal,
 }) {
-  const auth = useSelector((state) => state.auth.authUser);
+  const authUser = useSelector((state) => state.auth.authUser);
   const menuList = useSelector((state) => state.menuList);
   const slideRef = useRef(null);
+  const history = useHistory();
 
   const { date, id } = mealListData;
 
@@ -55,7 +57,16 @@ export default function MealModalContainer({
     console.log(mealLength);
   };
 
-  const onSetting = () => {};
+  const onSetting = () => {
+    history.push({
+      pathname: "/postEdit",
+      state: {
+        authUser: authUser,
+        id: id,
+        menuList: menuList,
+      },
+    });
+  };
 
   window.addEventListener("keyup", (e) => {
     if (e.key === "Escape") {
@@ -96,7 +107,7 @@ export default function MealModalContainer({
 
   // const fff = [1, 3, 5];
   // console.log(fff.findIndex((id) => id === 3));
-  console.log(auth);
+  console.log(authUser);
   console.log(menuList);
   console.log(id);
   return (
