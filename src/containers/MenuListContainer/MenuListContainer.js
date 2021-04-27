@@ -29,6 +29,7 @@ import {
 } from 'api/diets';
 import { pushLikeAction } from '../../redux/modules/auth/auth';
 import { addLikeToUser } from 'api/auth';
+import Logout from 'components/Logout/Logout';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);
@@ -145,12 +146,7 @@ export default function MenuListContainer() {
     );
   }, []);
 
-  if (!isAuthed)
-    return (
-      <div style={{ fontSize: '3rem', margin: '350px 300px' }}>
-        가입하라~ 이 말입니다. 아시겠어여??????
-      </div>
-    );
+  if (!isAuthed) return <Logout />;
 
   const menuListData = Object.entries(menuList)
     .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
