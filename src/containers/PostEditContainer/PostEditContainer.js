@@ -13,7 +13,6 @@ import DataGroup from "components/DataGroup/DataGroup";
 import { addNewDiet, PostMeal } from "api/firestore";
 import { addMenuListAction } from "redux/modules/menuList";
 import { addMealInDiets } from "api/diets";
-import { uploadImgToAmazon } from "../../api/amazon";
 
 const today = new Date();
 const year = today.getFullYear();
@@ -44,7 +43,7 @@ const initialPostingFormValues = {
   },
 };
 
-function PostingContainer({ history }) {
+function PostEditContainer({ history }) {
   const [mealData, setMealData] = useState(initialPostingFormValues);
   const { authUser } = useSelector((state) => state.auth);
   const menuList = useSelector((state) => state.menuList);
@@ -52,7 +51,7 @@ function PostingContainer({ history }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadedFile, setLoadedFile] = useState(false);
   const imgRef = useRef();
-  const fileRef = useRef();
+  const canvasRef = useRef();
   const dispatch = useDispatch();
 
   const isDisabled =
@@ -141,37 +140,13 @@ function PostingContainer({ history }) {
       formData.append(key, value);
       console.log(`${key}: `, `${value}`);
     });
-    console.log(formData);
-
-    // mealId 수정 코드
-    const mealId =
-      +menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]
-        ?.id + 1;
-
-    formData.append("id", mealId || 0);
 
     const newFormData = Object.fromEntries(formData.entries());
 
-    const photoFile = fileRef.current.files[0] || null;
-    const photoId = authUser.uid + mealData.date + (mealId || 0);
-    const photoUrl = await uploadImgToAmazon(photoFile, photoId);
+    // TODO:
+    // 수정 데이터 firebase에 전송
+    // myPage 업뎃
 
-    // 새로운 메뉴 리스트라면, diets 테이블에 추가
-    if (!menuList.hasOwnProperty(mealData.date)) {
-      const dietId = await addNewDiet(authUser, {
-        ...newFormData,
-        photo: photoUrl,
-      });
-      PostMeal(authUser, { ...newFormData, photo: photoUrl }, dietId);
-    } else {
-      PostMeal(authUser, { ...newFormData, photo: photoUrl });
-      addMealInDiets(menuList[mealData.date], {
-        ...newFormData,
-        photo: photoUrl,
-      });
-    }
-
-    dispatch(addMenuListAction(newFormData)); // myPage 실시간 업데이트 코드 추가
     history.push("/myPage");
   };
 
@@ -191,6 +166,40 @@ function PostingContainer({ history }) {
     ) {
       e.preventDefault();
     }
+  };
+
+  const ReSizeImage = (e) => {
+    const img = new Image();
+    img.src = e.target.result;
+
+    img.onload = (e) => {
+      const canvas = canvasRef.current;
+      const MAX_SIZE = 320;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height) {
+        if (width > MAX_SIZE) {
+          height *= MAX_SIZE / width;
+          width = MAX_SIZE;
+        }
+      } else {
+        if (height > MAX_SIZE) {
+          width *= MAX_SIZE / height;
+          height = MAX_SIZE;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL();
+      imgRef.current.src = dataUrl;
+
+      setMealData({
+        ...mealData,
+        photo: imgRef.current.src,
+      });
+    };
   };
 
   const onDragEnter = (e) => {
@@ -220,16 +229,10 @@ function PostingContainer({ history }) {
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      imgRef.current.src = e.target.result;
-      setMealData({
-        ...mealData,
-        photo: imgRef.current.src,
-      });
+      ReSizeImage(e);
     };
+
     reader.readAsDataURL(file[0]);
-    // input에 업로드 파일 추가
-    e.target.files = file;
-    console.log(fileRef.current.files);
   };
 
   const onDragEnd = (e) => {
@@ -246,30 +249,16 @@ function PostingContainer({ history }) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        imgRef.current.src = e.target.result;
-        setMealData({
-          ...mealData,
-          photo: imgRef.current.src,
-        });
+        ReSizeImage(e);
       };
 
       reader.readAsDataURL(e.target.files[0]);
     }
-    // console.log(e.target.files[0]);
   };
 
   const goBack = () => {
     history.goBack();
   };
-
-  if (!authUser)
-    return (
-      <div
-        style={{ fontSize: "3rem", margin: "300px 40px", lineHeight: "5rem" }}
-      >
-        로그인하든지~ 가입하든지~ 둘 중 하나 하라~ 이 말입니다. 아시겠어여??????
-      </div>
-    );
 
   return (
     <section>
@@ -291,7 +280,7 @@ function PostingContainer({ history }) {
           isDragging={isDragging}
           loadedFile={loadedFile}
           imgRef={imgRef}
-          fileRef={fileRef}
+          canvasRef={canvasRef}
         />
         <ReviewBox
           id="mealReview"
@@ -313,7 +302,7 @@ function PostingContainer({ history }) {
             취소
           </Button>
           <Button onSubmit={onSubmit} disabled={isDisabled}>
-            등록
+            수정
           </Button>
         </div>
       </Form>
@@ -321,4 +310,4 @@ function PostingContainer({ history }) {
   );
 }
 
-export default PostingContainer;
+export default PostEditContainer;
