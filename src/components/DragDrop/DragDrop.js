@@ -18,7 +18,6 @@ const DragDrop = ({
   isDragging,
   loadedFile,
   imgRef,
-  canvasRef,
   fileRef,
 }) => {
   return (
@@ -41,7 +40,6 @@ const DragDrop = ({
       {(isLoaded && !isDragging) || (loadedFile && !isDragging) ? (
         <>
           <img src="" alt="" ref={imgRef} />
-          <canvas ref={canvasRef}></canvas>
         </>
       ) : null}
       <StyledDefaultView>

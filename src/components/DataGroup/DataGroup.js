@@ -19,7 +19,6 @@ const DataGroup = ({
   isDragging,
   loadedFile,
   imgRef,
-  canvasRef,
   fileRef,
 }) => {
   return (
@@ -35,7 +34,6 @@ const DataGroup = ({
         isDragging={isDragging}
         loadedFile={loadedFile}
         imgRef={imgRef}
-        canvasRef={canvasRef}
         fileRef={fileRef}
       />
       <div className="collection">

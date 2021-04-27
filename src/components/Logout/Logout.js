@@ -4,7 +4,7 @@ import { StyledFox, StyledSpeech } from './Logout.styled';
 export default function Logout() {
   return (
     <>
-      <StyledSpeech>로그인 후 이용해 주세요.</StyledSpeech>
+      <StyledSpeech>로그인 후 이용해 주새오.</StyledSpeech>
       <StyledFox />
     </>
   );

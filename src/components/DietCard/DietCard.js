@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLikeToUser } from '../../api/auth';
 import { handleEditLikeToDiets } from '../../api/diets';
@@ -16,11 +16,37 @@ import {
   HeartIcon,
   WaterIcon,
   DietAuthor,
-  LikedHeartIcon
+  LikedHeartIcon,
+  MealImgContainer
 } from './DietCard.styled';
 
 export default function DietCard({ dietData, auth, boardType, ...restProps }) {
+  const Image = useRef();
+  const ImgContainer = useRef();
+  const [$imgStyle, setImgStyle] = useState(null);
   const dispatch = useDispatch();
+
+  const handleImgSize = () => {
+    if (!Image.current) return;
+    const containerAspect = ImgContainer.current.offsetHeight / ImgContainer.current.offsetWidth;
+    const imgAspect = Image.current.height / Image.current.width;
+
+    if (imgAspect <= containerAspect) {
+      // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
+      const imgWidthActual = ImgContainer.current.height / imgAspect;
+      const imgWidthToBe = ImgContainer.current.height / containerAspect;
+      const marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 4);
+      setImgStyle(`width: auto; height: 100%; margin-left:${marginLeft}px;`);
+    } else {
+      // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
+      setImgStyle(`width: 100%; height: auto; margin-left: 0;`);
+    }
+  };
+
+  useEffect(() => {
+    handleImgSize();
+  }, [Image, ImgContainer, boardType]);
+
   const changeBorderColor = type => {
     switch (type) {
       case '아침':
@@ -69,10 +95,12 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
     <DietItem>
       <DietAuthor>{dietData.author}</DietAuthor>
       <StyledDietCard>
-        <MealImg
+        <MealImgContainer
+          ref={ImgContainer}
           $borderColor={changeBorderColor(dietData.meals[0].type)}
-          src={dietData.meals[0].photo}
-        />
+        >
+          <MealImg src={dietData.meals[0].photo} ref={Image} $imgStyle={$imgStyle} />
+        </MealImgContainer>
         <DietInfos>
           <DietInfo>
             <DonutIcon /> {dietData.calories || '0'}kcal
