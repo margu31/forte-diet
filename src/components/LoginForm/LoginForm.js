@@ -1,11 +1,10 @@
-import Button from "components/Button/Button";
+import Button from 'components/Button/Button';
 import {
   LoginFormInput,
   LoginFormSubmitButton,
   StyledForm,
-  LoginFormCloseButton,
-} from "./LoginForm.styled";
-import { ReactComponent as Fox } from "assets/logos/logo-fox.svg";
+  LoginFormCloseButton
+} from './LoginForm.styled';
 
 export const LoginForm = ({
   onChange,
@@ -15,28 +14,28 @@ export const LoginForm = ({
   disabled,
   closeModal,
   changePasswordMode,
-  isShow,
+  isShow
 }) => {
   return (
     <StyledForm>
       <h3>로그인</h3>
       <LoginFormInput
-        label="email"
-        id="email"
-        name="email"
-        type="email"
-        placeholder="이메일을 입력해주세요."
+        label='email'
+        id='email'
+        name='email'
+        type='email'
+        placeholder='이메일을 입력해주세요.'
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
         a11yHidden={true}
       />
       <LoginFormInput
-        label="비밀번호"
-        id="password"
-        name="password"
-        type="password"
-        placeholder="비밀번호를 입력해주세요."
+        label='비밀번호'
+        id='password'
+        name='password'
+        type='password'
+        placeholder='비밀번호를 입력해주세요.'
         onChange={onChange}
         onBlur={onBlur}
         errorMessage={errorMessage}
@@ -45,15 +44,15 @@ export const LoginForm = ({
         isShow={isShow}
       />
       <LoginFormSubmitButton
-        $width="300"
-        $height="30"
-        type="submit"
+        $width='300'
+        $height='30'
+        type='submit'
         onSubmit={onSubmit}
         disabled={disabled}
       >
         확인
       </LoginFormSubmitButton>
-      <LoginFormCloseButton type="button" onClick={closeModal}>
+      <LoginFormCloseButton type='button' onClick={closeModal}>
         X
       </LoginFormCloseButton>
     </StyledForm>

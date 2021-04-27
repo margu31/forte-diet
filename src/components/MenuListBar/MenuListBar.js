@@ -37,6 +37,26 @@ export default function MenuListBar({
 
   const isLiked = authUser?.like.includes(menuListData.id);
 
+  /* -------------------------------------------------------------------------- */
+  /*                           스타일 컴포넌트 프롭스 지정                             */
+  /* -------------------------------------------------------------------------- */
+  const forWhileHover = () => {
+    return {
+      x: [0, 3, -3, 3, -3, 3, -3],
+      transition: {
+        duration: 0.6,
+        type: 'spring',
+        mass: 0.6,
+        stiffness: 300,
+        repeat: Infinity,
+        repeatType: 'mirror'
+      }
+    };
+  };
+
+  /* -------------------------------------------------------------------------- */
+  /*                           웹 접근성 키보드 이벤트 코드                            */
+  /* -------------------------------------------------------------------------- */
   // 웹 접근성을 위한 날짜 코드 포맷 정의
   const formattedDate = date => {
     const getFullYear = `20${date.slice(0, 2)}`;
@@ -45,6 +65,83 @@ export default function MenuListBar({
 
     return `${getFullYear}-${getMonth}-${getDate}`;
   };
+
+  const forLikeButton = e => {
+    if (e.keyCode === 13) {
+      handleDisLike(menuListData, date);
+    }
+  };
+
+  const forDisLikeButton = e => {
+    if (e.keyCode === 13) {
+      handleLike(menuListData, date);
+    }
+  };
+
+  const forWaterDoseButton = e => {
+    if (e.keyCode === 13) {
+      setWaterIsActive(!waterIsActive);
+    }
+    if (e.keyCode === 27) {
+      setWaterIsActive(false);
+    }
+  };
+
+  const forWaterDoseDialog = e => {
+    if (e.keyCode === 27) {
+      setWaterIsActive(false);
+    }
+  };
+
+  const forPlusWaterDose = e => {
+    if (e.keyCode === 13) {
+      onClickWaterDose(e, date, waterDose, setWaterIsActive);
+    }
+  };
+
+  const forInitWaterDose = e => {
+    if (e.keyCode === 13) {
+      onClickWaterDose(e, date, waterDose, setWaterIsActive);
+    }
+    if (e.keyCode === 9) {
+      setWaterIsActive(false);
+    }
+  };
+
+  const forMoreButton = e => {
+    if (e.keyCode === 13) {
+      setMoreIsActive(!moreIsActive);
+    }
+    if (e.keyCode === 27) {
+      setMoreIsActive(false);
+    }
+  };
+
+  const forMoreDialog = e => {
+    if (e.keyCode === 27) {
+      setMoreIsActive(false);
+    }
+  };
+
+  const forDailyReview = async e => {
+    if (e.keyCode === 13) {
+      await setReviewIsActive(true);
+      await onClick(dailyTextarea);
+      setMoreIsActive(false);
+    }
+  };
+
+  const forDelteAll = e => {
+    if (e.keyCode === 13) {
+      onDeleteAll(menuListData);
+      setMoreIsActive(false);
+    }
+    if (e.keyCode === 9) {
+      setMoreIsActive(false);
+    }
+  };
+
+  /* -------------------------------------------------------------------------- */
 
   return (
     <StyledMenuListBar>
@@ -58,22 +155,14 @@ export default function MenuListBar({
         {isLiked ? (
           <StyledLike
             onClick={() => handleDisLike(menuListData, date)}
-            onKeyDown={e => {
-              if (e.keyCode === 13) {
-                handleDisLike(menuListData, date);
-              }
-            }}
+            onKeyDown={e => forLikeButton(e)}
             tabIndex='0'
             aria-label='싫어요 버튼'
           />
         ) : (
           <StyledDisLike
             onClick={() => handleLike(menuListData, date)}
-            onKeyDown={e => {
-              if (e.keyCode === 13) {
-                handleLike(menuListData, date);
-              }
-            }}
+            onKeyDown={e => forDisLikeButton(e)}
             tabIndex='0'
             aria-label='좋아요 버튼'
           />
@@ -83,26 +172,9 @@ export default function MenuListBar({
       <div>
         <StyledContainer
           initial={{ x: 0 }}
-          whileHover={{
-            x: [0, 3, -3, 3, -3, 3, -3],
-            transition: {
-              duration: 0.6,
-              type: 'spring',
-              mass: 0.6,
-              stiffness: 300,
-              repeat: Infinity,
-              repeatType: 'mirror'
-            }
-          }}
+          whileHover={forWhileHover()}
           tabIndex='0'
-          onKeyDown={e => {
-            if (e.keyCode === 13) {
-              setWaterIsActive(!waterIsActive);
-            }
-            if (e.keyCode === 27) {
-              setWaterIsActive(false);
-            }
-          }}
+          onKeyDown={e => forWaterDoseButton(e)}
         >
           <StyledWaterDose
             onClick={() => {
@@ -127,21 +199,13 @@ export default function MenuListBar({
                 duration: 0.1
               }}
               exit={{ x: 2, opacity: 0 }}
-              onKeyDown={e => {
-                if (e.keyCode === 27) {
-                  setWaterIsActive(false);
-                }
-              }}
+              onKeyDown={e => forWaterDoseDialog(e)}
             >
               <span
                 onClick={e =>
                   onClickWaterDose(e, date, waterDose, setWaterIsActive)
                 }
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    onClickWaterDose(e, date, waterDose, setWaterIsActive);
-                  }
-                }}
+                onKeyDown={e => forPlusWaterDose(e)}
                 tabIndex='0'
                 aria-label='더하기 100 미리'
               >
@@ -151,11 +215,7 @@ export default function MenuListBar({
                 onClick={e =>
                   onClickWaterDose(e, date, waterDose, setWaterIsActive)
                 }
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    onClickWaterDose(e, date, waterDose, setWaterIsActive);
-                  }
-                }}
+                onKeyDown={e => forPlusWaterDose(e)}
                 tabIndex='0'
                 aria-label='더하기 300 미리'
               >
@@ -165,11 +225,7 @@ export default function MenuListBar({
                 onClick={e =>
                   onClickWaterDose(e, date, waterDose, setWaterIsActive)
                 }
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    onClickWaterDose(e, date, waterDose, setWaterIsActive);
-                  }
-                }}
+                onKeyDown={e => forPlusWaterDose(e)}
                 tabIndex='0'
                 aria-label='더하기 500 미리'
               >
@@ -179,14 +235,7 @@ export default function MenuListBar({
                 onClick={e =>
                   onClickWaterDose(e, date, waterDose, setWaterIsActive)
                 }
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    onClickWaterDose(e, date, waterDose, setWaterIsActive);
-                  }
-                  if (e.keyCode === 9) {
-                    setWaterIsActive(false);
-                  }
-                }}
+                onKeyDown={e => forInitWaterDose(e)}
                 tabIndex='0'
                 aria-label='물 초기화'
               >
@@ -206,14 +255,7 @@ export default function MenuListBar({
           onClick={() => setMoreIsActive(!moreIsActive)}
           tabIndex='0'
           aria-label='더보기'
-          onKeyDown={e => {
-            if (e.keyCode === 13) {
-              setMoreIsActive(!moreIsActive);
-            }
-            if (e.keyCode === 27) {
-              setMoreIsActive(false);
-            }
-          }}
+          onKeyDown={e => forMoreButton(e)}
         />
         {moreIsActive && (
           <>
@@ -229,11 +271,7 @@ export default function MenuListBar({
                 duration: 0.1
               }}
               exit={{ x: 2, opacity: 0 }}
-              onKeyDown={e => {
-                if (e.keyCode === 27) {
-                  setMoreIsActive(false);
-                }
-              }}
+              onKeyDown={e => forMoreDialog(e)}
             >
               <span
                 onClick={async () => {
@@ -241,13 +279,7 @@ export default function MenuListBar({
                   await onClick(dailyTextarea);
                   setMoreIsActive(false);
                 }}
-                onKeyDown={async e => {
-                  if (e.keyCode === 13) {
-                    await setReviewIsActive(true);
-                    await onClick(dailyTextarea);
-                    setMoreIsActive(false);
-                  }
-                }}
+                onKeyDown={e => forDailyReview(e)}
                 tabIndex='0'
                 aria-label='오늘 기록 작성'
               >
@@ -258,15 +290,7 @@ export default function MenuListBar({
                   onDeleteAll(menuListData);
                   setMoreIsActive(false);
                 }}
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    onDeleteAll(menuListData);
-                    setMoreIsActive(false);
-                  }
-                  if (e.keyCode === 9) {
-                    setMoreIsActive(false);
-                  }
-                }}
+                onKeyDown={e => forDelteAll(e)}
                 tabIndex='0'
                 aria-label='식단 전체 삭제'
               >

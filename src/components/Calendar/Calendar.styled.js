@@ -22,7 +22,7 @@ const StyledCalendarModal = styled.div`
 const StyledCalendarDialog = styled(motion.div)`
   width: 340px;
   position: fixed;
-  top: 305px;
+  top: 290px;
   right: 215px;
   font-size: ${fontSizeKit.small};
   font-weight: ${fontWeightKit.bold};
@@ -43,14 +43,15 @@ const StyledNav = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 15px 18px 15px;
   cursor: default;
 
   button {
     background: none;
     cursor: pointer;
-    outline: none;
     color: ${palette.themeDark};
+    height: 20px;
 
     ${StyledPrevButton} {
       width: 20px;
@@ -105,7 +106,9 @@ const StyledDate = styled.div`
   border-radius: 50%;
   display: flex;
   flex-flow: column;
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
+  margin-bottom: 2px;
 
   color: ${props => props.$styledColorProps};
   background: ${props => props.$styledBackgroundProps};
@@ -120,14 +123,24 @@ const StyledDate = styled.div`
 
 const StyledDot = styled.span`
   font-size: ${fontSizeKit.xLarge};
-  margin-top: -33px;
-  padding: 20px 0;
-  display: inline-block;
   cursor: pointer;
   color: ${palette.themePrimaryThick};
 
+  width: 42px;
+  height: 41px;
+  border-radius: 50%;
+  padding: 10px 0;
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+
   &:hover {
     color: ${palette.themeDefaultWhite};
+  }
+
+  &:focus {
+    box-shadow: 4px solid #395b9d;
   }
 
   color: ${props => props.$styledSelectedColorProps};
@@ -166,14 +179,15 @@ const StyledCalendarIcon = styled(FaRegCalendarAlt)`
 const StyledTodayButton = styled.button`
   font-size: ${fontSizeKit.xSmall};
   position: absolute;
-  top: 30px;
+  top: 31px;
   right: 52px;
-  padding: 8px 10px;
+  padding: 8px 10px 19px 10px;
   border-radius: 5px;
   color: ${palette.themeBrightGray};
   border: 1px solid ${palette.themeBrightGray};
 
-  &:hover {
+  &:hover,
+  &:focus {
     border: 1px solid ${palette.themePrimaryThick};
     color: ${palette.themePrimaryThick};
   }
