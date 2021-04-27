@@ -52,7 +52,6 @@ function PostingContainer({ history }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadedFile, setLoadedFile] = useState(false);
   const imgRef = useRef();
-  const canvasRef = useRef();
   const fileRef = useRef();
   const dispatch = useDispatch();
 
@@ -140,7 +139,9 @@ function PostingContainer({ history }) {
     Object.entries(mealData).forEach(([key, value]) => {
       if (key === "hasError") return;
       formData.append(key, value);
+      console.log(`${key}: `, `${value}`);
     });
+    console.log(formData);
 
     // mealId 수정 코드
     const mealId =
@@ -192,69 +193,6 @@ function PostingContainer({ history }) {
     }
   };
 
-  const ReSizeImage = (e) => {
-    const img = new Image();
-    img.src = e.target.result;
-
-    img.onload = (e) => {
-      const canvas = canvasRef.current;
-      const MAX_SIZE = 320;
-      let width = img.width;
-      let height = img.height;
-
-      if (width > height) {
-        if (width > MAX_SIZE) {
-          height *= MAX_SIZE / width;
-          width = MAX_SIZE;
-        }
-      } else {
-        if (height > MAX_SIZE) {
-          width *= MAX_SIZE / height;
-          height = MAX_SIZE;
-        }
-      }
-      canvas.width = width;
-      canvas.height = height;
-      canvas.getContext("2d").drawImage(img, 0, 0, width, height);
-      const dataUrl = canvas.toDataURL();
-      imgRef.current.src = dataUrl;
-
-      setMealData({
-        ...mealData,
-        photo: imgRef.current.src,
-      });
-
-      // dataURLToBlob(dataUrl);
-      // console.log(dataURLToBlob(dataUrl));
-
-      // const url = URL.createObjectURL(dataURLToBlob(dataUrl));
-      // console.log(url); // 객체 만든 브라우저에서만 가능..?
-
-      // setMealData({
-      //   ...mealData,
-      //   photo: dataURLToBlob(dataUrl),
-      // })
-    };
-  };
-
-  // const dataURLToBlob = (dataURL) => {
-  //   const BASE64_MARKER = ";base64,";
-
-  //   const parts = dataURL.split(BASE64_MARKER);
-  //   const contentType = parts[0].split(":")[1];
-  //   const raw = window.atob(parts[1]);
-
-  //   const rawLength = raw.length;
-
-  //   const uInt8Array = new Uint8Array(rawLength);
-  //   let i = 0;
-  //   while (i < rawLength) {
-  //     uInt8Array[i] = raw.charCodeAt(i);
-  //     i++;
-  //   }
-  //   return new Blob([uInt8Array], { type: contentType });
-  // };
-
   const onDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -282,7 +220,11 @@ function PostingContainer({ history }) {
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      ReSizeImage(e);
+      imgRef.current.src = e.target.result;
+      setMealData({
+        ...mealData,
+        photo: imgRef.current.src,
+      });
     };
 
     reader.readAsDataURL(file[0]);
@@ -302,7 +244,11 @@ function PostingContainer({ history }) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        ReSizeImage(e);
+        imgRef.current.src = e.target.result;
+        setMealData({
+          ...mealData,
+          photo: imgRef.current.src,
+        });
       };
 
       reader.readAsDataURL(e.target.files[0]);
@@ -343,7 +289,6 @@ function PostingContainer({ history }) {
           isDragging={isDragging}
           loadedFile={loadedFile}
           imgRef={imgRef}
-          canvasRef={canvasRef}
           fileRef={fileRef}
         />
         <ReviewBox
