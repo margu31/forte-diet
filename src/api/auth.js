@@ -63,13 +63,13 @@ export const handleSignInGoogleAuthProvider = (closeDialog, signInAction) => asy
 /* 로컬 로그인 (thunk) */
 export const handleSignInWithEmailAndPassword = (
   email,
-  password,
-  signInAction
+  password
+  // signInAction
 ) => async dispatch => {
   try {
     const { user } = await auth.signInWithEmailAndPassword(email, password);
 
-    return true;
+    return user;
   } catch (error) {
     throw new Error(error.message);
   }
