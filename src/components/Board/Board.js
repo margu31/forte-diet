@@ -3,9 +3,16 @@ import BoardNavigation from 'components/BoardNavigation/BoardNavigation';
 import { StyledBoardTitle, StyledBoardWrapper, StyledDiets } from './Board.styled';
 import DietCard from 'components/DietCard/DietCard';
 
-export default function Board({ boardType, setBoardType, diets, auth }) {
-  const handleClick = e => {
-    setBoardType(e.target.id);
+export default function Board({ boardType, diets, auth, handleClick }) {
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
   };
 
   const item = {
@@ -20,7 +27,7 @@ export default function Board({ boardType, setBoardType, diets, auth }) {
     <StyledBoardWrapper>
       <StyledBoardTitle>Trending</StyledBoardTitle>
       <BoardNavigation boardType={boardType} onClick={handleClick} />
-      <StyledDiets>
+      <StyledDiets variants={container} initial='hidden' animate='visible'>
         {diets &&
           diets.map(diet => (
             <DietCard boardType={boardType} auth={auth} dietData={diet} variants={item} />

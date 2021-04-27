@@ -13,7 +13,11 @@ export default function BoardContainer() {
   useEffect(() => {
     dispatch(getPopularMenus(25)());
     dispatch(getRecentMenus(25)());
-  }, []);
+  }, [boardType, dispatch]);
+
+  const handleClick = e => {
+    setBoardType(e.target.id);
+  };
 
   return (
     <Board
@@ -21,6 +25,7 @@ export default function BoardContainer() {
       setBoardType={setBoardType}
       diets={board[boardType]?.data}
       auth={auth}
+      handleClick={handleClick}
     />
   );
 }

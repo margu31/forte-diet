@@ -20,7 +20,7 @@ import {
   MealImgContainer
 } from './DietCard.styled';
 
-export default function DietCard({ dietData, auth, boardType, ...restProps }) {
+export default function DietCard({ dietData, auth, boardType, variants }) {
   const Image = useRef();
   const ImgContainer = useRef();
   const [$imgStyle, setImgStyle] = useState(null);
@@ -92,8 +92,8 @@ export default function DietCard({ dietData, auth, boardType, ...restProps }) {
   };
 
   return (
-    <DietItem>
-      <DietAuthor>{dietData.author}</DietAuthor>
+    <DietItem variants={variants}>
+      <DietAuthor>{dietData.author} 님</DietAuthor>
       <StyledDietCard>
         <MealImgContainer
           ref={ImgContainer}
