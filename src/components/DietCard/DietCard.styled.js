@@ -8,6 +8,7 @@ export const DietItem = styled.li`
   padding: 1rem;
   margin-bottom: 5rem;
   width: 30%;
+  height: auto;
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.1);
 `;
@@ -25,12 +26,23 @@ export const DietAuthor = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const MealImg = styled.img`
+export const MealImgContainer = styled.div`
+  overflow: hidden;
+  width: 340px;
+  height: 300px;
+
   ${({ $borderColor }) => css`
     border: 4px solid ${$borderColor};
-  `}
-  width: 100%;
+  `};
+
   border-radius: 10px;
+`;
+
+export const MealImg = styled.img`
+  ${({ $imgStyle }) => css`
+    ${$imgStyle};
+    ${console.log($imgStyle)}
+  `};
 `;
 
 export const DietInfos = styled.section`

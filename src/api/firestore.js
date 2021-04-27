@@ -230,9 +230,24 @@ export const handleEditMealinUsers = ({ uid }, dietList, mealdata) => async disp
 
 /* 유저 정보 수정 api */
 
-export const editUserInfo = async ({ uid }, userInfo) => {
+export const editUserInfo = async ({ uid, dietList }, userInfo) => {
   try {
     const user = await users.doc(uid);
+
+    Object.entries(dietList).forEach(async ([menu, { id }]) => {
+      try {
+        const diet = await diets.doc(id);
+
+        diet.set(
+          {
+            author: userInfo.nickname
+          },
+          { merge: true }
+        );
+      } catch (e) {
+        throw new Error(e.message);
+      }
+    });
 
     user.set(
       {
