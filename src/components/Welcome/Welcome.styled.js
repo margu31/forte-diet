@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { fontSizeKit, palette } from '../../styles';
 import Button from 'components/Button/Button';
 
