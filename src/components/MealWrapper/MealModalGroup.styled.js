@@ -16,20 +16,20 @@ export const StyledMealWrapper = styled.div`
   /* justify-content: center; */
   /* align-items: center; */
   width: 500px;
-  height: 500px;
+  height: 600px;
 `;
 
 export const MealDialogPrevButton = styled(Button)`
   position: absolute;
-  margin: 0;
+  margin-left: 0;
   top: 45%;
   left: 0;
   padding: 0.5em 2em;
-  color: coral;
+  color: white;
   border-radius: 10px;
   &:hover {
     transition: all 0.3s ease-in-out;
-    background-color: coral;
+    /* background-color: coral; */
     color: #fff;
   }
 `;
@@ -37,11 +37,8 @@ export const MealDialogPrevButton = styled(Button)`
 export const MealDialogNextButton = styled(Button)`
   position: absolute;
   margin: 0;
-  /* width: 100px; */
-  /* height: 100px; */
   top: 45%;
   right: 0%;
-  /* border: 1px solid coral; */
   padding: 0.5em 2em;
   /* color: coral; */
   border-radius: 10px;
@@ -52,16 +49,13 @@ export const MealDialogNextButton = styled(Button)`
   }
 `;
 
-export const MealDialogOkButton = styled(Button)`
+export const MealDialogSubmitButton = styled(Button)`
   position: absolute;
-  bottom: 0;
+  bottom: 2%;
   left: 0;
   margin: 0;
-  width: 100px;
-  height: 100px;
-  border: 1px solid coral;
   padding: 0.5em 2em;
-  color: coral;
+  background-color: transparent;
   border-radius: 50px;
   &:hover {
     transition: all 0.3s ease-in-out;
@@ -72,15 +66,27 @@ export const MealDialogOkButton = styled(Button)`
 
 export const MealDialogEditButton = styled(Button)`
   margin: 0;
+  margin-left: 0;
   position: absolute;
-  bottom: 0;
+  bottom: 2%;
   right: 0;
-  width: 100px;
-  height: 100px;
-  border: 1px solid coral;
   padding: 0.5em 2em;
-  color: coral;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  background-color: transparent;
+
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: coral;
+    color: #fff;
+  }
+`;
+
+export const MealDialogCloseButton = styled(Button)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  padding: 10px;
   &:hover {
     transition: all 0.3s ease-in-out;
     background-color: coral;

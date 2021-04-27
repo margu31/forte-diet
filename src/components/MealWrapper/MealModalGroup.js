@@ -7,9 +7,11 @@ import {
   MealDialogPrevButton,
   StyledButtonContainer,
   StyledMealWrapper,
-  MealDialogOkButton,
+  MealDialogSubmitButton,
   MealDialogEditButton,
   StyledMealContainer,
+  MealDialogCloseButton,
+  StyledSubmitAndEditButtonWrapper,
 } from "./MealModalGroup.styled";
 
 export const MealModalGroup = ({
@@ -44,9 +46,9 @@ export const MealModalGroup = ({
             ></MealDialog>
           ))}
         </StyledMealWrapper>
-        <MealDialogOkButton type="button" onClick={onMealModal}>
+        <MealDialogSubmitButton type="button" onClick={onMealModal}>
           확인
-        </MealDialogOkButton>
+        </MealDialogSubmitButton>
         <MealDialogEditButton onClick={onSetting}>수정</MealDialogEditButton>
         {/* </StyledButtonContainer> */}
         <MealDialogPrevButton type="button" onClick={prevMeal}>
@@ -55,6 +57,9 @@ export const MealModalGroup = ({
         <MealDialogNextButton type="button" onClick={nextMeal}>
           &#62;
         </MealDialogNextButton>
+        <MealDialogCloseButton Button onClick={onMealModal}>
+          X
+        </MealDialogCloseButton>
       </StyledMealContainer>
     </Modal>
   );

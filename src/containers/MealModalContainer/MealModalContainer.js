@@ -1,6 +1,7 @@
 import { MealModalGroup } from "components/MealWrapper/MealModalGroup";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import SettingPage from "../../pages/SettingPage/SettingPage";
 
 export default function MealModalContainer({
@@ -8,8 +9,10 @@ export default function MealModalContainer({
   mealListData,
   showMealModal,
 }) {
+  const authUser = useSelector((state) => state.auth.authUser);
   const menuList = useSelector((state) => state.menuList);
   const slideRef = useRef(null);
+  const history = useHistory();
 
   const { date, id } = mealListData;
 
@@ -55,8 +58,21 @@ export default function MealModalContainer({
   };
 
   const onSetting = () => {
-    SettingPage();
+    history.push({
+      pathname: "/postEdit",
+      state: {
+        authUser: authUser,
+        id: id,
+        menuList: menuList,
+      },
+    });
   };
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      onMealModal();
+    }
+  });
 
   // console.log(mealsArrayList.map((data) => data.id));
   // console.log(mealsArrayList.map((data) => data.id).length);
@@ -75,9 +91,6 @@ export default function MealModalContainer({
   //   setCurrentMealId(id);
   // }
 
-  if (!showMealModal) {
-    setCurrentMealId(id);
-  }
   // console.log(mealsArrayList);
   console.log(mealsArrayList.map((data) => parseInt(data.id)));
   console.log(id, "props로 받는 id");
@@ -94,6 +107,9 @@ export default function MealModalContainer({
 
   // const fff = [1, 3, 5];
   // console.log(fff.findIndex((id) => id === 3));
+  console.log(authUser);
+  console.log(menuList);
+  console.log(id);
   return (
     <>
       <MealModalGroup
