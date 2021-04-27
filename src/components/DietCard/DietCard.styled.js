@@ -14,7 +14,7 @@ export const DietItem = styled(motion.li)`
   background-color: rgba(0, 0, 0, 0.1);
 `;
 
-export const StyledDietCard = styled.article`
+export const StyledDietCard = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
