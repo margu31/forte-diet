@@ -218,6 +218,11 @@ function PostingContainer({ history }) {
 
       // const url = URL.createObjectURL(dataURLToBlob(dataUrl));
       // console.log(url); // 객체 만든 브라우저에서만 가능..?
+
+      // setMealData({
+      //   ...mealData,
+      //   photo: dataURLToBlob(dataUrl),
+      // })
     };
   };
 
