@@ -29,7 +29,7 @@ import {
 } from 'api/diets';
 import { pushLikeAction } from '../../redux/modules/auth/auth';
 import { addLikeToUser } from 'api/auth';
-import Logout from 'components/Logout/Logout';
+import NotFound from 'components/NotFound/NotFound';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);
@@ -146,7 +146,9 @@ export default function MenuListContainer() {
     );
   }, []);
 
-  if (!isAuthed) return <Logout />;
+  if (!isAuthed) return <NotFound text='로그인 후 이용해 주새오.' />;
+  if (!Object.entries(menuList).length)
+    return <NotFound text='식단을 등록해 주새오.' />;
 
   const menuListData = Object.entries(menuList)
     .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
