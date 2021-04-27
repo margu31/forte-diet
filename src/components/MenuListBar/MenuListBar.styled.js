@@ -207,7 +207,7 @@ const StyledMoreDialog = styled(motion.div)`
 
   span:hover,
   span:focus {
-    background: ${palette.themePrimary};
+    background: ${palette.themeHover};
     opacity: 1;
   }
 

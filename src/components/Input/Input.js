@@ -30,12 +30,13 @@ const Input = React.forwardRef(
       changePasswordMode,
       isShow,
       onFocus,
+      disabled,
       ...restProps
     },
     ref
   ) => {
     return (
-      <StyledInputWrapper>
+      <StyledInputWrapper {...restProps}>
         {a11yHidden ? (
           <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
         ) : (
@@ -55,6 +56,7 @@ const Input = React.forwardRef(
           {...restProps}
           onKeyUp={onKeyUp}
           onFocus={onFocus}
+          disabled={disabled ? true : false}
         ></StyledInput>
         {errorMessage && errorMessage[name] ? (
           <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>

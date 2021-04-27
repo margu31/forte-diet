@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   StyledCalendarButton,
   StyledCalendarIcon,
@@ -147,6 +147,8 @@ export default function Calendar({ calendarMenuList, onScroll }) {
   /* -------------------------------------------------------------------------- */
   /*                         웹 접근성 키보드 이벤트 코드                              */
   /* -------------------------------------------------------------------------- */
+  const foucsFirst = useRef();
+
   const forCalendarButton = e => {
     if (e.keyCode === 27) {
       setIsActive(!isActive);
@@ -154,6 +156,22 @@ export default function Calendar({ calendarMenuList, onScroll }) {
   };
 
   const forSelectDate = e => {
+    if (
+      calendarMenuList[0].slice(0, 6) ===
+      e.target.ariaLabel.slice(2, 10).replace(/-/g, '')
+    ) {
+      if (e.keyCode === 13) {
+        e.stopPropagation(); // 이벤트 전파 막기
+        setCurrentDate(new Date(e.target.parentElement.dataset.dateOrigin));
+        setIsActive(false);
+        onScroll(e.target.parentElement.dataset.date);
+      }
+
+      if (e.keyCode === 9) {
+        foucsFirst.current.focus();
+      }
+    }
+
     if (e.keyCode === 13) {
       e.stopPropagation(); // 이벤트 전파 막기
       setCurrentDate(new Date(e.target.parentElement.dataset.dateOrigin));
@@ -173,6 +191,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
         onKeyDown={e => forCalendarButton(e)}
         tabIndex='0'
         aria-label='식단 캘린더'
+        ref={foucsFirst}
       >
         <StyledCalendarIcon />
       </StyledCalendarButton>

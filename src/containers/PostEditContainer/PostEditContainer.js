@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "components/Form/Form";
 import {
@@ -21,12 +21,12 @@ const month = getMonth >= 10 ? getMonth : "0" + getMonth;
 const date = today.getDate();
 
 const maxDate = `${year}-${month}-${date}`;
-const defaultDate = maxDate.slice(2, 10).replace(/-/g, "");
-const day = today.toString().slice(0, 3).toUpperCase();
+// const defaultDate = maxDate.slice(2, 10).replace(/-/g, "");
+// const day = today.toString().slice(0, 3).toUpperCase();
 
 const initialPostingFormValues = {
   id: 0,
-  date: `${defaultDate} ${day}`,
+  date: null,
   photo: null,
   calories: 0,
   review: "",
@@ -44,37 +44,79 @@ const initialPostingFormValues = {
 };
 
 function PostEditContainer({ history }) {
-  const [mealData, setMealData] = useState(initialPostingFormValues);
-  const { authUser } = useSelector((state) => state.auth);
-  const menuList = useSelector((state) => state.menuList);
+  const isEditing = true;
+  const { authUser, id, mealDate, menuList } = history.location.state;
+
+  const [meal, setMeal] = useState(initialPostingFormValues);
+  // const [meal, setMeal] = useState(mealDate);
   const [isDragging, setIsDragging] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadedFile, setLoadedFile] = useState(false);
   const imgRef = useRef();
   const canvasRef = useRef();
+  const fileRef = useRef();
   const dispatch = useDispatch();
 
+  console.log(mealDate);
+  // console.log(meal);
+
+  useEffect(() => {
+    setMeal({
+      ...meal,
+      ...mealDate[0],
+      hasError: {
+        ...meal.hasError,
+      },
+    });
+  }, []);
+
+  // console.log(meal);
+
+  function convertDate(date) {
+    // console.log(date);
+    const yymmdd = date.slice(0, 6).toString();
+    const yy = yymmdd.substr(0, 2);
+    const mm = yymmdd.substr(2, 2);
+    const dd = yymmdd.substr(4, 2);
+    const yyyy = +yy < 90 ? "20" + yy : "19" + yy;
+    return yyyy + "-" + mm + "-" + dd;
+  }
+
+  const defaultDate = convertDate(mealDate[0].date);
+  // console.log(defaultDate);
+  const defaultUrl = meal.photo;
+  const defaultType = meal.type;
+  const defaultCalories = meal.calories;
+  const defaultTitle = meal.title;
+  const defaultReview = meal.review;
+  const defaultIsPublic = meal.isPublic;
+  console.log(defaultType);
+  console.log(defaultCalories);
+  console.log(defaultTitle);
+  console.log(defaultReview);
+  console.log(defaultIsPublic);
+
   const isDisabled =
-    !mealData.review ||
-    !mealData.title ||
-    !mealData.type ||
-    mealData.hasError.review ||
-    mealData.hasError.title;
+    !meal.review ||
+    !meal.title ||
+    !meal.type ||
+    meal.hasError.review ||
+    meal.hasError.title;
 
   const menuValid = (menu) => {
     if (!menuValidation(menu)) {
-      setMealData({
-        ...mealData,
+      setMeal({
+        ...meal,
         hasError: {
-          ...mealData.hasError,
+          ...meal.hasError,
           title: "한 글자 이상, 10자 이내로 입력해주세요!",
         },
       });
     } else {
-      setMealData({
-        ...mealData,
+      setMeal({
+        ...meal,
         hasError: {
-          ...mealData.hasError,
+          ...meal.hasError,
           title: null,
         },
       });
@@ -83,18 +125,18 @@ function PostEditContainer({ history }) {
 
   const reviewValid = (review) => {
     if (!reviewValidation(review)) {
-      setMealData({
-        ...mealData,
+      setMeal({
+        ...meal,
         hasError: {
-          ...mealData.hasError,
+          ...meal.hasError,
           review: "한 글자 이상 입력해주세요!",
         },
       });
     } else {
-      setMealData({
-        ...mealData,
+      setMeal({
+        ...meal,
         hasError: {
-          ...mealData.hasError,
+          ...meal.hasError,
           review: null,
         },
       });
@@ -103,13 +145,13 @@ function PostEditContainer({ history }) {
 
   const onChange = (e) => {
     if (e.target.name === "type") {
-      setMealData({
-        ...mealData,
+      setMeal({
+        ...meal,
         [e.target.name]: e.target.value,
       });
     } else if (e.target.type === "checkbox") {
-      setMealData({
-        ...mealData,
+      setMeal({
+        ...meal,
         [e.target.name]: `${e.target.checked ? "private" : "public"}`,
       });
     } else if (e.target.name === "date") {
@@ -119,13 +161,13 @@ function PostEditContainer({ history }) {
       const newDay = oldDate.slice(0, 3).toUpperCase();
       const newDate = e.target.value.slice(2, 10).replace(/-/g, "");
 
-      setMealData({
-        ...mealData,
+      setMeal({
+        ...meal,
         [e.target.name]: `${newDate} ${newDay}`,
       });
     } else
-      setMealData({
-        ...mealData,
+      setMeal({
+        ...meal,
         [e.target.name]: e.target.value,
       });
   };
@@ -135,7 +177,7 @@ function PostEditContainer({ history }) {
 
     const formData = new FormData();
 
-    Object.entries(mealData).forEach(([key, value]) => {
+    Object.entries(meal).forEach(([key, value]) => {
       if (key === "hasError") return;
       formData.append(key, value);
       console.log(`${key}: `, `${value}`);
@@ -168,40 +210,6 @@ function PostEditContainer({ history }) {
     }
   };
 
-  const ReSizeImage = (e) => {
-    const img = new Image();
-    img.src = e.target.result;
-
-    img.onload = (e) => {
-      const canvas = canvasRef.current;
-      const MAX_SIZE = 320;
-      let width = img.width;
-      let height = img.height;
-
-      if (width > height) {
-        if (width > MAX_SIZE) {
-          height *= MAX_SIZE / width;
-          width = MAX_SIZE;
-        }
-      } else {
-        if (height > MAX_SIZE) {
-          width *= MAX_SIZE / height;
-          height = MAX_SIZE;
-        }
-      }
-      canvas.width = width;
-      canvas.height = height;
-      canvas.getContext("2d").drawImage(img, 0, 0, width, height);
-      const dataUrl = canvas.toDataURL();
-      imgRef.current.src = dataUrl;
-
-      setMealData({
-        ...mealData,
-        photo: imgRef.current.src,
-      });
-    };
-  };
-
   const onDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -229,7 +237,11 @@ function PostEditContainer({ history }) {
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      ReSizeImage(e);
+      imgRef.current.src = e.target.result;
+      setMeal({
+        ...meal,
+        photo: imgRef.current.src,
+      });
     };
 
     reader.readAsDataURL(file[0]);
@@ -249,9 +261,12 @@ function PostEditContainer({ history }) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        ReSizeImage(e);
+        imgRef.current.src = e.target.result;
+        setMeal({
+          ...meal,
+          photo: imgRef.current.src,
+        });
       };
-
       reader.readAsDataURL(e.target.files[0]);
     }
   };
@@ -268,8 +283,14 @@ function PostEditContainer({ history }) {
           onChange={onChange}
           onKeyUp={onKeyUp}
           onKeyPress={onKeyPress}
-          errorMessage={mealData.hasError}
+          errorMessage={meal.hasError}
           maxDate={maxDate}
+          isEditing={isEditing}
+          defaultDate={defaultDate}
+          defaultUrl={defaultUrl}
+          defaultType={defaultType}
+          defaultCalories={defaultCalories}
+          defaultTitle={defaultTitle}
           onDragEnter={onDragEnter}
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
@@ -281,6 +302,7 @@ function PostEditContainer({ history }) {
           loadedFile={loadedFile}
           imgRef={imgRef}
           canvasRef={canvasRef}
+          fileRef={fileRef}
         />
         <ReviewBox
           id="mealReview"
@@ -289,13 +311,17 @@ function PostEditContainer({ history }) {
           placeholder="자유롭게 리뷰를 남겨주세요! (500자 이내)"
           onChange={onChange}
           onKeyUp={onKeyUp}
-          hasError={mealData.hasError.review}
+          hasError={meal.hasError.review}
+          // defaultReview={isEditing ? defaultReview : null}
+          defaultReview={defaultReview}
         />
         <Toggle
           id="isPublic"
           label1="Public"
           label2="Private"
           onChange={onChange}
+          isEditing={isEditing}
+          defaultIsPublic={defaultIsPublic}
         />
         <div>
           <Button type="button" onSubmit={goBack}>
