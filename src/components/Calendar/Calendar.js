@@ -17,6 +17,10 @@ import { palette } from 'styles/index';
 
 export default function Calendar({ calendarMenuList, onScroll }) {
   const [isActive, setIsActive] = useState(false);
+
+  /* -------------------------------------------------------------------------- */
+  /*                              캘린더 html 생성                                 */
+  /* -------------------------------------------------------------------------- */
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -76,6 +80,29 @@ export default function Calendar({ calendarMenuList, onScroll }) {
     date1.getMonth() === date2.getMonth() &&
     date1.getDate() === date2.getDate();
 
+  const onClickPrev = () => {
+    setCurrentDate(
+      new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() - 1,
+        currentDate.getDate()
+      )
+    );
+  };
+
+  const onClickNext = () => {
+    setCurrentDate(
+      new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        currentDate.getDate()
+      )
+    );
+  };
+
+  /* -------------------------------------------------------------------------- */
+  /*                           스타일 컴포넌트 프롭스 지정                             */
+  /* -------------------------------------------------------------------------- */
   const styledColorProps = date => {
     const $color = [];
 
@@ -117,25 +144,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
     return $selectedColor;
   };
 
-  const onClickPrev = () => {
-    setCurrentDate(
-      new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() - 1,
-        currentDate.getDate()
-      )
-    );
-  };
-
-  const onClickNext = () => {
-    setCurrentDate(
-      new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() + 1,
-        currentDate.getDate()
-      )
-    );
-  };
+  /* -------------------------------------------------------------------------- */
 
   if (!year) return null;
 

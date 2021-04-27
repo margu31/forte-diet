@@ -24,6 +24,14 @@ export default function MealList({
   const { photo, title, type, id } = mealListData;
   const [isActive, setIsActive] = useState(false);
   const [showMealModal, setShowMealModal] = useState(false);
+
+  const onMealModal = e => {
+    setShowMealModal(!showMealModal);
+  };
+
+  /* -------------------------------------------------------------------------- */
+  /*                           스타일 컴포넌트 프롭스 지정                             */
+  /* -------------------------------------------------------------------------- */
   const changeBorderColor = type => {
     switch (type) {
       case '아침':
@@ -39,9 +47,35 @@ export default function MealList({
     }
   };
 
-  const onMealModal = e => {
-    setShowMealModal(!showMealModal);
+  /* -------------------------------------------------------------------------- */
+  /*                           웹 접근성 키보드 이벤트 코드                            */
+  /* -------------------------------------------------------------------------- */
+  const forPhoto = e => {
+    if (e.keyCode === 13) {
+      onMealModal();
+    }
   };
+
+  const forDeleteButton = e => {
+    if (e.keyCode === 13) {
+      setIsActive(!isActive);
+    }
+  };
+
+  const forDeleteDialog = e => {
+    if (e.keyCode === 13) {
+      onDelete(date, id);
+      setIsActive(false);
+    }
+    if (e.keyCode === 27) {
+      setIsActive(false);
+    }
+    if (e.keyCode === 9) {
+      setIsActive(false);
+    }
+  };
+
+  /* -------------------------------------------------------------------------- */
 
   return (
     <>
@@ -63,11 +97,7 @@ export default function MealList({
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1 }}
             tabIndex='0'
-            onKeyDown={e => {
-              if (e.keyCode === 13) {
-                onMealModal();
-              }
-            }}
+            onKeyDown={e => forPhoto(e)}
             aria-label={`${type} ${title}`}
           >
             <img src={photo} alt={title} />
@@ -77,11 +107,7 @@ export default function MealList({
           {!isHome && (
             <StyledDeleteButton
               onClick={() => setIsActive(!isActive)}
-              onKeyDown={e => {
-                if (e.keyCode === 13) {
-                  setIsActive(!isActive);
-                }
-              }}
+              onKeyDown={e => forDeleteButton(e)}
               aria-label='삭제'
             >
               <StyledDeleteIcon />
@@ -106,18 +132,7 @@ export default function MealList({
                   onDelete(date, id);
                   setIsActive(false);
                 }}
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    onDelete(date, id);
-                    setIsActive(false);
-                  }
-                  if (e.keyCode === 27) {
-                    setIsActive(false);
-                  }
-                  if (e.keyCode === 9) {
-                    setIsActive(false);
-                  }
-                }}
+                onKeyDown={e => forDeleteDialog(e)}
                 tabIndex='0'
                 aria-label='정말로 삭제하시겠습니까?'
               >
