@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { IoWater } from 'react-icons/io5';
 import { RiRestaurantFill } from 'react-icons/ri';
 import { palette, fontSizeKit, fontWeightKit } from 'styles';
+import { a11yHidden } from 'styles/a11y';
 
 const StyledWaterDose = styled(IoWater)``;
 const StyledCalories = styled(RiRestaurantFill)``;
@@ -16,6 +17,10 @@ const StyledNav = styled(motion.nav)`
   z-index: 999;
   display: flex;
   border-radius: 5px;
+
+  h3 {
+    ${a11yHidden()};
+  }
 `;
 
 const StyledLi = styled(motion.li)`
@@ -40,7 +45,7 @@ const StyledLi = styled(motion.li)`
     padding: 13px 0px 10px 0;
     border-radius: 4px;
 
-    h3 {
+    p {
       font-size: ${fontSizeKit.small};
       font-weight: ${fontWeightKit.bold};
       margin-bottom: 7px;
@@ -102,7 +107,7 @@ const StyledUl = styled(motion.ul)`
 `;
 
 const StyledButton = styled(motion.button)`
-  padding: 13px 13px 5px 12px;
+  padding: 13px 13px 9px 12px;
   border-radius: 50%;
   cursor: pointer;
   outline: none;

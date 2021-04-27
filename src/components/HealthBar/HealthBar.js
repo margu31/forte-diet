@@ -11,6 +11,9 @@ import {
 } from './HealthBar.styled';
 import { motion, useCycle } from 'framer-motion';
 
+/* -------------------------------------------------------------------------- */
+/*                           framer-motion animation                          */
+/* -------------------------------------------------------------------------- */
 const sidebar = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 120px 20px)`,
@@ -70,6 +73,8 @@ const Path = props => (
   />
 );
 
+/* -------------------------------------------------------------------------- */
+
 export default function HealthBar({ healthBar, getTotalCalories, getDate }) {
   const [isOpen, toggleOpen] = useCycle(true, false);
 
@@ -78,6 +83,7 @@ export default function HealthBar({ healthBar, getTotalCalories, getDate }) {
       <StyledNav initial={false} animate={isOpen ? 'open' : 'closed'}>
         <StyledContainer variants={sidebar}>
           <StyledHeader />
+          <h3 tabIndex='0'>3일 기록 사이드바</h3>
           <StyledUl variants={variantsUl}>
             {healthBar.map((healthBarList, i) => (
               <StyledLi
@@ -86,7 +92,7 @@ export default function HealthBar({ healthBar, getTotalCalories, getDate }) {
                 whileHover={{ scale: 1.1 }}
               >
                 <div>
-                  <h3 lang='en'>{getDate(i)}</h3>
+                  <p lang='en'>{getDate(i)}</p>
                   <div>
                     <StyledWaterDose />
                     <span>{healthBarList.waterDose || 0}ml</span>
@@ -101,7 +107,10 @@ export default function HealthBar({ healthBar, getTotalCalories, getDate }) {
           </StyledUl>
         </StyledContainer>
 
-        <StyledButton onClick={() => toggleOpen()}>
+        <StyledButton
+          onClick={() => toggleOpen()}
+          aria-label='사이드바 열기/닫기'
+        >
           <svg width='15' height='15' viewBox='0 0 20 20'>
             <Path
               variants={{

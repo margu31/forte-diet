@@ -1,7 +1,10 @@
 import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Form from 'components/Form/Form';
-import { menuValidation, reviewValidation } from 'utils/validation/PostingValidation';
+import {
+  menuValidation,
+  reviewValidation
+} from 'utils/validation/PostingValidation';
 import Button from 'components/Button/Button';
 import Title from 'components/Title/Title';
 import ReviewBox from 'components/ReviewBox/ReviewBox';
@@ -11,6 +14,7 @@ import { addNewDiet, PostMeal } from 'api/firestore';
 import { addMenuListAction } from 'redux/modules/menuList';
 import { addMealInDiets } from 'api/diets';
 import { uploadImgToAmazon } from '../../api/amazon';
+import NotFound from 'components/NotFound/NotFound';
 
 const today = new Date();
 const year = today.getFullYear();
@@ -111,7 +115,9 @@ function PostingContainer({ history }) {
         [e.target.name]: `${e.target.checked ? 'private' : 'public'}`
       });
     } else if (e.target.name === 'date') {
-      const oldDate = new Date(e.target.value.slice(0, 10).replace(/-/g, '/')).toString();
+      const oldDate = new Date(
+        e.target.value.slice(0, 10).replace(/-/g, '/')
+      ).toString();
       const newDay = oldDate.slice(0, 3).toUpperCase();
       const newDate = e.target.value.slice(2, 10).replace(/-/g, '');
 
@@ -139,14 +145,16 @@ function PostingContainer({ history }) {
 
     // mealId 수정 코드
     const mealId =
-      +menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]?.id + 1;
+      +menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]
+        ?.id + 1;
 
     formData.append('id', mealId || 0);
 
     const newFormData = Object.fromEntries(formData.entries());
 
     const photoFile = fileRef.current.files[0] || null;
-    const photoId = authUser.uid + mealData.date.replace(/ /g, '') + (mealId || 0);
+    const photoId =
+      authUser.uid + mealData.date.replace(/ /g, '') + (mealId || 0);
     const photoUrl = await uploadImgToAmazon(photoFile, photoId);
 
     // 새로운 메뉴 리스트라면, diets 테이블에 추가
@@ -255,12 +263,7 @@ function PostingContainer({ history }) {
     history.goBack();
   };
 
-  if (!authUser)
-    return (
-      <div style={{ fontSize: '3rem', margin: '300px 40px', lineHeight: '5rem' }}>
-        로그인하든지~ 가입하든지~ 둘 중 하나 하라~ 이 말입니다. 아시겠어여??????
-      </div>
-    );
+  if (!authUser) return <NotFound text='로그인 후 이용해 주새오.' />;
 
   return (
     <section>
@@ -293,7 +296,12 @@ function PostingContainer({ history }) {
           onKeyUp={onKeyUp}
           hasError={mealData.hasError.review}
         />
-        <Toggle id='isPublic' label1='Public' label2='Private' onChange={onChange} />
+        <Toggle
+          id='isPublic'
+          label1='Public'
+          label2='Private'
+          onChange={onChange}
+        />
         <div>
           <Button type='button' onSubmit={goBack}>
             취소

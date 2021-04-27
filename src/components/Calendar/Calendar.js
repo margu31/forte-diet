@@ -17,6 +17,10 @@ import { palette } from 'styles/index';
 
 export default function Calendar({ calendarMenuList, onScroll }) {
   const [isActive, setIsActive] = useState(false);
+
+  /* -------------------------------------------------------------------------- */
+  /*                              캘린더 html 생성                                 */
+  /* -------------------------------------------------------------------------- */
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -76,6 +80,29 @@ export default function Calendar({ calendarMenuList, onScroll }) {
     date1.getMonth() === date2.getMonth() &&
     date1.getDate() === date2.getDate();
 
+  const onClickPrev = () => {
+    setCurrentDate(
+      new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() - 1,
+        currentDate.getDate()
+      )
+    );
+  };
+
+  const onClickNext = () => {
+    setCurrentDate(
+      new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        currentDate.getDate()
+      )
+    );
+  };
+
+  /* -------------------------------------------------------------------------- */
+  /*                           스타일 컴포넌트 프롭스 지정                             */
+  /* -------------------------------------------------------------------------- */
   const styledColorProps = date => {
     const $color = [];
 
@@ -117,25 +144,25 @@ export default function Calendar({ calendarMenuList, onScroll }) {
     return $selectedColor;
   };
 
-  const onClickPrev = () => {
-    setCurrentDate(
-      new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() - 1,
-        currentDate.getDate()
-      )
-    );
+  /* -------------------------------------------------------------------------- */
+  /*                         웹 접근성 키보드 이벤트 코드                              */
+  /* -------------------------------------------------------------------------- */
+  const forCalendarButton = e => {
+    if (e.keyCode === 27) {
+      setIsActive(!isActive);
+    }
   };
 
-  const onClickNext = () => {
-    setCurrentDate(
-      new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() + 1,
-        currentDate.getDate()
-      )
-    );
+  const forSelectDate = e => {
+    if (e.keyCode === 13) {
+      e.stopPropagation(); // 이벤트 전파 막기
+      setCurrentDate(new Date(e.target.parentElement.dataset.dateOrigin));
+      setIsActive(false);
+      onScroll(e.target.parentElement.dataset.date);
+    }
   };
+
+  /* -------------------------------------------------------------------------- */
 
   if (!year) return null;
 
@@ -143,6 +170,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
     <>
       <StyledCalendarButton
         onClick={() => setIsActive(!isActive)}
+        onKeyDown={e => forCalendarButton(e)}
         tabIndex='0'
         aria-label='식단 캘린더'
       >
@@ -158,17 +186,19 @@ export default function Calendar({ calendarMenuList, onScroll }) {
               duration: 0.1
             }}
             exit={{ y: 10, opacity: 0 }}
+            aria-label={`${year} ${monthNames[month]}`}
+            tabIndex='0'
+            onKeyDown={e => forCalendarButton(e)}
           >
-            <h2 aria-hidden='true'>캘린더</h2>
-            <StyledNav role='navigation' aria-labelledby='year-title'>
-              <button onClick={onClickPrev}>
+            <StyledNav role='application'>
+              <button onClick={onClickPrev} aria-label='이전 달로 이동'>
                 <StyledPrevButton />
               </button>
               <div>
                 <div>{year}</div>
                 <div>{monthNames[month]}</div>
               </div>
-              <button onClick={onClickNext}>
+              <button onClick={onClickNext} aria-label='다음 달로 이동'>
                 <StyledNextButton />
               </button>
               <StyledTodayButton
@@ -176,6 +206,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
                   e.stopPropagation(); // 이벤트 전파 막기
                   setCurrentDate(new Date());
                 }}
+                aria-label='오늘로 이동'
               >
                 Today
               </StyledTodayButton>
@@ -206,6 +237,9 @@ export default function Calendar({ calendarMenuList, onScroll }) {
                         setIsActive(false);
                         onScroll(e.target.parentElement.dataset.date);
                       }}
+                      onKeyDown={e => forSelectDate(e)}
+                      aria-label={`${formattedDateForSelect(date)} 식단 이동`}
+                      tabIndex='0'
                     >
                       .
                     </StyledDot>
