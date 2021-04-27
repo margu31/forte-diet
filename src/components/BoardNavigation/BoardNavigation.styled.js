@@ -34,6 +34,8 @@ export const BoardBtn = styled(Button)`
       &:before {
         position: absolute;
         top: -0.4rem;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
         content: '';
         display: block;
         width: 5rem;
@@ -42,10 +44,11 @@ export const BoardBtn = styled(Button)`
         transition: all 0.5s;
       }
       &:after {
-        position: absolute;
-        top: 3.5rem;
-        left: 3.8rem;
         content: '';
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
         width: 5.5rem;
         ${$isActive && `border-bottom: 2px solid black`};
       }

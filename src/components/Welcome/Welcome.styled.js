@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components';
-import { palette } from '../../styles';
+import styled from 'styled-components';
+import { fontSizeKit, palette } from '../../styles';
 import Button from 'components/Button/Button';
 
 /* 래퍼 */
 
 export const StyledWelcomeWrapper = styled.section`
-  min-height: 500px;
+  min-height: 460px;
   background: url('/home-welcome.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -20,32 +20,26 @@ const MessageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 7% 2rem 7% 20rem;
-  min-height: 300px;
+  padding: 7% 2rem 3% 20rem;
+  min-height: 280px;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
 `;
 
 const StyledDiv = styled.div`
-  width: 40vw;
+  width: 25vw;
 `;
 
 const StyledP = styled.p`
   padding: 1rem 0 2rem;
-  font-size: 1.2rem;
+  font-size: ${fontSizeKit.small};
   line-height: 1.6rem;
   letter-spacing: 0.15rem;
-  ${({ theme }) =>
-    css`
-      color: ${theme.themeDefaultWhite};
-    `}
+  color: ${palette.themeDefaultWhite};
 `;
 
 const StyledTitle = styled.h2`
-  font-size: 3rem;
-  ${({ theme }) =>
-    css`
-      color: ${theme.themeDefaultWhite};
-    `}
+  font-size: ${fontSizeKit.xxLarge};
+  color: ${palette.themeDefaultWhite};
 `;
 
 const TutorialBtn = styled(Button)`
@@ -101,59 +95,34 @@ export const SearchLabel = styled.label`
   position: absolute;
   top: 50%;
   transform: translate3d(0, -50%, 0);
-  font-size: 1.2rem;
+  font-size: ${fontSizeKit.small};
   font-weight: 400;
   left: 3rem;
 `;
 
 export const SearchInput = styled.input`
-  width: 200px;
-  height: 50px;
+  padding: 1.95rem 9rem;
+  padding-left: 10rem;
   border-radius: 50px 0 0 50px;
-  padding-left: 9rem;
-  font-size: 1.5rem;
+  font-size: ${fontSizeKit.small};
   border: none;
+  outline: none;
 
   &::placeholder {
     opacity: 0.5;
-  }
-
-  &:focus-visible {
-    outline: none;
-    ${({ theme }) => css`
-      box-shadow: 0 0 0 4px ${theme.themePrimary};
-    `}
-  }
-  &:focus:not(:focus-visible) {
-    box-shadow: 0;
   }
 `;
 
 export const SearchBtn = styled(Button)`
   padding: 2rem 6rem;
-  font-size: 1.2rem;
+  font-size: ${fontSizeKit.small};
   background-color: transparent;
   border-radius: 0 50px 50px 0;
   color: ${palette.themeDefaultWhite};
   background-color: ${palette.themePrimary};
+  margin: 0;
 
   &:hover {
     background-color: ${palette.themeSecondary};
   }
 `;
-
-/* export const Search = () => (
-  <SearchSection>
-    <SearchInputForm legend='식단 검색'>
-      <fieldset>
-        <SerachBar>
-          <SearchLabel>식단 검색: </SearchLabel>
-          <SearchInput placeholder='브로콜리, 카레 ...' />
-          <Dropdown selects={['제라드', '효리즈만']} />
-          <SearchBtn>Go!</SearchBtn>
-        </SerachBar>
-      </fieldset>
-    </SearchInputForm>
-  </SearchSection>
-);
- */

@@ -1,6 +1,7 @@
 import { hideVisually } from 'polished';
 import styled, { css } from 'styled-components';
 import { ReactComponent as Dropdown } from 'assets/icons/dropdown.svg';
+import { fontSizeKit, palette } from '../../styles';
 
 export const StyledDropdownWrapper = styled.div`
   position: relative;
@@ -8,9 +9,9 @@ export const StyledDropdownWrapper = styled.div`
 
 export const StyledWindow = styled.div`
   position: relative;
-  width: 320px;
-  padding: 2rem 25rem 2rem 2rem;
-  font-size: 1.2rem;
+  padding: 2rem;
+  padding-right: 18rem;
+  font-size: ${fontSizeKit.small};
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   background-color: transparent;
   cursor: pointer;
@@ -30,20 +31,18 @@ export const StyledSelect = styled.ul`
 
 export const StyledOptions = styled.li`
   white-space: nowrap;
-  width: 320px;
-  padding: 2rem 25rem 2rem 2rem;
-  font-size: 1.2rem;
+  padding: 2rem;
+  padding-right: 18.7rem;
+  font-size: ${fontSizeKit.small};
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-left: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: transparent;
+  background-color: ${palette.themeDefaultWhite};
   cursor: pointer;
   transition: all 0.2s;
 
-  ${({ theme }) => css`
-    background-color: ${theme.themeDefaultWhite};
-    &:hover {
-      background-color: ${theme.themeHover};
-    }
-  `}
+  &:hover {
+    background-color: ${palette.themeHover};
+  }
 
   ${({ $isShowOptions }) => {
     return $isShowOptions

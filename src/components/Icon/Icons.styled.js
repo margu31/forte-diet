@@ -1,12 +1,12 @@
-import styled, { css } from "styled-components";
-import { ReactComponent as Password } from "../../assets/icons/InputIcons/lock.svg";
-import { ReactComponent as Email } from "../../assets/icons/InputIcons/email.svg";
-import { ReactComponent as Gender } from "../../assets/icons/InputIcons/gender.svg";
-import { ReactComponent as Weight } from "../../assets/icons/InputIcons/weight.svg";
-import { ReactComponent as Height } from "../../assets/icons/InputIcons/height.svg";
-import { ReactComponent as Nickname } from "../../assets/icons/InputIcons/nickname.svg";
-import { ReactComponent as Eye } from "../../assets/icons/InputIcons/eye.svg";
-import { ReactComponent as EyeSlash } from "../../assets/icons/InputIcons/eye-slash.svg";
+import styled from 'styled-components';
+import { ReactComponent as Password } from '../../assets/icons/InputIcons/lock.svg';
+import { ReactComponent as Email } from '../../assets/icons/InputIcons/email.svg';
+import { ReactComponent as Gender } from '../../assets/icons/InputIcons/gender.svg';
+import { ReactComponent as Weight } from '../../assets/icons/InputIcons/weight.svg';
+import { ReactComponent as Height } from '../../assets/icons/InputIcons/height.svg';
+import { ReactComponent as Nickname } from '../../assets/icons/InputIcons/nickname.svg';
+import { ReactComponent as Eye } from '../../assets/icons/InputIcons/eye.svg';
+import { ReactComponent as EyeSlash } from '../../assets/icons/InputIcons/eye-slash.svg';
 
 export const StyledEmailIcon = styled(Email)`
   height: 2.5rem;

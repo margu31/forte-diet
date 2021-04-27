@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth as Auth, createOrGetAuthUser, handleSignOut } from '../../api/auth';
 import UserNavigation from 'components/UserNavigation/UserNavigation';
@@ -6,6 +6,7 @@ import { signInAction, signOutAction } from 'redux/modules/auth/auth';
 
 export default function UserBar() {
   const auth = useSelector(state => state.auth);
+  const [dialogType, setDialogType] = useState(null);
   const dispatch = useDispatch();
 
   // 인증 상태 감지 이벤트
@@ -35,11 +36,29 @@ export default function UserBar() {
     });
     // 클린업
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 
+  // 다이얼로그 핸들링
+  const onOpenDialog = e => {
+    setDialogType(e.target.id);
+  };
+
+  const onCloseDialog = e => {
+    setDialogType(null);
+  };
+
+  // 로그아웃 핸들링
   const onSignOut = () => {
     dispatch(handleSignOut(signOutAction));
   };
 
-  return <UserNavigation auth={auth} onSignOut={onSignOut} />;
+  return (
+    <UserNavigation
+      auth={auth}
+      onSignOut={onSignOut}
+      dialogType={dialogType}
+      onOpenDialog={onOpenDialog}
+      onCloseDialog={onCloseDialog}
+    />
+  );
 }

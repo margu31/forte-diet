@@ -1,5 +1,10 @@
 import Button from 'components/Button/Button';
-import { LoginFormInput, StyledForm } from './LoginForm.styled';
+import {
+  LoginFormInput,
+  LoginFormSubmitButton,
+  StyledForm,
+  LoginFormCloseButton
+} from './LoginForm.styled';
 
 export const LoginForm = ({
   onChange,
@@ -38,7 +43,7 @@ export const LoginForm = ({
         changePasswordMode={changePasswordMode}
         isShow={isShow}
       />
-      <Button
+      <LoginFormSubmitButton
         $width='300'
         $height='30'
         type='submit'
@@ -46,10 +51,10 @@ export const LoginForm = ({
         disabled={disabled}
       >
         확인
-      </Button>
-      <Button type='button' onClick={closeModal}>
+      </LoginFormSubmitButton>
+      <LoginFormCloseButton type='button' onClick={closeModal}>
         X
-      </Button>
+      </LoginFormCloseButton>
     </StyledForm>
   );
 };

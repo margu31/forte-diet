@@ -47,7 +47,11 @@ export default function Dropdown({ selects }) {
       {
         <StyledSelect ref={dropdown} $isShowOptions={isShowOptions}>
           {selects.map(select => (
-            <StyledOptions $isShowOptions={isShowOptions} onClick={handleSelect}>
+            <StyledOptions
+              key={`dropdown-${select}`}
+              $isShowOptions={isShowOptions}
+              onClick={handleSelect}
+            >
               {select}
             </StyledOptions>
           ))}

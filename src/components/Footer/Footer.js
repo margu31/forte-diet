@@ -10,7 +10,6 @@ import {
   FacebookIcon,
   TwitterIcon,
   FooterInfoWrapper,
-  Rights,
   RightWrapper,
   RightContent,
   ContactHeader,
