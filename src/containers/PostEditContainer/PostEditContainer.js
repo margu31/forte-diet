@@ -13,7 +13,6 @@ import DataGroup from "components/DataGroup/DataGroup";
 import { addNewDiet, PostMeal } from "api/firestore";
 import { addMenuListAction } from "redux/modules/menuList";
 import { addMealInDiets } from "api/diets";
-import { uploadImgToAmazon } from "../../api/amazon";
 
 const today = new Date();
 const year = today.getFullYear();
@@ -44,7 +43,7 @@ const initialPostingFormValues = {
   },
 };
 
-function PostingContainer({ history }) {
+function PostEditContainer({ history }) {
   const [mealData, setMealData] = useState(initialPostingFormValues);
   const { authUser } = useSelector((state) => state.auth);
   const menuList = useSelector((state) => state.menuList);
@@ -53,7 +52,6 @@ function PostingContainer({ history }) {
   const [loadedFile, setLoadedFile] = useState(false);
   const imgRef = useRef();
   const canvasRef = useRef();
-  const fileRef = useRef();
   const dispatch = useDispatch();
 
   const isDisabled =
@@ -140,37 +138,15 @@ function PostingContainer({ history }) {
     Object.entries(mealData).forEach(([key, value]) => {
       if (key === "hasError") return;
       formData.append(key, value);
+      console.log(`${key}: `, `${value}`);
     });
-
-    // mealId 수정 코드
-    const mealId =
-      +menuList[mealData.date]?.meals[menuList[mealData.date].meals.length - 1]
-        ?.id + 1;
-
-    formData.append("id", mealId || 0);
 
     const newFormData = Object.fromEntries(formData.entries());
 
-    const photoFile = fileRef.current.files[0] || null;
-    const photoId = authUser.uid + mealData.date + (mealId || 0);
-    const photoUrl = await uploadImgToAmazon(photoFile, photoId);
+    // TODO:
+    // 수정 데이터 firebase에 전송
+    // myPage 업뎃
 
-    // 새로운 메뉴 리스트라면, diets 테이블에 추가
-    if (!menuList.hasOwnProperty(mealData.date)) {
-      const dietId = await addNewDiet(authUser, {
-        ...newFormData,
-        photo: photoUrl,
-      });
-      PostMeal(authUser, { ...newFormData, photo: photoUrl }, dietId);
-    } else {
-      PostMeal(authUser, { ...newFormData, photo: photoUrl });
-      addMealInDiets(menuList[mealData.date], {
-        ...newFormData,
-        photo: photoUrl,
-      });
-    }
-
-    dispatch(addMenuListAction(newFormData)); // myPage 실시간 업데이트 코드 추가
     history.push("/myPage");
   };
 
@@ -223,37 +199,8 @@ function PostingContainer({ history }) {
         ...mealData,
         photo: imgRef.current.src,
       });
-
-      // dataURLToBlob(dataUrl);
-      // console.log(dataURLToBlob(dataUrl));
-
-      // const url = URL.createObjectURL(dataURLToBlob(dataUrl));
-      // console.log(url); // 객체 만든 브라우저에서만 가능..?
-
-      // setMealData({
-      //   ...mealData,
-      //   photo: dataURLToBlob(dataUrl),
-      // })
     };
   };
-
-  // const dataURLToBlob = (dataURL) => {
-  //   const BASE64_MARKER = ";base64,";
-
-  //   const parts = dataURL.split(BASE64_MARKER);
-  //   const contentType = parts[0].split(":")[1];
-  //   const raw = window.atob(parts[1]);
-
-  //   const rawLength = raw.length;
-
-  //   const uInt8Array = new Uint8Array(rawLength);
-  //   let i = 0;
-  //   while (i < rawLength) {
-  //     uInt8Array[i] = raw.charCodeAt(i);
-  //     i++;
-  //   }
-  //   return new Blob([uInt8Array], { type: contentType });
-  // };
 
   const onDragEnter = (e) => {
     e.preventDefault();
@@ -307,21 +254,11 @@ function PostingContainer({ history }) {
 
       reader.readAsDataURL(e.target.files[0]);
     }
-    // console.log(e.target.files[0]);
   };
 
   const goBack = () => {
     history.goBack();
   };
-
-  if (!authUser)
-    return (
-      <div
-        style={{ fontSize: "3rem", margin: "300px 40px", lineHeight: "5rem" }}
-      >
-        로그인하든지~ 가입하든지~ 둘 중 하나 하라~ 이 말입니다. 아시겠어여??????
-      </div>
-    );
 
   return (
     <section>
@@ -344,7 +281,6 @@ function PostingContainer({ history }) {
           loadedFile={loadedFile}
           imgRef={imgRef}
           canvasRef={canvasRef}
-          fileRef={fileRef}
         />
         <ReviewBox
           id="mealReview"
@@ -366,7 +302,7 @@ function PostingContainer({ history }) {
             취소
           </Button>
           <Button onSubmit={onSubmit} disabled={isDisabled}>
-            등록
+            수정
           </Button>
         </div>
       </Form>
@@ -374,4 +310,4 @@ function PostingContainer({ history }) {
   );
 }
 
-export default PostingContainer;
+export default PostEditContainer;

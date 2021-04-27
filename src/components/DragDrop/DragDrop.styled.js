@@ -24,6 +24,7 @@ export const StyledFileWrapper = styled.div`
   input {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     cursor: pointer;
     opacity: 0;
     z-index: 9999;
@@ -34,6 +35,14 @@ export const StyledFileWrapper = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  canvas {
+    opacity: 0;
     position: absolute;
     top: 0;
     left: 0;
