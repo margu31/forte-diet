@@ -35,8 +35,7 @@ const Input = React.forwardRef(
     ref
   ) => {
     return (
-      <StyledInputWrapper {...restProps}>
-        {/* {type && <Icons type={type} />} */}
+      <StyledInputWrapper>
         {a11yHidden ? (
           <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
         ) : (
