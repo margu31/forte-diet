@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
 import { palette } from 'styles';
+import { a11yHidden } from 'styles/a11y';
 
 const StyledMyPageWrapper = styled.section`
   min-height: 100vh;
@@ -12,12 +13,7 @@ const StyledMyPageWrapper = styled.section`
   }
 
   h2 {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-    clip: rect(1px, 1px, 1px, 1px);
+    ${a11yHidden()};
   }
 `;
 
