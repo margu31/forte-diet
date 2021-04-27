@@ -29,14 +29,13 @@ time, mark, audio, video, textarea, button, svg {
   user-select: none;
 
   &:focus {
-    /* outline: none; */
-    /* box-shadow: 0 0 0 2px #f3b34c; */
+    outline: none;
+    box-shadow: 0 0 0 4px #395B9D;
     opacity: 1;
   }
 
   &:focus:not(:focus-visible) {
-    /* box-shadow: none; */
-    outline: none;
+    box-shadow: none;
   }
 }
 /* HTML5 display-role reset for older browsers */
