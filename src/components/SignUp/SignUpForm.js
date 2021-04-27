@@ -9,6 +9,8 @@ import {
   StyledSignUpForm,
   StyledBasicInformationGroup,
   StyledAdditionalInformationGroup,
+  SignUpFormCloseButton,
+  SignUpFormSubmitButton,
 } from "./SignUpForm.styled";
 
 export default function SignUpForm({
@@ -87,18 +89,16 @@ export default function SignUpForm({
       />
       <SignUpRadioGroup groupTitle="Gender" onChange={onChange} />
 
-      <Button
-        $width="300"
-        $height="30"
+      <SignUpFormSubmitButton
         type="submit"
         onSubmit={onSubmit}
         disabled={disabled}
       >
         확인
-      </Button>
-      <Button type="button" onClick={closeModal}>
+      </SignUpFormSubmitButton>
+      <SignUpFormCloseButton type="button" onClick={closeModal}>
         X
-      </Button>
+      </SignUpFormCloseButton>
     </StyledSignUpForm>
   );
 }
