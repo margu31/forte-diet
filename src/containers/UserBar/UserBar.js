@@ -36,7 +36,7 @@ export default function UserBar() {
     });
     // 클린업
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 
   // 다이얼로그 핸들링
   const onOpenDialog = e => {

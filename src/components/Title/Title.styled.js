@@ -1,21 +1,6 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
-import { ReactComponent as Logo } from "assets/logos/logo1.svg";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
-
-// export const StyledLogo = styled(Logo)`
-//   height: 50px;
-//   width: 50px;
-//   vertical-align: middle;
-//   margin-left: 20px;
-
-//   // 좌우 반전
-//   transform: rotate(0deg);
-//   -moz-transform: scaleX(-1);
-//   -o-transform: scaleX(-1);
-//   -webkit-transform: scaleX(-1);
-//   transform: scaleX(-1);
-// `;
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const StyledTitle = styled(motion.h2)`
   display: inline-block;
@@ -29,7 +14,7 @@ export const StyledTitle = styled(motion.h2)`
 
   &::before {
     position: absolute;
-    content: "";
+    content: '';
     display: block;
     width: 5px;
     height: 50px;

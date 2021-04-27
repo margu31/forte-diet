@@ -1,5 +1,3 @@
-import { GET_SEARCH } from 'redux/modules/board';
-
 /* 상태 Creator */
 export const boardReducerUtils = {
   inital: {
