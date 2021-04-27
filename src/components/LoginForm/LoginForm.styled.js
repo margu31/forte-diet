@@ -48,7 +48,7 @@ export const StyledForm = styled.form`
 
   p {
     margin-top: 10px;
-    font-size: ${fontSizeKit.extraBold};
+    font-size: ${fontSizeKit.large};
   }
 `;
 

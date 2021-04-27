@@ -22,39 +22,6 @@ export const StyledSignUpForm = styled.form`
     font-weight: ${fontWeightKit.bold};
   }
 
-   /* button {
-    margin-top: 15px;
-    background-color: white;
-    border-radius: 50px;
-    border: none;
-    height: 50px;
-    cursor: pointer;
-    font-size: ${fontSizeKit.medium};
-    border: 2px solid;
-  border-color: ${palette.themePrimary};
-
-    &:disabled {
-      cursor: not-allowed;
-    } */
-  }
-
-  /* button:last-child {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 0px;
-    height: 40px;
-    width: 50px;
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
-    color: ${palette.themeDefault};
-    font-size: ${fontSizeKit.extraBold};
-    :hover {
-      border-radius: 0 17px 0 0;
-    }
-  } */
-
   h3 {
     text-align: left;
     margin-left: 10px;
@@ -133,6 +100,7 @@ export const SignUpFormInput = styled(Input)`
 
   label {
     width: 90px;
+    font-weight: ${fontWeightKit.extraBold};
   }
 `;
 

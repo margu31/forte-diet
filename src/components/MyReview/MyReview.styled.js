@@ -1,18 +1,26 @@
 import styled from "styled-components";
+import { fontSizeKit, fontWeightKit, palette } from "styles";
 
 export const MyReViewContainer = styled.div`
   display: flex;
+  justify-content: center;
   background-color: transparent;
-  width: 500px;
+  border-top: 1px solid ${palette.themePrimary};
+  border-bottom: 1px solid ${palette.themePrimary};
+  padding: 10px 0;
+  width: 350px;
   height: 150px;
+  /* margin: 20px auto 0 auto; */
 `;
 
-export const MyReViewtext = styled.div`
-  background-color: yellowgreen;
-  margin: auto;
-  width: auto;
+export const MyReViewtext = styled.p`
+  /* background-color: yellowgreen; */
+  color: ${palette.themeFont};
+  width: 350px;
   height: auto;
-  text-align: center;
+  text-align: left;
+  font-size: ${fontSizeKit.large};
+
   font-size: 2rem;
   font-weight: 700;
 `;
