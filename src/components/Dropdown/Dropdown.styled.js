@@ -11,6 +11,7 @@ export const StyledWindow = styled.div`
   position: relative;
   padding: 2rem;
   padding-right: 18rem;
+  width: 26rem;
   font-size: ${fontSizeKit.small};
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   background-color: transparent;
@@ -32,7 +33,7 @@ export const StyledSelect = styled.ul`
 export const StyledOptions = styled.li`
   white-space: nowrap;
   padding: 2rem;
-  padding-right: 18.7rem;
+  padding-right: 21.2rem;
   font-size: ${fontSizeKit.small};
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-left: 1px solid rgba(0, 0, 0, 0.1);
