@@ -46,7 +46,7 @@ export const MealImg = styled.img`
   `};
 `;
 
-export const DietInfos = styled.section`
+export const DietInfos = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
