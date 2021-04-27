@@ -163,7 +163,7 @@ function PostingContainer({ history }) {
       });
       PostMeal(authUser, { ...newFormData, photo: photoUrl }, dietId);
     } else {
-      PostMeal(authUser, newFormData);
+      PostMeal(authUser, { ...newFormData, photo: photoUrl });
       addMealInDiets(menuList[mealData.date], {
         ...newFormData,
         photo: photoUrl,
