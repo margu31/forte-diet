@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette, fontSizeKit } from 'styles';
+import { palette, fontSizeKit, a11yHidden } from 'styles';
 import Button from 'components/Button/Button';
 
 export const StyledUserBarWrapper = styled.section`
@@ -7,6 +7,10 @@ export const StyledUserBarWrapper = styled.section`
   top: 3rem;
   right: 3rem;
   padding: 1rem;
+`;
+
+export const UserNavigationHeading = styled.h2`
+  ${a11yHidden()};
 `;
 
 export const StyledUl = styled.ul`
