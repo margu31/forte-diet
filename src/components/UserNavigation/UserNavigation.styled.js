@@ -9,7 +9,7 @@ export const StyledUserBarWrapper = styled.section`
   padding: 1rem;
 `;
 
-export const UserNavigationHeading = styled.h2`
+export const UserNavigationHeading = styled.h3`
   ${a11yHidden()};
 `;
 
