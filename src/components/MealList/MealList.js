@@ -56,12 +56,6 @@ export default function MealList({
     }
   };
 
-  const forDeleteButton = e => {
-    if (e.keyCode === 13) {
-      setIsActive(!isActive);
-    }
-  };
-
   const forDeleteDialog = e => {
     if (e.keyCode === 13) {
       onDelete(date, id);
@@ -107,7 +101,6 @@ export default function MealList({
           {!isHome && (
             <StyledDeleteButton
               onClick={() => setIsActive(!isActive)}
-              onKeyDown={e => forDeleteButton(e)}
               aria-label='삭제'
             >
               <StyledDeleteIcon />
