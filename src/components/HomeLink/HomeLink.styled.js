@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { fontWeightKit, palette } from 'styles';
 
-export const StyledLogo = styled.div`
+export const StyledLink = styled(Link)`
+  display: inline-block;
   font-family: 'InkLipquid';
   position: relative;
   padding: 5rem 0;

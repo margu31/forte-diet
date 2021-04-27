@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Welcome from 'components/Welcome/Welcome';
 import UserBar from 'containers/UserBar/UserBar';
-import { StyledHomePageWrapper } from './Home.styled';
+import { StyledHomePageWrapper, HomePageHeading } from './Home.styled';
 import BoardContainer from 'containers/BoardContainer/BoardContainer';
 import ScrollTopButton from '../../components/ScrollTopButton/ScrollTopButton';
 
@@ -24,6 +24,7 @@ export default function Home() {
 
   return (
     <StyledHomePageWrapper>
+      <HomePageHeading>홈 페이지</HomePageHeading>
       <UserBar />
       <Welcome />
       <BoardContainer />

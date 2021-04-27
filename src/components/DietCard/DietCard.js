@@ -99,7 +99,12 @@ export default function DietCard({ dietData, auth, boardType, variants }) {
           ref={ImgContainer}
           $borderColor={changeBorderColor(dietData.meals[0].type)}
         >
-          <MealImg src={dietData.meals[0].photo} ref={Image} $imgStyle={$imgStyle} />
+          <MealImg
+            alt='음식 사진'
+            src={dietData.meals[0].photo}
+            ref={Image}
+            $imgStyle={$imgStyle}
+          />
         </MealImgContainer>
         <DietInfos>
           <DietInfo>

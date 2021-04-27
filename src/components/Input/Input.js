@@ -35,8 +35,7 @@ const Input = React.forwardRef(
     ref
   ) => {
     return (
-      <StyledInputWrapper {...restProps}>
-        {/* {type && <Icons type={type} />} */}
+      <StyledInputWrapper>
         {a11yHidden ? (
           <StyledlabelHidden htmlFor={id}>{label}</StyledlabelHidden>
         ) : (
@@ -62,7 +61,11 @@ const Input = React.forwardRef(
         ) : null}
         {type === "password" ? (
           <Button onClick={changePasswordMode}>
-            {<Icons type="showPassword" />}
+            {isShow === true ? (
+              <Icons type="showPassword" />
+            ) : (
+              <Icons type="eyeSlash" />
+            )}
           </Button>
         ) : null}
       </StyledInputWrapper>

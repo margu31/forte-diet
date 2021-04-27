@@ -140,7 +140,6 @@ function PostingContainer({ history }) {
     Object.entries(mealData).forEach(([key, value]) => {
       if (key === 'hasError') return;
       formData.append(key, value);
-      console.log(`${key}: `, `${value}`);
     });
     console.log(formData);
 
@@ -154,7 +153,8 @@ function PostingContainer({ history }) {
     const newFormData = Object.fromEntries(formData.entries());
 
     const photoFile = fileRef.current.files[0] || null;
-    const photoId = authUser.uid + mealData.date + (mealId || 0);
+    const photoId =
+      authUser.uid + mealData.date.replace(/ /g, '') + (mealId || 0);
     const photoUrl = await uploadImgToAmazon(photoFile, photoId);
 
     // 새로운 메뉴 리스트라면, diets 테이블에 추가
