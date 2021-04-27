@@ -26,7 +26,7 @@ export const MealModalGroup = ({
   slideRef,
 }) => {
   return (
-    <Modal>
+    <Modal className="backgroundBlur">
       <StyledMealContainer>
         <StyledMealWrapper ref={slideRef}>
           {mealsArrayList.map(({ id, review, photo, title }) => (

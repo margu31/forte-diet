@@ -8,6 +8,7 @@ export const StyledMealContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* backdrop-filter: blur(4px); */
 `;
 
 export const StyledMealWrapper = styled.div`
