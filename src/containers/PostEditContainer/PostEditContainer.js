@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Form from "components/Form/Form";
 import {
   menuValidation,
@@ -10,9 +10,10 @@ import Title from "components/Title/Title";
 import ReviewBox from "components/ReviewBox/ReviewBox";
 import Toggle from "components/Toggle/Toggle";
 import DataGroup from "components/DataGroup/DataGroup";
-import { addNewDiet, PostMeal } from "api/firestore";
+import { handleEditMealinUsers } from "api/firestore";
 import { addMenuListAction } from "redux/modules/menuList";
 import { addMealInDiets } from "api/diets";
+import { uploadImgToAmazon } from "api/amazon";
 
 const today = new Date();
 const year = today.getFullYear();
@@ -21,8 +22,6 @@ const month = getMonth >= 10 ? getMonth : "0" + getMonth;
 const date = today.getDate();
 
 const maxDate = `${year}-${month}-${date}`;
-// const defaultDate = maxDate.slice(2, 10).replace(/-/g, "");
-// const day = today.toString().slice(0, 3).toUpperCase();
 
 const initialPostingFormValues = {
   id: 0,
@@ -46,9 +45,8 @@ const initialPostingFormValues = {
 function PostEditContainer({ history }) {
   const isEditing = true;
   const { authUser, id, mealDate, menuList } = history.location.state;
-
+  console.log(authUser, menuList);
   const [meal, setMeal] = useState(initialPostingFormValues);
-  // const [meal, setMeal] = useState(mealDate);
   const [isDragging, setIsDragging] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadedFile, setLoadedFile] = useState(false);
@@ -57,7 +55,7 @@ function PostEditContainer({ history }) {
   const fileRef = useRef();
   const dispatch = useDispatch();
 
-  console.log(mealDate);
+  // console.log(mealDate);
   // console.log(meal);
 
   useEffect(() => {
@@ -68,12 +66,12 @@ function PostEditContainer({ history }) {
         ...meal.hasError,
       },
     });
+    // fileRef.current.files[0] = mealDate[0].photo;
   }, []);
 
   // console.log(meal);
 
   function convertDate(date) {
-    // console.log(date);
     const yymmdd = date.slice(0, 6).toString();
     const yy = yymmdd.substr(0, 2);
     const mm = yymmdd.substr(2, 2);
@@ -83,18 +81,12 @@ function PostEditContainer({ history }) {
   }
 
   const defaultDate = convertDate(mealDate[0].date);
-  // console.log(defaultDate);
   const defaultUrl = meal.photo;
   const defaultType = meal.type;
   const defaultCalories = meal.calories;
   const defaultTitle = meal.title;
   const defaultReview = meal.review;
   const defaultIsPublic = meal.isPublic;
-  console.log(defaultType);
-  console.log(defaultCalories);
-  console.log(defaultTitle);
-  console.log(defaultReview);
-  console.log(defaultIsPublic);
 
   const isDisabled =
     !meal.review ||
@@ -180,14 +172,39 @@ function PostEditContainer({ history }) {
     Object.entries(meal).forEach(([key, value]) => {
       if (key === "hasError") return;
       formData.append(key, value);
-      console.log(`${key}: `, `${value}`);
+      // console.log(`${key}: `, `${value}`);
     });
 
-    const newFormData = Object.fromEntries(formData.entries());
+    const mealId =
+      meal.date !== mealDate[0].date
+        ? menuList[meal.date]
+          ? +menuList[meal.date]?.meals[menuList[meal.date].meals.length - 1]
+              ?.id + 1
+          : 0
+        : id;
+    formData.append("id", mealId);
 
-    // TODO:
-    // 수정 데이터 firebase에 전송
-    // myPage 업뎃
+    const newFormData = Object.fromEntries(formData.entries());
+    if (fileRef.current.files[0]) {
+      const photoFile = fileRef.current.files[0] || null;
+      const photoId =
+        authUser.uid + meal.date.replace(/ /g, "") + (mealId || 0);
+      const photoUrl = await uploadImgToAmazon(photoFile, photoId);
+
+      dispatch(
+        handleEditMealinUsers(authUser, menuList, {
+          ...newFormData,
+          photo: photoUrl,
+        })
+      );
+    } else {
+      dispatch(
+        handleEditMealinUsers(authUser, menuList, {
+          ...newFormData,
+          photo: meal.photo,
+        })
+      );
+    }
 
     history.push("/myPage");
   };
@@ -269,6 +286,7 @@ function PostEditContainer({ history }) {
       };
       reader.readAsDataURL(e.target.files[0]);
     }
+    console.log(e.target.files);
   };
 
   const goBack = () => {
