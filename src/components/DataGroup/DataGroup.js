@@ -62,7 +62,8 @@ const DataGroup = ({
           onChange={onChange}
           max={maxDate}
           defaultValue={isEditing ? defaultDate : maxDate.toString()}
-          disabled={isEditing ? "disabled" : null}
+          // disabled={isEditing ? "disabled" : null}
+          readOnly={isEditing ? "readonly" : null}
         />
         <RadioGroup
           groupTitle="Type"
