@@ -1,4 +1,3 @@
-import { useState } from "react";
 import StyledToggle from "./Toggle.styled";
 
 const Toggle = ({
@@ -9,13 +8,10 @@ const Toggle = ({
   isEditing,
   defaultIsPublic,
 }) => {
-  const [isChecked, setIsChecked] = useState(false);
-
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
       e.stopPropagation();
-      e.target.checked = true;
-      setIsChecked(!isChecked);
+      e.target.click();
     }
   };
 
@@ -26,15 +22,7 @@ const Toggle = ({
         id={id}
         name={id}
         onChange={onChange}
-        checked={
-          isEditing
-            ? defaultIsPublic === "private"
-              ? true
-              : false
-            : isChecked
-            ? true
-            : false
-        }
+        checked={isEditing && defaultIsPublic === "private"}
       />
       <label tabIndex="0" htmlFor={id} onKeyDown={onKeyDown}>
         <span>{label1}</span>
