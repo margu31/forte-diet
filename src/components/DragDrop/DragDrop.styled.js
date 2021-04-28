@@ -44,6 +44,11 @@ export const StyledFileWrapper = styled.div`
   input:focus + div {
     border: 8px solid ${palette.themePrimary};
   }
+
+  input:focus + img {
+    box-shadow: 0 0 0 6px #f3b34c;
+    opacity: 1;
+  }
 `;
 
 export const StyledDefaultView = styled.div`
