@@ -9,19 +9,6 @@ export const StyledLabel = styled.label`
   margin: 5px 0;
   font-size: ${fontSizeKit.medium};
   font-weight: ${fontWeightKit.bold};
-
-  /* &[for="postingFile"] {
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    border: 8px solid ${palette.themeSecondary};
-    text-align: center;
-    cursor: pointer;
-    line-height: 260px;
-    background-color: ${palette.themeBrightYellow};
-    margin: 40px 0;
-    font-size: ${fontSizeKit.small};
-  } */
 `;
 
 export const StyledInput = styled.input`
@@ -37,25 +24,23 @@ export const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 5px #395b9d;
+    box-shadow: 0 0 0 3px #395b9d;
     opacity: 1;
   }
+
   &:focus:not(:focus-visible) {
     box-shadow: none;
   }
-
-  /* &[type="file"] {
-    display: none;
-  } */
 
   &[type="date"] {
     cursor: pointer;
 
     &::-webkit-calendar-picker-indicator {
       cursor: pointer;
+
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 5px #395b9d;
+        box-shadow: 0 0 0 3px #395b9d;
         opacity: 1;
       }
     }
