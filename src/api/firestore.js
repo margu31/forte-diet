@@ -236,7 +236,9 @@ export const handleEditMealinUsers = ({ uid }, dietList, mealdata) => async (
     };
     user.set(newData, { merge: true });
 
-    dispatch(handleEditMealInDiets(dietList[mealdata.date], mealdata));
+    dispatch(
+      handleEditMealInDiets(dietList[mealdata.date], newMeals, mealdata)
+    );
 
     return true;
   } catch (e) {
