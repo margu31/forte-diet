@@ -29,7 +29,13 @@ const DataGroup = ({
   fileRef,
 }) => {
   const inputNextRadioRef = useRef();
-  // const onKeyDown
+  const onMoveNextInput = (e) => {
+    if (e.keyCode === 13) {
+      e.stopPropagation();
+      e.target.click();
+      inputNextRadioRef.current.focus();
+    }
+  };
 
   return (
     <StyledDataGroup>
@@ -63,6 +69,7 @@ const DataGroup = ({
           onChange={onChange}
           isEditing={isEditing}
           defaultType={isEditing ? defaultType : null}
+          onMoveNextInput={onMoveNextInput}
         />
         <Input
           type="number"

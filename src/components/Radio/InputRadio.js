@@ -1,6 +1,14 @@
 import StyledInputRadio from "./InputRadio.styled";
 
-const InputRadio = ({ id, name, value, label, onChange, checked }) => {
+const InputRadio = ({
+  id,
+  name,
+  value,
+  label,
+  onChange,
+  checked,
+  onMoveNextInput,
+}) => {
   return (
     <StyledInputRadio>
       <input
@@ -11,7 +19,7 @@ const InputRadio = ({ id, name, value, label, onChange, checked }) => {
         onChange={onChange}
         checked={checked}
       />
-      <label htmlFor={id} tabIndex="0">
+      <label htmlFor={id} tabIndex="0" onKeyDown={onMoveNextInput}>
         {label}
       </label>
     </StyledInputRadio>
