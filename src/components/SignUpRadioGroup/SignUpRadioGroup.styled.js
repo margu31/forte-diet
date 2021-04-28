@@ -11,6 +11,7 @@ const StyledRadioGroup = styled.div`
   width: 300px;
   height: 50px;
   border-radius: 5px;
+  margin-bottom: 15px;
 
   label {
     width: 100px;

@@ -12,6 +12,7 @@ import {
   StyledMealContainer,
   MealDialogCloseButton,
   StyledSubmitAndEditButtonWrapper,
+  Styledddd,
 } from "./MealModalGroup.styled";
 
 export const MealModalGroup = ({
@@ -20,13 +21,12 @@ export const MealModalGroup = ({
   prevMeal,
   nextMeal,
   mealListData,
-  currentMealId,
   mealLength,
   onSetting,
   slideRef,
 }) => {
   return (
-    <Modal>
+    <Modal style={{ backdropFilter: "blur(4px)", backgroundImage: "none" }}>
       <StyledMealContainer>
         <StyledMealWrapper ref={slideRef}>
           {mealsArrayList.map(({ id, review, photo, title }) => (
@@ -40,7 +40,6 @@ export const MealModalGroup = ({
               prevMeal={prevMeal}
               nextMeal={nextMeal}
               mealListData={mealListData}
-              currentMealId={currentMealId}
               mealLength={mealLength}
               slideRef={slideRef}
             ></MealDialog>
