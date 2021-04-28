@@ -96,14 +96,14 @@ const StyledDeleteDialog = styled(motion.div)`
   background: rgba(182, 182, 182, 0.4);
   border-radius: 5px;
   position: absolute;
-  z-index: 999;
+  z-index: 3;
   top: -60px;
   right: 32px;
 
   span {
     cursor: pointer;
     padding: 6px 15px;
-    z-index: 999;
+    z-index: 3;
     font-size: ${fontSizeKit.xSmall};
     font-weight: ${fontWeightKit.bold};
     color: ${palette.themeDefault};
@@ -132,7 +132,7 @@ const StyledDeleteModal = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   background: pink;
-  z-index: 999;
+  z-index: 3;
   position: fixed;
   top: 0;
   left: 0;
