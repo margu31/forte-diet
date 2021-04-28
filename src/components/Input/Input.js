@@ -31,6 +31,7 @@ const Input = React.forwardRef(
       isShow,
       onFocus,
       disabled,
+      ariaLabel,
       ...restProps
     },
     ref
@@ -56,6 +57,7 @@ const Input = React.forwardRef(
           onKeyUp={onKeyUp}
           onFocus={onFocus}
           disabled={disabled ? true : false}
+          aria-label={ariaLabel}
           // aria-invalid={errorMessage ? true : null}
           // aria-describedby={errorMessage ? "error-msg" : null}
           {...restProps}

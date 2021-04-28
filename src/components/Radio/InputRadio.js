@@ -8,6 +8,7 @@ const InputRadio = ({
   onChange,
   checked,
   onMoveNextInput,
+  labelTitle,
 }) => {
   return (
     <StyledInputRadio>
@@ -19,7 +20,12 @@ const InputRadio = ({
         onChange={onChange}
         checked={checked}
       />
-      <label htmlFor={id} tabIndex="0" onKeyDown={onMoveNextInput}>
+      <label
+        htmlFor={id}
+        tabIndex="0"
+        onKeyDown={onMoveNextInput}
+        aria-label={`${labelTitle} ${label}`}
+      >
         {label}
       </label>
     </StyledInputRadio>

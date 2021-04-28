@@ -70,6 +70,7 @@ const DataGroup = ({
           isEditing={isEditing}
           defaultType={isEditing ? defaultType : null}
           onMoveNextInput={onMoveNextInput}
+          labelTitle="식단 타입"
         />
         <Input
           type="number"
@@ -77,6 +78,7 @@ const DataGroup = ({
           name="calories"
           label="Calories"
           placeholder="칼로리를 입력하세요!"
+          ariaLabel="칼로리를 입력하세요"
           onChange={onChange}
           onKeyPress={onKeyPress}
           min="0"

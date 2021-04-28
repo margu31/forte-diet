@@ -7,6 +7,7 @@ const RadioGroup = ({
   isEditing,
   defaultType,
   onMoveNextInput,
+  labelTitle,
 }) => {
   return (
     <>
@@ -20,6 +21,7 @@ const RadioGroup = ({
           onChange={onChange}
           checked={isEditing ? (defaultType === "아침" ? true : false) : null}
           onMoveNextInput={onMoveNextInput}
+          labelTitle={labelTitle}
         />
         <InputRadio
           id="lunch"
@@ -29,6 +31,7 @@ const RadioGroup = ({
           onChange={onChange}
           checked={isEditing ? (defaultType === "점심" ? true : false) : null}
           onMoveNextInput={onMoveNextInput}
+          labelTitle={labelTitle}
         />
         <InputRadio
           id="dinner"
@@ -38,6 +41,7 @@ const RadioGroup = ({
           onChange={onChange}
           checked={isEditing ? (defaultType === "저녁" ? true : false) : null}
           onMoveNextInput={onMoveNextInput}
+          labelTitle={labelTitle}
         />
         <InputRadio
           id="snack"
@@ -47,6 +51,7 @@ const RadioGroup = ({
           onChange={onChange}
           checked={isEditing ? (defaultType === "간식" ? true : false) : null}
           onMoveNextInput={onMoveNextInput}
+          labelTitle={labelTitle}
         />
       </StyledRadioGroup>
     </>
