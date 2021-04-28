@@ -35,6 +35,15 @@ export const StyledInput = styled.input`
   outline: none;
   font-size: ${fontSizeKit.medium};
 
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 5px #395b9d;
+    opacity: 1;
+  }
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+
   /* &[type="file"] {
     display: none;
   } */
@@ -44,6 +53,11 @@ export const StyledInput = styled.input`
 
     &::-webkit-calendar-picker-indicator {
       cursor: pointer;
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 5px #395b9d;
+        opacity: 1;
+      }
     }
   }
 `;

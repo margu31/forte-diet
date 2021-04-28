@@ -11,7 +11,9 @@ const InputRadio = ({ id, name, value, label, onChange, checked }) => {
         onChange={onChange}
         checked={checked}
       />
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} tabIndex="0">
+        {label}
+      </label>
     </StyledInputRadio>
   );
 };
