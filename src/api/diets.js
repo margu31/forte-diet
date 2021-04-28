@@ -1,26 +1,29 @@
-import { firestore } from './auth';
-import firebase from 'firebase';
-import { getPopularMenus, getRecentMenus } from '../redux/modules/board';
+import { firestore } from "./auth";
+import firebase from "firebase";
+import { getPopularMenus, getRecentMenus } from "../redux/modules/board";
 
 /* 유틸 */
-const getTotalCalories = meals => {
+const getTotalCalories = (meals) => {
   const totalCalories = meals.reduce((acc, cur) => acc + +cur.calories, 0);
 
   return totalCalories > 999
-    ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    ? totalCalories.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     : totalCalories;
 };
 
-const diets = firestore.collection('diets');
+const diets = firestore.collection("diets");
 
 /* 패치 */
-export const getRecentDiets = limit => async () => {
+export const getRecentDiets = (limit) => async () => {
   try {
-    const response = await diets.orderBy('updatedAt', 'desc').limit(limit).get();
+    const response = await diets
+      .orderBy("updatedAt", "desc")
+      .limit(limit)
+      .get();
 
     const recentDiets = [];
 
-    response.forEach(doc => {
+    response.forEach((doc) => {
       const datas = doc.data();
       datas.id = doc.id;
       recentDiets.push(datas);
@@ -32,13 +35,13 @@ export const getRecentDiets = limit => async () => {
   }
 };
 
-export const getPopularDiets = limit => async () => {
+export const getPopularDiets = (limit) => async () => {
   try {
-    const response = await diets.orderBy('like', 'desc').limit(limit).get();
+    const response = await diets.orderBy("like", "desc").limit(limit).get();
 
     const popularDiets = [];
 
-    response.forEach(doc => {
+    response.forEach((doc) => {
       const datas = doc.data();
       datas.id = doc.id;
       popularDiets.push(datas);
@@ -50,12 +53,15 @@ export const getPopularDiets = limit => async () => {
   }
 };
 
-export const getSearchDiets = limit => async searchWord => {
+export const getSearchDiets = (limit) => async (searchWord) => {
   try {
-    const response = await diets.where('titles', 'array-contains', searchWord).limit(limit).get();
+    const response = await diets
+      .where("titles", "array-contains", searchWord)
+      .limit(limit)
+      .get();
 
     const searchDiets = [];
-    response.forEach(doc => {
+    response.forEach((doc) => {
       const datas = doc.data();
       datas.id = doc.id;
       searchDiets.push(datas);
@@ -79,7 +85,7 @@ export const addOrEditDailyReviewInDiets = async (dietId, review) => {
     diet.set(
       {
         dailyReview: review,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       { merge: true }
     );
@@ -91,14 +97,14 @@ export const addOrEditDailyReviewInDiets = async (dietId, review) => {
 };
 
 /* 데일리 리뷰 삭제 */
-export const removeDailyReviewInDiets = async dietId => {
+export const removeDailyReviewInDiets = async (dietId) => {
   try {
     const diet = await diets.doc(dietId);
 
     diet.set(
       {
-        dailyReview: '',
-        updatedAt: new Date()
+        dailyReview: "",
+        updatedAt: new Date(),
       },
       { merge: true }
     );
@@ -115,7 +121,7 @@ export const updateWaterDoseInDiets = async (dietId, curDose, addDose) => {
     diet.set(
       {
         waterDose: curDose + addDose,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       { merge: true }
     );
@@ -126,7 +132,7 @@ export const updateWaterDoseInDiets = async (dietId, curDose, addDose) => {
 
 /* meal 삭제 */
 export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
-  const newMeals = dietList[date].meals.filter(meal => meal.id !== mealId);
+  const newMeals = dietList[date].meals.filter((meal) => meal.id !== mealId);
   const newTitles = dietList[date].meals.reduce((titles, meal) => {
     meal.id !== mealId && titles.push(meal.title);
 
@@ -144,7 +150,7 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
           titles: newTitles,
           meals: newMeals,
           calories: totalCalories,
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         { merge: true }
       );
@@ -154,10 +160,13 @@ export const removeMealInDiets = async (dietId, dietList, date, mealId) => {
 };
 
 /* meal 수정 */
-export const handleEditMealInDiets = ({ id: dietId, meals }, mealData) => async dispatch => {
-  const newMeals = meals.filter(meal => meal.id !== mealData.id);
-  const newTitles = meals.reduce((titles, meal) => {
-    meal.id !== mealData.id && titles.push(meal.title);
+export const handleEditMealInDiets = (
+  { id: dietId, meals },
+  newMeals,
+  mealData
+) => async (dispatch) => {
+  const newTitles = newMeals.reduce((titles, meal) => {
+    titles.push(meal.title);
 
     return titles;
   }, []);
@@ -169,7 +178,7 @@ export const handleEditMealInDiets = ({ id: dietId, meals }, mealData) => async 
         titles: newTitles,
         meals: newMeals,
         calories: totalCalories,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       { merge: true }
     );
@@ -182,7 +191,7 @@ export const handleEditMealInDiets = ({ id: dietId, meals }, mealData) => async 
 };
 
 /* menu 삭제 */
-export const handleDeleteDietInDiets = dietId => async dispatch => {
+export const handleDeleteDietInDiets = (dietId) => async (dispatch) => {
   try {
     const diet = await diets.doc(dietId);
 
@@ -206,8 +215,8 @@ export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
         updatedAt: new Date(),
         calories: totalCalories + parseInt(mealData.calories, 10),
         meals: firebase.firestore.FieldValue.arrayUnion({
-          ...mealData
-        })
+          ...mealData,
+        }),
       },
       { merge: true }
     );
@@ -217,13 +226,15 @@ export const addMealInDiets = async ({ id: dietId, meals }, mealData) => {
 };
 
 /* 좋아요 토글 */
-export const handleEditLikeToDiets = ({ id: dietId }, newLike) => async dispatch => {
+export const handleEditLikeToDiets = ({ id: dietId }, newLike) => async (
+  dispatch
+) => {
   try {
     const diet = await diets.doc(dietId);
     diet.set(
       {
         like: newLike,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       { merge: true }
     );
