@@ -16,7 +16,7 @@ const StyledCalendarModal = styled.div`
   left: 0;
   background: pink;
   opacity: 0;
-  z-index: 999;
+  z-index: 2;
 `;
 
 const StyledCalendarDialog = styled(motion.div)`
@@ -27,7 +27,7 @@ const StyledCalendarDialog = styled(motion.div)`
   font-size: ${fontSizeKit.small};
   font-weight: ${fontWeightKit.bold};
   color: ${palette.themeDark};
-  z-index: 9999;
+  z-index: 2;
   padding: 0 5px 10px 5px;
   background: ${palette.themeDefaultWhite};
   border-radius: 30px;
@@ -161,7 +161,7 @@ const StyledCalendarButton = styled.button`
   right: 150px;
   cursor: pointer;
   opacity: 0.5;
-  z-index: 999;
+  z-index: 2;
 
   &:hover {
     opacity: 1;
