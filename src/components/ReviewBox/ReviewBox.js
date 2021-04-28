@@ -22,7 +22,7 @@ const ReviewBox = ({
         autoComplete="off"
         defaultValue={defaultReview}
       ></textarea>
-      {hasError && <p>{hasError}</p>}
+      {hasError && <p tabIndex="0">{hasError}</p>}
     </StyledReviewBox>
   );
 };

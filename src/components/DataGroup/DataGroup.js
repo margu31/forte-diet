@@ -1,6 +1,7 @@
 import DragDrop from "components/DragDrop/DragDrop";
 import Input from "components/Input/Input";
 import RadioGroup from "components/RadioGroup/RadioGroup";
+import { useRef } from "react";
 import StyledDataGroup from "./DataGroup.styled";
 
 const DataGroup = ({
@@ -27,6 +28,15 @@ const DataGroup = ({
   imgRef,
   fileRef,
 }) => {
+  const inputNextRadioRef = useRef();
+  const onMoveNextInput = (e) => {
+    if (e.keyCode === 13) {
+      e.stopPropagation();
+      e.target.click();
+      inputNextRadioRef.current.focus();
+    }
+  };
+
   return (
     <StyledDataGroup>
       <DragDrop
@@ -52,12 +62,16 @@ const DataGroup = ({
           onChange={onChange}
           max={maxDate}
           defaultValue={isEditing ? defaultDate : maxDate.toString()}
+          // disabled={isEditing ? "disabled" : null}
+          readOnly={isEditing ? "readonly" : null}
         />
         <RadioGroup
           groupTitle="Type"
           onChange={onChange}
           isEditing={isEditing}
           defaultType={isEditing ? defaultType : null}
+          onMoveNextInput={onMoveNextInput}
+          labelTitle="식단 타입"
         />
         <Input
           type="number"
@@ -65,10 +79,12 @@ const DataGroup = ({
           name="calories"
           label="Calories"
           placeholder="칼로리를 입력하세요!"
+          ariaLabel="칼로리를 입력하세요"
           onChange={onChange}
           onKeyPress={onKeyPress}
           min="0"
           value={isEditing ? defaultCalories : null}
+          ref={inputNextRadioRef}
         />
         <Input
           type="text"

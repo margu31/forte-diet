@@ -30,7 +30,9 @@ const Input = React.forwardRef(
       changePasswordMode,
       isShow,
       onFocus,
-      disabled,
+      // disabled,
+      readOnly,
+      ariaLabel,
       ...restProps
     },
     ref
@@ -53,13 +55,19 @@ const Input = React.forwardRef(
           autoComplete="off"
           ref={ref}
           maxLength={maxLength}
-          {...restProps}
           onKeyUp={onKeyUp}
           onFocus={onFocus}
-          disabled={disabled ? true : false}
+          // disabled={disabled ? true : false}
+          readOnly={readOnly}
+          aria-label={ariaLabel}
+          // aria-invalid={errorMessage ? true : null}
+          // aria-describedby={errorMessage ? "error-msg" : null}
+          {...restProps}
         ></StyledInput>
         {errorMessage && errorMessage[name] ? (
-          <StyledErrorMessage>{errorMessage[name]}</StyledErrorMessage>
+          <StyledErrorMessage tabIndex="0">
+            {errorMessage[name]}
+          </StyledErrorMessage>
         ) : null}
         {type === "password" ? (
           <Button onClick={changePasswordMode}>
