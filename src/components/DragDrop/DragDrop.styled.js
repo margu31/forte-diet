@@ -41,12 +41,8 @@ export const StyledFileWrapper = styled.div`
     z-index: -1;
   }
 
-  canvas {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+  input:focus + div {
+    border: 8px solid ${palette.themePrimary};
   }
 `;
 
