@@ -14,7 +14,7 @@ const StyledNav = styled(motion.nav)`
   top: 100px;
   right: 30px;
   overflow: hidden;
-  z-index: 999;
+  z-index: 3;
   display: flex;
   border-radius: 5px;
 
@@ -114,7 +114,7 @@ const StyledButton = styled(motion.button)`
   position: fixed;
   top: 101px;
   right: 30px;
-  z-index: 999;
+  z-index: 3;
   background: none;
 `;
 
