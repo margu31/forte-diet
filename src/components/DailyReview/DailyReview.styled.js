@@ -9,7 +9,7 @@ const StyledDailyReview = styled.li`
   margin: 0;
   margin-top: -10px;
   position: relative;
-  z-index: 999;
+  z-index: 1;
 
   textarea {
     border-radius: 10px;
@@ -42,7 +42,7 @@ const StyledDailyReview = styled.li`
     position: absolute;
     bottom: 27px;
     right: 90px;
-    z-index: 999;
+    z-index: 1;
   }
 
   button {
@@ -61,7 +61,7 @@ const StyledDailyReview = styled.li`
     right: 45px;
     cursor: pointer;
 
-    z-index: 999;
+    z-index: 1;
 
     &:hover,
     &:focus {
@@ -88,7 +88,7 @@ const StyledDailyReviewModal = styled.div`
   width: 100vw;
   height: 100vh;
   background: pink;
-  z-index: 999;
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
