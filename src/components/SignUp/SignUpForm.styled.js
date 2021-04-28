@@ -1,5 +1,6 @@
 import Button from "components/Button/Button";
 import Input from "components/Input/Input";
+import Title from "components/Title/Title";
 import styled, { css } from "styled-components";
 import { fontSizeKit, fontWeightKit, palette } from "styles";
 
@@ -8,7 +9,7 @@ export const StyledSignUpForm = styled.form`
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
-  padding-top: 40px;
+  padding-top: 80px;
   width: 550px;
   height: auto;
   position: relative;
@@ -23,15 +24,9 @@ export const StyledSignUpForm = styled.form`
   }
 
   h3 {
-    text-align: left;
-    margin-left: 10px;
-    padding: 10px 0;
-    width: 100%;
-    border-left: 3px solid black;
-    border-color: ${palette.themePrimary};
-    font-size: ${fontSizeKit.large};
-    font-weight: ${fontWeightKit.bold};
-    padding-left: 10px;
+    position: absolute;
+    top: 0;
+    left: 4%;
   }
 `;
 
@@ -104,27 +99,6 @@ export const SignUpFormInput = styled(Input)`
   }
 `;
 
-/* export const StyledBasicInformationGroup = styled.div`
-  position: relative;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 800px;
-  height: 130px;
-  background-color: transparent;
-`;
-
-export const StyledAdditionalInformationGroup = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  height: 250px;
-  width: 800px;
-  background-color: transparent;
-`; */
-
 export const SignUpFormSubmitButton = styled(Button)`
   width: 200px;
   height: 50px;
@@ -141,6 +115,11 @@ export const SignUpFormSubmitButton = styled(Button)`
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  && + button {
+    background-color: transparent;
+    color: ${palette.themeDark};
   }
 `;
 

@@ -3,6 +3,7 @@ import Input from "components/Input/Input";
 import InputRadio from "components/Radio/InputRadio";
 import RadioGroup from "components/RadioGroup/RadioGroup";
 import SignUpRadioGroup from "components/SignUpRadioGroup/SignUpRadioGroup";
+import Title from "components/Title/Title";
 import React from "react";
 import {
   SignUpFormInput,
@@ -26,7 +27,7 @@ export default function SignUpForm({
 }) {
   return (
     <StyledSignUpForm>
-      <h3>회원가입</h3>
+      <Title>회원가입</Title>
       <SignUpFormInput
         label="Email"
         id="email"

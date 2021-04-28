@@ -8,27 +8,20 @@ export const StyledForm = styled.form`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 25px;
+  /* padding-top: 20px; */
+  /* padding-bottom: 25px; */
   width: 500px;
   min-height: 400px;
   position: relative;
   border-radius: 20px;
   border: 3px solid;
   border-color: ${palette.themePrimary};
-  /* backdrop-filter: blur(100px); */
   background-color: ${palette.themeBright};
 
   h3 {
-    font-size: ${fontSizeKit.large};
-    font-weight: ${fontWeightKit.bold};
-    border-left: 3px solid black;
-    border-color: ${palette.themePrimary};
-    padding: 10px 0 10px;
-    padding-left: 10px;
-    text-align: left;
-    width: 100%;
-    margin-left: 20px;
+    position: absolute;
+    top: 0;
+    left: 5%;
   }
 
   span {
@@ -91,7 +84,6 @@ export const LoginFormInput = styled(Input)`
     padding: 0;
     margin: 0;
     background-color: transparent;
-    /* color: red; */
   }
 
   &:focus {
@@ -117,6 +109,12 @@ export const LoginFormSubmitButton = styled(Button)`
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  && + button {
+    background-color: transparent;
+    color: ${palette.themeDark};
+    margin-left: 0;
   }
 `;
 

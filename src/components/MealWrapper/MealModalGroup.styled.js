@@ -1,6 +1,7 @@
 import Button from "components/Button/Button";
 import Form from "components/Form/Form";
 import styled, { css } from "styled-components";
+import { palette } from "styles";
 
 export const StyledMealContainer = styled.div`
   position: relative;
@@ -31,38 +32,45 @@ export const MealDialogSubmitButton = styled(Button)`
   &:hover {
     transition: all 0.3s ease-in-out;
     background-color: coral;
-    color: #fff;
+    color: ${palette.themeDefaultWhite};
   }
 
-  & + & {
-    background-color: white;
+  /* edit button 스타일 */
+  && + button {
+    background-color: transparent;
+    color: ${palette.themeDefault};
+    border-radius: 10px;
+    margin: 0;
   }
 `;
 
 export const MealDialogEditButton = styled(Button)`
-  margin: 0;
-  margin-left: 0;
+  /* margin: 0; */
+  /* margin-left: 0; */
   position: absolute;
   bottom: 2%;
   right: 0;
   padding: 0.5em 2em;
-  /* border-radius: 10px; */
+  border-radius: 10px;
   background-color: transparent;
 
   &:hover {
     transition: all 0.3s ease-in-out;
     background-color: coral;
-    color: #fff;
+    color: ${palette.themeDefaultWhite};
   }
 
-  & + & {
-    background-color: red;
+  /* prev button 스타일 */
+  && + button {
+    background-color: transparent;
+    color: ${palette.themeDefault};
+    border-radius: 10px;
+    margin: 0;
   }
 `;
 
 export const MealDialogPrevButton = styled(Button)`
   position: absolute;
-  margin-left: 0;
   top: 45%;
   left: 0;
   padding: 0.5em 2em;
@@ -73,11 +81,18 @@ export const MealDialogPrevButton = styled(Button)`
     /* background-color: coral; */
     color: #fff;
   }
+
+  /* next button 스타일 */
+  && + button {
+    background-color: transparent;
+    color: ${palette.themeDefault};
+    border-radius: 10px;
+    margin: 0;
+  }
 `;
 
 export const MealDialogNextButton = styled(Button)`
   position: absolute;
-  margin: 0;
   top: 45%;
   right: 0%;
   padding: 0.5em 2em;
@@ -89,27 +104,25 @@ export const MealDialogNextButton = styled(Button)`
     background-color: coral;
     color: #fff;
   }
+
+  /* close button 스타일 */
+  && + button {
+    background-color: transparent;
+    color: ${palette.themeDefault};
+    border-radius: 10px;
+    margin: 0;
+  }
 `;
 
 export const MealDialogCloseButton = styled(Button)`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1%;
+  right: 1%;
   background-color: transparent;
-  padding: 10px;
+  padding: 15px;
   &:hover {
     transition: all 0.3s ease-in-out;
     background-color: coral;
     color: #fff;
-  }
-`;
-
-export const Styledddd = styled.div`
-  button {
-    background-color: red;
-
-    & + & {
-      background-color: white;
-    }
   }
 `;
