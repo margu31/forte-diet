@@ -194,7 +194,12 @@ function PostEditContainer({ history }) {
       dispatch(
         handleEditMealinUsers(authUser, menuList, {
           ...newFormData,
-          photo: photoUrl,
+          photo:
+            photoUrl +
+            `?${
+              Math.floor(Math.random() * (Math.ceil(1) - Math.floor(100))) +
+              Math.floor(100)
+            }`,
         })
       );
     } else {
