@@ -35,7 +35,7 @@ export const SignUpFormInput = styled(Input)`
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  width: 300px;
+  width: 330px;
   line-height: 50px;
   text-align: center;
   margin-bottom: 20px;
@@ -85,7 +85,7 @@ export const SignUpFormInput = styled(Input)`
   p {
     position: absolute;
     top: 60%;
-    left: -20%;
+    left: -10%;
     font-size: ${fontSizeKit.small};
     font-weight: ${fontWeightKit.bold};
 
@@ -94,7 +94,7 @@ export const SignUpFormInput = styled(Input)`
   }
 
   label {
-    width: 90px;
+    width: 120px;
     font-weight: ${fontWeightKit.extraBold};
   }
 `;

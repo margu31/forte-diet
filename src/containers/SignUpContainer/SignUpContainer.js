@@ -17,6 +17,7 @@ const formValue = {
   weight: null,
   hasError: {
     password: null,
+    checkpassword: null,
     email: null,
     gender: null,
     height: null,
@@ -27,7 +28,12 @@ const formValue = {
 
 export default function SignUpContainer({ closeModal, ...restProps }) {
   const [state, setState] = useState(formValue);
+  const [checkPasswordValue, setCheckPasswordValue] = useState(null);
   const [isShow, setIsShow] = useState(false);
+
+  // const isCheckPassword = (e) => {
+  //   e.target ===
+  // }
 
   const onChange = (e) => {
     if (e.target.name === "gender") {
@@ -83,15 +89,16 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
         },
       });
     }
+    setCheckPasswordValue(value);
   };
 
-  const idlValid = (value) => {
-    if (!isEmail(value)) {
+  const checkPasswordlValid = (value) => {
+    if (value === checkPasswordValue) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          email: "입력 형식에 맞지 않습니다.",
+          checkpassword: null,
         },
       });
     } else {
@@ -99,7 +106,7 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
         ...state,
         hasError: {
           ...state.hasError,
-          email: null,
+          checkpassword: "비밀번호를 확인해주세요.",
         },
       });
     }
@@ -195,6 +202,8 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
       weightValid(e.target.value);
     } else if (e.target.name === "nickname") {
       nicknameValid(e.target.value);
+    } else if (e.target.name === "checkpassword") {
+      checkPasswordlValid(e.target.value);
     }
   };
 
@@ -227,7 +236,7 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
             hasError: {
               ...state.hasError,
               nickname:
-                "한글, 영어, 특수문자, 숫자 포함 5~20자 미만으로 작성해주세요",
+                "한글, 영어, 특수문자, 숫자 포함 2~10자 미만으로 작성해주세요",
             },
           });
           break;

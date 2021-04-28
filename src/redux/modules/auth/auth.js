@@ -38,31 +38,6 @@ export const pushLikeAction = (newLike) => ({
   },
 });
 
-// export const getAuthUserActionAsync = () => async (dispatch) => {
-//   // 요청이 시작됨
-//   dispatch(getTodosAction());
-//   // API를 호출
-//   try {
-//     const getTodos = await fetch("http://15.165.145.100:3003/fetch_todo");
-//     const todos = await getTodos.json();
-//     // 성공했을 때
-//     dispatch(getTodosSuccessAction(todos));
-//   } catch (e) {
-//     dispatch(getTodosErrorAction(e));
-//   }
-// };
-
-// export const getAuthUserActionAsync2 = async () => {
-//   try {
-//     const getTodos = await fetch("http://15.165.145.100:3003/fetch_todo");
-//     const todos = await getTodos.json();
-
-//     return todos;
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-
 // 초깃값
 const initialState = {
   isAuthed: false,

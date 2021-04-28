@@ -30,13 +30,7 @@ export default function Board({ boardType, diets, auth, handleClick }) {
       <StyledDiets variants={container} initial='hidden' animate='visible'>
         {diets &&
           diets.map(diet => (
-            <DietCard
-              key={`board-${diet.id}`}
-              boardType={boardType}
-              auth={auth}
-              dietData={diet}
-              variants={item}
-            />
+            <DietCard key={`board-${diet.id}`} auth={auth} dietData={diet} variants={item} />
           ))}
       </StyledDiets>
     </StyledBoardWrapper>

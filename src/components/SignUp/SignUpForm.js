@@ -1,15 +1,9 @@
-import Button from "components/Button/Button";
-import Input from "components/Input/Input";
-import InputRadio from "components/Radio/InputRadio";
-import RadioGroup from "components/RadioGroup/RadioGroup";
 import SignUpRadioGroup from "components/SignUpRadioGroup/SignUpRadioGroup";
 import Title from "components/Title/Title";
 import React from "react";
 import {
   SignUpFormInput,
   StyledSignUpForm,
-  StyledBasicInformationGroup,
-  StyledAdditionalInformationGroup,
   SignUpFormCloseButton,
   SignUpFormSubmitButton,
 } from "./SignUpForm.styled";
@@ -29,7 +23,7 @@ export default function SignUpForm({
     <StyledSignUpForm>
       <Title>회원가입</Title>
       <SignUpFormInput
-        label="Email"
+        label="이메일"
         id="email"
         name="email"
         type="text"
@@ -41,7 +35,7 @@ export default function SignUpForm({
         onFocus={onFocus}
       />
       <SignUpFormInput
-        label="Password"
+        label="비밀번호"
         id="password"
         name="password"
         type="password"
@@ -55,7 +49,21 @@ export default function SignUpForm({
         onFocus={onFocus}
       />
       <SignUpFormInput
-        label="Nickname"
+        label="비밀번호 확인"
+        id="checkpassword"
+        name="checkpassword"
+        type="password"
+        placeholder="비밀번호 확인"
+        onChange={onChange}
+        onBlur={onBlur}
+        errorMessage={errorMessage}
+        a11yHidden={false}
+        changePasswordMode={changePasswordMode}
+        isShow={isShow}
+        onFocus={onFocus}
+      />
+      <SignUpFormInput
+        label="닉네임"
         id="nickname"
         name="nickname"
         type="text"
@@ -67,7 +75,7 @@ export default function SignUpForm({
         onFocus={onFocus}
       />
       <SignUpFormInput
-        label="Height"
+        label="키"
         id="height"
         name="height"
         type="text"
@@ -78,7 +86,7 @@ export default function SignUpForm({
         a11yHidden={false}
       />
       <SignUpFormInput
-        label="Weight"
+        label="몸무게"
         id="weight"
         name="weight"
         type="text"
@@ -88,7 +96,7 @@ export default function SignUpForm({
         errorMessage={errorMessage}
         a11yHidden={false}
       />
-      <SignUpRadioGroup groupTitle="Gender" onChange={onChange} />
+      <SignUpRadioGroup groupTitle="성별" onChange={onChange} />
 
       <SignUpFormSubmitButton
         type="submit"
