@@ -108,7 +108,7 @@ export default function LogInContainer({
     state.hasError.password ||
     !state.email ||
     !state.password;
-  console.log(isShow);
+
   return (
     <LoginForm
       onChange={onChange}
