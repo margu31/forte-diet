@@ -2,17 +2,17 @@ import Button from "components/Button/Button";
 import MealDialog from "components/MealDialog/MealDialog";
 import { Modal } from "components/Modal/Modal";
 import React from "react";
+import { palette } from "styles";
 import {
   MealDialogNextButton,
   MealDialogPrevButton,
-  StyledButtonContainer,
   StyledMealWrapper,
   MealDialogSubmitButton,
   MealDialogEditButton,
   StyledMealContainer,
   MealDialogCloseButton,
-  StyledSubmitAndEditButtonWrapper,
-  Styledddd,
+  StyledMealModalWrapper,
+  StyledMealModal,
 } from "./MealModalGroup.styled";
 
 export const MealModalGroup = ({
@@ -26,7 +26,7 @@ export const MealModalGroup = ({
   slideRef,
 }) => {
   return (
-    <Modal style={{ backdropFilter: "blur(4px)", backgroundImage: "none" }}>
+    <StyledMealModal>
       <StyledMealContainer>
         <StyledMealWrapper ref={slideRef}>
           {mealsArrayList.map(({ id, review, photo, title }) => (
@@ -60,6 +60,6 @@ export const MealModalGroup = ({
           X
         </MealDialogCloseButton>
       </StyledMealContainer>
-    </Modal>
+    </StyledMealModal>
   );
 };
