@@ -17,6 +17,8 @@ export default function SignUpForm({
   changePasswordMode,
   isShow,
   onFocus,
+  changeCheckPassword,
+  showCheckpassword,
 }) {
   const stopEvent = (e) => {
     e.stopPropagation();
@@ -61,8 +63,8 @@ export default function SignUpForm({
         onBlur={onBlur}
         errorMessage={errorMessage}
         a11yHidden={false}
-        changePasswordMode={changePasswordMode}
-        isShow={isShow}
+        showCheckpassword={showCheckpassword}
+        changeCheckPassword={changeCheckPassword}
         onFocus={onFocus}
       />
       <SignUpFormInput

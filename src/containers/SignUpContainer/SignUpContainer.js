@@ -30,6 +30,7 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
   const [state, setState] = useState(formValue);
   const [checkPasswordValue, setCheckPasswordValue] = useState(null);
   const [isShow, setIsShow] = useState(false);
+  const [showCheckpassword, setShowCheckpassword] = useState(false);
 
   const onChange = (e) => {
     if (e.target.name === "gender") {
@@ -269,6 +270,12 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
     e.target.focus();
   };
 
+  const changeCheckPassword = (e) => {
+    e.preventDefault();
+    setShowCheckpassword(!showCheckpassword);
+    e.target.focus();
+  };
+
   return (
     <Portal id="modal-dialog">
       <Modal onClick={closeModal}>
@@ -280,7 +287,9 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
           errorMessage={state.hasError}
           closeModal={closeModal}
           changePasswordMode={changePasswordMode}
+          changeCheckPassword={changeCheckPassword}
           isShow={isShow}
+          showCheckpassword={showCheckpassword}
           onFocus={onFocus}
           {...restProps}
         />
