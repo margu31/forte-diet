@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+import { Button } from 'components';
 import { palette, fontSizeKit, a11yHidden } from 'styles';
-import Button from 'components/Button/Button';
 
 export const StyledUserBarWrapper = styled.section`
   position: absolute;

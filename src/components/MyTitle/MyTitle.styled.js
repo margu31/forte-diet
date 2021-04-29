@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import styled from 'styled-components';
+import { fontSizeKit, fontWeightKit } from 'styles';
 
 export const MyTitleContainer = styled.div`
   display: flex;
@@ -9,7 +9,6 @@ export const MyTitleContainer = styled.div`
 `;
 
 export const MyTitlewtext = styled.p`
-  /* background-color: yellowgreen; */
   margin: auto;
   width: auto;
   height: auto;

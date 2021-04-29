@@ -1,8 +1,6 @@
-import Button from "components/Button/Button";
-import Input from "components/Input/Input";
-import Title from "components/Title/Title";
-import styled, { css } from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import styled, { css } from 'styled-components';
+import { Button, Input, Title } from 'components';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const StyledSignUpForm = styled.form`
   display: flex;

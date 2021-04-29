@@ -1,7 +1,6 @@
 import React from 'react';
-import BoardNavigation from 'components/BoardNavigation/BoardNavigation';
 import { StyledBoardTitle, StyledBoardWrapper, StyledDiets } from './Board.styled';
-import DietCard from 'components/DietCard/DietCard';
+import { DietCard, BoardNavigation } from 'components';
 
 export default function Board({ boardType, diets, auth, handleClick }) {
   const container = {

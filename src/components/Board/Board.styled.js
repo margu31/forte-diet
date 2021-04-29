@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Title from 'components/Title/Title';
+import { Title } from 'components';
 import { motion } from 'framer-motion';
 
 export const StyledBoardWrapper = styled.section`

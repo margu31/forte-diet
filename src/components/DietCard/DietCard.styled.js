@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as Donut } from 'assets/icons/MenuList/donut.svg';
 import { ReactComponent as waterDrop } from 'assets/icons/MenuList/waterDrop.svg';
 import { TiHeart } from 'react-icons/ti';
-import { fontSizeKit, fontWeightKit, palette } from 'styles';
 import { motion } from 'framer-motion';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const DietItem = styled(motion.li)`
   position: relative;

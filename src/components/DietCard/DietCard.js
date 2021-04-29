@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addLikeToUser } from '../../api/auth';
-import { handleEditLikeToDiets } from '../../api/diets';
-import { pushLikeAction } from '../../redux/modules/auth/auth';
-import { palette } from '../../styles';
+import { addLikeToUser } from 'api/auth';
+import { handleEditLikeToDiets } from 'api/diets';
+import { pushLikeAction } from 'redux/modules/auth/auth';
 import {
   DietItem,
   StyledDietCard,
@@ -19,6 +18,7 @@ import {
   LikedHeartIcon,
   MealImgContainer
 } from './DietCard.styled';
+import { palette } from 'styles';
 
 export default function DietCard({ dietData, auth, variants }) {
   const Image = useRef();

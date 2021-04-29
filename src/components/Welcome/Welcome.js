@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { getSearchMenus } from '../../redux/modules/board';
+import { useDispatch } from 'react-redux';
+import { getSearchMenus } from 'redux/modules/board';
 import {
   StyledWelcomeWrapper,
   WelcomeHeading,
@@ -12,8 +13,7 @@ import {
   SearchBtn,
   SearchHeading
 } from './Welcome.styled';
-import Dropdown from '../Dropdown/Dropdown';
-import { useDispatch } from 'react-redux';
+import { Dropdown } from 'components';
 
 export default function Welcome({ setBoardToSearch }) {
   const [search, setSearch] = useState('');

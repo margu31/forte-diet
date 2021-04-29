@@ -1,7 +1,7 @@
-import React from "react";
-import { StyledModal } from "./Modal.styled";
+import React from 'react';
+import { StyledModal } from './Modal.styled';
 
-export const Modal = ({ children, ...restProps }) => {
+const Modal = ({ children, ...restProps }) => {
   return (
     <StyledModal {...restProps}>
       {children}
@@ -9,3 +9,5 @@ export const Modal = ({ children, ...restProps }) => {
     </StyledModal>
   );
 };
+
+export default Modal;
