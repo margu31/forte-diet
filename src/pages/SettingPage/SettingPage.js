@@ -1,8 +1,6 @@
-import SettingContainer from 'containers/SettingContainer/SettingContainer';
 import React, { useEffect } from 'react';
 import { StyledBackground, StyledSettingPage } from './SettingPage.styled';
-import HealthBarContainer from 'containers/HealthBarContainer/HealthBarContainer';
-import UserBar from 'containers/UserBar/UserBar';
+import { SettingContainer, HealthBarContainer, UserBar } from 'containers';
 
 export default function SettingPage({ history }) {
   useEffect(() => {
