@@ -11,8 +11,6 @@ import ReviewBox from "components/ReviewBox/ReviewBox";
 import Toggle from "components/Toggle/Toggle";
 import DataGroup from "components/DataGroup/DataGroup";
 import { handleEditMealinUsers } from "api/firestore";
-import { addMenuListAction } from "redux/modules/menuList";
-import { addMealInDiets } from "api/diets";
 import { uploadImgToAmazon } from "api/amazon";
 
 const today = new Date();
@@ -55,9 +53,6 @@ function PostEditContainer({ history }) {
   const fileRef = useRef();
   const dispatch = useDispatch();
 
-  // console.log(mealDate);
-  // console.log(meal);
-
   useEffect(() => {
     setMeal({
       ...meal,
@@ -66,10 +61,7 @@ function PostEditContainer({ history }) {
         ...meal.hasError,
       },
     });
-    // fileRef.current.files[0] = mealDate[0].photo;
   }, []);
-
-  // console.log(meal);
 
   function convertDate(date) {
     const yymmdd = date.slice(0, 6).toString();
@@ -172,7 +164,6 @@ function PostEditContainer({ history }) {
     Object.entries(meal).forEach(([key, value]) => {
       if (key === "hasError") return;
       formData.append(key, value);
-      // console.log(`${key}: `, `${value}`);
     });
 
     const mealId =
@@ -335,7 +326,6 @@ function PostEditContainer({ history }) {
           onChange={onChange}
           onKeyUp={onKeyUp}
           hasError={meal.hasError.review}
-          // defaultReview={isEditing ? defaultReview : null}
           defaultReview={defaultReview}
         />
         <Toggle
