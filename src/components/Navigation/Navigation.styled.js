@@ -34,6 +34,10 @@ export const StyledNavLink = styled(NavLink)`
   color: ${palette.themeDefaultWhite};
   border-radius: 10px;
 
+  &:focus {
+    box-shadow: 0 0 0 2px ${palette.themeSecondary};
+  }
+
   &.active {
     /* background-color: rgba(0, 0, 0, 0.2); */
     background-color: ${palette.themeBright};
@@ -41,10 +45,6 @@ export const StyledNavLink = styled(NavLink)`
     font-weight: ${fontWeightKit.bold};
     transform: none;
     box-shadow: -4px 4px 0 rgba(0, 0, 0, 0.1);
-
-    &:focus {
-      box-shadow: 0 0 0 2px ${palette.themeSecondary};
-    }
   }
 `;
 
