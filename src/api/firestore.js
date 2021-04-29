@@ -1,21 +1,17 @@
-import { firestore } from "./auth";
-import firebase from "firebase";
-import { handleDeleteDietInDiets, handleEditMealInDiets } from "./diets";
+import { firestore } from './auth';
+import firebase from 'firebase';
+import { handleDeleteDietInDiets, handleEditMealInDiets } from './diets';
 
-const users = firestore.collection("users");
-const diets = firestore.collection("diets");
+const users = firestore.collection('users');
+const diets = firestore.collection('diets');
 
 /* 마이 페이지 */
 
-export const handleGetDietLists = ({ uid }, updateDietAction) => async (
-  dispatch
-) => {
+export const handleGetDietLists = ({ uid }, updateDietAction) => async dispatch => {
   try {
-    const snapshot = await users.where("id", "==", uid).get();
+    const snapshot = await users.where('id', '==', uid).get();
 
-    snapshot.forEach((user) =>
-      dispatch(updateDietAction(user.data().dietList))
-    );
+    snapshot.forEach(user => dispatch(updateDietAction(user.data().dietList)));
 
     return true;
   } catch (e) {
@@ -30,16 +26,16 @@ export const addOrEditDailyReview = ({ uid }, date, review) => async () => {
       {
         dietList: {
           [date]: {
-            dailyReview: review,
-          },
-        },
+            dailyReview: review
+          }
+        }
       },
       { merge: true }
     );
 
     return true;
   } catch (e) {
-    return new Error("$addOrEditDailyReview :" + e.message);
+    return new Error('$addOrEditDailyReview :' + e.message);
   }
 };
 
@@ -50,44 +46,39 @@ export const removeDailyReview = ({ uid }, date) => async () => {
       {
         dietList: {
           [date]: {
-            dailyReview: "",
-          },
-        },
+            dailyReview: ''
+          }
+        }
       },
       { merge: true }
     );
 
     return true;
   } catch (e) {
-    return new Error("$removeDailyReview :" + e.message);
+    return new Error('$removeDailyReview :' + e.message);
   }
 };
 
-export const addWaterDose = (
-  { uid },
-  date,
-  currentDose,
-  additionalDose
-) => async () => {
+export const addWaterDose = ({ uid }, date, currentDose, additionalDose) => async () => {
   try {
     const user = await users.doc(uid);
     user.set(
       {
         dietList: {
           [date]: {
-            waterDose: currentDose + additionalDose,
-          },
-        },
+            waterDose: currentDose + additionalDose
+          }
+        }
       },
       { merge: true }
     );
   } catch (e) {
-    return new Error("$waterDose API :" + e.message);
+    return new Error('$waterDose API :' + e.message);
   }
 };
 
 export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
-  const newMeals = dietList[date].meals.filter((meal) => meal.id !== mealId);
+  const newMeals = dietList[date].meals.filter(meal => meal.id !== mealId);
 
   try {
     const user = await users.doc(uid);
@@ -96,8 +87,8 @@ export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
       user.set(
         {
           dietList: {
-            [date]: firebase.firestore.FieldValue.delete(),
-          },
+            [date]: firebase.firestore.FieldValue.delete()
+          }
         },
         { merge: true }
       );
@@ -106,9 +97,9 @@ export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
         {
           dietList: {
             [date]: {
-              meals: newMeals,
-            },
-          },
+              meals: newMeals
+            }
+          }
         },
         { merge: true }
       );
@@ -122,20 +113,16 @@ export const removeMeal = ({ uid }, dietList, date, mealId) => async () => {
 };
 
 /* 좋아요 토글 */
-export const handleEditLikeNumberToUsers = (
-  { uid },
-  date,
-  like
-) => async () => {
+export const handleEditLikeNumberToUsers = ({ uid }, date, like) => async () => {
   try {
     const user = await users.doc(uid);
     user.set(
       {
         dietList: {
           [date]: {
-            like,
-          },
-        },
+            like
+          }
+        }
       },
       { merge: true }
     );
@@ -145,16 +132,14 @@ export const handleEditLikeNumberToUsers = (
 };
 
 /* menu 삭제 */
-export const handleDeleteDietInUsers = ({ uid }, { id, date }) => async (
-  dispatch
-) => {
+export const handleDeleteDietInUsers = ({ uid }, { id, date }) => async dispatch => {
   try {
     const user = await users.doc(uid);
     user.set(
       {
         dietList: {
-          [date]: firebase.firestore.FieldValue.delete(),
-        },
+          [date]: firebase.firestore.FieldValue.delete()
+        }
       },
       { merge: true }
     );
@@ -174,7 +159,7 @@ export const addNewDiet = async ({ uid, nickname }, mealdata) => {
     const newDietRef = await diets.add({
       uid,
       author: nickname,
-      titles: [mealdata.title],
+      titles: [mealdata.title, ...mealdata.title.split('')],
       date: mealdata.date,
       dailyReview: null,
       createdAt: new Date(),
@@ -182,7 +167,7 @@ export const addNewDiet = async ({ uid, nickname }, mealdata) => {
       calories: mealdata.calories,
       like: 0,
       waterDose: 0,
-      meals: [{ ...mealdata }],
+      meals: [{ ...mealdata }]
     });
 
     return newDietRef.id;
@@ -200,10 +185,10 @@ export const PostMeal = async ({ uid }, mealdata, dietId) => {
           uid,
           date: mealdata.date,
           meals: firebase.firestore.FieldValue.arrayUnion({
-            ...mealdata,
-          }),
-        },
-      },
+            ...mealdata
+          })
+        }
+      }
     };
     if (dietId) {
       newData.dietList[mealdata.date].id = dietId;
@@ -217,28 +202,22 @@ export const PostMeal = async ({ uid }, mealdata, dietId) => {
   }
 };
 
-export const handleEditMealinUsers = ({ uid }, dietList, mealdata) => async (
-  dispatch
-) => {
+export const handleEditMealinUsers = ({ uid }, dietList, mealdata) => async dispatch => {
   try {
     const user = await users.doc(uid);
-    const newMeals = [...dietList[mealdata.date].meals].filter(
-      (meal) => meal.id !== mealdata.id
-    );
+    const newMeals = [...dietList[mealdata.date].meals].filter(meal => meal.id !== mealdata.id);
     newMeals.push(mealdata);
     const newData = {
       dietList: {
         [mealdata.date]: {
           date: mealdata.date,
-          meals: newMeals,
-        },
-      },
+          meals: newMeals
+        }
+      }
     };
     user.set(newData, { merge: true });
 
-    dispatch(
-      handleEditMealInDiets(dietList[mealdata.date], newMeals, mealdata)
-    );
+    dispatch(handleEditMealInDiets(dietList[mealdata.date], newMeals, mealdata));
 
     return true;
   } catch (e) {
@@ -260,7 +239,7 @@ export const editUserInfo = async ({ uid, dietList }, userInfo) => {
 
         diet.set(
           {
-            author: userInfo.nickname,
+            author: userInfo.nickname
           },
           { merge: true }
         );
@@ -271,7 +250,7 @@ export const editUserInfo = async ({ uid, dietList }, userInfo) => {
 
     user.set(
       {
-        ...userInfo,
+        ...userInfo
       },
       { merge: true }
     );
