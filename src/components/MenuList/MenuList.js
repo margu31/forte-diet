@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react';
-import MealList from 'components/MealList/MealList';
 import { StyledMenuList } from './MenuList.styled';
-import DailyReview from 'components/DailyReview/DailyReview';
-import MenuListBar from 'components/MenuListBar/MenuListBar';
+import { MealList, DailyReview, MenuListBar } from 'components';
 
 export default function MenuList({
   menuListData,

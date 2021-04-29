@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { fontSizeKit, palette } from "../../styles";
+import styled from 'styled-components';
+import { fontSizeKit, palette } from 'styles';
 
 const StyledReviewBox = styled.div`
   position: relative;

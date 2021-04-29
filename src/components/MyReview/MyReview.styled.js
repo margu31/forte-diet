@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import styled from 'styled-components';
+import { fontSizeKit, palette } from 'styles';
 
 export const MyReViewContainer = styled.div`
   display: flex;
@@ -10,11 +10,9 @@ export const MyReViewContainer = styled.div`
   padding: 10px 0;
   width: 350px;
   height: 150px;
-  /* margin: 20px auto 0 auto; */
 `;
 
 export const MyReViewtext = styled.p`
-  /* background-color: yellowgreen; */
   color: ${palette.themeFont};
   width: 350px;
   height: auto;

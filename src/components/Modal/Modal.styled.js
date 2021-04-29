@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { palette } from "styles";
+import styled from 'styled-components';
+import { palette } from 'styles';
 
 // border-top: 0.4rem solid ${palette.themePrimary};
 
@@ -13,7 +13,7 @@ export const StyledModal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("/login-bg.jpg");
+  background-image: url('/login-bg.jpg');
   /* background-color: ${palette.themeDark}; */
   background-repeat: no-repeat;
   background-size: 100%;

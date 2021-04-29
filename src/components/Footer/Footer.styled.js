@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 import { ReactComponent as Fox } from 'assets/logos/logo1.svg';
-import { fontSizeKit, palette } from '../../styles';
 import { GrGithub } from 'react-icons/gr';
 import { CgTwitter } from 'react-icons/cg';
 import { FaFacebook } from 'react-icons/fa';
+import { fontSizeKit, palette } from 'styles';
 
 export const FooterWrapper = styled.div`
   display: flex;
