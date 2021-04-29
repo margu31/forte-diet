@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { IoWater } from 'react-icons/io5';
 import { RiRestaurantFill } from 'react-icons/ri';
-import { palette, fontSizeKit, fontWeightKit } from 'styles';
-import { a11yHidden } from 'styles/a11y';
+import { palette, fontSizeKit, fontWeightKit, a11yHidden } from 'styles';
 
 const StyledWaterDose = styled(IoWater)``;
 const StyledCalories = styled(RiRestaurantFill)``;
@@ -32,11 +31,7 @@ const StyledLi = styled(motion.li)`
   flex-flow: column nowrap;
   margin: 0 auto 20px;
   border-radius: 5px;
-  background: linear-gradient(
-    to bottom,
-    ${palette.themePrimaryThick},
-    ${palette.themePrimary}
-  );
+  background: linear-gradient(to bottom, ${palette.themePrimaryThick}, ${palette.themePrimary});
 
   div {
     display: flex;
@@ -81,11 +76,7 @@ const StyledLi = styled(motion.li)`
 const StyledHeader = styled(motion.div)`
   width: inherit;
   height: 40px;
-  background: linear-gradient(
-    to left,
-    ${palette.themePrimaryThick},
-    ${palette.themePrimary}
-  );
+  background: linear-gradient(to left, ${palette.themePrimaryThick}, ${palette.themePrimary});
 `;
 
 const StyledContainer = styled(motion.div)`

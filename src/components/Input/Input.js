@@ -1,13 +1,12 @@
-import Button from "components/Button/Button";
-import Icons from "components/Icon/Icons";
-import React from "react";
+import React from 'react';
 import {
   StyledInputWrapper,
   StyledLabel,
   StyledInput,
   StyledErrorMessage,
-  StyledlabelHidden,
-} from "./Input.styled";
+  StyledlabelHidden
+} from './Input.styled';
+import { Button, Icons } from 'components';
 
 const Input = React.forwardRef(
   (
@@ -46,12 +45,12 @@ const Input = React.forwardRef(
         <StyledInput
           id={id}
           name={name}
-          type={isShow === true ? "text" : isShow === false ? "password" : type}
+          type={isShow === true ? 'text' : isShow === false ? 'password' : type}
           placeholder={placeholder}
           onChange={onChange}
           onBlur={onBlur}
           onKeyPress={onKeyPress}
-          autoComplete="off"
+          autoComplete='off'
           ref={ref}
           maxLength={maxLength}
           onKeyUp={onKeyUp}
@@ -63,17 +62,11 @@ const Input = React.forwardRef(
           {...restProps}
         ></StyledInput>
         {errorMessage && errorMessage[name] ? (
-          <StyledErrorMessage tabIndex="0">
-            {errorMessage[name]}
-          </StyledErrorMessage>
+          <StyledErrorMessage tabIndex='0'>{errorMessage[name]}</StyledErrorMessage>
         ) : null}
-        {type === "password" ? (
+        {type === 'password' ? (
           <Button onClick={changePasswordMode}>
-            {isShow === true ? (
-              <Icons type="showPassword" />
-            ) : (
-              <Icons type="eyeSlash" />
-            )}
+            {isShow === true ? <Icons type='showPassword' /> : <Icons type='eyeSlash' />}
           </Button>
         ) : null}
       </StyledInputWrapper>

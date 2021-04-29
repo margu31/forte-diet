@@ -1,4 +1,4 @@
-import { StyledFieldset, StyledLegend } from "components/Form/Form.styled";
+import { StyledFieldset, StyledLegend } from './Form.styled';
 
 const Form = ({ legend, children }) => {
   return (

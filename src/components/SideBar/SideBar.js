@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import HomeLink from '../HomeLink/HomeLink';
-import Navigation from '../Navigation/Navigation';
 import { StyledSideBar, StyledSideBarWrapper } from './SideBar.styled';
+import { HomeLink, Navigation } from 'components';
 
 export default function SideBar() {
   const [sideBarHeight, setSideBarHeight] = useState(0);

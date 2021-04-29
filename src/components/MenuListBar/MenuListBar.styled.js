@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { TiHeart } from 'react-icons/ti';
-import { ReactComponent as WaterDose } from '../../assets/icons/MenuList/waterDrop.svg';
-import { ReactComponent as Donut } from '../../assets/icons/MenuList/donut.svg';
+import { ReactComponent as WaterDose } from 'assets/icons/MenuList/waterDrop.svg';
+import { ReactComponent as Donut } from 'assets/icons/MenuList/donut.svg';
 import { VscTriangleRight } from 'react-icons/vsc';
 import { RiMore2Line } from 'react-icons/ri';
 import { motion } from 'framer-motion';

@@ -3,12 +3,11 @@ import {
   StyledLi,
   StyledUl,
   StyledUserBarWrapper,
-  UserNavigationHeading
+  UserNavigationHeading,
+  StyledButton
 } from './UserNavigation.styled';
-import { Modal } from 'components/Modal/Modal';
-import LoginDialog from 'containers/LogInContainer/LogInContainer';
-import SignUpDialog from 'containers/SignUpContainer/SignUpContainer';
-import { StyledButton } from './UserNavigation.styled';
+import { LogInContainer, SignUpContainer } from 'containers';
+import { Modal } from 'components';
 
 export default function UserNavigation({
   auth,
@@ -22,10 +21,10 @@ export default function UserNavigation({
       <UserNavigationHeading>유저 네비게이션</UserNavigationHeading>
       {dialogType && (
         <Modal>
-          {dialogType === 'LoginDialog' ? (
-            <LoginDialog closeModal={onCloseDialog} />
+          {dialogType === 'LogInContainer' ? (
+            <LogInContainer closeModal={onCloseDialog} />
           ) : (
-            <SignUpDialog closeModal={onCloseDialog} />
+            <SignUpContainer closeModal={onCloseDialog} />
           )}
         </Modal>
       )}
@@ -34,12 +33,12 @@ export default function UserNavigation({
           {!auth.isAuthed ? (
             <>
               <StyledLi>
-                <StyledButton id='LoginDialog' onClick={onOpenDialog}>
+                <StyledButton id='LogInContainer' onClick={onOpenDialog}>
                   로그인
                 </StyledButton>
               </StyledLi>
               <StyledLi>
-                <StyledButton id='SignUpDialog' onClick={onOpenDialog}>
+                <StyledButton id='SignUpContainer' onClick={onOpenDialog}>
                   회원가입
                 </StyledButton>
               </StyledLi>
@@ -47,7 +46,7 @@ export default function UserNavigation({
           ) : (
             <>
               <StyledLi>
-                <StyledButton id='signUpDialog' onClick={onSignOut}>
+                <StyledButton id='SignUpContainer' onClick={onSignOut}>
                   로그아웃
                 </StyledButton>
               </StyledLi>

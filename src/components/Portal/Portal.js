@@ -1,5 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 
 export default function Portal({ id, children }) {
   const el = document.getElementById(id);

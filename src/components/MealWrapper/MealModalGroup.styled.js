@@ -1,7 +1,6 @@
-import Button from "components/Button/Button";
-import { Modal } from "components/Modal/Modal";
-import styled, { css } from "styled-components";
-import { palette } from "styles";
+import styled from 'styled-components';
+import { Modal, Button } from 'components';
+import { palette } from 'styles';
 
 export const StyledMealModal = styled(Modal)`
   background-image: none;

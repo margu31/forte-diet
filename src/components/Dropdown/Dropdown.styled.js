@@ -1,7 +1,7 @@
-import { hideVisually } from 'polished';
 import styled, { css } from 'styled-components';
+import { hideVisually } from 'polished';
 import { ReactComponent as Dropdown } from 'assets/icons/dropdown.svg';
-import { fontSizeKit, palette } from '../../styles';
+import { fontSizeKit, palette } from 'styles';
 
 export const StyledDropdownWrapper = styled.div`
   position: relative;

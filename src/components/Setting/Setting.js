@@ -1,7 +1,4 @@
-import Button from "components/Button/Button";
-import Form from "components/Form/Form";
-import Input from "components/Input/Input";
-import InputRadio from "components/Radio/InputRadio";
+import { useRef } from "react";
 import {
   StyledButtonGroup,
   StyledRadio,
@@ -11,8 +8,8 @@ import {
   StyledImage,
   StyledError,
 } from "./Setting.styled";
+import { Button, Form, Input, InputRadio } from "components";
 import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
-import { useRef } from "react";
 
 const Setting = ({
   userEmail,

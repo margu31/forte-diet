@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "../../styles";
+import styled from 'styled-components';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 const StyledToggle = styled.div`
   font-size: ${fontSizeKit.small};

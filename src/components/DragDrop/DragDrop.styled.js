@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import styled from 'styled-components';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const StyledFileWrapper = styled.div`
   width: 320px;
