@@ -1,10 +1,10 @@
-import { Title } from 'components';
+import { Title } from "components";
 import {
   LoginFormInput,
   LoginFormSubmitButton,
   StyledForm,
-  LoginFormCloseButton
-} from './LoginForm.styled';
+  LoginFormCloseButton,
+} from "./LoginForm.styled";
 
 const LoginForm = ({
   onChange,
@@ -15,17 +15,21 @@ const LoginForm = ({
   disabled,
   closeModal,
   changePasswordMode,
-  isShow
+  isShow,
 }) => {
+  const stopEvent = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <StyledForm>
+    <StyledForm onClick={stopEvent}>
       <Title>로그인</Title>
       <LoginFormInput
-        label='email'
-        id='email'
-        name='email'
-        type='email'
-        placeholder='이메일을 입력해주세요.'
+        label="email"
+        id="email"
+        name="email"
+        type="email"
+        placeholder="이메일을 입력해주세요."
         onChange={onChange}
         onKeyUp={onKeyUp}
         // onBlur={onBlur}
@@ -33,11 +37,11 @@ const LoginForm = ({
         a11yHidden={true}
       />
       <LoginFormInput
-        label='비밀번호'
-        id='password'
-        name='password'
-        type='password'
-        placeholder='비밀번호를 입력해주세요.'
+        label="비밀번호"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="비밀번호를 입력해주세요."
         onChange={onChange}
         onKeyUp={onKeyUp}
         // onBlur={onBlur}
@@ -47,15 +51,15 @@ const LoginForm = ({
         isShow={isShow}
       />
       <LoginFormSubmitButton
-        $width='300'
-        $height='30'
-        type='submit'
+        $width="300"
+        $height="30"
+        type="submit"
         onSubmit={onSubmit}
         disabled={disabled}
       >
         확인
       </LoginFormSubmitButton>
-      <LoginFormCloseButton type='button' onClick={closeModal}>
+      <LoginFormCloseButton type="button" onClick={closeModal}>
         X
       </LoginFormCloseButton>
     </StyledForm>

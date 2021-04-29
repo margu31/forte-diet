@@ -271,7 +271,7 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
 
   return (
     <Portal id="modal-dialog">
-      <Modal>
+      <Modal onClick={closeModal}>
         <SignUpForm
           onChange={onChange}
           onBlur={onBlur}

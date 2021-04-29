@@ -111,7 +111,7 @@ export default function LogInContainer({
 
   return (
     <Portal id="modal-dialog">
-      <Modal>
+      <Modal onClick={closeModal}>
         <LoginForm
           onChange={onChange}
           onKeyUp={onKeyUp}
