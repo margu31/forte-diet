@@ -1,6 +1,5 @@
 // 액션 타입
 const SIGN_IN = "auth/SIGN_IN";
-const SIGN_UP = "auth/SIGN_UP";
 const SIGN_OUT = "auth/SIGN_OUT";
 const EDIT_USER = "auth/EDIT_USER";
 const PUSH_LIKE = "auth/PUSH_LIKE";

@@ -1,5 +1,5 @@
 export const isEmail = (email) => {
-  const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailRegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return emailRegExp.test(email);
 };
 
@@ -24,7 +24,7 @@ export const isHeight = (height) => {
 };
 
 export const isNickname = (nickname) => {
-  const nicknameRegExp = /^(?=.*[a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9|~!^*()_+-|<>?:;`,{}\]\[/\'\"\\\']).{2,10}$/i;
+  const nicknameRegExp = /^(?=.*[a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9|~!^*()_+-|<>?:;`,{}\][/'"\\']).{2,10}$/i;
 
   return nicknameRegExp.test(nickname);
 };

@@ -21,8 +21,6 @@ export const StyledMealContainer = styled.div`
 export const StyledMealWrapper = styled.div`
   position: relative;
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
   width: 500px;
   height: 600px;
 `;
