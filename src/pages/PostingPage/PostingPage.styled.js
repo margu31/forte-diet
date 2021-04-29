@@ -1,10 +1,9 @@
-import styled from "styled-components";
-import { StyledButton } from "components/UserNavigation/UserNavigation.styled";
-import { palette } from "styles";
+import styled from 'styled-components';
+import { StyledButton } from 'components/UserNavigation/UserNavigation.styled';
+import { palette } from 'styles';
 
 const StylePostingPage = styled.div`
   min-height: 100vh;
-  /* width: 692px; */
   width: 90rem;
 
   margin: 0 auto;

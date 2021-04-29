@@ -6,7 +6,7 @@ export const StyledBoardWrapper = styled.section`
   padding: 8rem 5rem 0;
 `;
 
-export const StyledBoardTitle = styled(Title)`
+export const StyledBoardTitle = styled(props => <Title {...props} />)`
   margin-top: 0;
   &::before {
     content: none;

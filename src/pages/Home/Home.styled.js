@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { a11yHidden } from '../../styles';
+import { a11yHidden } from 'styles';
 
 export const StyledHomePageWrapper = styled.section`
   max-width: 85vw;

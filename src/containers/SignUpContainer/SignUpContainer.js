@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { isEmail, isPassword } from 'utils/validation/LogInValidation';
-import { isHeight, isWeight, isNickname } from 'utils/validation/SignUpValidation';
+import { SignUpForm, Portal, Modal } from 'components';
 import { signUpWithEmailAndPassword } from 'api/auth';
-import { Modal, Portal, SignUpForm } from 'components';
+import { isEmail, isPassword } from 'utils/validation/LogInValidation';
+import {
+  isHeight,
+  isWeight,
+  isNickname
+} from 'utils/validation/SignUpValidation';
 
 const formValue = {
   password: null,
@@ -221,7 +225,8 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
             ...state,
             hasError: {
               ...state.hasError,
-              password: '영어, 숫자, 특수문자 포함 6~20자 미만으로 입력해주세요.'
+              password:
+                '영어, 숫자, 특수문자 포함 6~20자 미만으로 입력해주세요.'
             }
           });
           break;
@@ -230,7 +235,8 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
             ...state,
             hasError: {
               ...state.hasError,
-              nickname: '한글, 영어, 특수문자, 숫자 포함 2~10자 미만으로 작성해주세요'
+              nickname:
+                '한글, 영어, 특수문자, 숫자 포함 2~10자 미만으로 작성해주세요'
             }
           });
           break;
@@ -241,7 +247,10 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
   };
 
   const isDisabled =
-    state.hasError.email || state.hasError.password || !state.email || !state.password;
+    state.hasError.email ||
+    state.hasError.password ||
+    !state.email ||
+    !state.password;
 
   window.addEventListener('keyup', e => {
     if (e.key === 'Escape') {
