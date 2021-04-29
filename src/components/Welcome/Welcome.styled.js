@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { a11yHidden, fontSizeKit, palette } from '../../styles';
+import { a11yHidden, fontSizeKit, fontWeightKit, palette } from '../../styles';
 import Button from 'components/Button/Button';
 
 /* 래퍼 */
@@ -36,19 +36,22 @@ const StyledDiv = styled.div`
 `;
 
 const StyledP = styled.p`
-  padding: 1rem 0 2rem;
-  font-size: ${fontSizeKit.small};
-  line-height: 1.6rem;
+  padding: 2rem 0 2rem;
+  width: 70rem;
+  font-size: ${fontSizeKit.medium};
+  line-height: 2.6rem;
   letter-spacing: 0.15rem;
   color: ${palette.themeDefaultWhite};
 `;
 
 const StyledTitle = styled.h4`
   font-size: ${fontSizeKit.xxLarge};
+  font-weight: ${fontWeightKit.bold};
   color: ${palette.themeDefaultWhite};
 `;
 
 const TutorialBtn = styled(Button)`
+  font-size: ${fontSizeKit.small};
   padding: 1rem 2rem;
   background-color: transparent;
   border-radius: 50px;
@@ -66,11 +69,13 @@ export const WelcomeContent = () => (
     <StyledDiv>
       <StyledTitle>우연히, 식단</StyledTitle>
       <StyledP>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.
+        건강을 다른 것에 양보하지 마세요.
+        <br />
+        당신의 건강을 위해, 식단을 체계적으로 관리할 수 있게 도와줍니다.
+        <br /> 하루 식단을 끼니 별로 나누어 상세하게 기록해보세요.
+        <br /> 잘못된 식습관을 고치고 소중한 나를 알아가는 길, 우연히, 식단과 함께해요.
       </StyledP>
-      <TutorialBtn>튜토리얼로 이동하기</TutorialBtn>
+      <TutorialBtn disabled>튜토리얼로 이동하기</TutorialBtn>
     </StyledDiv>
   </MessageWrapper>
 );
