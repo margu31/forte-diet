@@ -22,16 +22,6 @@ export const StyledInput = styled.input`
   outline: none;
   font-size: ${fontSizeKit.medium};
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px #395b9d;
-    opacity: 1;
-  }
-
-  &:focus:not(:focus-visible) {
-    box-shadow: none;
-  }
-
   &[type="date"] {
     cursor: pointer;
 
