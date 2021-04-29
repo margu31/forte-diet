@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 import {
   StyledInputWrapper,
   StyledLabel,
   StyledInput,
   StyledErrorMessage,
-  StyledlabelHidden
-} from './Input.styled';
-import { Button, Icons } from 'components';
+  StyledlabelHidden,
+} from "./Input.styled";
+import { Button, Icons } from "components";
 
 const Input = React.forwardRef(
   (
@@ -31,6 +31,8 @@ const Input = React.forwardRef(
       onFocus,
       readOnly,
       ariaLabel,
+      changeCheckPassword,
+      showCheckpassword,
       ...restProps
     },
     ref
@@ -45,12 +47,18 @@ const Input = React.forwardRef(
         <StyledInput
           id={id}
           name={name}
-          type={isShow === true ? 'text' : isShow === false ? 'password' : type}
+          type={
+            isShow || showCheckpassword === true
+              ? "text"
+              : isShow || showCheckpassword === false
+              ? "password"
+              : type
+          }
           placeholder={placeholder}
           onChange={onChange}
           onBlur={onBlur}
           onKeyPress={onKeyPress}
-          autoComplete='off'
+          autoComplete="off"
           ref={ref}
           maxLength={maxLength}
           onKeyUp={onKeyUp}
@@ -62,11 +70,26 @@ const Input = React.forwardRef(
           {...restProps}
         ></StyledInput>
         {errorMessage && errorMessage[name] ? (
-          <StyledErrorMessage tabIndex='0'>{errorMessage[name]}</StyledErrorMessage>
+          <StyledErrorMessage tabIndex="0">
+            {errorMessage[name]}
+          </StyledErrorMessage>
         ) : null}
-        {type === 'password' ? (
+        {name === "password" ? (
           <Button onClick={changePasswordMode}>
-            {isShow === true ? <Icons type='showPassword' /> : <Icons type='eyeSlash' />}
+            {isShow === true ? (
+              <Icons type="showPassword" />
+            ) : (
+              <Icons type="eyeSlash" />
+            )}
+          </Button>
+        ) : null}
+        {name === "checkpassword" ? (
+          <Button onClick={changeCheckPassword}>
+            {showCheckpassword === true ? (
+              <Icons type="showPassword" />
+            ) : (
+              <Icons type="eyeSlash" />
+            )}
           </Button>
         ) : null}
       </StyledInputWrapper>
