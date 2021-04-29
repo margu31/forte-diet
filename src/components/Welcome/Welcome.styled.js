@@ -116,7 +116,7 @@ export const SearchLabel = styled.label`
 `;
 
 export const SearchInput = styled.input`
-  padding: 1.95rem 9rem;
+  padding: 1.92rem 9rem;
   padding-left: 10rem;
   border-radius: 50px 0 0 50px;
   font-size: ${fontSizeKit.small};
