@@ -1,11 +1,13 @@
-import styled from 'styled-components';
-import { Modal, Button } from 'components';
-import { palette } from 'styles';
+import styled from "styled-components";
+import { Modal, Button } from "components";
+import { palette } from "styles";
 
-export const StyledMealModal = styled(props => <Modal {...props} />)`
-  background-image: none;
-  background-color: #292929d9;
-`;
+export const StyledMealModal = styled((props) => (
+  <Modal
+    style={{ backgroundImage: "none", backgroundColor: "#292929d9" }}
+    {...props}
+  />
+))``;
 
 export const StyledMealContainer = styled.div`
   position: relative;
@@ -25,7 +27,7 @@ export const StyledMealWrapper = styled.div`
   height: 600px;
 `;
 
-export const MealDialogSubmitButton = styled(props => <Button {...props} />)`
+export const MealDialogSubmitButton = styled((props) => <Button {...props} />)`
   position: absolute;
   bottom: 2%;
   left: 0;
@@ -48,7 +50,7 @@ export const MealDialogSubmitButton = styled(props => <Button {...props} />)`
   }
 `;
 
-export const MealDialogEditButton = styled(props => <Button {...props} />)`
+export const MealDialogEditButton = styled((props) => <Button {...props} />)`
   position: absolute;
   bottom: 2%;
   right: 0;
@@ -71,7 +73,7 @@ export const MealDialogEditButton = styled(props => <Button {...props} />)`
   }
 `;
 
-export const MealDialogPrevButton = styled(props => <Button {...props} />)`
+export const MealDialogPrevButton = styled((props) => <Button {...props} />)`
   position: absolute;
   top: 45%;
   left: 0;
@@ -93,7 +95,7 @@ export const MealDialogPrevButton = styled(props => <Button {...props} />)`
   }
 `;
 
-export const MealDialogNextButton = styled(props => <Button {...props} />)`
+export const MealDialogNextButton = styled((props) => <Button {...props} />)`
   position: absolute;
   top: 45%;
   right: 0%;
@@ -116,7 +118,7 @@ export const MealDialogNextButton = styled(props => <Button {...props} />)`
   }
 `;
 
-export const MealDialogCloseButton = styled(props => <Button {...props} />)`
+export const MealDialogCloseButton = styled((props) => <Button {...props} />)`
   position: absolute;
   top: 1%;
   right: 1%;

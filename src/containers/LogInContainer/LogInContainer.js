@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signInAction } from 'redux/modules/auth/auth';
-import { LoginForm, Portal, Modal } from 'components';
-import { handleSignInWithEmailAndPassword } from 'api/auth';
-import { isEmail, isPassword } from 'utils/validation/LogInValidation';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signInAction } from "redux/modules/auth/auth";
+import { LoginForm, Portal, Modal } from "components";
+import { handleSignInWithEmailAndPassword } from "api/auth";
+import { isEmail, isPassword } from "utils/validation/LogInValidation";
 
 const formValue = {
   email: null,
   password: null,
   hasError: {
     email: null,
-    password: null
-  }
+    password: null,
+  },
 };
 
 export default function LogInContainer({
@@ -24,52 +24,52 @@ export default function LogInContainer({
   const [state, setState] = useState(formValue);
   const [isShow, setIsShow] = useState(false);
 
-  const onChange = e => {
+  const onChange = (e) => {
     e.preventDefault();
     setState({ ...state, [e.target.name]: e.target.value.trim() });
   };
 
-  const emailValid = value => {
+  const emailValid = (value) => {
     if (!isEmail(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          email: '이메일 형식에 맞지 않습니다.'
-        }
+          email: "이메일 형식에 맞지 않습니다.",
+        },
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          id: null
-        }
+          email: null,
+        },
       });
     }
   };
 
-  const passwordlValid = value => {
+  const passwordlValid = (value) => {
     if (!isPassword(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          password: '비밀번호 형식에 맞지 않습니다.'
-        }
+          password: "비밀번호 형식에 맞지 않습니다.",
+        },
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          password: null
-        }
+          password: null,
+        },
       });
     }
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const Formdata = new FormData();
     Object.entries(state).forEach(([key, value]) => {
@@ -82,8 +82,8 @@ export default function LogInContainer({
     closeModal();
   };
 
-  const onBlur = e => {
-    if (e.target.name === 'email') {
+  const onKeyUp = (e) => {
+    if (e.target.name === "email") {
       emailValid(e.target.value);
     } else {
       state.password = e.target.value;
@@ -91,13 +91,13 @@ export default function LogInContainer({
     }
   };
 
-  window.addEventListener('keyup', e => {
-    if (e.key === 'Escape') {
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
       closeModal();
     }
   });
 
-  const changePasswordMode = e => {
+  const changePasswordMode = (e) => {
     e.preventDefault();
     setIsShow(!isShow);
     e.target.focus();
@@ -110,11 +110,12 @@ export default function LogInContainer({
     !state.password;
 
   return (
-    <Portal id='modal-dialog'>
+    <Portal id="modal-dialog">
       <Modal>
         <LoginForm
           onChange={onChange}
-          onBlur={onBlur}
+          onKeyUp={onKeyUp}
+          // onBlur={onBlur}
           onSubmit={onSubmit}
           disabled={isDisabled}
           errorMessage={state.hasError}

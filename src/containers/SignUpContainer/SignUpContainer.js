@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { SignUpForm, Portal, Modal } from 'components';
-import { signUpWithEmailAndPassword } from 'api/auth';
-import { isEmail, isPassword } from 'utils/validation/LogInValidation';
+import React, { useState } from "react";
+import { SignUpForm, Portal, Modal } from "components";
+import { signUpWithEmailAndPassword } from "api/auth";
+import { isEmail, isPassword } from "utils/validation/LogInValidation";
 import {
   isHeight,
   isWeight,
-  isNickname
-} from 'utils/validation/SignUpValidation';
+  isNickname,
+} from "utils/validation/SignUpValidation";
 
 const formValue = {
   password: null,
@@ -22,8 +22,8 @@ const formValue = {
     gender: null,
     height: null,
     nickname: null,
-    weight: null
-  }
+    weight: null,
+  },
 };
 
 export default function SignUpContainer({ closeModal, ...restProps }) {
@@ -31,148 +31,144 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
   const [checkPasswordValue, setCheckPasswordValue] = useState(null);
   const [isShow, setIsShow] = useState(false);
 
-  // const isCheckPassword = (e) => {
-  //   e.target ===
-  // }
-
-  const onChange = e => {
-    if (e.target.name === 'gender') {
+  const onChange = (e) => {
+    if (e.target.name === "gender") {
       setState({ ...state, [e.target.name]: e.target.value.trim() });
     } else {
       setState({ ...state, [e.target.name]: e.target.value.trim() });
     }
   };
 
-  const emailValid = value => {
+  const emailValid = (value) => {
     if (!isEmail(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          email: '입력 형식에 맞지 않습니다.'
-        }
+          email: "입력 형식에 맞지 않습니다.",
+        },
       });
     } else if (value.length === 0) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          email: '이메일 형식으로 입력해주세요.'
-        }
+          email: "이메일 형식으로 입력해주세요.",
+        },
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          email: null
-        }
+          email: null,
+        },
       });
     }
   };
 
-  const passwordlValid = value => {
+  const passwordlValid = (value) => {
     if (!isPassword(value)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          password: '입력 형식에 맞지 않습니다.'
-        }
+          password: "입력 형식에 맞지 않습니다.",
+        },
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          password: null
-        }
+          password: null,
+        },
       });
     }
     setCheckPasswordValue(value);
   };
 
-  const checkPasswordlValid = value => {
+  const checkPasswordlValid = (value) => {
     if (value === checkPasswordValue) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          checkpassword: null
-        }
+          checkpassword: null,
+        },
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          checkpassword: '비밀번호를 확인해주세요.'
-        }
+          checkpassword: "입력한 비밀번호를 다시 입력해주세요.",
+        },
       });
     }
   };
 
-  const heightlValid = height => {
+  const heightlValid = (height) => {
     if (!isHeight(height)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          height: '입력 형식에 맞지 않습니다.'
-        }
+          height: "입력 형식에 맞지 않습니다.",
+        },
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          height: null
-        }
+          height: null,
+        },
       });
     }
   };
 
-  const weightValid = weight => {
+  const weightValid = (weight) => {
     if (!isWeight(weight)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          weight: '입력 형식에 맞지 않습니다.'
-        }
+          weight: "입력 형식에 맞지 않습니다.",
+        },
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          weight: null
-        }
+          weight: null,
+        },
       });
     }
   };
 
-  const nicknameValid = nickname => {
+  const nicknameValid = (nickname) => {
     if (!isNickname(nickname)) {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          nickname: '입력 형식에 맞지 않습니다.'
-        }
+          nickname: "입력 형식에 맞지 않습니다.",
+        },
       });
     } else {
       setState({
         ...state,
         hasError: {
           ...state.hasError,
-          nickname: null
-        }
+          nickname: null,
+        },
       });
     }
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const Formdata = new FormData();
     Object.entries(state).forEach(([key, value]) => {
@@ -186,58 +182,67 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
       weight,
       height,
       gender,
-      nickname
+      nickname,
     });
     closeModal();
   };
 
-  const onBlur = e => {
-    if (e.target.name === 'password') {
+  const onBlur = (e) => {
+    if (e.target.name === "password") {
       passwordlValid(e.target.value);
-    } else if (e.target.name === 'email') {
+    } else if (e.target.name === "email") {
       emailValid(e.target.value);
-    } else if (e.target.name === 'height') {
+    } else if (e.target.name === "height") {
       heightlValid(e.target.value);
-    } else if (e.target.name === 'weight') {
+    } else if (e.target.name === "weight") {
       weightValid(e.target.value);
-    } else if (e.target.name === 'nickname') {
+    } else if (e.target.name === "nickname") {
       nicknameValid(e.target.value);
-    } else if (e.target.name === 'checkpassword') {
+    } else if (e.target.name === "checkpassword") {
       checkPasswordlValid(e.target.value);
     }
   };
 
-  const onFocus = e => {
+  const onFocus = (e) => {
     const targetName = e.target.name;
     if (e.target.value.length === 0) {
       switch (targetName) {
-        case 'email':
+        case "email":
           setState({
             ...state,
             hasError: {
               ...state.hasError,
-              email: '이메일 형식으로 입력해주세요.'
-            }
+              email: "이메일 형식으로 입력해주세요.",
+            },
           });
           break;
-        case 'password':
+        case "password":
           setState({
             ...state,
             hasError: {
               ...state.hasError,
               password:
-                '영어, 숫자, 특수문자 포함 6~20자 미만으로 입력해주세요.'
-            }
+                "영어, 숫자, 특수문자 포함 6~20자 미만으로 입력해주세요.",
+            },
           });
           break;
-        case 'nickname':
+        case "checkpassword":
+          setState({
+            ...state,
+            hasError: {
+              ...state.hasError,
+              checkpassword: "입력한 비밀번호를 다시 확인해주세요.",
+            },
+          });
+          break;
+        case "nickname":
           setState({
             ...state,
             hasError: {
               ...state.hasError,
               nickname:
-                '한글, 영어, 특수문자, 숫자 포함 2~10자 미만으로 작성해주세요'
-            }
+                "한글, 영어, 특수문자, 숫자 포함 2~10자 미만으로 작성해주세요",
+            },
           });
           break;
         default:
@@ -252,20 +257,20 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
     !state.email ||
     !state.password;
 
-  window.addEventListener('keyup', e => {
-    if (e.key === 'Escape') {
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
       closeModal();
     }
   });
 
-  const changePasswordMode = e => {
+  const changePasswordMode = (e) => {
     e.preventDefault();
     setIsShow(!isShow);
     e.target.focus();
   };
 
   return (
-    <Portal id='modal-dialog'>
+    <Portal id="modal-dialog">
       <Modal>
         <SignUpForm
           onChange={onChange}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   MealDialogNextButton,
   MealDialogPrevButton,
@@ -7,9 +7,9 @@ import {
   MealDialogEditButton,
   StyledMealContainer,
   MealDialogCloseButton,
-  StyledMealModal
-} from './MealModalGroup.styled';
-import { MealDialog } from 'components';
+  StyledMealModal,
+} from "./MealModalGroup.styled";
+import { MealDialog } from "components";
 
 const MealModalGroup = ({
   mealsArrayList,
@@ -19,7 +19,7 @@ const MealModalGroup = ({
   mealListData,
   mealLength,
   onSetting,
-  slideRef
+  slideRef,
 }) => {
   return (
     <StyledMealModal>
@@ -41,15 +41,15 @@ const MealModalGroup = ({
             ></MealDialog>
           ))}
         </StyledMealWrapper>
-        <MealDialogSubmitButton type='button' onClick={onMealModal}>
+        <MealDialogSubmitButton type="button" onClick={onMealModal}>
           확인
         </MealDialogSubmitButton>
         <MealDialogEditButton onClick={onSetting}>수정</MealDialogEditButton>
         {/* </StyledButtonContainer> */}
-        <MealDialogPrevButton type='button' onClick={prevMeal}>
+        <MealDialogPrevButton type="button" onClick={prevMeal}>
           &#60;
         </MealDialogPrevButton>
-        <MealDialogNextButton type='button' onClick={nextMeal}>
+        <MealDialogNextButton type="button" onClick={nextMeal}>
           &#62;
         </MealDialogNextButton>
         <MealDialogCloseButton Button onClick={onMealModal}>
