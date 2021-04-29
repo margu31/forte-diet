@@ -11,7 +11,6 @@ import {
   MealDialogEditButton,
   StyledMealContainer,
   MealDialogCloseButton,
-  StyledMealModalWrapper,
   StyledMealModal,
 } from "./MealModalGroup.styled";
 

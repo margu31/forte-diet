@@ -1,7 +1,11 @@
 import { StyledTitle } from "./Title.styled";
 
 const Title = ({ children, ...restProps }) => {
-  return <StyledTitle {...restProps}>{children}</StyledTitle>;
+  return (
+    <StyledTitle tabIndex="0" {...restProps}>
+      {children}
+    </StyledTitle>
+  );
 };
 
 export default Title;

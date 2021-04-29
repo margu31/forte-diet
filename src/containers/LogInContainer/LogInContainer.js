@@ -4,6 +4,8 @@ import { signInAction } from "redux/modules/auth/auth";
 import { isEmail, isPassword } from "utils/validation/LogInValidation";
 import { LoginForm } from "components/LoginForm/LoginForm";
 import { handleSignInWithEmailAndPassword } from "../../api/auth";
+import Portal from "components/Portal/Portal";
+import { Modal } from "components/Modal/Modal";
 
 const formValue = {
   email: null,
@@ -110,16 +112,20 @@ export default function LogInContainer({
     !state.password;
 
   return (
-    <LoginForm
-      onChange={onChange}
-      onBlur={onBlur}
-      onSubmit={onSubmit}
-      disabled={isDisabled}
-      errorMessage={state.hasError}
-      closeModal={closeModal}
-      {...restProps}
-      changePasswordMode={changePasswordMode}
-      isShow={isShow}
-    />
+    <Portal id="modal-dialog">
+      <Modal>
+        <LoginForm
+          onChange={onChange}
+          onBlur={onBlur}
+          onSubmit={onSubmit}
+          disabled={isDisabled}
+          errorMessage={state.hasError}
+          closeModal={closeModal}
+          {...restProps}
+          changePasswordMode={changePasswordMode}
+          isShow={isShow}
+        />
+      </Modal>
+    </Portal>
   );
 }

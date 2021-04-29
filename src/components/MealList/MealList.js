@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   StyledMealList,
   StyledContainer,
@@ -7,10 +7,11 @@ import {
   StyledDeleteDialog,
   StyledDeleteModal,
   StyledLiContainer,
-  StyledTriangle
-} from './MealList.styled';
-import { palette } from 'styles/index';
-import MealModalContainer from 'containers/MealModalContainer/MealModalContainer';
+  StyledTriangle,
+} from "./MealList.styled";
+import { palette } from "styles/index";
+import MealModalContainer from "containers/MealModalContainer/MealModalContainer";
+import Portal from "components/Portal/Portal";
 
 export default function MealList({
   mealListData,
@@ -25,22 +26,22 @@ export default function MealList({
   const [isActive, setIsActive] = useState(false);
   const [showMealModal, setShowMealModal] = useState(false);
 
-  const onMealModal = e => {
+  const onMealModal = (e) => {
     setShowMealModal(!showMealModal);
   };
 
   /* -------------------------------------------------------------------------- */
   /*                           스타일 컴포넌트 프롭스 지정                             */
   /* -------------------------------------------------------------------------- */
-  const changeBorderColor = type => {
+  const changeBorderColor = (type) => {
     switch (type) {
-      case '아침':
+      case "아침":
         return palette.themeTertiary;
-      case '점심':
+      case "점심":
         return palette.themePrimary;
-      case '저녁':
+      case "저녁":
         return palette.themeSecondary;
-      case '간식':
+      case "간식":
         return palette.themeQuaternary;
       default:
         return palette.themeSecondary;
@@ -50,13 +51,13 @@ export default function MealList({
   /* -------------------------------------------------------------------------- */
   /*                           웹 접근성 키보드 이벤트 코드                            */
   /* -------------------------------------------------------------------------- */
-  const forPhoto = e => {
+  const forPhoto = (e) => {
     if (e.keyCode === 13) {
       onMealModal();
     }
   };
 
-  const forDeleteDialog = e => {
+  const forDeleteDialog = (e) => {
     if (e.keyCode === 13) {
       onDelete(date, id);
       setIsActive(false);
@@ -74,12 +75,15 @@ export default function MealList({
   return (
     <>
       {showMealModal === true ? (
-        <MealModalContainer
-          onMealModal={onMealModal}
-          mealListData={mealListData}
-          showMealModal={showMealModal}
-        ></MealModalContainer>
+        <Portal id="modal-dialog">
+          <MealModalContainer
+            onMealModal={onMealModal}
+            mealListData={mealListData}
+            showMealModal={showMealModal}
+          ></MealModalContainer>
+        </Portal>
       ) : null}
+
       <StyledLiContainer {...restProps}>
         <StyledMealList
           $borderColor={changeBorderColor(type)}
@@ -90,8 +94,8 @@ export default function MealList({
             onClick={onMealModal}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1 }}
-            tabIndex='0'
-            onKeyDown={e => forPhoto(e)}
+            tabIndex="0"
+            onKeyDown={(e) => forPhoto(e)}
             aria-label={`${type} ${title}`}
           >
             <img src={photo} alt={title} />
@@ -101,7 +105,7 @@ export default function MealList({
           {!isHome && (
             <StyledDeleteButton
               onClick={() => setIsActive(!isActive)}
-              aria-label='삭제'
+              aria-label="삭제"
             >
               <StyledDeleteIcon />
             </StyledDeleteButton>
@@ -116,7 +120,7 @@ export default function MealList({
               initial={{ y: 2, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                duration: 0.1
+                duration: 0.1,
               }}
               exit={{ x: 2, opacity: 0 }}
             >
@@ -125,9 +129,9 @@ export default function MealList({
                   onDelete(date, id);
                   setIsActive(false);
                 }}
-                onKeyDown={e => forDeleteDialog(e)}
-                tabIndex='0'
-                aria-label='정말로 삭제하시겠습니까?'
+                onKeyDown={(e) => forDeleteDialog(e)}
+                tabIndex="0"
+                aria-label="정말로 삭제하시겠습니까?"
               >
                 삭제
               </span>

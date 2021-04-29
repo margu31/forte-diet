@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import { fontSizeKit, palette } from "styles";
 
 const StyledInputRadio = styled.span`
   label {
@@ -17,6 +17,11 @@ const StyledInputRadio = styled.span`
     &:hover {
       background-color: ${palette.themePrimary};
       color: ${palette.themeDefaultWhite};
+    }
+
+    &:focus {
+      position: relative;
+      z-index: 1;
     }
   }
   input:checked + label {

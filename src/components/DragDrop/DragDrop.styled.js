@@ -41,12 +41,13 @@ export const StyledFileWrapper = styled.div`
     z-index: -1;
   }
 
-  canvas {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+  input:focus + div {
+    border: 8px solid ${palette.themePrimary};
+  }
+
+  input:focus + img {
+    box-shadow: 0 0 0 6px #f3b34c;
+    opacity: 1;
   }
 `;
 
