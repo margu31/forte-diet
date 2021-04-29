@@ -27,16 +27,19 @@ time, mark, audio, video, textarea, button, svg {
   list-style: none;
   letter-spacing: inherit;
   user-select: none;
-
-  &:focus {
+  
+  &:not(input) {
+    &:focus {
     outline: none;
     box-shadow: 0 0 0 4px #395B9D;
     opacity: 1;
-  }
+    }
 
-  &:focus:not(:focus-visible) {
-    box-shadow: none;
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
+    }
   }
+  
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
