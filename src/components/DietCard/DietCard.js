@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addLikeToUser } from 'api/auth';
-import { handleEditLikeToDiets } from 'api/diets';
-import { pushLikeAction } from 'redux/modules/auth/auth';
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addLikeToUser } from "api/auth";
+import { handleEditLikeToDiets } from "api/diets";
+import { pushLikeAction } from "redux/modules/auth/auth";
 import {
   DietItem,
   StyledDietCard,
@@ -16,9 +16,11 @@ import {
   WaterIcon,
   DietAuthor,
   LikedHeartIcon,
-  MealImgContainer
-} from './DietCard.styled';
-import { palette } from 'styles';
+  MealImgContainer,
+} from "./DietCard.styled";
+import { palette } from "styles";
+import Portal from "components/Portal/Portal";
+import { MealModalContainer } from "containers";
 
 export default function DietCard({ dietData, auth, variants }) {
   const Image = useRef();
@@ -26,9 +28,16 @@ export default function DietCard({ dietData, auth, variants }) {
   const [$imgStyle, setImgStyle] = useState(null);
   const dispatch = useDispatch();
 
+  const [showMealModal, setShowMealModal] = useState(false);
+
+  const onMealModal = (e) => {
+    setShowMealModal(!showMealModal);
+  };
+
   const handleImgSize = () => {
     if (!Image.current) return;
-    const containerAspect = ImgContainer.current.offsetHeight / ImgContainer.current.offsetWidth;
+    const containerAspect =
+      ImgContainer.current.offsetHeight / ImgContainer.current.offsetWidth;
     const imgAspect = Image.current.height / Image.current.width;
 
     if (imgAspect <= containerAspect) {
@@ -46,17 +55,17 @@ export default function DietCard({ dietData, auth, variants }) {
     }
   };
 
-  const changeBorderColor = type => {
+  const changeBorderColor = (type) => {
     switch (type) {
-      case '아침':
+      case "아침":
         // return palette.themeSecondary;
         return palette.themeTertiary;
-      case '점심':
+      case "점심":
         return palette.themePrimary;
-      case '저녁':
+      case "저녁":
         // return palette.themeDefault;
         return palette.themeSecondary;
-      case '간식':
+      case "간식":
         // return palette.themePrimaryThick;
         return palette.themeQuaternary;
       default:
@@ -82,7 +91,7 @@ export default function DietCard({ dietData, auth, variants }) {
   };
 
   const handleDisLike = () => {
-    const newLike = [...auth.authUser.like].filter(id => id !== dietData.id);
+    const newLike = [...auth.authUser.like].filter((id) => id !== dietData.id);
     dispatch(pushLikeAction(newLike));
 
     addLikeToUser(auth.authUser, newLike, dietData, dietData.like - 1);
@@ -91,39 +100,57 @@ export default function DietCard({ dietData, auth, variants }) {
   };
 
   return (
-    <DietItem variants={variants} $isUserItem={auth.authUser && auth.authUser.uid === dietData.uid}>
-      <DietAuthor>{dietData.author} 님</DietAuthor>
-      <StyledDietCard>
-        <MealImgContainer
-          ref={ImgContainer}
-          $borderColor={changeBorderColor(dietData.meals[0].type)}
-        >
-          <MealImg
-            alt='음식 사진'
-            src={dietData.meals[0].photo}
-            ref={Image}
-            $imgStyle={$imgStyle}
-            onLoad={handleImgSize}
-          />
-        </MealImgContainer>
-        <DietInfos>
-          <DietInfo>
-            <DonutIcon /> {dietData.calories || '0'}kcal
-          </DietInfo>
-          <DietInfo>
-            <WaterIcon /> {dietData.waterDose || '0'}ml
-          </DietInfo>
-          <Likes>
-            {isLiked ? (
-              <LikedHeartIcon onClick={handleDisLike} />
-            ) : (
-              <HeartIcon onClick={handleLike} />
-            )}{' '}
-            {dietData.like || '0'}
-          </Likes>
-        </DietInfos>
-        {dietData.dailyReview && <DailyReview>{dietData.dailyReview}</DailyReview>}
-      </StyledDietCard>
-    </DietItem>
+    <>
+      {showMealModal === true ? (
+        <Portal id="modal-dialog">
+          <MealModalContainer
+            onMealModal={onMealModal}
+            menuListData={dietData}
+            mealListData={dietData.meals[0]}
+            showMealModal={showMealModal}
+          ></MealModalContainer>
+        </Portal>
+      ) : null}
+      <DietItem
+        onClick={onMealModal}
+        variants={variants}
+        $isUserItem={auth.authUser && auth.authUser.uid === dietData.uid}
+      >
+        <DietAuthor>{dietData.author} 님</DietAuthor>
+        <StyledDietCard>
+          <MealImgContainer
+            ref={ImgContainer}
+            $borderColor={changeBorderColor(dietData.meals[0].type)}
+          >
+            <MealImg
+              alt="음식 사진"
+              src={dietData.meals[0].photo}
+              ref={Image}
+              $imgStyle={$imgStyle}
+              onLoad={handleImgSize}
+            />
+          </MealImgContainer>
+          <DietInfos>
+            <DietInfo>
+              <DonutIcon /> {dietData.calories || "0"}kcal
+            </DietInfo>
+            <DietInfo>
+              <WaterIcon /> {dietData.waterDose || "0"}ml
+            </DietInfo>
+            <Likes>
+              {isLiked ? (
+                <LikedHeartIcon onClick={handleDisLike} />
+              ) : (
+                <HeartIcon onClick={handleLike} />
+              )}{" "}
+              {dietData.like || "0"}
+            </Likes>
+          </DietInfos>
+          {dietData.dailyReview && (
+            <DailyReview>{dietData.dailyReview}</DailyReview>
+          )}
+        </StyledDietCard>
+      </DietItem>
+    </>
   );
 }

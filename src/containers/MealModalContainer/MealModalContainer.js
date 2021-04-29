@@ -3,21 +3,20 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { MealModalGroup } from "components";
 
-export default function MealModalContainer({ onMealModal, mealListData }) {
+export default function MealModalContainer({
+  onMealModal,
+  menuListData: menuList,
+  mealListData,
+}) {
   const authUser = useSelector((state) => state.auth.authUser);
-  const menuList = useSelector((state) => state.menuList);
   const slideRef = useRef(null);
-  const modalRef = useRef(null);
 
   const history = useHistory();
+  const { id } = mealListData;
 
-  const { date, id } = mealListData;
-
+  console.log(menuList);
   // meals 배열
-  const mealsArrayList = Object.entries(menuList)
-    .sort((a, b) => b[0].slice(0, 6) - a[0].slice(0, 6))
-    .map((data) => data[1])
-    .filter((data) => data.date === date || data.id === id)[0].meals;
+  const mealsArrayList = menuList.meals;
 
   const mealIdIndex = mealsArrayList
     .map((data) => parseInt(data.id))
@@ -64,6 +63,10 @@ export default function MealModalContainer({ onMealModal, mealListData }) {
     });
   };
 
+  const stopEvent = (e) => {
+    e.stopPropagation();
+  };
+
   window.addEventListener("keyup", (e) => {
     if (e.key === "Escape") {
       onMealModal();
@@ -86,6 +89,7 @@ export default function MealModalContainer({ onMealModal, mealListData }) {
         mealLength={mealLength}
         onSetting={onSetting}
         slideRef={slideRef}
+        stopEvent={stopEvent}
       />
     </>
   );
