@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyledHomePageWrapper, HomePageHeading } from './Home.styled';
 import { UserBar, BoardContainer } from 'containers';
-import Welcome from 'components/Welcome/Welcome';
-import ScrollTopButton from '../../components/ScrollTopButton/ScrollTopButton';
+import { Welcome, ScrollTopButton } from 'components';
 
 export default function Home() {
   const [boardType, setBoardType] = useState('popular');

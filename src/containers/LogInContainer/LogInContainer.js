@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signInAction } from 'redux/modules/auth/auth';
-import { isEmail, isPassword } from 'utils/validation/LogInValidation';
+import { LoginForm, Portal, Modal } from 'components';
 import { handleSignInWithEmailAndPassword } from 'api/auth';
-import { Modal, Portal, LoginForm } from 'components';
+import { isEmail, isPassword } from 'utils/validation/LogInValidation';
 
 const formValue = {
   email: null,
@@ -14,7 +14,11 @@ const formValue = {
   }
 };
 
-export default function LogInContainer({ a11yHidden, closeModal, ...restProps }) {
+export default function LogInContainer({
+  a11yHidden,
+  closeModal,
+  ...restProps
+}) {
   const dispatch = useDispatch();
 
   const [state, setState] = useState(formValue);
@@ -100,7 +104,10 @@ export default function LogInContainer({ a11yHidden, closeModal, ...restProps })
   };
 
   const isDisabled =
-    state.hasError.email || state.hasError.password || !state.email || !state.password;
+    state.hasError.email ||
+    state.hasError.password ||
+    !state.email ||
+    !state.password;
 
   return (
     <Portal id='modal-dialog'>

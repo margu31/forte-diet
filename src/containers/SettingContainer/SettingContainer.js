@@ -1,15 +1,13 @@
-import Setting from "components/Setting/Setting";
-import Title from "components/Title/Title";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editUserInfo } from "api/firestore";
 import { editUserAction } from "redux/modules/auth/auth";
+import { Setting, Title, NotFound } from "components";
+import { editUserInfo } from "api/firestore";
 import {
   isHeight,
   isNickname,
   isWeight,
 } from "utils/validation/SignUpValidation";
-import NotFound from "components/NotFound/NotFound";
 
 const initialError = {
   nicknameError: null,
