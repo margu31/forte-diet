@@ -64,9 +64,9 @@ export const SignUpFormInput = styled(Input)`
 
     &:focus {
       outline: none;
-      ${({ theme }) => css`
+      /* ${({ theme }) => css`
         box-shadow: 0 0 0 4px ${theme.themeSecondary};
-      `}
+      `} */
       &:not(:focus-visible) {
         box-shadow: none;
       }

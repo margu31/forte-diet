@@ -1,8 +1,5 @@
-import Button from "components/Button/Button";
 import MealDialog from "components/MealDialog/MealDialog";
-import { Modal } from "components/Modal/Modal";
 import React from "react";
-import { palette } from "styles";
 import {
   MealDialogNextButton,
   MealDialogPrevButton,

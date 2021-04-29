@@ -9,9 +9,10 @@ import {
 
 export const LoginForm = ({
   onChange,
-  onBlur,
+  onKeyUp,
   errorMessage,
   onSubmit,
+  // onBlur,
   disabled,
   closeModal,
   changePasswordMode,
@@ -27,7 +28,8 @@ export const LoginForm = ({
         type="email"
         placeholder="이메일을 입력해주세요."
         onChange={onChange}
-        onBlur={onBlur}
+        onKeyUp={onKeyUp}
+        // onBlur={onBlur}
         errorMessage={errorMessage}
         a11yHidden={true}
       />
@@ -38,7 +40,8 @@ export const LoginForm = ({
         type="password"
         placeholder="비밀번호를 입력해주세요."
         onChange={onChange}
-        onBlur={onBlur}
+        onKeyUp={onKeyUp}
+        // onBlur={onBlur}
         errorMessage={errorMessage}
         a11yHidden={true}
         changePasswordMode={changePasswordMode}

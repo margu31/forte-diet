@@ -7,20 +7,18 @@ export const MyReViewContainer = styled.div`
   background-color: transparent;
   border-top: 1px solid ${palette.themePrimary};
   border-bottom: 1px solid ${palette.themePrimary};
-  padding: 10px 0;
+  padding: 15px 10px;
   width: 350px;
   height: 150px;
-  /* margin: 20px auto 0 auto; */
 `;
 
 export const MyReViewtext = styled.p`
-  /* background-color: yellowgreen; */
   color: ${palette.themeFont};
   width: 350px;
   height: auto;
   text-align: left;
   font-size: ${fontSizeKit.large};
-
+  line-height: 1.5;
   font-size: 2rem;
   font-weight: 700;
 `;

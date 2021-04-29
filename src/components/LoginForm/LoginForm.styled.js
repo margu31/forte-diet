@@ -88,7 +88,6 @@ export const LoginFormInput = styled(Input)`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 4px ${palette.themeSecondary};
   }
   &:focus:not(:focus-visible) {
     box-shadow: none;
