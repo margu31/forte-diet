@@ -1,8 +1,6 @@
-import PostingContainer from 'containers/PostingContainer/PostingContainer';
-import StylePostingPage from './PostingPage.styled';
 import { useEffect } from 'react';
-import HealthBarContainer from 'containers/HealthBarContainer/HealthBarContainer';
-import UserBar from 'containers/UserBar/UserBar';
+import StylePostingPage from './PostingPage.styled';
+import { PostingContainer, HealthBarContainer, UserBar } from 'containers';
 
 const PostingPage = ({ history }) => {
   useEffect(() => {
