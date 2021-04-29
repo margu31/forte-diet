@@ -30,7 +30,6 @@ const Input = React.forwardRef(
       changePasswordMode,
       isShow,
       onFocus,
-      // disabled,
       readOnly,
       ariaLabel,
       ...restProps
@@ -57,7 +56,6 @@ const Input = React.forwardRef(
           maxLength={maxLength}
           onKeyUp={onKeyUp}
           onFocus={onFocus}
-          // disabled={disabled ? true : false}
           readOnly={readOnly}
           aria-label={ariaLabel}
           // aria-invalid={errorMessage ? true : null}

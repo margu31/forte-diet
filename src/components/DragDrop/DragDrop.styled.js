@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { fontSizeKit, fontWeightKit, palette } from "styles";
 
 export const StyledFileWrapper = styled.div`
-  /* width: 280px;
-  height: 280px; */
   width: 320px;
   height: 320px;
   margin: 40px 0;
@@ -80,8 +78,6 @@ export const StyledDefaultView = styled.div`
 export const StyledHoverView = styled.div`
   width: inherit;
   height: inherit;
-  /* background-color: ${palette.themeHover}; */
-  /* background-color: #c3d7ff; */
   background-color: #d4e3ff;
   border: 8px solid ${palette.themeSecondary};
   border-radius: 50%;
