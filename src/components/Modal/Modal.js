@@ -1,13 +1,8 @@
-import React from 'react';
-import { StyledModal } from './Modal.styled';
+import React from "react";
+import { StyledModal } from "./Modal.styled";
 
 const Modal = ({ children, ...restProps }) => {
-  return (
-    <StyledModal {...restProps}>
-      {children}
-      {/* <LogInContainer /> */}
-    </StyledModal>
-  );
+  return <StyledModal {...restProps}>{children}</StyledModal>;
 };
 
 export default Modal;
