@@ -33,10 +33,6 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
   const [checkPasswordValue, setCheckPasswordValue] = useState(null);
   const [isShow, setIsShow] = useState(false);
 
-  // const isCheckPassword = (e) => {
-  //   e.target ===
-  // }
-
   const onChange = (e) => {
     if (e.target.name === "gender") {
       setState({ ...state, [e.target.name]: e.target.value.trim() });
@@ -108,7 +104,7 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
         ...state,
         hasError: {
           ...state.hasError,
-          checkpassword: "비밀번호를 확인해주세요.",
+          checkpassword: "입력한 비밀번호를 다시 입력해주세요.",
         },
       });
     }
@@ -229,6 +225,15 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
               ...state.hasError,
               password:
                 "영어, 숫자, 특수문자 포함 6~20자 미만으로 입력해주세요.",
+            },
+          });
+          break;
+        case "checkpassword":
+          setState({
+            ...state,
+            hasError: {
+              ...state.hasError,
+              checkpassword: "입력한 비밀번호를 다시 확인해주세요.",
             },
           });
           break;

@@ -4,14 +4,12 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import SettingPage from "../../pages/SettingPage/SettingPage";
 
-export default function MealModalContainer({
-  onMealModal,
-  mealListData,
-  showMealModal,
-}) {
+export default function MealModalContainer({ onMealModal, mealListData }) {
   const authUser = useSelector((state) => state.auth.authUser);
   const menuList = useSelector((state) => state.menuList);
   const slideRef = useRef(null);
+  const modalRef = useRef(null);
+
   const history = useHistory();
 
   const { date, id } = mealListData;

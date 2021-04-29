@@ -45,7 +45,7 @@ export default function LogInContainer({
         ...state,
         hasError: {
           ...state.hasError,
-          id: null,
+          email: null,
         },
       });
     }
@@ -84,7 +84,16 @@ export default function LogInContainer({
     closeModal();
   };
 
-  const onBlur = (e) => {
+  // const onBlur = (e) => {
+  //   if (e.target.name === "email") {
+  //     emailValid(e.target.value);
+  //   } else {
+  //     state.password = e.target.value;
+  //     passwordlValid(e.target.value);
+  //   }
+  // };
+
+  const onKeyUp = (e) => {
     if (e.target.name === "email") {
       emailValid(e.target.value);
     } else {
@@ -116,7 +125,8 @@ export default function LogInContainer({
       <Modal>
         <LoginForm
           onChange={onChange}
-          onBlur={onBlur}
+          onKeyUp={onKeyUp}
+          // onBlur={onBlur}
           onSubmit={onSubmit}
           disabled={isDisabled}
           errorMessage={state.hasError}
