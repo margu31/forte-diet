@@ -41,6 +41,10 @@ export const StyledNavLink = styled(NavLink)`
     font-weight: ${fontWeightKit.bold};
     transform: none;
     box-shadow: -4px 4px 0 rgba(0, 0, 0, 0.1);
+
+    &:focus {
+      box-shadow: 0 0 0 2px ${palette.themeSecondary};
+    }
   }
 `;
 

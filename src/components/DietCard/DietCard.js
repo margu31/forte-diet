@@ -20,7 +20,7 @@ import {
   MealImgContainer
 } from './DietCard.styled';
 
-export default function DietCard({ dietData, auth, boardType, variants }) {
+export default function DietCard({ dietData, auth, variants }) {
   const Image = useRef();
   const ImgContainer = useRef();
   const [$imgStyle, setImgStyle] = useState(null);
@@ -38,14 +38,13 @@ export default function DietCard({ dietData, auth, boardType, variants }) {
       const marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 4);
       setImgStyle(`width: auto; height: 100%; margin-left:${marginLeft}px;`);
     } else {
+      const imgHeightActual = ImgContainer.current.width / imgAspect;
+      const imgHeightToBe = ImgContainer.current.width / containerAspect;
+      const marginTop = -Math.round((imgHeightActual - imgHeightToBe) / 4);
       // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
-      setImgStyle(`width: 100%; height: auto; margin-left: 0;`);
+      setImgStyle(`width: 100%; height: auto; margin-top: ${marginTop};`);
     }
   };
-
-  useEffect(() => {
-    handleImgSize();
-  }, [Image, ImgContainer, boardType]);
 
   const changeBorderColor = type => {
     switch (type) {
@@ -104,6 +103,7 @@ export default function DietCard({ dietData, auth, boardType, variants }) {
             src={dietData.meals[0].photo}
             ref={Image}
             $imgStyle={$imgStyle}
+            onLoad={handleImgSize}
           />
         </MealImgContainer>
         <DietInfos>

@@ -28,14 +28,10 @@ const Setting = ({
   ErrorMessage,
   isDisabled,
 }) => {
-  // const passwordRef = useRef();
   const nicknameRef = useRef();
   const heightRef = useRef();
   const weightRef = useRef();
 
-  // const onPasswordEdit = () => {
-  //   passwordRef.current.disabled = false;
-  // };
   const onNicknameEdit = () => {
     nicknameRef.current.disabled = false;
   };
@@ -60,20 +56,6 @@ const Setting = ({
               defaultValue={userEmail}
             />
           </StyledSettingInput>
-          {/* <StyledSettingInput>
-            <label htmlFor="password" onClick={onPasswordEdit}>
-              <Edit />
-            </label>
-            <Input
-              type="text"
-              id="password"
-              name="password"
-              label="패스워드"
-              onChange={onChange}
-              disabled="true"
-              ref={passwordRef}
-            />
-          </StyledSettingInput> */}
           <StyledSettingInput>
             <label htmlFor="nickname" onClick={onNicknameEdit}>
               <Edit />
