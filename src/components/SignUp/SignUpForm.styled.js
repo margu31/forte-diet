@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
-import { Button, Input, Title } from 'components';
-import { fontSizeKit, fontWeightKit, palette } from 'styles';
+import styled from "styled-components";
+import { Button, Input } from "components";
+import { fontSizeKit, fontWeightKit, palette } from "styles";
 
 export const StyledSignUpForm = styled.form`
   display: flex;
@@ -62,9 +62,7 @@ export const SignUpFormInput = styled(Input)`
 
     &:focus {
       outline: none;
-      /* ${({ theme }) => css`
-        box-shadow: 0 0 0 4px ${theme.themeSecondary};
-      `} */
+
       &:not(:focus-visible) {
         box-shadow: none;
       }
