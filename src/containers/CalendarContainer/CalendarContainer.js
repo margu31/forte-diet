@@ -1,6 +1,6 @@
 import React from 'react';
-import Calendar from 'components/Calendar/Calendar';
 import { useSelector } from 'react-redux';
+import { Calendar } from 'components';
 
 export default function CalendarContainer() {
   const { authUser } = useSelector(state => state.auth);

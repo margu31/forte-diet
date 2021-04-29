@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import HealthBar from '../../components/HealthBar/HealthBar';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { handleGetDietLists } from '../../api/firestore';
-import { getHealthBarListAction } from '../../redux/modules/healthBar';
+import { useSelector, useDispatch } from 'react-redux';
+import { getHealthBarListAction } from 'redux/modules/healthBar';
+import { HealthBar } from 'components';
+import { handleGetDietLists } from 'api/firestore';
 
 export default function HealthBarContainer() {
   const { authUser } = useSelector(state => state.auth);
