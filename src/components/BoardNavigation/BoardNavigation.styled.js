@@ -22,9 +22,9 @@ export const BoardLi = styled.li`
   }
 `;
 
-export const BoardBtn = styled(Button)`
-  background-color: transparent;
-
+export const BoardBtn = styled(props => (
+  <Button style={{ backgroundColor: 'transparent' }} {...props} />
+))`
   &:hover {
     color: ${palette.themePrimaryThick};
     background-color: transparent;
