@@ -1,14 +1,11 @@
 import Button from "components/Button/Button";
-import Form from "components/Form/Form";
 import { Modal } from "components/Modal/Modal";
 import styled, { css } from "styled-components";
 import { palette } from "styles";
 
 export const StyledMealModal = styled(Modal)`
   background-image: none;
-  background-color: ${palette.themeDark};
-  opacity: 0.9;
-  z-index: 1000;
+  background-color: #292929d9;
 `;
 
 export const StyledMealContainer = styled.div`
@@ -17,8 +14,7 @@ export const StyledMealContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* backdrop-filter: blur(4px); */
-  /* z-index: 10000; */
+  opacity: 1;
 `;
 
 export const StyledMealWrapper = styled.div`

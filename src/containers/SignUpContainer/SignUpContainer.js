@@ -7,6 +7,8 @@ import {
   isNickname,
 } from "utils/validation/SignUpValidation";
 import { signUpWithEmailAndPassword } from "api/auth";
+import Portal from "components/Portal/Portal";
+import { Modal } from "components/Modal/Modal";
 
 const formValue = {
   password: null,
@@ -265,17 +267,21 @@ export default function SignUpContainer({ closeModal, ...restProps }) {
   };
 
   return (
-    <SignUpForm
-      onChange={onChange}
-      onBlur={onBlur}
-      onSubmit={onSubmit}
-      disabled={isDisabled}
-      errorMessage={state.hasError}
-      closeModal={closeModal}
-      changePasswordMode={changePasswordMode}
-      isShow={isShow}
-      onFocus={onFocus}
-      {...restProps}
-    />
+    <Portal id="modal-dialog">
+      <Modal>
+        <SignUpForm
+          onChange={onChange}
+          onBlur={onBlur}
+          onSubmit={onSubmit}
+          disabled={isDisabled}
+          errorMessage={state.hasError}
+          closeModal={closeModal}
+          changePasswordMode={changePasswordMode}
+          isShow={isShow}
+          onFocus={onFocus}
+          {...restProps}
+        />
+      </Modal>
+    </Portal>
   );
 }
