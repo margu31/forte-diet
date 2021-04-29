@@ -1,28 +1,26 @@
-import Setting from 'components/Setting/Setting';
-import Title from 'components/Title/Title';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { editUserInfo } from 'api/firestore';
-import { editUserAction } from 'redux/modules/auth/auth';
+import Setting from "components/Setting/Setting";
+import Title from "components/Title/Title";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { editUserInfo } from "api/firestore";
+import { editUserAction } from "redux/modules/auth/auth";
 import {
   isHeight,
   isNickname,
-  isWeight
-} from 'utils/validation/SignUpValidation';
-import NotFound from 'components/NotFound/NotFound';
+  isWeight,
+} from "utils/validation/SignUpValidation";
+import NotFound from "components/NotFound/NotFound";
 
 const initialError = {
   nicknameError: null,
   heightError: null,
-  weightError: null
+  weightError: null,
 };
 
 export default function SettingContainer({ history }) {
-  const { authUser } = useSelector(state => state.auth);
+  const { authUser } = useSelector((state) => state.auth);
   const [user, setUser] = useState(authUser);
   const dispatch = useDispatch();
-  // console.log("authUser :", authUser);
-  // console.log("user :", user);
 
   const [isDisabled, setIsDisabled] = useState(true);
   const [error, setError] = useState(initialError);
@@ -49,72 +47,70 @@ export default function SettingContainer({ history }) {
     }
   }, [authUser, user, nicknameError, heightError, weightError]);
 
-  const nicknameValid = nickname => {
+  const nicknameValid = (nickname) => {
     if (!isNickname(nickname)) {
       setError({
         ...error,
-        nicknameError:
-          // "5~20자 이내로 작성해주세요. (한글, 영문, 특수문자, 숫자 가능)",
-          '5~20자 이내 (한글, 영문, 특수문자, 숫자 가능)'
+        nicknameError: "5~20자 이내 (한글, 영문, 특수문자, 숫자 가능)",
       });
     } else {
       setError({
         ...error,
-        nicknameError: null
+        nicknameError: null,
       });
     }
   };
 
-  const heightValid = height => {
+  const heightValid = (height) => {
     if (!isHeight(height)) {
       setError({
         ...error,
-        heightError: '본인의 키를 입력해주세요!'
+        heightError: "본인의 키를 입력해주세요!",
       });
     } else {
       setError({
         ...error,
-        heightError: null
+        heightError: null,
       });
     }
   };
 
-  const weightValid = weight => {
+  const weightValid = (weight) => {
     if (!isWeight(weight)) {
       setError({
         ...error,
-        weightError: '본인의 몸무게를 입력해주세요!'
+        weightError: "본인의 몸무게를 입력해주세요!",
       });
     } else {
       setError({
         ...error,
-        weightError: null
+        weightError: null,
       });
     }
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const onKeyUp = e => {
-    if (e.target.name === 'nickname') {
+  const onKeyUp = (e) => {
+    if (e.target.name === "nickname") {
       nicknameValid(e.target.value);
     }
-    if (e.target.name === 'height') heightValid(e.target.value);
-    if (e.target.name === 'weight') weightValid(e.target.value);
+    if (e.target.name === "height") heightValid(e.target.value);
+    if (e.target.name === "weight") weightValid(e.target.value);
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
 
     Object.entries(user).forEach(([key, value]) => {
-      if (key === 'dietList') return;
+      if (key === "dietList") return;
       formData.append(key, value);
     });
 
@@ -123,18 +119,18 @@ export default function SettingContainer({ history }) {
     editUserInfo(authUser, newFormData);
     dispatch(editUserAction(newFormData));
 
-    history.push('/myPage');
+    history.push("/myPage");
   };
 
   const goBack = () => {
     history.goBack();
   };
 
-  if (!authUser) return <NotFound text='로그인 후 이용해 주새오.' />;
+  if (!authUser) return <NotFound text="로그인 후 이용해 주새오." />;
 
   return (
     <section>
-      <Title logoIcon='true'>회원 정보 수정</Title>
+      <Title logoIcon="true">회원 정보 수정</Title>
       <Setting
         userEmail={user.email}
         userNickname={user.nickname}

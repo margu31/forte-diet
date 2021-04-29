@@ -257,7 +257,6 @@ function PostingContainer({ history }) {
 
       reader.readAsDataURL(e.target.files[0]);
     }
-    // console.log(e.target.files[0]);
   };
 
   const goBack = () => {
