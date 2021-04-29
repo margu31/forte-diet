@@ -1,6 +1,10 @@
-import { StyledDefaultView, StyledFileWrapper, StyledHoverView } from './DragDrop.styled';
-import { ReactComponent as Photo } from 'assets/icons/InputIcons/photo.svg';
-import { ReactComponent as Upload } from 'assets/icons/InputIcons/framing.svg';
+import {
+  StyledDefaultView,
+  StyledFileWrapper,
+  StyledHoverView,
+} from "./DragDrop.styled";
+import { ReactComponent as Photo } from "assets/icons/InputIcons/photo.svg";
+import { ReactComponent as Upload } from "assets/icons/InputIcons/framing.svg";
 
 const DragDrop = ({
   defaultUrl,
@@ -14,7 +18,7 @@ const DragDrop = ({
   isDragging,
   loadedFile,
   imgRef,
-  fileRef
+  fileRef,
 }) => {
   return (
     <StyledFileWrapper
@@ -24,22 +28,23 @@ const DragDrop = ({
       onDrop={onDrop}
       onDragEnd={onDragEnd}
     >
-      <label htmlFor='fileUpload'>사진 업로드</label>
+      <label htmlFor="fileUpload">사진 업로드</label>
       <input
-        type='file'
-        id='fileUpload'
-        name='photo'
-        accept='image/*'
+        type="file"
+        id="fileUpload"
+        name="photo"
+        accept="image/*"
         onChange={onChangeFile}
         ref={fileRef}
       />
-      {(isLoaded && !isDragging) || (loadedFile && !isDragging) || defaultUrl ? (
+      {(isLoaded && !isDragging) ||
+      (loadedFile && !isDragging) ||
+      defaultUrl ? (
         <>
-          <img src={defaultUrl} alt='' ref={imgRef} />
+          <img src={defaultUrl} alt="" ref={imgRef} />
         </>
       ) : null}
       <StyledDefaultView>
-        {/* <Picture /> */}
         <Photo />
         <p>사진 등록</p>
       </StyledDefaultView>

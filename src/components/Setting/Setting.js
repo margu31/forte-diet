@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 import {
   StyledButtonGroup,
   StyledRadio,
@@ -6,10 +6,10 @@ import {
   StyledInputWrapper,
   StyledFormWrapper,
   StyledImage,
-  StyledError
-} from './Setting.styled';
-import { Button, Form, Input, InputRadio } from 'components';
-import { ReactComponent as Edit } from 'assets/icons/InputIcons/edit_black.svg';
+  StyledError,
+} from "./Setting.styled";
+import { Button, Form, Input, InputRadio } from "components";
+import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
 
 const Setting = ({
   userEmail,
@@ -22,7 +22,7 @@ const Setting = ({
   onSubmit,
   goBack,
   ErrorMessage,
-  isDisabled
+  isDisabled,
 }) => {
   const nicknameRef = useRef();
   const heightRef = useRef();
@@ -38,21 +38,21 @@ const Setting = ({
     weightRef.current.disabled = false;
   };
 
-  const onEditNickname = e => {
+  const onEditNickname = (e) => {
     if (e.keyCode === 13) {
       onNicknameEdit();
       nicknameRef.current.focus();
     }
   };
 
-  const onEditHeight = e => {
+  const onEditHeight = (e) => {
     if (e.keyCode === 13) {
       onHeightEdit();
       heightRef.current.focus();
     }
   };
 
-  const onEditWeight = e => {
+  const onEditWeight = (e) => {
     if (e.keyCode === 13) {
       onWeightEdit();
       weightRef.current.focus();
@@ -61,36 +61,36 @@ const Setting = ({
 
   return (
     <StyledFormWrapper>
-      <Form legend='정보 수정'>
+      <Form legend="정보 수정">
         <StyledInputWrapper>
           <StyledSettingInput>
             <Input
-              type='text'
-              id='email'
-              name='email'
-              label='이메일'
-              disabled='true'
+              type="text"
+              id="email"
+              name="email"
+              label="이메일"
+              disabled="true"
               defaultValue={userEmail}
             />
           </StyledSettingInput>
           <StyledSettingInput>
-            <label htmlFor='nickname'>
+            <label htmlFor="nickname">
               <Edit
                 onClick={onNicknameEdit}
-                tabIndex='0'
-                aria-label='닉네임 수정 버튼'
+                tabIndex="0"
+                aria-label="닉네임 수정 버튼"
                 onKeyDown={onEditNickname}
               />
             </label>
             <Input
-              type='text'
-              id='nickname'
-              name='nickname'
-              label='닉네임'
+              type="text"
+              id="nickname"
+              name="nickname"
+              label="닉네임"
               defaultValue={userNickname}
               onChange={onChange}
               onKeyUp={onKeyUp}
-              disabled='true'
+              disabled="true"
               ref={nicknameRef}
             />
             {ErrorMessage.nicknameError !== null && (
@@ -100,40 +100,38 @@ const Setting = ({
           <StyledRadio>
             <p>성별</p>
             <InputRadio
-              id='male'
-              name='gender'
-              value='male'
-              label='남성'
-              // onChange={onChange}
-              checked={userGender === 'male' ? true : false}
+              id="male"
+              name="gender"
+              value="male"
+              label="남성"
+              checked={userGender === "male" ? true : false}
             />
             <InputRadio
-              id='female'
-              name='gender'
-              value='female'
-              label='여성'
-              // onChange={onChange}
-              checked={userGender === 'female' ? true : false}
+              id="female"
+              name="gender"
+              value="female"
+              label="여성"
+              checked={userGender === "female" ? true : false}
             />
           </StyledRadio>
           <StyledSettingInput>
-            <label htmlFor='height'>
+            <label htmlFor="height">
               <Edit
                 onClick={onHeightEdit}
-                tabIndex='0'
-                aria-label='신장 정보 수정 버튼'
+                tabIndex="0"
+                aria-label="신장 정보 수정 버튼"
                 onKeyDown={onEditHeight}
               />
             </label>
             <Input
-              type='text'
-              id='height'
-              name='height'
-              label='신장'
+              type="text"
+              id="height"
+              name="height"
+              label="신장"
               onChange={onChange}
               onKeyUp={onKeyUp}
               defaultValue={userHeight}
-              disabled='true'
+              disabled="true"
               ref={heightRef}
             />
             {ErrorMessage.heightError !== null && (
@@ -141,30 +139,32 @@ const Setting = ({
             )}
           </StyledSettingInput>
           <StyledSettingInput>
-            <label htmlFor='weight'>
+            <label htmlFor="weight">
               <Edit
                 onClick={onWeightEdit}
-                tabIndex='0'
-                aria-label='몸무게 정보 수정 버튼'
+                tabIndex="0"
+                aria-label="몸무게 정보 수정 버튼"
                 onKeyDown={onEditWeight}
               />
             </label>
             <Input
-              type='text'
-              id='weight'
-              name='weight'
-              label='몸무게'
+              type="text"
+              id="weight"
+              name="weight"
+              label="몸무게"
               onChange={onChange}
               onKeyUp={onKeyUp}
               defaultValue={userWeight}
-              disabled='true'
+              disabled="true"
               ref={weightRef}
             />
-            {ErrorMessage.weightError && <StyledError>{ErrorMessage.weightError}</StyledError>}
+            {ErrorMessage.weightError && (
+              <StyledError>{ErrorMessage.weightError}</StyledError>
+            )}
           </StyledSettingInput>
         </StyledInputWrapper>
         <StyledButtonGroup>
-          <Button type='button' onSubmit={goBack}>
+          <Button type="button" onSubmit={goBack}>
             취소
           </Button>
           <Button onSubmit={onSubmit} disabled={isDisabled}>
