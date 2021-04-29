@@ -13,6 +13,8 @@ export const DietItem = styled(motion.li)`
   height: auto;
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.1);
+
+  ${({ $isUserItem }) => $isUserItem && `background-color: rgb(242, 104, 48, 0.3)`}
 `;
 
 export const StyledDietCard = styled.div`

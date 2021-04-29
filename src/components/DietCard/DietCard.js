@@ -91,7 +91,7 @@ export default function DietCard({ dietData, auth, variants }) {
   };
 
   return (
-    <DietItem variants={variants}>
+    <DietItem variants={variants} $isUserItem={auth.authUser.uid === dietData.uid}>
       <DietAuthor>{dietData.author} 님</DietAuthor>
       <StyledDietCard>
         <MealImgContainer
