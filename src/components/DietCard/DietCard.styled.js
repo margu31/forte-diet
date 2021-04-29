@@ -6,6 +6,7 @@ import { fontSizeKit, fontWeightKit, palette } from 'styles';
 import { motion } from 'framer-motion';
 
 export const DietItem = styled(motion.li)`
+  position: relative;
   padding: 1rem;
   margin-bottom: 5rem;
   width: 30%;
@@ -15,7 +16,7 @@ export const DietItem = styled(motion.li)`
 `;
 
 export const StyledDietCard = styled.div`
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,15 +81,15 @@ export const WaterIcon = styled(waterDrop)`
 
 export const Likes = styled.div`
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.5rem;
+  right: 1.5rem;
   color: ${palette.themeDefault};
   display: flex;
   align-items: center;
 `;
 
 export const HeartIcon = styled(TiHeart)`
-  color: ${palette.themeDisable};
+  color: ${palette.themeDefaultWhite};
   width: 30px;
   height: 30px;
   box-sizing: border-box;
