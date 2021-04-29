@@ -42,6 +42,27 @@ const Setting = ({
     weightRef.current.disabled = false;
   };
 
+  const onEditNickname = (e) => {
+    if (e.keyCode === 13) {
+      onNicknameEdit();
+      nicknameRef.current.focus();
+    }
+  };
+
+  const onEditHeight = (e) => {
+    if (e.keyCode === 13) {
+      onHeightEdit();
+      heightRef.current.focus();
+    }
+  };
+
+  const onEditWeight = (e) => {
+    if (e.keyCode === 13) {
+      onWeightEdit();
+      weightRef.current.focus();
+    }
+  };
+
   return (
     <StyledFormWrapper>
       <Form legend="정보 수정">
@@ -57,8 +78,13 @@ const Setting = ({
             />
           </StyledSettingInput>
           <StyledSettingInput>
-            <label htmlFor="nickname" onClick={onNicknameEdit}>
-              <Edit />
+            <label htmlFor="nickname">
+              <Edit
+                onClick={onNicknameEdit}
+                tabIndex="0"
+                aria-label="닉네임 수정 버튼"
+                onKeyDown={onEditNickname}
+              />
             </label>
             <Input
               type="text"
@@ -95,8 +121,13 @@ const Setting = ({
             />
           </StyledRadio>
           <StyledSettingInput>
-            <label htmlFor="height" onClick={onHeightEdit}>
-              <Edit />
+            <label htmlFor="height">
+              <Edit
+                onClick={onHeightEdit}
+                tabIndex="0"
+                aria-label="신장 정보 수정 버튼"
+                onKeyDown={onEditHeight}
+              />
             </label>
             <Input
               type="text"
@@ -114,8 +145,13 @@ const Setting = ({
             )}
           </StyledSettingInput>
           <StyledSettingInput>
-            <label htmlFor="weight" onClick={onWeightEdit}>
-              <Edit />
+            <label htmlFor="weight">
+              <Edit
+                onClick={onWeightEdit}
+                tabIndex="0"
+                aria-label="몸무게 정보 수정 버튼"
+                onKeyDown={onEditWeight}
+              />
             </label>
             <Input
               type="text"
