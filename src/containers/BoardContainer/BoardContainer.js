@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Board from 'components/Board/Board';
 import { getPopularMenus, getRecentMenus } from 'redux/modules/board';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function BoardContainer() {
+export default function BoardContainer({ boardType, setBoardType }) {
   const board = useSelector(state => state.board);
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
-
-  const [boardType, setBoardType] = useState('popular');
 
   useEffect(() => {
     dispatch(getPopularMenus(25)());

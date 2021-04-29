@@ -15,7 +15,7 @@ import {
 import Dropdown from '../Dropdown/Dropdown';
 import { useDispatch } from 'react-redux';
 
-export default function Welcome() {
+export default function Welcome({ setBoardToSearch }) {
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
 
@@ -26,6 +26,7 @@ export default function Welcome() {
   const handleSearch = e => {
     e.preventDefault();
 
+    setBoardToSearch();
     dispatch(getSearchMenus(25)(search));
   };
   return (
