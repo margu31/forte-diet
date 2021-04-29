@@ -52,7 +52,10 @@ export const getPopularDiets = limit => async () => {
 
 export const getSearchDiets = limit => async searchWord => {
   try {
-    const response = await diets.where('titles', 'array-contains', searchWord).limit(limit).get();
+    const response = await diets
+      .where('titles', 'array-contains-any', searchWord.split(''))
+      .limit(limit)
+      .get();
 
     const searchDiets = [];
     response.forEach(doc => {
