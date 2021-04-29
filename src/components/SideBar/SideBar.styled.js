@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { palette } from '../../styles';
+import { palette } from 'styles';
 
 export const StyledSideBarWrapper = styled.div`
   background-color: ${palette.themePrimary};

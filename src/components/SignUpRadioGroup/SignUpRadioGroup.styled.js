@@ -1,6 +1,5 @@
-import InputRadio from "components/Radio/InputRadio";
-import styled, { css } from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import styled from 'styled-components';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 const StyledRadioGroup = styled.div`
   display: flex;

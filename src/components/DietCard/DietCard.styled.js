@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as Donut } from 'assets/icons/MenuList/donut.svg';
 import { ReactComponent as waterDrop } from 'assets/icons/MenuList/waterDrop.svg';
 import { TiHeart } from 'react-icons/ti';
-import { fontSizeKit, fontWeightKit, palette } from 'styles';
 import { motion } from 'framer-motion';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const DietItem = styled(motion.li)`
   position: relative;
@@ -14,7 +14,8 @@ export const DietItem = styled(motion.li)`
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.1);
 
-  ${({ $isUserItem }) => $isUserItem && `background-color: rgb(242, 104, 48, 0.3)`}
+  ${({ $isUserItem }) =>
+    $isUserItem && `background-color: rgb(242, 104, 48, 0.3)`}
 `;
 
 export const StyledDietCard = styled.div`
@@ -29,12 +30,14 @@ export const DietAuthor = styled.div`
   font-size: ${fontSizeKit.small};
   font-weight: ${fontWeightKit.bold};
   margin-bottom: 1rem;
+  padding-top: 5px;
 `;
 
 export const MealImgContainer = styled.div`
   overflow: hidden;
-  width: 340px;
+  width: 315px;
   height: 300px;
+  margin-top: 5px;
 
   ${({ $borderColor }) => css`
     border: 4px solid ${$borderColor};
@@ -70,6 +73,7 @@ export const DailyReview = styled.p`
   font-size: ${fontSizeKit.small};
   line-height: 1.6rem;
   background-color: ${palette.themeBright};
+  margin-bottom: 5px;
 `;
 
 export const DonutIcon = styled(Donut)`
@@ -83,7 +87,7 @@ export const WaterIcon = styled(waterDrop)`
 
 export const Likes = styled.div`
   position: absolute;
-  top: 0.5rem;
+  top: 0.8rem;
   right: 1.5rem;
   color: ${palette.themeDefault};
   display: flex;

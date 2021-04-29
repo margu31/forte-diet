@@ -1,8 +1,7 @@
-import { MealModalGroup } from "components/MealWrapper/MealModalGroup";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import SettingPage from "../../pages/SettingPage/SettingPage";
+import { MealModalGroup } from "components";
 
 export default function MealModalContainer({ onMealModal, mealListData }) {
   const authUser = useSelector((state) => state.auth.authUser);

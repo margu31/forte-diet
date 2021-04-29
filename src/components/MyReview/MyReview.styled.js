@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import styled from 'styled-components';
+import { fontSizeKit, palette } from 'styles';
 
 export const MyReViewContainer = styled.div`
   display: flex;

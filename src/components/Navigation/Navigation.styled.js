@@ -1,9 +1,9 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { BsHouse, BsGear } from 'react-icons/bs';
-import { fontSizeKit, fontWeightKit, palette } from '../../styles';
 import { IoPizzaOutline } from 'react-icons/io5';
 import { RiEditBoxLine } from 'react-icons/ri';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const StyledUl = styled.ul`
   display: inline-flex;

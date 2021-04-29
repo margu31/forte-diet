@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { palette } from 'styles';
-import Button from 'components/Button/Button';
+import { Button } from 'components';
 
 export const BoardNav = styled.nav`
   padding: 0 20rem 0;
@@ -22,9 +22,9 @@ export const BoardLi = styled.li`
   }
 `;
 
-export const BoardBtn = styled(Button)`
-  background-color: transparent;
-
+export const BoardBtn = styled(props => (
+  <Button style={{ backgroundColor: 'transparent' }} {...props} />
+))`
   &:hover {
     color: ${palette.themePrimaryThick};
     background-color: transparent;

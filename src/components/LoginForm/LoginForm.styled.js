@@ -1,7 +1,6 @@
-import Button from "components/Button/Button";
-import Input from "components/Input/Input";
-import styled, { css } from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import styled, { css } from 'styled-components';
+import { Button, Input } from 'components';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const StyledForm = styled.form`
   display: flex;

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { StyledMyPageWrapper } from './MyPage.styled';
-import MenuListContainer from 'containers/MenuListContainer/MenuListContainer';
-import HealthBarContainer from 'containers/HealthBarContainer/HealthBarContainer';
-import CalendarContainer from 'containers/CalendarContainer/CalendarContainer';
-import UserBar from 'containers/UserBar/UserBar';
-import MenuListToPosting from 'components/MenuListToPostingButton/MenuListToPosting';
-import ScrollTopButton from 'components/ScrollTopButton/ScrollTopButton';
+import {
+  MenuListContainer,
+  HealthBarContainer,
+  CalendarContainer,
+  UserBar
+} from 'containers';
+import { MenuListToPosting, ScrollTopButton } from 'components';
 
 export default function MyPage({ history }) {
   const onMoveToPosting = () => {

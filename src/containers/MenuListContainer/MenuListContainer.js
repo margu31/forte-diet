@@ -1,25 +1,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  handleGetDietLists,
-  addOrEditDailyReview,
-  removeDailyReview,
-  addWaterDose,
-  removeMeal,
-  handleDeleteDietInUsers,
-  handleEditLikeNumberToUsers
-} from '../../api/firestore';
-import {
   getMenuListAction,
   addWaterDoseAction,
   resetWaterDoseAction,
   addDailyReviewAction,
   DeleteDailyReviewAction
-} from '../../redux/modules/menuList';
-import MenuList from '../../components/MenuList/MenuList';
-import { updateWaterDoseAction } from 'redux/modules/healthBar';
+} from 'redux/modules/menuList';
+import { pushLikeAction } from 'redux/modules/auth/auth';
+import {
+  updateWaterDoseAction,
+  getHealthBarListAction
+} from 'redux/modules/healthBar';
+import { MenuList, NotFound } from 'components';
 import { throttle } from 'lodash';
-import { getHealthBarListAction } from '../../redux/modules/healthBar';
 import {
   addOrEditDailyReviewInDiets,
   removeDailyReviewInDiets,
@@ -27,9 +21,16 @@ import {
   updateWaterDoseInDiets,
   handleEditLikeToDiets
 } from 'api/diets';
-import { pushLikeAction } from '../../redux/modules/auth/auth';
+import {
+  handleGetDietLists,
+  addOrEditDailyReview,
+  removeDailyReview,
+  addWaterDose,
+  removeMeal,
+  handleDeleteDietInUsers,
+  handleEditLikeNumberToUsers
+} from 'api/firestore';
 import { addLikeToUser } from 'api/auth';
-import NotFound from 'components/NotFound/NotFound';
 
 export default function MenuListContainer() {
   const { authUser, isAuthed } = useSelector(state => state.auth);

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { auth as Auth, createOrGetAuthUser, handleSignOut } from '../../api/auth';
-import UserNavigation from 'components/UserNavigation/UserNavigation';
 import { signInAction, signOutAction } from 'redux/modules/auth/auth';
+import { UserNavigation } from 'components';
+import { auth as Auth, createOrGetAuthUser, handleSignOut } from 'api/auth';
 
 export default function UserBar() {
   const auth = useSelector(state => state.auth);

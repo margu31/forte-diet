@@ -1,4 +1,3 @@
-import MealDialog from "components/MealDialog/MealDialog";
 import React from "react";
 import {
   MealDialogNextButton,
@@ -10,8 +9,9 @@ import {
   MealDialogCloseButton,
   StyledMealModal,
 } from "./MealModalGroup.styled";
+import { MealDialog } from "components";
 
-export const MealModalGroup = ({
+const MealModalGroup = ({
   mealsArrayList,
   onMealModal,
   prevMeal,
@@ -59,3 +59,5 @@ export const MealModalGroup = ({
     </StyledMealModal>
   );
 };
+
+export default MealModalGroup;

@@ -1,9 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { checkByte } from '../../utils/validation/DailyReviewValidation';
-import {
-  StyledDailyReview,
-  StyledDailyReviewModal
-} from './DailyReview.styled';
+import { StyledDailyReview, StyledDailyReviewModal } from './DailyReview.styled';
+import { checkByte } from 'utils/validation/DailyReviewValidation';
 
 export default function DailyReview({
   date,
@@ -74,12 +71,7 @@ export default function DailyReview({
             </span>
             <button
               onMouseDown={() =>
-                onRemove(
-                  date,
-                  setWroteReview,
-                  setReviewIsActive,
-                  setTotalTextLength
-                )
+                onRemove(date, setWroteReview, setReviewIsActive, setTotalTextLength)
               }
               onKeyDown={e => forDeleteButton(e)}
             >

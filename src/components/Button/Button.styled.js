@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const StyledButton = styled(motion.button)`

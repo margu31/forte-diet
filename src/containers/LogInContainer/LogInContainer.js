@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signInAction } from "redux/modules/auth/auth";
+import { LoginForm, Portal, Modal } from "components";
+import { handleSignInWithEmailAndPassword } from "api/auth";
 import { isEmail, isPassword } from "utils/validation/LogInValidation";
-import { LoginForm } from "components/LoginForm/LoginForm";
-import { handleSignInWithEmailAndPassword } from "../../api/auth";
-import Portal from "components/Portal/Portal";
-import { Modal } from "components/Modal/Modal";
 
 const formValue = {
   email: null,
@@ -83,15 +81,6 @@ export default function LogInContainer({
 
     closeModal();
   };
-
-  // const onBlur = (e) => {
-  //   if (e.target.name === "email") {
-  //     emailValid(e.target.value);
-  //   } else {
-  //     state.password = e.target.value;
-  //     passwordlValid(e.target.value);
-  //   }
-  // };
 
   const onKeyUp = (e) => {
     if (e.target.name === "email") {

@@ -13,7 +13,7 @@ import {
   StyledDot,
   StyledTodayButton
 } from './Calendar.styled';
-import { palette } from 'styles/index';
+import { palette } from 'styles';
 
 export default function Calendar({ calendarMenuList, onScroll }) {
   const [isActive, setIsActive] = useState(false);
@@ -54,9 +54,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
   const formattedDateForSelect = date => {
     const format = n => (n < 10 ? '0' + n : n + '');
 
-    return `${date.getFullYear()}-${format(date.getMonth() + 1)}-${format(
-      date.getDate()
-    )}`;
+    return `${date.getFullYear()}-${format(date.getMonth() + 1)}-${format(date.getDate())}`;
   };
 
   const eachCalendarDates = (() => {
@@ -82,21 +80,13 @@ export default function Calendar({ calendarMenuList, onScroll }) {
 
   const onClickPrev = () => {
     setCurrentDate(
-      new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() - 1,
-        currentDate.getDate()
-      )
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate())
     );
   };
 
   const onClickNext = () => {
     setCurrentDate(
-      new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() + 1,
-        currentDate.getDate()
-      )
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate())
     );
   };
 
@@ -119,8 +109,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
   const styledBackgroundProps = date => {
     const $background = [];
 
-    if (isEqualDate(date, currentDate))
-      $background.push(palette.themePrimaryThick);
+    if (isEqualDate(date, currentDate)) $background.push(palette.themePrimaryThick);
 
     return $background;
   };
@@ -129,8 +118,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
     const today = new Date();
     const $border = [];
 
-    if (isEqualDate(date, today))
-      $border.push(`1px solid rgb(242, 104, 48, 0.5)`);
+    if (isEqualDate(date, today)) $border.push(`1px solid rgb(242, 104, 48, 0.5)`);
 
     return $border;
   };
@@ -138,8 +126,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
   const styledSelectedColorProps = date => {
     const $selectedColor = [];
 
-    if (isEqualDate(date, currentDate))
-      $selectedColor.push(palette.themeDefaultWhite);
+    if (isEqualDate(date, currentDate)) $selectedColor.push(palette.themeDefaultWhite);
 
     return $selectedColor;
   };
@@ -156,10 +143,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
   };
 
   const forSelectDate = e => {
-    if (
-      calendarMenuList[0].slice(0, 6) ===
-      e.target.ariaLabel.slice(2, 10).replace(/-/g, '')
-    ) {
+    if (calendarMenuList[0].slice(0, 6) === e.target.ariaLabel.slice(2, 10).replace(/-/g, '')) {
       if (e.keyCode === 13) {
         e.stopPropagation(); // 이벤트 전파 막기
         setCurrentDate(new Date(e.target.parentElement.dataset.dateOrigin));
@@ -250,9 +234,7 @@ export default function Calendar({ calendarMenuList, onScroll }) {
                       $styledSelectedColorProps={styledSelectedColorProps(date)}
                       onClick={e => {
                         e.stopPropagation(); // 이벤트 전파 막기
-                        setCurrentDate(
-                          new Date(e.target.parentElement.dataset.dateOrigin)
-                        );
+                        setCurrentDate(new Date(e.target.parentElement.dataset.dateOrigin));
                         setIsActive(false);
                         onScroll(e.target.parentElement.dataset.date);
                       }}

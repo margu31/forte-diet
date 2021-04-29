@@ -1,7 +1,4 @@
-import Button from "components/Button/Button";
-import Form from "components/Form/Form";
-import Input from "components/Input/Input";
-import InputRadio from "components/Radio/InputRadio";
+import { useRef } from "react";
 import {
   StyledButtonGroup,
   StyledRadio,
@@ -11,9 +8,8 @@ import {
   StyledImage,
   StyledError,
 } from "./Setting.styled";
-// import { ReactComponent as Edit } from "assets/icons/InputIcons/edit.svg";
+import { Button, Form, Input, InputRadio } from "components";
 import { ReactComponent as Edit } from "assets/icons/InputIcons/edit_black.svg";
-import { useRef } from "react";
 
 const Setting = ({
   userEmail,
@@ -108,7 +104,6 @@ const Setting = ({
               name="gender"
               value="male"
               label="남성"
-              // onChange={onChange}
               checked={userGender === "male" ? true : false}
             />
             <InputRadio
@@ -116,7 +111,6 @@ const Setting = ({
               name="gender"
               value="female"
               label="여성"
-              // onChange={onChange}
               checked={userGender === "female" ? true : false}
             />
           </StyledRadio>

@@ -3,7 +3,6 @@ import {
   StyledFileWrapper,
   StyledHoverView,
 } from "./DragDrop.styled";
-// import { ReactComponent as Picture } from "assets/icons/InputIcons/picture.svg";
 import { ReactComponent as Photo } from "assets/icons/InputIcons/photo.svg";
 import { ReactComponent as Upload } from "assets/icons/InputIcons/framing.svg";
 
@@ -46,7 +45,6 @@ const DragDrop = ({
         </>
       ) : null}
       <StyledDefaultView>
-        {/* <Picture /> */}
         <Photo />
         <p>사진 등록</p>
       </StyledDefaultView>

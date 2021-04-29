@@ -100,142 +100,248 @@
 ## 🦊프로젝트 구조도
 
 ```md
+├── LICENSE
+├── README.md
+├── jsconfig.json
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.svg
+│   ├── home-welcome.jpg
+│   ├── index.html
+│   ├── login-bg.jpg
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── setting-_image.jpg
 ├── src
-│ ├── api
-│ ├── app
-│ │ └── App.js
-│ ├── components
-│ │ ├── Button
-│ │ │ ├── Button.js
-│ │ │ └── Button.styled.js
-│ │ ├── SideBar
-│ │ │ ├── SideBar.js
-│ │ │ └── SideBar.styled.js
-│ │ ├── UpperBar
-│ │ │ ├── UpperBar.js
-│ │ │ └── UpperBar.styled.js
-│ │ ├── HomeLink
-│ │ │ ├── HomeLink.js
-│ │ │ └── HomeLink.styled.js
-│ │ ├── NavLink
-│ │ │ ├── NavLink.js
-│ │ │ └── NavLink.styled.js
-│ │ ├── Navigation
-│ │ │ ├── Navigation.js
-│ │ │ ├── Navigation.styled.js
-│ │ │ ├── SideNavigation.js
-│ │ │ ├── SideNavigation.styled.js
-│ │ │ ├── UpperNavigation.js
-│ │ │ └── UpperNavigation.styled.js
-│ │ ├── Welcome
-│ │ │ ├── Welcome.js
-│ │ │ └── Welcome.styled.js
-│ │ ├── Search
-│ │ │ ├── Search.js
-│ │ │ └── Search.styled.js
-│ │ ├── Board
-│ │ │ ├── Board.js
-│ │ │ └── Board.styled.js
-│ │ ├── Tab
-│ │ │ ├── Tab.js
-│ │ │ └── Tab.styled.js
-│ │ ├── Footer
-│ │ │ ├── Footer.js
-│ │ │ └── Footer.styled.js
-│ │ ├── Modal # 공용 modal 컴포넌트
-│ │ │ ├── Modal.js
-│ │ │ └── Modal.styled.js
-│ │ ├── Dialog # 공용 dialog 컴포넌트
-│ │ │ ├── Dialog.js
-│ │ │ └── Dialog.styled.js
-│ │ ├── Input # 공용 input 컴포넌트
-│ │ │ ├── Input.js
-│ │ │ └── Input.styled.js  
-│ │ ├── LogIn # LogIn, 공용 컴포넌트 사용
-│ │ │ ├── Login.styled.js
-│ │ │ └── Login.js
-│ │ ├── SignUp # SignUp, 공용 컴포넌트 사용
-│ │ │ ├── SignUp.styled.js
-│ │ │ └── SignUp.js  
-│ │ ├── Posting
-│ │ │ ├── PostingForm.js
-│ │ │ ├── PostingForm.styled.js
-│ │ │ ├── PostingInput.js
-│ │ │ ├── PostingInput.styled.js
-│ │ │ ├── PostingReviewBox.js
-│ │ │ ├── PostingReviewBox.styled.js
-│ │ │ ├── PostingInputRadio.js
-│ │ │ ├── PostingInputRadio.styled.js
-│ │ │ ├── PostingButton.js
-│ │ │ └── PostingButton.styled.js
-│ │ ├── Setting # 모달
-│ │ │ ├── SettingModal.js
-│ │ │ └── SettingModal.styled.js
-│ │ ├── Tutorial # 로그인 전 - 회원가입 또는 로그인 버튼 / 후 - 포스팅 추가 버튼
-│ │ │ ├── Tutorial.js
-│ │ │ └── Tutorial.styled.js
-│ │ ├── MenuList # ui 구현
-│ │ │ ├── MenuList.js # MealList, HealthInfo, Calendar 일자별로 묶는 파일
-│ │ │ └── MenuList.styled.js
-│ │ ├── MealList # ui 구현
-│ │ │ ├── MealList.js
-│ │ │ └── MealList.styled.js
-│ │ ├── Calendar # ui 구현
-│ │ │ ├── Calendar.js
-│ │ │ └── Calendar.styled.js
-│ │ ├── HealthBar # ui 구현
-│ │ │ ├── HealthBar.js # HealthInfo 컴포넌트 재사용 & Like 컴포넌트 재사용
-│ │ │ └── HealthBar.styled.js
-│ │ ├── HealthInfo # date, calorie, waterDose, nutrient info
-│ │ │ └── HealthInfo.js
-│ │ ├── Like
-│ │ │ ├── Like.js
-│ │ │ └── Like.styled.js
-│ ├── containers
-│ │ ├── WelcomeContainer
-│ │ │ └── WelcomeContainer.js
-│ │ ├── BoardContainer
-│ │ │ └── BoardContainer.js
-│ │ ├── LogInContainer
-│ │ │ └── LogInContainer.js
-│ │ ├── SignUpContainer
-│ │ │ └── SignUpContainer.js
-│ │ ├── PostingContainer
-│ │ │ └── PostingContainer.js
-│ │ ├── SettingContainer
-│ │ │ └── SettingContainer.js
-│ │ ├── TutorialContainer
-│ │ │ └── TutorialContainer.js
-│ │ ├── MenuListContainer # 기능 구현
-│ │ │ └── MenuListContainer.js
-│ │ ├── HealthBarContainer # 기능 구현
-│ │ │ └── HealthBarContainer.js
-│ ├── utils # validation
-│ │ ├── validation
-│ │ │ ├── LogInValidation.js
-│ │ │ ├── SignUpValidation.js
-│ │ │ └── reviewValidation.js
-│ ├── pages
-│ │ ├── Home
-│ │ │ ├── Home.js
-│ │ │ └── Home.styled.js
-│ │ ├── MyPage
-│ │ │ ├── MyPage.js
-│ │ │ └── MyPage.styled.js
-│ │ ├── PostingPage
-│ │ │ ├── PostingPage.js
-│ │ │ └── PostingPage.styled.js
-│ │ ├── TutorialPage
-│ │ │ ├── TutorialPage.js
-│ │ │ └── TutorialPage.styled.js
-│ ├── redux
-│ │ ├── modules
-│ │ │ ├── board.js
-│ │ │ ├── index.js
-│ │ │ ├── postingMenuList.js
-│ │ │ ├── menuList.js # add, toggle, delete reducer 구현
-│ │ │ └── healthBar.js
-│ ├── styles
-│ │ ├── index.js # color, font, etc...
-└───└────└── store.js
+│   ├── api
+│   │   ├── amazon.js
+│   │   ├── auth.js
+│   │   ├── diets.js
+│   │   └── firestore.js
+│   ├── app
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── App.styled.js
+│   │   └── App.test.js
+│   ├── assets
+│   │   ├── icons
+│   │   │   ├── InputIcons
+│   │   │   │   ├── edit.svg
+│   │   │   │   ├── edit_black.svg
+│   │   │   │   ├── email.svg
+│   │   │   │   ├── eye-slash.svg
+│   │   │   │   ├── eye.svg
+│   │   │   │   ├── framing.svg
+│   │   │   │   ├── gender.svg
+│   │   │   │   ├── height.svg
+│   │   │   │   ├── id.svg
+│   │   │   │   ├── lock.svg
+│   │   │   │   ├── nickname.svg
+│   │   │   │   ├── photo.svg
+│   │   │   │   ├── picture.svg
+│   │   │   │   └── weight.svg
+│   │   │   ├── MenuList
+│   │   │   │   ├── donut.svg
+│   │   │   │   └── waterDrop.svg
+│   │   │   └── dropdown.svg
+│   │   └── logos
+│   │       └── logo1.svg
+│   ├── components
+│   │   ├── Board
+│   │   │   ├── Board.js
+│   │   │   └── Board.styled.js
+│   │   ├── BoardNavigation
+│   │   │   ├── BoardNavigation.js
+│   │   │   └── BoardNavigation.styled.js
+│   │   ├── Button
+│   │   │   ├── Button.js
+│   │   │   └── Button.styled.js
+│   │   ├── Calendar
+│   │   │   ├── Calendar.js
+│   │   │   └── Calendar.styled.js
+│   │   ├── DailyReview
+│   │   │   ├── DailyReview.js
+│   │   │   └── DailyReview.styled.js
+│   │   ├── DataGroup
+│   │   │   ├── DataGroup.js
+│   │   │   └── DataGroup.styled.js
+│   │   ├── DietCard
+│   │   │   ├── DietCard.js
+│   │   │   └── DietCard.styled.js
+│   │   ├── DragDrop
+│   │   │   ├── DragDrop.js
+│   │   │   └── DragDrop.styled.js
+│   │   ├── Dropdown
+│   │   │   ├── Dropdown.js
+│   │   │   └── Dropdown.styled.js
+│   │   ├── Footer
+│   │   │   ├── Footer.js
+│   │   │   └── Footer.styled.js
+│   │   ├── Form
+│   │   │   ├── Form.js
+│   │   │   └── Form.styled.js
+│   │   ├── HealthBar
+│   │   │   ├── HealthBar.js
+│   │   │   └── HealthBar.styled.js
+│   │   ├── HomeLink
+│   │   │   ├── HomeLink.js
+│   │   │   └── HomeLink.styled.js
+│   │   ├── Icon
+│   │   │   ├── Icons.js
+│   │   │   └── Icons.styled.js
+│   │   ├── Input
+│   │   │   ├── Input.js
+│   │   │   └── Input.styled.js
+│   │   ├── LoginForm
+│   │   │   ├── LoginForm.js
+│   │   │   └── LoginForm.styled.js
+│   │   ├── MealDialog
+│   │   │   ├── MealDialog.js
+│   │   │   └── MealDialog.styled.js
+│   │   ├── MealList
+│   │   │   ├── MealList.js
+│   │   │   └── MealList.styled.js
+│   │   ├── MealWrapper
+│   │   │   ├── MealModalGroup.js
+│   │   │   └── MealModalGroup.styled.js
+│   │   ├── MenuList
+│   │   │   ├── MenuList.js
+│   │   │   └── MenuList.styled.js
+│   │   ├── MenuListBar
+│   │   │   ├── MenuListBar.js
+│   │   │   └── MenuListBar.styled.js
+│   │   ├── MenuListToPostingButton
+│   │   │   ├── MenuListToPosting.js
+│   │   │   └── MenuListToPosting.styled.js
+│   │   ├── Modal
+│   │   │   ├── Modal.js
+│   │   │   ├── Modal.styled.js
+│   │   │   └── MyPhotoView
+│   │   ├── MyPhotoView
+│   │   │   ├── MyPhotoView.js
+│   │   │   └── MyPhotoView.styled.js
+│   │   ├── MyReview
+│   │   │   ├── MyReview.js
+│   │   │   └── MyReview.styled.js
+│   │   ├── MyTitle
+│   │   │   ├── MyTitle.js
+│   │   │   └── MyTitle.styled.js
+│   │   ├── Navigation
+│   │   │   ├── Navigation.js
+│   │   │   └── Navigation.styled.js
+│   │   ├── NotFound
+│   │   │   ├── NotFound.js
+│   │   │   └── NotFound.styled.js
+│   │   ├── Portal
+│   │   │   ├── Portal.js
+│   │   │   └── Portal.styled.js
+│   │   ├── Radio
+│   │   │   ├── InputRadio.js
+│   │   │   └── InputRadio.styled.js
+│   │   ├── RadioGroup
+│   │   │   ├── RadioGroup.js
+│   │   │   └── RadioGroup.styled.js
+│   │   ├── ReviewBox
+│   │   │   ├── ReviewBox.js
+│   │   │   └── ReviewBox.styled.js
+│   │   ├── ScrollTopButton
+│   │   │   ├── ScrollTopButton.js
+│   │   │   └── ScrollTopButton.styled.js
+│   │   ├── Setting
+│   │   │   ├── Setting.js
+│   │   │   └── Setting.styled.js
+│   │   ├── SideBar
+│   │   │   ├── SideBar.js
+│   │   │   └── SideBar.styled.js
+│   │   ├── SignUp
+│   │   │   ├── SignUpForm.js
+│   │   │   └── SignUpForm.styled.js
+│   │   ├── SignUpRadioGroup
+│   │   │   ├── SignUpRadioGroup.js
+│   │   │   └── SignUpRadioGroup.styled.js
+│   │   ├── Title
+│   │   │   ├── Title.js
+│   │   │   └── Title.styled.js
+│   │   ├── Toggle
+│   │   │   ├── Toggle.js
+│   │   │   └── Toggle.styled.js
+│   │   ├── UserNavigation
+│   │   │   ├── UserNavigation.js
+│   │   │   └── UserNavigation.styled.js
+│   │   ├── Welcome
+│   │   │   ├── Welcome.js
+│   │   │   └── Welcome.styled.js
+│   │   └── index.js
+│   ├── containers
+│   │   ├── BoardContainer
+│   │   │   └── BoardContainer.js
+│   │   ├── CalendarContainer
+│   │   │   └── CalendarContainer.js
+│   │   ├── HealthBarContainer
+│   │   │   └── HealthBarContainer.js
+│   │   ├── LogInContainer
+│   │   │   └── LogInContainer.js
+│   │   ├── MealModalContainer
+│   │   │   └── MealModalContainer.js
+│   │   ├── MenuListContainer
+│   │   │   └── MenuListContainer.js
+│   │   ├── PostEditContainer
+│   │   │   └── PostEditContainer.js
+│   │   ├── PostingContainer
+│   │   │   └── PostingContainer.js
+│   │   ├── SettingContainer
+│   │   │   └── SettingContainer.js
+│   │   ├── SignUpContainer
+│   │   │   └── SignUpContainer.js
+│   │   ├── UserBar
+│   │   │   └── UserBar.js
+│   │   └── index.js
+│   ├── index.css
+│   ├── index.js
+│   ├── lib
+│   │   └── boardUtils.js
+│   ├── logo.svg
+│   ├── pages
+│   │   ├── Home
+│   │   │   ├── Home.js
+│   │   │   └── Home.styled.js
+│   │   ├── MyPage
+│   │   │   ├── MyPage.js
+│   │   │   └── MyPage.styled.js
+│   │   ├── PostEdit
+│   │   │   ├── PostEditPage.js
+│   │   │   └── PostEditPage.styled.js
+│   │   ├── PostingPage
+│   │   │   ├── PostingPage.js
+│   │   │   └── PostingPage.styled.js
+│   │   ├── SettingPage
+│   │   │   ├── SettingPage.js
+│   │   │   └── SettingPage.styled.js
+│   │   └── index.js
+│   ├── redux
+│   │   ├── modules
+│   │   │   ├── auth
+│   │   │   │   └── auth.js
+│   │   │   ├── board.js
+│   │   │   ├── healthBar.js
+│   │   │   ├── index.js
+│   │   │   ├── menuList.js
+│   │   │   └── postingMenuList.js
+│   │   └── store.js
+│   ├── reportWebVitals.js
+│   ├── setupTests.js
+│   ├── styles
+│   │   ├── a11y.js
+│   │   ├── color.js
+│   │   ├── font.js
+│   │   ├── index.js
+│   │   └── reset.js
+│   └── utils
+│       └── validation
+│           ├── DailyReviewValidation.js
+│           ├── LogInValidation.js
+│           ├── PostingValidation.js
+│           └── SignUpValidation.js
+└── yarn.lock
 ```

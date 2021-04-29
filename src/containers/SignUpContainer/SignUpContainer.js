@@ -1,14 +1,12 @@
-import SignUpForm from "components/SignUp/SignUpForm";
 import React, { useState } from "react";
+import { SignUpForm, Portal, Modal } from "components";
+import { signUpWithEmailAndPassword } from "api/auth";
 import { isEmail, isPassword } from "utils/validation/LogInValidation";
 import {
   isHeight,
   isWeight,
   isNickname,
 } from "utils/validation/SignUpValidation";
-import { signUpWithEmailAndPassword } from "api/auth";
-import Portal from "components/Portal/Portal";
-import { Modal } from "components/Modal/Modal";
 
 const formValue = {
   password: null,
