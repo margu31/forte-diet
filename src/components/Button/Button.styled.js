@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import styled from "styled-components";
-import { fontSizeKit, fontWeightKit, palette } from "styles";
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
+import { fontSizeKit, fontWeightKit, palette } from 'styles';
 
 export const StyledButton = styled(motion.button)`
   display: inline-block;
@@ -31,7 +31,7 @@ export const StyledButton = styled(motion.button)`
   /* 접근성 - 키보드 포커싱일 경우 box-shadow */
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 4px ${palette.themePrimary};
+    box-shadow: 0 0 0 4px ${palette.themeSecondary};
   }
   &:focus:not(:focus-visible) {
     box-shadow: none;
