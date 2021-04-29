@@ -20,18 +20,20 @@ const MealModalGroup = ({
   mealLength,
   onSetting,
   slideRef,
+  stopEvent,
 }) => {
   return (
-    <StyledMealModal>
-      <StyledMealContainer>
+    <StyledMealModal onClick={onMealModal}>
+      <StyledMealContainer onClick={stopEvent}>
         <StyledMealWrapper ref={slideRef}>
-          {mealsArrayList.map(({ id, review, photo, title }) => (
+          {mealsArrayList.map(({ id, review, photo, title, calories }) => (
             <MealDialog
               key={id}
               id={id}
               title={title}
               photo={photo}
               review={review}
+              calories={calories}
               onMealModal={onMealModal}
               prevMeal={prevMeal}
               nextMeal={nextMeal}

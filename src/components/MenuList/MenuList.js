@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { StyledMenuList } from './MenuList.styled';
-import { MealList, DailyReview, MenuListBar } from 'components';
+import React, { useRef, useState } from "react";
+import { StyledMenuList } from "./MenuList.styled";
+import { MealList, DailyReview, MenuListBar } from "components";
 
 export default function MenuList({
   menuListData,
@@ -14,7 +14,7 @@ export default function MenuList({
   handleLike,
   handleDisLike,
   onClickWaterDose,
-  id
+  id,
 }) {
   const dailyTextarea = useRef();
   const mealListFocus = useRef();
@@ -32,26 +32,26 @@ export default function MenuList({
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const item = {
     // hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
-    }
+      opacity: 1,
+    },
   };
 
   /* -------------------------------------------------------------------------- */
 
-  if (typeof menuListData.meals.map !== 'function') return null;
+  if (typeof menuListData.meals.map !== "function") return null;
 
   return (
     <>
-      <StyledMenuList variants={container} initial='hidden' animate='visible'>
+      <StyledMenuList variants={container} initial="hidden" animate="visible">
         <MenuListBar
           date={date}
           getTotalCalories={getTotalCalories}
@@ -67,7 +67,7 @@ export default function MenuList({
           waterDose={menuListData.waterDose}
           onClickWaterDose={onClickWaterDose}
         />
-        {menuListData.meals.map(mealList => (
+        {menuListData.meals.map((mealList) => (
           <MealList
             mealListData={mealList}
             key={mealList.id}
@@ -75,6 +75,7 @@ export default function MenuList({
             onDelete={onDelete}
             date={date}
             mealListFocus={mealListFocus}
+            menuListData={menuListData}
           />
         ))}
         <DailyReview
