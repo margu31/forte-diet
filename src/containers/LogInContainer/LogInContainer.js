@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { signInAction } from "redux/modules/auth/auth";
 import { LoginForm, Portal, Modal } from "components";
@@ -23,6 +23,8 @@ export default function LogInContainer({
 
   const [state, setState] = useState(formValue);
   const [isShow, setIsShow] = useState(false);
+
+  const loginRef = useRef();
 
   const onChange = (e) => {
     e.preventDefault();
@@ -109,13 +111,17 @@ export default function LogInContainer({
     !state.email ||
     !state.password;
 
+  useEffect(() => {
+    loginRef.current.focus();
+
+    return () => {};
+  }, []);
   return (
     <Portal id="modal-dialog">
-      <Modal onClick={closeModal}>
+      <Modal onClick={closeModal} ref={loginRef} tabIndex="0">
         <LoginForm
           onChange={onChange}
           onKeyUp={onKeyUp}
-          // onBlur={onBlur}
           onSubmit={onSubmit}
           disabled={isDisabled}
           errorMessage={state.hasError}

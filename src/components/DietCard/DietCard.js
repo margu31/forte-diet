@@ -137,7 +137,11 @@ export default function DietCard({ dietData, auth, variants }) {
             <DietInfo>
               <WaterIcon /> {dietData.waterDose || "0"}ml
             </DietInfo>
-            <Likes>
+            <Likes
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
               {isLiked ? (
                 <LikedHeartIcon onClick={handleDisLike} />
               ) : (
