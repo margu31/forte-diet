@@ -14,7 +14,6 @@ export default function MealModalContainer({
   const history = useHistory();
   const { id } = mealListData;
 
-  console.log(menuList);
   // meals 배열
   const mealsArrayList = menuList.meals;
 
@@ -83,6 +82,7 @@ export default function MealModalContainer({
       <MealModalGroup
         mealsArrayList={mealsArrayList}
         onMealModal={onMealModal}
+        menuList={menuList}
         prevMeal={prevMeal}
         nextMeal={nextMeal}
         mealListData={mealListData}

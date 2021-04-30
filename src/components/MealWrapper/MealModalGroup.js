@@ -10,8 +10,10 @@ import {
   StyledMealModal,
 } from "./MealModalGroup.styled";
 import { MealDialog } from "components";
+import { useSelector } from "react-redux";
 
 const MealModalGroup = ({
+  menuList,
   mealsArrayList,
   onMealModal,
   prevMeal,
@@ -22,6 +24,14 @@ const MealModalGroup = ({
   slideRef,
   stopEvent,
 }) => {
+  const { authUser } = useSelector((state) => state.auth);
+
+  const handleClick = () => {
+    onMealModal();
+
+    console.log(authUser?.uid, menuList.uid);
+    console.log(authUser?.uid !== menuList.uid);
+  };
   return (
     <StyledMealModal onClick={onMealModal}>
       <StyledMealContainer onClick={stopEvent}>
@@ -43,10 +53,15 @@ const MealModalGroup = ({
             ></MealDialog>
           ))}
         </StyledMealWrapper>
-        <MealDialogSubmitButton type="button" onClick={onMealModal}>
+        <MealDialogSubmitButton type="button" onClick={handleClick}>
           확인
         </MealDialogSubmitButton>
-        <MealDialogEditButton onClick={onSetting}>수정</MealDialogEditButton>
+        <MealDialogEditButton
+          disabled={authUser?.uid !== menuList.uid}
+          onClick={onSetting}
+        >
+          수정
+        </MealDialogEditButton>
         {/* </StyledButtonContainer> */}
         <MealDialogPrevButton type="button" onClick={prevMeal}>
           &#60;
