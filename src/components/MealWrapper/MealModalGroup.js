@@ -28,9 +28,6 @@ const MealModalGroup = ({
 
   const handleClick = () => {
     onMealModal();
-
-    console.log(authUser?.uid, menuList.uid);
-    console.log(authUser?.uid !== menuList.uid);
   };
   return (
     <StyledMealModal onClick={onMealModal}>
