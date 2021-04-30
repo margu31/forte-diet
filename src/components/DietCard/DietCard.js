@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addLikeToUser } from 'api/auth';
 import { handleEditLikeToDiets } from 'api/diets';
 import { pushLikeAction } from 'redux/modules/auth/auth';
@@ -19,7 +19,7 @@ import {
   MealImgContainer
 } from './DietCard.styled';
 import { palette } from 'styles';
-import Portal from 'components/Portal/Portal';
+import { Portal } from 'components';
 import { MealModalContainer } from 'containers';
 
 export default function DietCard({ dietData, auth, variants }) {
@@ -41,7 +41,6 @@ export default function DietCard({ dietData, auth, variants }) {
 
     if (imgAspect <= containerAspect) {
       // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
-      console.log(ImgContainer.current, imgAspect);
       const imgWidthActual = ImgContainer.current.offsetHeight / imgAspect;
       const imgWidthToBe = ImgContainer.current.offsetHeight / containerAspect;
       const marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
