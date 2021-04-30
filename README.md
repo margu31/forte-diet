@@ -21,7 +21,7 @@
 
 ## 🦊 스택
 
-![react](https://img.shields.io/badge/react-17.0.2-brightgreen) ![redux](https://img.shields.io/badge/redux-4.0.5-yellowgreen) ![react-redux](https://img.shields.io/badge/react--redux-7.2.3-yellow) ![react-thunk](https://img.shields.io/badge/react--thunk-2.3.0-red) <br>![router](https://img.shields.io/badge/router-1.3.5-%23a0f48d) ![react-router](https://img.shields.io/badge/react--router-5.2.0-%23f6f990) ![firebase](https://img.shields.io/badge/firebase-8.3.3-blue) ![axios](https://img.shields.io/badge/axios-0.21.1-important) ![styled-components](https://img.shields.io/badge/styled--components-5.2.3-blueviolet) <br>![framer-motion](https://img.shields.io/badge/framer--motion-4.1.3-orange) ![prop-types](https://img.shields.io/badge/prop--types-15.7.2-success) ![eslint](https://img.shields.io/badge/eslint-7.23.0-9cf) ![prettier](https://img.shields.io/badge/prettier-2.2.1-critical) <br>![immer](https://img.shields.io/badge/immer-9.0.1-blueviolet) ![polished](https://img.shields.io/badge/polished-4.1.1-%23f9c2fc) ![react-icons](https://img.shields.io/badge/react--icons-4.2.0-%2392fcfc) ![reselect](https://img.shields.io/badge/reselect-4.0.0-%23f7b08f)
+![react](https://img.shields.io/badge/react-17.0.2-brightgreen) ![redux](https://img.shields.io/badge/redux-4.0.5-yellowgreen) ![react-redux](https://img.shields.io/badge/react--redux-7.2.3-yellow) ![react-thunk](https://img.shields.io/badge/react--thunk-2.3.0-red) <br>![router](https://img.shields.io/badge/router-1.3.5-%23a0f48d) ![react-router](https://img.shields.io/badge/react--router-5.2.0-%23f6f990) ![firebase](https://img.shields.io/badge/firebase-8.3.3-blue) ![styled-components](https://img.shields.io/badge/styled--components-5.2.3-blueviolet) <br>![framer-motion](https://img.shields.io/badge/framer--motion-4.1.3-orange)  ![eslint](https://img.shields.io/badge/eslint-7.23.0-9cf) ![prettier](https://img.shields.io/badge/prettier-2.2.1-critical) <br> ![polished](https://img.shields.io/badge/polished-4.1.1-%23f9c2fc) ![react-icons](https://img.shields.io/badge/react--icons-4.2.0-%2392fcfc) 
 <br>
 <br>
 
@@ -101,8 +101,8 @@
 
 ###
 
-    ✔️ 인증 - firebase-authentication
-    ✔️ DB - firebase-firestore, firebase-storage, AWS s3
+    ✔️ 인증 - firebase(authentication)
+    ✔️ DB - firebase(firestore), AWS s3
 
 <br>
 <br>
