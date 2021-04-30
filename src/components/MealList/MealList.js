@@ -23,7 +23,6 @@ export default function MealList({
   mealListFocus,
   ...restProps
 }) {
-  console.log(menuListData);
   const { photo, title, type, id } = mealListData;
   const [isActive, setIsActive] = useState(false);
   const [showMealModal, setShowMealModal] = useState(false);
