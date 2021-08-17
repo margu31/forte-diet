@@ -7,7 +7,7 @@
 
 ## 🦊 데모
 
-![👉데모 영상](./assets/forteDiet_demo.gif)
+![👉데모 영상](./assets/demo.gif)
 <br>
 <br>
 
